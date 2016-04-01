@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>SQL インジェクション対策に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"SQL_Injection_Prevention_Cheat_Sheet","wgTitle":"SQL Injection Prevention Cheat Sheet","wgCurRevisionId":203082,"wgRevisionId":203082,"wgArticleId":8528,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets","Popular"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"SQL_Injection_Prevention_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-SQL_Injection_Prevention_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">SQL インジェクション対策に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<p>最終改訂日 (yy/mm/dd):<b>2015/11/05</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Primary_Defenses"><span class="tocnumber">2</span> <span class="toctext">一次的な対策</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Defense_Option_1:_Prepared_Statements_.28with_Parameterized_Queries.29"><span class="tocnumber">2.1</span> <span class="toctext">対策 #1: プリペアドステートメント (パラメーター化されたクエリとの併用)</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Defense_Option_2:_Stored_Procedures"><span class="tocnumber">2.2</span> <span class="toctext">対策 #2: ストアドプロシージャ</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Defense_Option_3:_Escaping_All_User_Supplied_Input"><span class="tocnumber">2.3</span> <span class="toctext">対策 #3: ユーザーによるすべての入力をエスケープ処理する</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Database_Specific_Escaping_Details"><span class="tocnumber">2.3.1</span> <span class="toctext">データベース固有のエスケープ処理の詳細</span></a>
+<ul>
+<li class="toclevel-4 tocsection-7"><a href="#Oracle_Escaping"><span class="tocnumber">2.3.1.1</span> <span class="toctext">Oracle のエスケープ処理</span></a>
+<ul>
+<li class="toclevel-5 tocsection-8"><a href="#Escaping_Dynamic_Queries"><span class="tocnumber">2.3.1.1.1</span> <span class="toctext">動的クエリのエスケープ処理</span></a></li>
+<li class="toclevel-5 tocsection-9"><a href="#Turn_off_character_replacement"><span class="tocnumber">2.3.1.1.2</span> <span class="toctext">文字の置換をオフにする</span></a></li>
+<li class="toclevel-5 tocsection-10"><a href="#Escaping_Wildcard_characters_in_Like_Clauses"><span class="tocnumber">2.3.1.1.3</span> <span class="toctext">LIKE 句のワイルドカード文字のエスケープ処理</span></a></li>
+<li class="toclevel-5 tocsection-11"><a href="#Oracle_10g_escaping"><span class="tocnumber">2.3.1.1.4</span> <span class="toctext">Oracle 10g のエスケープ処理</span></a></li>
+</ul>
+</li>
+<li class="toclevel-4 tocsection-12"><a href="#MySQL_Escaping"><span class="tocnumber">2.3.1.2</span> <span class="toctext">MySQL のエスケープ処理</span></a></li>
+<li class="toclevel-4 tocsection-13"><a href="#SQL_Server_Escaping"><span class="tocnumber">2.3.1.3</span> <span class="toctext">SQL Server のエスケープ処理</span></a></li>
+<li class="toclevel-4 tocsection-14"><a href="#DB2_Escaping"><span class="tocnumber">2.3.1.4</span> <span class="toctext">DB2 のエスケープ処理</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-15"><a href="#Hex-encoding_all_input"><span class="tocnumber">2.3.2</span> <span class="toctext">すべての入力の 16 進数エンコード処理</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Additional_Defenses"><span class="tocnumber">3</span> <span class="toctext">追加の対策</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#Least_Privilege"><span class="tocnumber">3.1</span> <span class="toctext">最小権限の原則</span></a>
+<ul>
+<li class="toclevel-3 tocsection-18"><a href="#Multiple_DB_Users"><span class="tocnumber">3.1.1</span> <span class="toctext">複数の DB ユーザー</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="#Views"><span class="tocnumber">3.1.2</span> <span class="toctext">ビュー</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-20"><a href="#White_List_Input_Validation"><span class="tocnumber">3.2</span> <span class="toctext">ホワイトリスト型の入力検証</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Related_Articles"><span class="tocnumber">4</span> <span class="toctext">関連資料</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">5</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#Other_Cheatsheets"><span class="tocnumber">5.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>この資料は、アプリケーションに SQL インジェクションの脆弱性が入り込まないようにするための、簡単でわかりやすい実用的なガイダンスを提供することに重点を置いています。残念なことに、<a href="/index.php/SQL_Injection" title="SQL インジェクション">SQL インジェクション</a>攻撃は、次に示す 2 つの要因により非常に一般的なものになっています。
+</p>
+<ol>
+<li> SQL インジェクション脆弱性の高い発生率、および 
+</li>
+<li> 標的の魅力 (つまり、データベースには、通常、アプリケーションにとって興味深い / 不可欠なデータがすべて格納されているということ)。
+</li>
+</ol>
+<p>これほど多くの SQL インジェクション攻撃が成功しているのは情けないことです。というのも、コーディングで SQL インジェクション脆弱性を回避するのは、非常に簡単だからです。
+</p><p>SQL インジェクションの脆弱性は、ソフトウェア開発者が、ユーザーによる入力を含む動的データベースクエリを作成するときに入り込みます。SQL インジェクションの脆弱性を回避するのは簡単です。開発者は、次のどちらか (または両方) を実行すればよいのです。
+a) 動的クエリの記述をやめる、
+b) ユーザーによる悪意のある SQL を含む入力が、実行されるクエリ構文に影響しないようにする。
+</p><p>この資料では、これら 2 つの問題を避けることで、SQL インジェクションの脆弱性を防ぐ簡単な技法について説明します。ここで説明する技法は、ほぼすべての種類のプログラミング言語とデータベースに使用できます。別の種類のデータベース (XML データベースなど) にも同様の問題 (XPath インジェクションや XQuery インジェクション) が存在しますが、そのような問題を防ぐ場合にも、ここで説明する技法が使用できます。
+</p><p>一次的な対策: 
+</p>
+<ul>
+<li> <b>対策 #1: プリペアドステートメント (パラメーター化されたクエリ) を使用する。</b>
+</li>
+<li> <b>対策 #2: ストアドプロシージャを使用する。</b>
+</li>
+<li> <b>対策 #3: ユーザーによるすべての入力をエスケープ処理する。</b>
+</li>
+</ul>
+<p>追加の対策:
+</p>
+<ul>
+<li> <b>最小権限の原則</b>
+</li>
+<li> <b>ホワイトリスト型の入力検証</b>
+</li>
+</ul>
+<p><br />
+</p>
+<dl>
+<dt>安全でない例
+</dt>
+</dl>
+<p>SQL インジェクションの脆弱性は典型的には、次に示すようなものです。
+</p><p>次の例 (Java) は安全ではなく、攻撃者はデータベースで実行されるクエリにコードを注入できる可能性があります。検証されていない "customerName" パラメーターがそのままクエリに追加されており、攻撃者は任意の SQL コードを注入できるようになります。残念なことに、データベースへのアクセスには、この方法がよく使用されています。
+</p>
+<pre> String query = "SELECT account_balance FROM user_data WHERE user_name = "
+   + request.getParameter("customerName");
+ 
+ try {
+ 	Statement statement = connection.createStatement( … );
+ 	ResultSet results = statement.executeQuery( query );
+ }
+</pre>
+<h1><span class="mw-headline" id="Primary_Defenses">一次的な対策</span></h1>
+<h2><span class="mw-headline" id="Defense_Option_1:_Prepared_Statements_.28with_Parameterized_Queries.29">対策 #1: プリペアドステートメント (パラメーター化されたクエリとの併用)</span></h2>
+<p>プリペアドステートメントと変数バインド (つまり、パラメーター化されたクエリ) の使用は、すべての開発者が最初に学ぶべきデータベースクエリの記述方法です。これは、記述が簡単で、動的クエリよりも理解しやすいものです。パラメーター化されたクエリを使用する場合、開発者は、最初にすべての SQL コードを定義しておき、その後、クエリ実行時に各パラメーターに値を渡します。このコーディングスタイルを採用すると、ユーザーによる入力の内容にかかわらず、コードとデータをデータベースで区別できるようになります。
+</p><p>攻撃者が SQL コマンドを挿入したとしても、プリペアドステートメントにより、クエリの意図を攻撃者が変更することは不可能です。下記の安全な例では、攻撃者が userID に tom' または '1'='1 を入力しても、パラメーター化されたクエリは脆弱にならず、tom' または '1'='1 の文字列全体に文字どおりに一致するユーザー名が検索されます。
+</p><p>言語固有の推奨事項:
+</p>
+<ul>
+<li> Java EE – PreparedStatement() とバインド変数を併用します。
+</li>
+<li> .NET – SqlCommand() や OleDbCommand() などのパラメーター化されたクエリとバインド変数を併用します。
+</li>
+<li> PHP – PDO と厳密に型指定されたパラメーター化されたクエリ (bindParam() を使用) を併用します。
+</li>
+<li> Hibernate – createQuery() とバインド変数 (Hibernate では名前付きパラメーターと呼ぶ) を併用します。
+</li>
+<li> SQLite – sqlite3_prepare() を使用して、<a rel="nofollow" class="external text" href="http://www.sqlite.org/c3ref/stmt.html">ステートメントオブジェクト</a>を作成します。
+</li>
+</ul>
+<p>まれな状況で、プリペアドステートメントがパフォーマンスの低下を招くことがあります。この状況に直面した場合は、a) すべてのデータに強力な検証を行うか、b) ユーザーによる入力のすべてをエスケープします (プリペアドステートメントを使用するのではなく、後述するように、データベース固有のエスケープ処理ルーチンを使用します)。
+</p>
+<dl>
+<dt>安全な Java プリペアドステートメントの例	
+</dt>
+</dl>
+<p>次のコード例では、Java のパラメーター化されたクエリの実装である PreparedStatement を使用して、同じデータベースクエリを実行します。
+</p>
+<pre> String custname = request.getParameter("customerName"); // これも実際に検証される必要がある
+ // 入力検証を実行して攻撃を検出する
+ String query = "SELECT account_balance FROM user_data WHERE user_name =&#160;? ";
+ 
+ <b>PreparedStatement pstmt = connection.prepareStatement( query );</b>
+ <b>pstmt.setString( 1, custname); </b>
+ ResultSet results = pstmt.executeQuery( );
+</pre>
+<dl>
+<dt>安全な C# .NET プリペアドステートメントの例	
+</dt>
+</dl>
+<p>.NET の場合は、もっと簡単になります。クエリの作成と実行の部分は変更しません。ただ単に、ここに示すように Parameters.Add() を使用して、クエリにパラメーターを渡すだけでよいのです。
+</p>
+<pre> String query = 
+ 	 "SELECT account_balance FROM user_data WHERE user_name =&#160;?";
+ try {
+ 	OleDbCommand command = new OleDbCommand(query, connection);
+ 	<b>command.Parameters.Add(new OleDbParameter("customerName", CustomerName Name.Text));</b>
+ 	OleDbDataReader reader = command.ExecuteReader();
+ 	// …
+ } catch (OleDbException se) {
+ 	// エラー処理
+ } 
+</pre>
+<p>Java と .NET の例を示しましたが、Cold Fusion や Classic ASP なども含めて、ほぼすべての言語でパラメーター化されたクエリのインターフェイスがサポートされています。<a rel="nofollow" class="external text" href="http://www.hibernate.org/">Hibernate Query Language</a> (HQL) のような SQL 抽象化レイヤーにも、同様の種類のインジェクション問題があります (この問題を <a rel="nofollow" class="external text" href="http://cwe.mitre.org/data/definitions/564.html">HQL インジェクション</a>と呼びます)。パラメーター化されたクエリは HQL でもサポートされているため、この問題を回避できます。
+</p>
+<dl>
+<dt>Hibernate Query Language (HQL) プリペアドステートメント (名前付きパラメーター) の例	
+</dt>
+</dl>
+<pre> 最初に安全でない HQL ステートメントを示します
+ 
+ Query unsafeHQLQuery = session.createQuery("from Inventory where productID='"+userSuppliedParameter+"'");
+ 
+ 同じクエリに名前付きパラメーターを使用した安全なバージョンを次に示します
+ 
+ Query safeHQLQuery = session.createQuery("from Inventory where productID=:productid");
+ safeHQLQuery.setParameter("productid", userSuppliedParameter);
+</pre>
+<p>その他の言語 (Ruby、PHP、Cold Fusion、Perl など) のパラメーター化されたクエリの例については、「<a href="/index.php/Query_Parameterization_Cheat_Sheet" title="クエリのパラメーター化に関するチートシート">クエリのパラメーター化に関するチートシート</a>」または <a rel="nofollow" class="external free" href="http://bobby-tables.com/">http://bobby-tables.com/</a> を参照してください。
+</p><p>開発者は、プリペアドステートメントのアプローチを好む傾向があります。これは、すべての SQL コードがアプリケーション内に収まるためです。これにより、アプリケーションは相対的にデータベースに依存しなくなります。
+</p>
+<h2><span class="mw-headline" id="Defense_Option_2:_Stored_Procedures">対策 #2: ストアドプロシージャ</span></h2>
+<p>ストアドプロシージャは、安全な実装* により、プリペアドステートメントを使用した場合と同じ効果が得られます (ほとんどのストアドプロシージャ言語では、標準で安全な実装になります)。そのために開発者に要求されることは、パラメーターを受け取る SQL ステートメントを作成することだけです。この SQL ステートメントは、開発者が基準から大きく外れたことを行わない限り自動的にパラメーター化されます。プリペアドステートメントとストアドプロシージャでは、ストアドプロシージャの SQL コードがデータベースで定義 / 保存され、アプリケーションから呼び出されるという点が異なります。どちらの技法も SQL インジェクションの対策においては同じ効果があるため、組織にとって最適になるほうのアプローチを選択する必要があります。
+</p><p>*注: ”安全な実装“ とは、ストアドプロシージャに安全でない動的 SQL の生成が含まれていないという意味です。開発者は通常、ストアドプロシージャの内部で動的 SQL を生成することはありません。生成は可能ですが、避ける必要があります。それでも避けられない場合は、ユーザーがストアドプロシージャに入力しても、動的に生成されるクエリに SQL コードが注入されないように、入力検証を使用するか、適切なエスケープ処理を行う必要があります。これについては後述します。監査担当者は、SQL Server のストアドプロシージャ内で使用される sp_execute、execute または exec を逃さず見つけ出す必要があります。その他のベンダーの同様の機能にも、同様の監査のガイドラインが必要になります。
+</p><p>また、ストアドプロシージャがリスクの増加につながる状況もあります。たとえば、MS SQL Server には、3 つの主な既定の役割 db_datareader、db_datawriter および db_owner があります。ストアドプロシージャの使用開始前に、DBA は Web サービスのユーザーに db_datareader 権限または db_datawriter 権限を要件に応じて付与します。ただし、ストアドプロシージャには実行権限が必要になります。これは、既定では利用できない役割です。ユーザー管理が一元化され、これら 3 つの役割に限定されている一部のセットアップでは、ストアドプロシージャを動作させるために、すべての Web アプリケーションを db_owner 権限で実行するようになります。サーバーが侵害されると、それまで読み取りアクセスのみが許可されていた攻撃者は、当然ながらデータベースに対する権限をすべて手に入れることになります。このトピックについての詳細は、次を参照してください。<a rel="nofollow" class="external text" href="http://www.sqldbatips.com/showarticle.asp?ID=8">http://www.sqldbatips.com/showarticle.asp?ID=8 </a>
+</p>
+<dl>
+<dt>安全な Java ストアドプロシージャの例
+</dt>
+</dl>
+<p>次のコード例では、Java のストアドプロシージャインターフェイスの実装である CallableStatement を使用して、同じデータベースクエリを実行します。"sp_getAccountBalance" ストアドプロシージャは、データベース内で事前定義されている必要があり、上記で定義したクエリと同じ機能を実装している必要があります。
+</p>
+<pre> String custname = request.getParameter("customerName"); // これは実際に検証される必要がある
+ try {
+ 	<b>CallableStatement cs = connection.prepareCall("{call sp_getAccountBalance(?)}");</b>
+ 	<b>cs.setString(1, custname);</b>
+ 	ResultSet results = cs.executeQuery();		
+ 	// … 結果セットの処理
+ } catch (SQLException se) {			
+ 	// … ロギングおよびエラー処理
+ }
+</pre>
+<dl>
+<dt>安全な VB .NET ストアドプロシージャの例	
+</dt>
+</dl>
+<p>次のコード例では、.NET のストアドプロシージャインターフェイスの実装である SqlCommand を使用して、同じデータベースクエリを実行します。"sp_getAccountBalance" ストアドプロシージャは、データベース内で事前定義されている必要があり、上記で定義したクエリと同じ機能を実装している必要があります。
+</p>
+<pre> Try
+ 	Dim command As SqlCommand = new SqlCommand("sp_getAccountBalance", connection)
+ 	<b>command.CommandType = CommandType.StoredProcedure</b>
+ 	<b>command.Parameters.Add(new SqlParameter("@CustomerName", CustomerName.Text))</b>
+ 	Dim reader As SqlDataReader = command.ExecuteReader()
+ 	‘ …
+ Catch se As SqlException 
+ 	‘ エラー処理
+ End Try
+</pre>
+<h2><span class="mw-headline" id="Defense_Option_3:_Escaping_All_User_Supplied_Input">対策 #3: ユーザーによるすべての入力をエスケープ処理する</span></h2>
+<p>この 3 番目の技法では、ユーザー入力をエスケープしてからクエリに取り入れます。ただし、この方法はパラメーター化されたクエリと比べて脆弱であり、すべての状況であらゆる SQL インジェクションを防止できるという保証はできません。この技法は、レガシーコードをコストをかけずに改造する場合にのみ慎重に使用するようにしてください。ゼロから作成するアプリケーションや、低いリスク許容度を要求するアプリケーションは、パラメーター化されたクエリを使用して作成するか、書き直す必要があります。
+</p><p>この技法は、次のように動作します。どの DBMS でも、ある種のクエリに固有の文字エスケープ処理方法を 1 つ以上サポートしています。使用中のデータベースに適したエスケープ処理方法でユーザーによる入力をすべてエスケープすると、DBMS は、ユーザーによる入力と開発者が記述した SQL コードを混同しなくなり、あらゆる SQL インジェクション脆弱性の可能性を回避することになります。
+</p>
+<ul>
+<li> ESAPI の詳細については、<a href="/index.php/ESAPI" title="ESAPI" class="mw-redirect">ここ (OWASP) を参照してください</a>。
+</li>
+<li> ESAPI の Javadoc については、<a rel="nofollow" class="external text" href="http://owasp-esapi-java.googlecode.com/svn/trunk_doc/index.html">ここ (Google Code リポジトリ) を参照してください</a>。
+</li>
+<li> また、<a rel="nofollow" class="external text" href="http://code.google.com/p/owasp-esapi-java/source/browse/#svn/trunk/src/main/java/org/owasp/esapi">Google でソースを直接閲覧</a>することもできます。このソースは、Javadoc に不明確な部分がある場合には、たびたび役立ちます。
+</li>
+</ul>
+<p>データベースのエンコーダー専用の Javadoc を見つけるには、左側の 'Codec' クラスをクリックします。多数の’Codec’ クラスの実装があります。データベース固有の 2 つの ‘Codec’ クラス は、OracleCodec と MySQLCodec です。
+</p><p>[Interface Codec] ページの上部にある [All Known Implementing Classes:] で、それらの名前をクリックします。
+</p><p>現時点では、ESAPI には次のデータベースエンコーダーがあります。
+</p>
+<ul>
+<li> Oracle
+</li>
+<li> MySQL (ANSI モードとネイティブモードの両方がサポートされています)
+</li>
+</ul>
+<p>次のデータベースエンコーダー
+</p>
+<ul>
+<li> SQL Server
+</li>
+<li> PostgreSQL
+</li>
+</ul>
+<p>は、近日中に入手できます。目的のデータベースエンコーダーが見つからない場合は、お知らせください。
+</p>
+<h3><span class="mw-headline" id="Database_Specific_Escaping_Details">データベース固有のエスケープ処理の詳細</span></h3>
+<p>独自のエスケープ処理ルーチンを作成しようとしている場合は、ESAPI エンコーダーが開発されている、次の各データベースのエスケープ処理の詳細を参考にしてください。
+</p>
+<h4><span class="mw-headline" id="Oracle_Escaping">Oracle のエスケープ処理</span></h4>
+<p>この情報は、次の場所にある Oracle のエスケープ文字情報に基づいています。<a rel="nofollow" class="external free" href="http://www.orafaq.com/wiki/SQL_FAQ#How_does_one_escape_special_characters_when_writing_SQL_queries.3F">http://www.orafaq.com/wiki/SQL_FAQ#How_does_one_escape_special_characters_when_writing_SQL_queries.3F</a>
+</p>
+<h5><span class="mw-headline" id="Escaping_Dynamic_Queries">動的クエリのエスケープ処理</span></h5>
+<p>ESAPI データベースコーデックは、とても簡単に使用できます。Oracle の用例は、次のようになります。
+</p>
+<pre> ESAPI.encoder().encodeForSQL( new OracleCodec(), queryparam );
+</pre>
+<p>次に示すように、Oracle に向けられてコード内で生成される既存の動的クエリがあったとします。
+</p>
+<pre> String query = "SELECT user_id FROM user_data WHERE user_name = '" + req.getParameter("userID") 
+ + "' and user_password = '" + req.getParameter("pwd") +"'";
+ try {
+     Statement statement = connection.createStatement( … );
+     ResultSet results = statement.executeQuery( query );
+ }
+</pre>
+<p>次に示すように、最初の行を書き直します。
+</p>
+<pre><b>Codec ORACLE_CODEC = new OracleCodec();</b>
+ String query = "SELECT user_id FROM user_data WHERE user_name = '" + 
+   <b>ESAPI.encoder().encodeForSQL( ORACLE_CODEC, req.getParameter("userID"))</b> + "' and user_password = '"
+   + <b>ESAPI.encoder().encodeForSQL( ORACLE_CODEC, req.getParameter("pwd"))</b> +"'";
+</pre>
+<p>これで、このコードは何が入力されようと、SQL インジェクションに対して安全になります。
+</p><p>最大限コードを読みやすくするために、独自の OracleEncoder を作成することもできます。
+</p>
+<pre> Encoder oe = new OracleEncoder();
+ String query = "SELECT user_id FROM user_data WHERE user_name = '" 
+   + <b>oe.encode( req.getParameter("userID"))</b> + "' and user_password = '" 
+   + <b>oe.encode( req.getParameter("pwd"))</b> +"'";
+</pre>
+<p>この種類のソリューションで開発者に必要なことは、<b>ESAPI.encoder().encodeForOracle( )</b>  (または任意の名前) に渡されるユーザー指定の各パラメーターをラップすることだけです。
+</p>
+<h5><span class="mw-headline" id="Turn_off_character_replacement">文字の置換をオフにする</span></h5>
+<p>SET DEFINE OFF または SET SCAN OFF を使用して、自動的な文字置換をオフにします。この文字置換がオンになっていると、& 文字は SQLPlus 変数のプレフィックスのように扱われることになり、攻撃者による機密データの取得に利用される可能性があります。 
+</p><p>詳細については、<a rel="nofollow" class="external free" href="http://download.oracle.com/docs/cd/B19306_01/server.102/b14357/ch12040.htm#i2698854">http://download.oracle.com/docs/cd/B19306_01/server.102/b14357/ch12040.htm#i2698854</a> および <a rel="nofollow" class="external free" href="http://stackoverflow.com/questions/152837/how-to-insert-a-string-which-contains-an">http://stackoverflow.com/questions/152837/how-to-insert-a-string-which-contains-an</a> を参照してください。
+</p>
+<h5><span class="mw-headline" id="Escaping_Wildcard_characters_in_Like_Clauses">LIKE 句のワイルドカード文字のエスケープ処理</span></h5>
+<p>LIKE キーワードにより、テキストの検索が可能になります。Oracle では、アンダースコア '_' 文字は 1 文字のみを検索し、パーセント '%' 文字はゼロ個以上の任意の文字を検索します。これらの文字は、LIKE 句の条件内ではエスケープする必要があります。次に例を示します。
+</p>
+<pre>SELECT name FROM emp 
+WHERE id LIKE '%/_%' ESCAPE '/';
+</pre>
+<pre>SELECT name FROM emp 
+WHERE id LIKE '%\%%' ESCAPE '\';
+</pre>
+<h5><span class="mw-headline" id="Oracle_10g_escaping">Oracle 10g のエスケープ処理</span></h5>
+<p>Oracle 10g 以降では、文字列を囲むように { と } 配置して、その文字列全体をエスケープする方法も使用できます。ただし、文字列の中にすでに } 文字が含まれていないことに注意する必要があります。このような文字を検索して、それが見つかった場合には、}} に置き換える必要があります。さもないと、その文字の位置で早まってエスケープ処理が終了してしまい、脆弱性を招き入れる可能性があります。
+</p>
+<h4><span class="mw-headline" id="MySQL_Escaping">MySQL のエスケープ処理</span></h4>
+<p>MySQL は、2 つのエスケープ処理モードをサポートしています。
+</p>
+<ol>
+<li> ANSI_QUOTES SQL モードと、これをオフにした 
+</li>
+<li> MySQL モードというモードです。
+</li>
+</ol>
+<p>ANSI SQL モード: 単にすべての ' (1 つのシングルクォート) 文字を '' (2 つのシングルクォート) にエンコードします。
+</p><p>MySQL モードは、以下のエンコードが行われます。
+</p>
+<pre> NUL (0x00) --&gt; \0  [これはゼロです。英文字の O ではありません]
+ BS  (0x08) --&gt; \b
+ TAB (0x09) --&gt; \t
+ LF  (0x0a) --&gt; \n
+ CR  (0x0d) --&gt; \r
+ SUB (0x1a) --&gt; \Z
+ "   (0x22) --&gt; \"
+&#160;%   (0x25) --&gt; \%
+ '   (0x27) --&gt; \'
+ \   (0x5c) --&gt; \\
+ _   (0x5f) --&gt; \_ 
+ ASCII コードが 256 未満のその他の英数文字以外の文字  --> \c
+ この 'c' は元の英数文字以外の文字です。
+</pre>
+<p>この情報は、次の場所にある MySQL のエスケープ文字情報に基づいています。<a rel="nofollow" class="external free" href="http://mirror.yandex.ru/mirrors/ftp.mysql.com/doc/refman/5.0/en/string-syntax.html">http://mirror.yandex.ru/mirrors/ftp.mysql.com/doc/refman/5.0/en/string-syntax.html</a>
+</p>
+<h4><span class="mw-headline" id="SQL_Server_Escaping">SQL Server のエスケープ処理</span></h4>
+<p>SQL Server のエスケープ処理ルーチンはまだ実装していませんが、次の資料には SQL Server で SQL インジェクション攻撃を防止する方法について説明した記事への適切なリンクが含まれています。
+</p>
+<ul>
+<li> <a rel="nofollow" class="external free" href="http://blogs.msdn.com/raulga/archive/2007/01/04/dynamic-sql-sql-injection.aspx">http://blogs.msdn.com/raulga/archive/2007/01/04/dynamic-sql-sql-injection.aspx</a>
+</li>
+</ul>
+<p><br />
+</p>
+<h4><span class="mw-headline" id="DB2_Escaping">DB2 のエスケープ処理</span></h4>
+<p>この情報は、次の場所にある DB2 WebQuery 特殊文字の情報に基づいています。<a rel="nofollow" class="external free" href="https://www-304.ibm.com/support/docview.wss?uid=nas14488c61e3223e8a78625744f00782983">https://www-304.ibm.com/support/docview.wss?uid=nas14488c61e3223e8a78625744f00782983</a>、同様に一部の情報は次の場所にある Oracle の JDBC DB2 ドライバーの情報に基づいています。
+<a rel="nofollow" class="external free" href="http://docs.oracle.com/cd/E12840_01/wls/docs103/jdbc_drivers/sqlescape.html">http://docs.oracle.com/cd/E12840_01/wls/docs103/jdbc_drivers/sqlescape.html</a>
+</p><p>いくつかの DB2 Universal ドライバー間の相違点に関する情報は、次の場所にあります。<a rel="nofollow" class="external free" href="http://publib.boulder.ibm.com/infocenter/db2luw/v8/index.jsp?topic=/com.ibm.db2.udb.doc/ad/rjvjcsqc.htm">http://publib.boulder.ibm.com/infocenter/db2luw/v8/index.jsp?topic=/com.ibm.db2.udb.doc/ad/rjvjcsqc.htm</a>
+</p>
+<h3><span class="mw-headline" id="Hex-encoding_all_input">すべての入力の 16 進数エンコード処理</span></h3>
+<p>多少特殊なケースのエスケープ処理として、ユーザーから受け取った文字列をすべて 16 進数エンコードする処理があります (これは、文字ごとのエスケープ処理と見なせます)。Web アプリケーションでは、ユーザーの入力を 16 進数エンコードしてから、SQL ステートメントに含めるようにする必要があります。SQL ステートメントは、この事実を考慮に入れて、それに応じたデータの比較を行う必要があります。たとえば、セッション ID と一致するレコードを検索する必要があり、ユーザーがセッション ID として文字列 abc123 を送信した場合、SELECT ステートメントは次のようになります。
+</p>
+<pre>   SELECT ... FROM session
+   WHERE hex_encode (sessionID) = '606162313233'
+</pre>
+<p>(hex_encode は、使用しているデータベースの特定の機能に置き換える必要があります)。文字列 606162313233 は、ユーザーから受け取った文字列の 16 進数エンコード化バージョンです (つまり、ユーザーデータの ASCII / UTF-8 コードを 16 進数値にして並べたものです)。
+</p><p>攻撃者がシングルクォートと注入しようとしている SQL コードを含む文字列を送信した場合でも、作成された SQL ステートメントは次のようになるだけです。
+</p>
+<pre>   WHERE hex_encode ( ...) = '2720 ...'
+</pre>
+<p>27 はシングルクォートの ASCII コード (16 進数表記) であり、文字列内の他の文字と同様に単に 16 進数エンコードされたものです。結果の SQL には、数字と a から f までの文字のみが含まれ、SQL インジェクションを可能にするような特殊文字は一切含まれなくなります。
+</p>
+<h1><span class="mw-headline" id="Additional_Defenses">追加の対策</span></h1>
+<p>3 つある一次的な対策のうち 1 つを採用することに加え、ここに示す追加の対策すべてを採用して、多層防御を実現するようにお勧めします。追加の対策は、次のとおりです。
+</p>
+<ul>
+<li> <b>最小権限の原則</b>
+</li>
+<li> <b>ホワイトリスト型の入力検証</b>
+</li>
+</ul>
+<h2><span class="mw-headline" id="Least_Privilege">最小権限の原則</span></h2>
+<p>SQL インジェクション攻撃が成功したときの潜在的な被害を最小化するには、各データベースアカウントに割り当てる権限を最小限にする必要があります。DBA や管理者タイプのアクセス権は、アプリケーションのアカウントに割り当ててはいけません。そうすれば何でもすぐに "動作する" ので便利なことは確かですが、とても危険です。アプリケーションアカウントにとって不要なアクセス権を削除しようとするのではなく、そもそも必要なのはどのアクセス権かを一から考えて決定していきます。読み取りアクセスのみが必要なアカウントには、アクセスする必要のあるテーブルへの読み取りアクセスのみを付与していることを確認します。テーブルの一部のみへのアクセスを必要とする場合は、そのデータ部分にアクセスを限定するビューを作成して、アカウントのアクセスを元のテーブルではなくビューに割り当てることを検討します。特別な場合を除いて、データベースアカウントに作成や削除のアクセス権は付与しません。
+</p><p>アプリケーションアカウントに独自クエリの直接実行を許可せず、すべてにおいてストアドプロシージャを使用するポリシーを採用している場合は、アカウントのアクセス権を制限して必要なストアドプロシージャのみを実行できるようにします。データベースのテーブルへの直接的なアクセス権を付与してはいけません。
+</p><p>SQL インジェクションは、データベースのデータに限られた脅威ではありません。攻撃者は、パラメーターに指定されている正当な値を不正な値に変更するだけで、アプリケーション自体がこの不正な値にアクセスするのを待てばよいのです。したがって、アプリケーションに付与する権限を最小限に抑えることで、不正アクセスが試行される可能性が減ります。これは、攻撃者が攻略手段の一環として SQL インジェクションを使用しようとしていない場合でも同じです。
+</p><p>それと同時に、DBMS を実行するオペレーティングシステムアカウントの権限も最小化する必要があります。root または system として DBMS を実行してはいけません。ほとんどの DBMS は、初期状態では非常に強力な system アカウントで実行します。たとえば、MySQL は既定で Windows の system として実行します。DBMS の OS アカウントは、より適切に権限が制限されたものに変更してください。
+</p>
+<h3><span class="mw-headline" id="Multiple_DB_Users">複数の DB ユーザー</span></h3>
+<p>Web アプリケーションの設計者は、Web アプリケーションでデータベース接続する際、同一の所有者 / 管理者アカウントの使用を避けるだけでは不十分です。異なる Web アプリケーションには、異なる DB ユーザーを使用できます。一般に、データベースへのアクセスを必要とする個別の Web アプリケーションには、それぞれに指定されたデータベースユーザーアカウントがあり、Web アプリケーションは、このアカウントを使用して DB に接続します。そうすることでアプリケーション設計者は、アクセス制御の適切な詳細度を設定し、権限を可能な限り小さくできます。各 DB ユーザーは、必要とするアクセスのみを選択して、必要に応じて書き込みアクセスを選択します。
+</p><p>たとえば、ログインページでは、テーブルに含まれるユーザー名フィールドとパスワードフィールドへの読み取りアクセスが必要になりますが、書き込みアクセス (挿入、更新、または削除) はどれも必要ありません。その一方、サインアップページでは、そのテーブルへの挿入権限が確実に必要になります。このアクセス制限は、Web アプリケーションが異なる DB ユーザーを使用してデータベースに接続している場合にのみ実施できます。
+</p>
+<h3><span class="mw-headline" id="Views">ビュー</span></h3>
+<p>SQL のビューは、特定テーブルのフィールドまたはテーブルの結合に読み取りアクセスを制限することで、アクセスの詳細度をさらに緻密にできます。これには、追加のメリットもあります。たとえば、salted ハッシュ化したパスワードの代わりに、ユーザーのパスワードを保存するように要求されているシステムがあるとします (特殊な法的要件などにより)。設計者は、ビューを使用することで、この制限を補強できます。テーブルへのアクセス (所有者 / 管理者を除く、すべての DB ユーザーからのアクセス) をすべて取り消して、パスワードフィールドのハッシュを出力するビューを作成して、フィールド自体は出力しないようにします。SQL インジェクション攻撃が DB 情報の盗み出しに成功したとしても、パスワードのハッシュ (鍵付きのハッシュにすることもできます) を盗み出すにとどまります。なぜなら、テーブル自体にアクセスできる Web アプリケーションの DB ユーザーは存在しないからです。
+</p>
+<h2><span class="mw-headline" id="White_List_Input_Validation">ホワイトリスト型の入力検証</span></h2>
+<p>入力検証を使用すると、不正な入力は SQL クエリに渡される前に検出できます。詳細については、「<a href="/index.php/Input_Validation_Cheat_Sheet" title="入力値検査に関するチートシート">入力認証に関するチートシート</a>」を参照してください。次の点に注意が必要です。検証済みのデータであっても、文字列作成によって SQL クエリに挿入すると、安全でなくなることがあります。
+<br /><br />
+</p>
+<h1><span class="mw-headline" id="Related_Articles">関連資料</span></h1>
+<p><b>SQL インジェクション攻撃に関するチートシート</b>
+</p><p>次に示す資料では、各種プラットフォーム上のさまざまな SQL インジェクション脆弱性 (この資料で回避方法を説明したもの) を攻略する方法について説明しています。
+</p>
+<ul>
+<li> Ferruh Mavituna&#160;: 「SQL Injection Cheat Sheet」 - <a rel="nofollow" class="external free" href="http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/">http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/</a>
+</li>
+</ul>
+<p><br />
+<b>SQL インジェクション脆弱性の説明</b>
+</p>
+<ul>
+<li> <a href="/index.php/SQL_Injection" title="SQL インジェクション">SQL インジェクション</a>脆弱性に関する OWASP 資料
+</li>
+<li> <a href="/index.php/Blind_SQL_Injection" title="ブラインド SQL インジェクション">ブラインド SQL インジェクション</a>脆弱性に関する OWASP 資料
+</li>
+</ul>
+<p><b>SQL インジェクション脆弱性を回避する方法</b>
+</p>
+<ul>
+<li> <a href="/index.php/Category:OWASP_Guide_Project" title="カテゴリ: OWASP Guide Project" class="mw-redirect">OWASP Developers Guide</a> の <a href="/index.php/Guide_to_SQL_Injection" title="Guide to SQL Injection">SQL インジェクション脆弱性を回避する</a>方法に関する資料
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="クエリのパラメーター化に関するチートシート">プリペアドステートメントとストアドプロシージャの両方を使用するパラメーター化されたクエリに関して、さまざまな言語に固有の例</a>について説明している OWASP チートシート
+</li>
+<li> <a rel="nofollow" class="external text" href="http://bobby-tables.com/">Bobby Tables サイト (「XKCD」Ｗeb コミックから着想を得たもの) には、パラメーター化されたプリペアドステートメントとストアドプロシージャに関する、さまざまな言語での例が多数あります。</a>
+</li>
+</ul>
+<p><b>SQL インジェクション脆弱性についてコードをレビューする方法</b>
+</p>
+<ul>
+<li> <a href="/index.php/Category:OWASP_Code_Review_Project" title="カテゴリ: OWASP コードレビュープロジェクト">OWASP Code Review Guide</a> の <a href="/index.php/Reviewing_Code_for_SQL_Injection" title="Reviewing Code for SQL Injection">SQL インジェクション脆弱性についてコードをレビューする</a>方法に関する資料
+</li>
+</ul>
+<p><b>SQL インジェクション脆弱性についてテストする方法</b>
+</p>
+<ul>
+<li> <a href="/index.php/Category:OWASP_Testing_Project" title="カテゴリ: OWASP テストプロジェクト" class="mw-redirect">OWASP Testing Guide</a> の <a href="/index.php/Testing_for_SQL_Injection_(OWASP-DV-005)" title="Testing for SQL Injection (OWASP-DV-005)" class="mw-redirect">SQL インジェクション脆弱性についてテストする</a>方法に関する資料
+</li>
+</ul>
+<p><br /><br />
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p><a href="/index.php/User:Wichers" title="User:Wichers">Dave Wichers - dave.wichers</a>[at]owasp.org<br />
+Jim Manico - jim[at]owasp.org<br />
+Matt Seil - mseil[at]acm.org  
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">SQL Injection Prevention Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.081 seconds
+Real time usage: 0.099 seconds
+Preprocessor visited node count: 109/1000000
+Preprocessor generated node count: 146/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:8528-0!*!0!!en!2!* and timestamp 20151215040325 and revision id 203082
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;oldid=203082">https://www.owasp.org/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;oldid=203082</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li><li><a href="/index.php/Category:Popular" title="Category:Popular">Popular</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=SQL+Injection+Prevention+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:SQL_Injection_Prevention_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/SQL_Injection_Prevention_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/SQL_Injection_Prevention_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;oldid=203082" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=SQL_Injection_Prevention_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 5 November 2015, at 08:24.</li>
+											<li id="footer-info-viewcount">This page has been accessed 1,043,754 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":137});
+}</script>
+	</body>
+</html>

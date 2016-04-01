@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>トランスポート層の保護に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Transport_Layer_Protection_Cheat_Sheet","wgTitle":"Transport Layer Protection Cheat Sheet","wgCurRevisionId":203567,"wgRevisionId":203567,"wgArticleId":10440,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets","OWASP Best Practices"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Transport_Layer_Protection_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Transport_Layer_Protection_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">トランスポート層の保護に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd): <b>2015/11/19</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Architectural_Decision"><span class="tocnumber">1.1</span> <span class="toctext">アーキテクチャの決定</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Providing_Transport_Layer_Protection_with_SSL.2FTLS"><span class="tocnumber">2</span> <span class="toctext">SSL/TLS によるトランスポート層の保護</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Benefits"><span class="tocnumber">2.1</span> <span class="toctext">利点</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Basic_Requirements"><span class="tocnumber">2.2</span> <span class="toctext">基本要件</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#SSL_vs._TLS"><span class="tocnumber">2.3</span> <span class="toctext">SSL と TLS</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#When_to_Use_a_FIPS_140-2_Validated_Cryptomodule"><span class="tocnumber">2.4</span> <span class="toctext">FIPS 140-2 認定暗号モジュールをいつ使用すべきか</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Secure_Server_Design"><span class="tocnumber">2.5</span> <span class="toctext">安全なサーバー設計</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Rule_-_Use_TLS_for_All_Login_Pages_and_All_Authenticated_Pages"><span class="tocnumber">2.5.1</span> <span class="toctext">ルール: すべてのログインページとすべての認証済みページに TLS を使用する</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Rule_-_Use_TLS_on_Any_Networks_.28External_and_Internal.29_Transmitting_Sensitive_Data"><span class="tocnumber">2.5.2</span> <span class="toctext">ルール: 機密データを通信するすべてのネットワーク (外部および内部) で TLS を使用する</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Rule_-_Do_Not_Provide_Non-TLS_Pages_for_Secure_Content"><span class="tocnumber">2.5.3</span> <span class="toctext">ルール: 安全を確保したコンテンツに対して非 TLS ページを用意しない</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Rule_-_Do_Not_Mix_TLS_and_Non-TLS_Content"><span class="tocnumber">2.5.4</span> <span class="toctext">ルール: TLS コンテンツと非 TLS コンテンツを混在させない</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Rule_-_Use_.22Secure.22_Cookie_Flag"><span class="tocnumber">2.5.5</span> <span class="toctext">ルール: Cookie の "secure" フラグを使用する</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Rule_-_Keep_Sensitive_Data_Out_of_the_URL"><span class="tocnumber">2.5.6</span> <span class="toctext">ルール: 機密データを URL 外に保持する</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Rule_-_Prevent_Caching_of_Sensitive_Data"><span class="tocnumber">2.5.7</span> <span class="toctext">ルール: 機密データのキャッシュを防止する</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Rule_-_Use_HTTP_Strict_Transport_Security"><span class="tocnumber">2.5.8</span> <span class="toctext">ルール: HTTP Strict Transport Security を使用する</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Rule_-_Use_Public_Key_Pinning"><span class="tocnumber">2.5.9</span> <span class="toctext">ルール: 公開鍵のピン留めを使用する</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-18"><a href="#Server_Certificate"><span class="tocnumber">2.6</span> <span class="toctext">サーバー証明書</span></a>
+<ul>
+<li class="toclevel-3 tocsection-19"><a href="#Rule_-_Use_Strong_Keys_.26_Protect_Them"><span class="tocnumber">2.6.1</span> <span class="toctext">ルール: 強力な鍵を使用し、鍵を保全する</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Rule_-_Use_a_Certificate_That_Supports_Required_Domain_Names"><span class="tocnumber">2.6.2</span> <span class="toctext">ルール: 必要なドメイン名に対応した証明書を使用する</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Rule_-_Use_Fully_Qualified_Names_in_Certificates"><span class="tocnumber">2.6.3</span> <span class="toctext">ルール: 証明書では完全修飾名を使用する</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="#Rule_-_Do_Not_Use_Wildcard_Certificates"><span class="tocnumber">2.6.4</span> <span class="toctext">ルール: ワイルドカード証明書を使用しない</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="#Rule_-_Do_Not_Use_RFC_1918_Addresses_in_Certificates"><span class="tocnumber">2.6.5</span> <span class="toctext">ルール: 証明書では RFC 1918 アドレスを使用しない</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Rule_-_Use_an_Appropriate_Certification_Authority_for_the_Application.27s_User_Base"><span class="tocnumber">2.6.6</span> <span class="toctext">ルール: アプリケーションのユーザーベースに適切な認証機関 (CA) を使用する</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#Rule_-_Always_Provide_All_Needed_Certificates"><span class="tocnumber">2.6.7</span> <span class="toctext">ルール: 必要なすべての証明書を常に提供する</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="#Rule_-_Be_aware_of_and_have_a_plan_for_the_SHA-1_deprecation_plan"><span class="tocnumber">2.6.8</span> <span class="toctext">SHA-1 の廃止計画に注意し、その対策を講じる</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-27"><a href="#Server_Protocol_and_Cipher_Configuration"><span class="tocnumber">2.7</span> <span class="toctext">サーバーのプロトコルと暗号アルゴリズムの構成</span></a>
+<ul>
+<li class="toclevel-3 tocsection-28"><a href="#Rule_-_Only_Support_Strong_Protocols"><span class="tocnumber">2.7.1</span> <span class="toctext">ルール: 強力なプロトコルのみをサポートする</span></a></li>
+<li class="toclevel-3 tocsection-29"><a href="#Rule_-_Prefer_Ephemeral_Key_Exchanges"><span class="tocnumber">2.7.2</span> <span class="toctext">ルール: 短期鍵交換を優先する</span></a></li>
+<li class="toclevel-3 tocsection-30"><a href="#Rule_-_Only_Support_Strong_Cryptographic_Ciphers"><span class="tocnumber">2.7.3</span> <span class="toctext">ルール: 強力な暗号アルゴリズムのみをサポートする</span></a></li>
+<li class="toclevel-3 tocsection-31"><a href="#Rule_-_Support_TLS-PSK_and_TLS-SRP_for_Mutual_Authentication"><span class="tocnumber">2.7.4</span> <span class="toctext">ルール: 相互認証のための TLS-PSK と TLS-SRP をサポートする</span></a></li>
+<li class="toclevel-3 tocsection-32"><a href="#Rule_-_Only_Support_Secure_Renegotiations"><span class="tocnumber">2.7.5</span> <span class="toctext">ルール: 安全な再ネゴシエーションのみをサポートする</span></a></li>
+<li class="toclevel-3 tocsection-33"><a href="#Rule_-_Disable_Compression"><span class="tocnumber">2.7.6</span> <span class="toctext">ルール: 圧縮を無効にする</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-34"><a href="#Test_your_overall_TLS.2FSSL_setup_and_your_Certificate"><span class="tocnumber">2.8</span> <span class="toctext">TLS/SSL のセットアップ全体と証明書のテスト</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#Client_.28Browser.29_Configuration"><span class="tocnumber">2.9</span> <span class="toctext">クライアント (ブラウザー) の構成</span></a></li>
+<li class="toclevel-2 tocsection-36"><a href="#Additional_Controls"><span class="tocnumber">2.10</span> <span class="toctext">その他の制御</span></a>
+<ul>
+<li class="toclevel-3 tocsection-37"><a href="#Extended_Validation_Certificates"><span class="tocnumber">2.10.1</span> <span class="toctext">Extended Validation 証明書</span></a></li>
+<li class="toclevel-3 tocsection-38"><a href="#Client-Side_Certificates"><span class="tocnumber">2.10.2</span> <span class="toctext">クライアント側の証明書</span></a></li>
+<li class="toclevel-3 tocsection-39"><a href="#Certificate_and_Public_Key_Pinning"><span class="tocnumber">2.10.3</span> <span class="toctext">証明書と公開鍵のピン留め</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-40"><a href="#Providing_Transport_Layer_Protection_for_Back_End_and_Other_Connections"><span class="tocnumber">3</span> <span class="toctext">バックエンドなどの接続に対するトランスポート層の保護</span></a>
+<ul>
+<li class="toclevel-2 tocsection-41"><a href="#Secure_Internal_Network_Fallacy"><span class="tocnumber">3.1</span> <span class="toctext">安全な社内ネットワークという誤解</span></a></li>
+<li class="toclevel-2 tocsection-42"><a href="#Protocol_and_Cipher_Configuration_for_Back_End_and_Other_Connections"><span class="tocnumber">3.2</span> <span class="toctext">バックエンドなどの接続に対するプロトコルと暗号アルゴリズムの構成</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-43"><a href="#Tools"><span class="tocnumber">4</span> <span class="toctext">ツール</span></a>
+<ul>
+<li class="toclevel-2 tocsection-44"><a href="#local.2Foffline"><span class="tocnumber">4.1</span> <span class="toctext">ローカル / オフライン</span></a></li>
+<li class="toclevel-2 tocsection-45"><a href="#Online"><span class="tocnumber">4.2</span> <span class="toctext">オンライン</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-46"><a href="#Related_Articles"><span class="tocnumber">5</span> <span class="toctext">関連資料</span></a></li>
+<li class="toclevel-1 tocsection-47"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">6</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-48"><a href="#Other_Cheatsheets"><span class="tocnumber">6.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>このチートシートでは、アプリケーションの通信を守るためにトランスポート層の保護を実装する際の単純なモデルを提供します。SSL の概念は広く知られていますが、実装に関する詳細やセキュリティ上の選択事項については十分に理解されていないことが多く、往々にしてこれが実運用における安全性の低下の原因となっています。この資料では、トランスポート層セキュリティの安全な設計と構成についての指針となる明確なルールを規定します。この資料では、Web アプリケーションと Web ブラウザー間での SSL/TLS の使用に重点を置いていますが、バックエンド、その他の非ブラウザーベースの接続でも SSL/TLS や他のネットワーク暗号化技術 (VPN など) を使用することをお勧めします。<br /> 
+</p>
+<h2><span class="mw-headline" id="Architectural_Decision">アーキテクチャの決定</span></h2>
+<p>通信データを保護する適切な方法を判断するには、アーキテクチャを決定する必要があります。企業向けの最も一般的な選択肢は、仮想プライベートネットワーク (VPN) か、あるいは Web アプリケーションで一般に使用されている SSL/TLS モデルです。選択するモデルは、組織個々のビジネスニーズによって決まります。たとえば、2 社間の、各種プロトコルを介した共有サーバーへの相互アクセスを含む連携には、VPN 接続が最適な設計でしょう。
+逆に、インターネット向けのエンタープライズ Web アプリケーションは、おそらく SSL/TLS モデルが最適と思われます。 
+</p><p>この資料では、SSL/TLS モデルを選択する場合の、セキュリティ上の検討事項に重点を置いています。これは、一般向けの Web アプリケーションでよく使用されるモデルです。
+</p>
+<h1><span class="mw-headline" id="Providing_Transport_Layer_Protection_with_SSL.2FTLS">SSL/TLS によるトランスポート層の保護</span></h1>
+<h2><span class="mw-headline" id="Benefits">利点</span></h2>
+<p>トランスポート層セキュリティ (TLS) の最大の利点は、クライアント (Web ブラウザー) と Web アプリケーションサーバー間、および Web アプリケーションサーバーとバックエンドおよび他の非ブラウザーベースのエンタープライズコンポーネント間での通信時に Web アプリケーションデータを不正な開示や改ざんから保護できる点にあります。 
+</p><p>TLS のサーバー検証コンポーネントがクライアントに対するサーバーの認証を提供します。クライアント側の証明書を要求するように構成された場合、TLS はサーバーに対するクライアント認証の役割も果たします。ただし実際には、ユーザー名とパスワードによる認証の代わりにクライアント証明書による認証が使用されることは、あまりありません。
+</p><p>見過ごされがちですが、TLS には他にも 2 つの利点があります。完全性の保証とリプレイの防止です。TLS 通信ストリームには、暗号化されたデータのあらゆる部分の改ざんを防ぐ制御が組み込まれています。また、TLS データのストリームをキャプチャして使うリプレイ攻撃の対策も組み込まれています。
+</p><p>TLS が前述の保証を提供するのは通信中のデータに対してであることに注意してくだい。保存されたデータに対しては、上に挙げたどのセキュリティ上のメリットも TLS はもたらしません。したがって、アプリケーション内やデータストア内に保存されているデータを保護するための適切なセキュリティ対策を追加する必要があります。
+</p>
+<h2><span class="mw-headline" id="Basic_Requirements">基本要件</span></h2>
+<p>TLS を使用するための基本要件は、公開鍵インフラストラクチャ (PKI) にアクセスして証明書を取得できること、ディレクトリまたはオンライン証明書ステータスプロトコル (OCSP) レスポンダーにアクセスして証明書失効ステータスを確認できること、および各プロトコルバージョンとそのプロトコルオプションの最小構成をサポートできることです。
+</p>
+<h2><span class="mw-headline" id="SSL_vs._TLS">SSL と TLS</span></h2>
+<p>SSL (Secure Socket Layer) と TLS (Transport Layer Security) という用語は、多くの場合、区別なく使用されます。事実、SSL v3.1 は TLS v1.0 に相当します。しかし、最新の Web ブラウザーや最新の Web フレームワークおよびプラットフォームでサポートされている SSL と TLS のバージョンはさまざまです。このチートシートでは、この技術を総称して TLS と呼ぶことにします。SSL プロトコルと TLS プロトコルの使用に関する推奨事項とブラウザーの TLS 対応については、「<a href="/index.php/Transport_Layer_Protection_Cheat_Sheet#Rule_-_Only_Support_Strong_Protocols" title="トランスポート層の保護に関するチートシート">強固なプロトコルだけをサポートする</a>」というタイトルのルールにまとめてあります。
+</p>
+<div class="thumb tright"><div class="thumbinner" style="width:352px;"><a href="/index.php/File:Asvs_cryptomodule.gif" class="image"><img alt="" src="/images/thumb/1/1c/Asvs_cryptomodule.gif/350px-Asvs_cryptomodule.gif" width="350" height="500" class="thumbimage" srcset="/images/1/1c/Asvs_cryptomodule.gif 1.5x, /images/1/1c/Asvs_cryptomodule.gif 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/index.php/File:Asvs_cryptomodule.gif" class="internal" title="拡大する"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>暗号モジュールの各部と動作</div></div></div>
+<h2><span class="mw-headline" id="When_to_Use_a_FIPS_140-2_Validated_Cryptomodule">FIPS 140-2 認定暗号モジュールをいつ使用すべきか</span></h2>
+<p>Web アプリケーションが高度なスキルと明確な動機を持つ攻撃者の標的になる可能性がある場合 (機密データを扱うインターネットアクセス型アプリケーションの一般的な脅威モデル)、<a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/STM/cmvp/validation.html">FIPS 140-2 認定の暗号モジュール</a>を使った TLS サービスの使用を強くお勧めします。 
+</p><p>暗号モジュールは、ソフトウェアライブラリの場合もハードウェアデバイスの場合も、基本的に 3 つの部分で構成されています。
+</p>
+<ul>
+<li> 暗号アルゴリズム (対称および非対称アルゴリズム、ハッシュアルゴリズム、乱数生成アルゴリズム、メッセージ認証コードアルゴリズム) を実行するコンポーネント 
+</li>
+<li> 暗号関数の呼び出しと管理を行うコンポーネント (入出力には暗号鍵といわゆるクリティカルセキュリティパラメーターが含まれます) 
+</li>
+<li> 暗号アルゴリズムを実装するコンポーネントと暗号関数の呼び出しや管理を行うコンポーネントを収める物理コンテナー
+</li>
+</ul>
+<p>暗号モジュールとそのサービス (および暗号モジュールを呼び出す Web アプリケーション) のセキュリティは、これら 3 つの構成要素それぞれの適切な実装と統合にかかっています。また、暗号モジュールは安全に使用し、安全にアクセスする必要があります。これには、以下への配慮が含まれます。
+</p>
+<ul>
+<li> 暗号関数の呼び出しと管理
+</li>
+<li> 入出力の安全な取り扱い
+</li>
+<li> コンポーネントを収める物理コンテナーの安全な構造の確保
+</li>
+</ul>
+<p>TLS のメリットを活かすには、FIPS 140-2 の認定を受けた TLS サービス (ライブラリ、Web フレームワーク、Web アプリケーションサーバーなど) を使用することが重要です。また、FIPS 140-2 認定暗号モジュールが所定のセキュリティサービスを想定どおりに提供できるよう、暗号モジュールのインストール、構成、運用は承認または許可された方法にしたがって行う必要があります。
+</p><p>FIPS 140-2 暗号の使用が法的に要求されるシステム (米国政府またはその代理機関が所有または運用するシステムなど) では、SSL を無効にし、必ず TLS を使用することが必要です。SSL が認められない理由については、「<a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/STM/cmvp/documents/fips140-2/FIPS1402IG.pdf">Implementation Guidance for FIPS PUB 140-2 and the Cryptographic Module Validation Program</a>」の第 7.1 項に詳しく説明されています。
+</p><p>高度なスキルと明確な動機を持つ攻撃者から機密データを守るために TLS を使用する方法の詳細については、「<a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/nistpubs/800-52/SP800-52.pdf">SP800-52 Guidelines for the Selection and Use of Transport Layer Security (TLS) Implementations</a>」を参照してください。
+</p>
+<h2><span class="mw-headline" id="Secure_Server_Design">安全なサーバー設計</span></h2>
+<h3><span class="mw-headline" id="Rule_-_Use_TLS_for_All_Login_Pages_and_All_Authenticated_Pages">ルール: すべてのログインページとすべての認証済みページに TLS を使用する</span></h3>
+<p>ログインページとそれ以降のすべての認証済みページは、TLS 経由でのみアクセスする必要があります。最初のログインページ ("ログインランディングページ" と呼ばれます) は、TLS 経由で提示する必要があります。ログインランディングページに TLS を使用していないと、攻撃者がログインフォームの動作を変更して、ユーザーの資格情報を任意の場所に書き込むことが可能になります。ログイン後の認証済みのページに TLS を使用していないと、攻撃者が暗号化されていないセッション ID を確認して、ユーザーの認証済みのセッションを侵害できるようになります。 
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_TLS_on_Any_Networks_.28External_and_Internal.29_Transmitting_Sensitive_Data">ルール: 機密データを通信するすべてのネットワーク (外部および内部) で TLS を使用する</span></h3>
+<p>機密データを通信するすべてのネットワーク (外部と内部の両方) で TLS または同等のトランスポート層セキュリティメカニズムを使用する必要があります。内部ネットワークへのアクセスは "従業員だけに限定" されていると主張しても、それだけでは十分とはいえません。最近発生した多くのデータ漏えいは、内部ネットワークも攻撃者に侵害される可能性があることを示しています。これらの攻撃では、社内ネットワーク上に送信される暗号化されていない機密データにアクセスするためにスニファーがインストールされていました。 
+</p>
+<h3><span class="mw-headline" id="Rule_-_Do_Not_Provide_Non-TLS_Pages_for_Secure_Content">ルール: 安全を確保したコンテンツに対して非 TLS ページを用意しない</span></h3>
+<p>TLS 経由で提供されるページは、いずれも非 TLS 接続経由でアクセスできてはいけません。アプリケーションの認証済み部分にある HTTP ページ (例: <a rel="nofollow" class="external free" href="http://example.com/myaccount">http://example.com/myaccount</a>) をユーザーがうっかりブックマークしたり、手入力したりする可能性があります。このリクエストがアプリケーションによって処理されると、応答と機密データがプレーンテキストの HTTP 経由でユーザーに返されます。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Do_Not_Mix_TLS_and_Non-TLS_Content">ルール: TLS コンテンツと非 TLS コンテンツを混在させない</span></h3>
+<p>TLS 経由で提供されるページは、TLS 経由で送信されるコンテンツだけで構成する必要があります。このページには、暗号化されていない HTTP 経由で送信されるコンテンツを一切含めないでください。これには、関連のないサードパーティサイトのコンテンツも含まれます。 
+</p><p>攻撃者が暗号化されていない HTTP 経由で送信されるあらゆるデータを傍受し、悪意のあるコンテンツをユーザーのページに挿入するおそれがあります。この悪意のあるコンテンツは、ページ全体が TLS 経由で提供されていても、ページに挿入される危険があります。また、非 TLS リクエストとともに送信されるユーザーのセッション Cookie を攻撃者が盗む可能性もあります。これが可能なのは、Cookie の 'secure' フラグが設定されていない場合です。「ルール: Cookie の "secure" フラグを使用する」を参照してください。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_.22Secure.22_Cookie_Flag">ルール: Cookie の "secure" フラグを使用する</span></h3>
+<p>すべてのユーザー Cookie に "secure" フラグを設定する必要があります。"secure" フラグを設定しないと、攻撃者がユーザーのブラウザーをだまして、サイト上の暗号化されていないページへのリクエストを送信することで、セッション Cookie にアクセスできます。この攻撃は、サーバーが HTTP コンテンツを提供するように構成されていない場合でも可能です。攻撃者はリクエストを監視しており、サーバーが 404 で応答したり、まったく応答しなくてもかまわないからです。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Keep_Sensitive_Data_Out_of_the_URL">ルール: 機密データを URL 外に保持する</span></h3>
+<p>機密データは、URL 引数を介して送信しないでください。より適切な場所は、機密データをサーバー側リポジトリまたはユーザーのセッション内に格納することです。TLS を使用すると、URL の引数と値が送信時に暗号化されます。しかし、URL の引数と値が露出する可能性のある方法が 2 つあります。
+</p><p>1.URL 全体をローカルユーザーのブラウザー履歴にキャッシュする。これにより、機密データがワークステーションの他のユーザーに露出する可能性があります。
+</p><p>2.ユーザーが別の HTTPS サイトへのリンクをクリックすると、URL 全体が露出する。これにより、サードパーティサイトへの参照フィールド内にある機密データが露出する可能性があります。この露出はほとんどのブラウザーで発生し、2 つの TLS サイト間の遷移時にのみ発生します。 
+</p><p>たとえば、ユーザーが <a rel="nofollow" class="external text" href="http://owasp.org">https://example.com</a> にある <a rel="nofollow" class="external text" href="http://owasp.org">https://someOtherexample.com</a> へのリンクを辿ると、(ほとんどのブラウザーの) 参照ヘッダーで <a rel="nofollow" class="external text" href="http://owasp.org">https://example.com</a> の URL 全体 (URL 引数を含む) が露出します。<a rel="nofollow" class="external text" href="http://owasp.org">https://example.com</a> にある <a rel="nofollow" class="external text" href="http://owasp.org">http://someHTTPexample.com</a> へのリンクを辿った場合は、これに該当しません。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Prevent_Caching_of_Sensitive_Data">ルール: 機密データのキャッシュを防止する</span></h3>
+<p>TLS プロトコルは、通信中のデータについてのみ機密性を確保します。クライアントや中継プロキシにおける潜在的なデータ漏えいの問題解決には役立ちません。したがって、多くの場合、これらのノードでは機密データをキャッシュしたり、永続化したりしないように指示するのが賢明です。選択肢の 1 つとして、該当する HTTP 応答にキャッシュ防止ヘッダーを追加する方法があります (たとえば、"Cache-Control: no-cache, no-store" と "Expires: 0" で、2013 年時点の多くの最新ブラウザーに対応できます)。HTTP/1.0 との互換性 (つまり、ユーザーエージェントが非常に古いときや、Web サーバーが互換性対策として HTTP/1.0 を強制しているとき) のために、応答には "Pragma: no-cache" ヘッダーも追加してください。詳細については、第 14.9 項の「<a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc2616">HTTP 1.1 RFC 2616</a>」を参照してください。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_HTTP_Strict_Transport_Security">ルール:  HTTP Strict Transport Security を使用する</span></h3>
+<p>参照: <a href="/index.php/HTTP_Strict_Transport_Security" title="HTTP Strict Transport Security">HTTP Strict Transport Security</a>
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_Public_Key_Pinning">ルール: 公開鍵のピン留めを使用する</span></h3>
+<p>参照: <a href="/index.php/Certificate_and_Public_Key_Pinning" title="証明書と公開鍵のピン留め">証明書と公開鍵のピン留め</a>
+</p><p><span id="Server_Certificate_and_Protocol_Configuration"></span> 
+</p>
+<h2><span class="mw-headline" id="Server_Certificate">サーバー証明書</span></h2>
+<p>注: FIPS 140-2 暗号モジュールを使用している場合は、以下のルールを無視して、特定の暗号モジュールの推奨構成に従ってください。その場合も、以下のルールを利用して構成を監査することをお勧めします。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_Strong_Keys_.26_Protect_Them">ルール: 強力な鍵を使用し、鍵を保全する</span></h3>
+<p>暗号鍵の生成に使用するプライベート鍵は、プライベート鍵の予定有効期間および対応する証明書に対して十分な強度を備えている必要があります。現時点のベストプラクティスは、2048 ビット以上の鍵サイズを選択することです。鍵の有効期間と鍵の比較強度の追加情報については <a rel="nofollow" class="external autonumber" href="http://www.keylength.com/en/compare/">[1]</a>、<a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf">NIST SP 800-57</a> を参照してください。また、プライベート鍵は、不正アクセスから保護された場所に保管する必要があります。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_a_Certificate_That_Supports_Required_Domain_Names">ルール: 必要なドメイン名に対応した証明書を使用する</span></h3>
+<p>ユーザーに対して証明書エラー (ドメインまたはホスト名の不一致を解消するように求めるプロンプトを含む) や、有効期限の切れた証明書を提示することは絶対にしないでください。アプリケーションが <a rel="nofollow" class="external text" href="https://owasp.org">https://www.example.com</a> と <a rel="nofollow" class="external text" href="https://owasp.org">https://example.com</a> のどちらでも使用できる場合は、適切な 1 つまたは複数の証明書を提示してこの状況に対処する必要があります。証明書エラーがあると、ユーザーが TLS エラーメッセージに対して鈍感になり、攻撃者が信ぴょう性のあるフィッシング攻撃や中間者攻撃を仕掛ける可能性が高くなります。
+</p><p>たとえば、ある Web アプリケーションが <a rel="nofollow" class="external text" href="https://owasp.org">https://abc.example.com</a> と <a rel="nofollow" class="external text" href="https://owasp.org">https://xyz.example.com</a> でアクセスできるとします。ホスト (サーバー) <i>abc.example.com</i> 用の証明書と、ホスト (サーバー) <i>xyz.example.com</i> 用の証明書をそれぞれ取得する必要があります。どちらの場合も、ホスト名がサブジェクトのコモンネーム (CN) に入っています。
+</p><p>または、サブジェクトの別名 (SAN) を使用して、証明書が有効である複数の名前を明示的にリスト化することもできます。上の例では、証明書のサブジェクトの CN として <i>example.com</i> が記載され、SAN として<i>abc.example.com</i> と <i>xyz.example.com</i> の 2 つが記載されます。このような証明書を "複数ドメイン証明書" と呼ぶこともあります。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_Fully_Qualified_Names_in_Certificates">ルール: 証明書では完全修飾名を使用する</span></h3>
+<p>DNS 名フィールドでは完全修飾名を使用します。修飾されていない名前 ('www' など)、ローカル名 ('localhost' など)、プライベート IP アドレス (192.168.1.1) を DNS 名フィールドでは使用しないでください。修飾されていない名前、ローカル名、プライベート IP アドレスは証明書の仕様に違反しています。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Do_Not_Use_Wildcard_Certificates">ルール: ワイルドカード証明書を使用しない</span></h3>
+<p>ワイルドカード証明書の使用は控えてください。ワイルドカード証明書は、厄介なユーザープロンプトを回避する便法ですが、<a href="/index.php/Least_privilege" title="最小権限">最小権限の原則にも反する</a>ほか、開発者のマシンやロビーにある秘書のマシン、サインインキオスクを含むすべてのマシンを信頼するようユーザーに要求することになります。プライベート鍵へのアクセスの取得というハードルが攻撃者にはまだ残っていますが、無防備な状態でファイルシステムに保存されていれば、相当に簡単になります。
+</p><p>Qualys 社が <a rel="nofollow" class="external text" href="http://media.blackhat.com/bh-us-10/presentations/Ristic/BlackHat-USA-2010-Ristic-Qualys-SSL-Survey-HTTP-Rating-Guide-slides.pdf">Internet SSL Survey 2010</a> のために収集した統計によれば、ワイルドカード証明書のシェアは 4.4% です。したがって、ワイルドカード証明書の使用は、公衆ネットワークにつながるホストでは標準的ではありません。最後に、ワイルドカード証明書は <a rel="nofollow" class="external text" href="https://www.cabforum.org/EV_Certificate_Guidelines.pdf">EV 証明書ガイドライン</a> に違反しています。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Do_Not_Use_RFC_1918_Addresses_in_Certificates">ルール: 証明書では <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc1918">RFC 1918</a> アドレスを使用しない</span></h3>
+<p>証明書ではプライベートアドレスを使用しないでください。<a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc1918">RFC 1918</a> は <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc1918">プライベートネットワークのアドレス割り当て</a>です。プライベートアドレスは IANA (Internet Assigned Numbers Authority) によって予約されており、192.168/16、172.16/12、および 10/8 が含まれます。
+</p><p>プライベートアドレスで発行された証明書は <a rel="nofollow" class="external text" href="https://www.cabforum.org/EV_Certificate_Guidelines.pdf">EV 証明書ガイドライン</a>に違反します。また、Peter Gutmann 氏が『<a rel="nofollow" class="external text" href="http://www.cs.auckland.ac.nz/~pgut001/pubs/book.pdf">Engineering Security</a>』で次のように述べています。「これは特に厄介である。なぜなら、ルーター侵害攻撃 (中略) と (中略) OSCP 攻略法を組み合わせることで、攻撃者は任意の EV 証明書サイトになりすますことができるからだ。」
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_an_Appropriate_Certification_Authority_for_the_Application.27s_User_Base">ルール: アプリケーションのユーザーベースに適切な認証機関 (CA) を使用する</span></h3>
+<p>アプリケーションユーザーに対して、この証明書は不明か信頼できない機関によって署名されたという警告が絶対に提示されないようにする必要があります。アプリケーションの全ユーザーが、サーバーの証明書を発行した認証機関の公開証明書にアクセスできることが必要です。インターネットにアクセス可能な Web サイトの場合、この目的を達成する最も効果的な方法は、公認の認証機関から TLS 証明書を購入することです。一般的なインターネットブラウザーには、このような公認認証機関の公開証明書があらかじめ組み込まれています。 
+</p><p>ユーザー数が限られた社内用アプリケーションでは社内の認証機関を使用できますが、その公開証明書を全ユーザーに安全に配布することが前提となります。ただし、この認証機関が発行するすべての証明書をユーザーが信頼することになるので注意してください。このため、徹底した制御によってプライベート鍵を保護し、許可された人間だけが証明書に署名できることを確保します。 
+</p><p>自己署名証明書の使用は絶対に認められません。自己署名証明書はエンドポイント認証の利点を打ち消すだけでなく、ユーザーが中間者攻撃を検知する能力を低下させます。 
+</p>
+<h3><span class="mw-headline" id="Rule_-_Always_Provide_All_Needed_Certificates">ルール: 必要なすべての証明書を常に提供する</span></h3>
+<p>クライアントは、サーバーまたはホストの識別という問題を PKI または X509 証明書によって解決しようとします。ユーザーがサーバーまたはホストの証明書を受け取った時点で、その証明書の正当性を、信頼されたルート証明機関まで遡って検証できることが必要です。これをパス検証といいます。
+</p><p>エンドエンティティ (サーバーまたはホスト) 証明書とルート証明書の間に 1 つ以上の中間証明書が介在する場合があります。両方のエンドポイントの検証に加え、ユーザーはすべての中間証明書も検証する必要があります。ユーザーがすべての中間証明書をローカルに保有していない可能性もあるため、この検証は難しい場合があります。これは周知の PKI の課題であり、"Which Directory?" 問題と呼ばれています。
+</p><p>この "Which Directory?" 問題を回避するには、パス検証で使用される必要なすべての証明書をサーバーからユーザーに提供する必要があります。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Be_aware_of_and_have_a_plan_for_the_SHA-1_deprecation_plan">SHA-1 の廃止計画に注意し、その対策を講じる</span></h3>
+<p>段階的な証明書の警告がエンドユーザーに提示されないように、ブラウザーベンダーの今後の SHA-1 廃止計画に組織として事前に対応しておく必要があります。現時点では、おそらく Google Chrome の計画が最も具体的かつ積極的なものです (<a rel="nofollow" class="external text" href="http://googleonlinesecurity.blogspot.com/2014/09/gradually-sunsetting-sha-1.html">「Gradually sunsetting SHA-1」を参照)。</a>
+</p><p>所属組織で <a rel="nofollow" class="external text" href="https://support.globalsign.com/customer/portal/articles/1499561-sha-256-compatibility">SHA256 との互換性の問題</a>がなければ、サイトを SHA256 署名証明書 / チェーンに移行するのが妥当でしょう。問題があるか、その可能性がある場合は、SHA-1 証明書が 2017/01/01 までに失効するように徹底してください。 
+</p>
+<h2><span class="mw-headline" id="Server_Protocol_and_Cipher_Configuration">サーバーのプロトコルと暗号アルゴリズムの構成</span></h2>
+<p>注: FIPS 140-2 暗号モジュールを使用している場合は、以下のルールを無視して、特定の暗号モジュールの推奨構成に従ってください。その場合も、以下のルールを利用して構成を監査することをお勧めします。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Only_Support_Strong_Protocols">ルール: 強力なプロトコルのみをサポートする</span></h3>
+<p>SSL/TLS は複数のプロトコルの集合です。<a rel="nofollow" class="external text" href="http://www.schneier.com/paper-ssl-revised.pdf">SSLv2</a> と <a rel="nofollow" class="external text" href="http://www.yaksman.org/~lweith/ssl.pdf">SSLv3</a> を含む旧 SSL プロトコルには脆弱性が見つかっています。したがって、SSL バージョン 1、2、および 3 は今後使用しないください。トランスポート層を保護するためのベストプラクティスは、TLS プロトコル (TLS 1.0、TLS 1.1、および TLS 1.2) だけをサポートすることです。この構成は、高度なスキルと明確な動機を持つ攻撃者に対し最大の防御を提供し、機密データを扱うアプリケーションや危険な操作を行うアプリケーションに適しています。
+</p><p><a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Transport_Layer_Security#Web_browsers">ほぼすべての最新ブラウザーは、少なくとも TLS 1.0 をサポートしています</a>。2014 年 2 月現在、最新の各ブラウザー (Chrome v20 以上、Firefox v27 以上、IE v8 以上、Opera v10 以上、および Safari v5 以上) は <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Transport_Layer_Security#Web_browsers">TLS 1.1 と TLS 1.2 をサポートしています</a>。これらのプロトコルをサポートするクライアントに対応するために、TLS 1.1 と TLS 1.2 をサポートしてください。クライアントとサーバーは通常、双方でサポートされている最適なプロトコルをネゴシエートします。
+</p><p>最新バージョンに更新されていない多くのブラウザーでは、まだ TLS 1.0 が "最適な" プロトコルとして広く使用されています。TLS 1.0 は、<a rel="nofollow" class="external text" href="http://www.yassl.com/yaSSL/Blog/Entries/2010/10/7_Differences_between_SSL_and_TLS_Protocol_Versions.html">CBC 連鎖攻撃やパディングオラクル攻撃</a>を受けます。リスク分析とリスク許容を経ない限り、TLSv1.0 は使用しないでください。PCI DSS 3.1 では、2016 年 6 月 30 日以降の TLS 1.0 の使用を<a rel="nofollow" class="external text" href="https://www.pcisecuritystandards.org/documents/Migrating_from_SSL_Early_TLS_Information%20Supplement_v1.pdf">禁止</a>しています。
+</p><p>プロトコルの選択肢として SSLv2 と SSLv3 は絶対に有効にしないでください。
+</p>
+<ul>
+<li> <a rel="nofollow" class="external text" href="http://www.schneier.com/paper-ssl-revised.pdf">SSLv2 プロトコルは解読されます</a>。適切なトランスポート層保護を提供しません。
+</li>
+<li> <a rel="nofollow" class="external text" href="http://www.yaksman.org/~lweith/ssl.pdf">SSLv3 には既知の脆弱性があます</a>。チャネルの安全性を大きく脅かすこの脆弱性は、2014 年 10 月に <a rel="nofollow" class="external text" href="https://www.openssl.org/~bodo/ssl-poodle.pdf">'POODLE'-Bug</a> が最終的にこのプロトコルの許容を止めるずっと以前から知られていました。SSLv3 を無効にすると、<a rel="nofollow" class="external text" href="https://www.ssllabs.com/ssltest/viewClient.html?name=IE&amp;version=6&amp;platform=XP">IE6/XP</a> 以前のような旧式のブラウザーのサポートが (その既定の設定では) 終了します。
+</li>
+</ul>
+<h3><span class="mw-headline" id="Rule_-_Prefer_Ephemeral_Key_Exchanges">ルール: 短期鍵交換を優先する</span></h3>
+<p>短期鍵交換は Diffie-Hellman を基にしており、最初の SSL/TLS ハンドシェイクの際にセッションごとの一時鍵を使用します。短期鍵交換は、Perfect Forward Secrecy (PFS) を提供します。これは、サーバーの長期署名鍵が暴露しても、過去のセッションの機密性は侵害されないことを意味します (<a href="#Rule_-_Only_Support_Strong_Cryptographic_Ciphers">次のルール</a>を参照)。短期鍵を使用する場合、サーバーは長期鍵を使用して一時鍵に署名します (長期鍵はサーバーの証明書に含まれている通常の鍵です)。
+</p><p>証明書でサポートされている鍵長に一致する安全な長さを使用する暗号パラメーター (DH パラメーターなど) を使用してください (2048 ビット以上または同等の楕円曲線)。この点について問題のあるミドルウェアもあるので、最新バージョンにアップグレードしてください。 
+注: 古いブラウザーや古い Java バージョンの中には、1024 ビットを超える DH パラメーターを処理できないものもあります。これを解決する方法については、<a href="#Rule_-_Only_Support_Strong_Cryptographic_Ciphers">次のルール</a>を参照してください。
+</p><p>RFC 2409、3526、または 5114 で定義されているような標準化された DH パラメーターを使用しないでください。独自の DH パラメーターを生成して、一意の素数を取得してください (これには長い時間がかかる場合があります)。
+</p>
+<div style="border: 2px dashed #444444; background-color: #E0E0E0; font-family: courier; padding: 4px;margin-left: +20px; margin-right: +20px;">
+<p>openssl dhparam 2048 -out dhparam2048.pem
+</p>
+</div>
+<p>このパラメーターファイルを使用してパスを設定します (Apache の使用時など)。
+</p>
+<div style="border: 2px dashed #444444; background-color: #E0E0E0; font-family: courier; padding: 4px;margin-left: +20px; margin-right: +20px;">
+<p>SSLOpenSSLConfCmd DHParameters  &lt;dhparam2048.pem のパス&gt;
+</p>
+</div>
+<p>サーバーファームを所有し、Forward Secrecy (前方秘匿性) を提供している場合は、セッションの再開を無効にすることが必要になる可能性があります。たとえば、Apache では、ファーム内のすべてのサーバーがセッションの再開に参加できるように、セッション ID とマスターシークレットをディスクに書き込みます (現時点では、共有を実現するインメモリメカニズムはありません)。セッション ID とマスターシークレットをディスクに書き込むと、Forward Secrecy が損なわれます。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Only_Support_Strong_Cryptographic_Ciphers">ルール: 強力な暗号アルゴリズムのみをサポートする</span></h3>
+<p>各プロトコル (TLSv1.0、TLSv1.1、TLSv1.2 など) には暗号スイートが用意されています。TLS 1.2 の時点では、<a rel="nofollow" class="external text" href="http://www.mail-archive.com/cryptography@randombit.net/msg03785.html">各国のバニティ暗号スイート</a>も含め、<a rel="nofollow" class="external text" href="http://www.iana.org/assignments/tls-parameters/tls-parameters.xml#tls-parameters-3">320 以上のスイートがサポートされており、今も増え続けています</a>。TLS セッション内で使用される暗号の強度は、サーバーとブラウザー間でネゴシエートされる暗号アルゴリズムによって決まります。強力な暗号アルゴリズムのみが選択されるようにするには、サーバーの設定を変更して、弱い暗号アルゴリズムの使用を無効にするとともに、暗号アルゴリズムを適切な順序で構成する必要があります。強力な暗号アルゴリズムだけをサポートし、十分に大きな鍵サイズを使用することをお勧めします。一般に、暗号スイートの選択にあたっては、以下の点に注意してください。
+</p>
+<ul>
+<li> 最新の推奨事項に従います (推奨事項は変わりやすい傾向にあります)。
+</li>
+<li> 推奨アルゴリズムのホワイトリストを取得するためのポリシーを確立します。次に例を示します。
+<ul>
+<li> サーバーによる暗号アルゴリズムの順序設定を有効にします。
+</li>
+<li> "Forward Secrecy" をサポートする暗号アルゴリズムを最優先にします (→ 短期 Diffie-Hellman 鍵交換のサポート。前述のルールを参照) 。<a rel="nofollow" class="external autonumber" href="http://vincent.bernat.im/en/blog/2011-ssl-perfect-forward-secrecy.html">[2]</a>
+</li>
+<li> ECDHE よりも DHE を優先します (同時に CPU 使用率を監視します。下記の注を参照)。ECDHE には現在のところ真に信頼できる楕円曲線がありません。secp{224,256,384,521}r1 と secp256k1 に関する議論を参照してください (<a rel="nofollow" class="external autonumber" href="http://safecurves.cr.yp.to">[3]</a>、<a rel="nofollow" class="external autonumber" href="https://www.schneier.com/blog/archives/2013/09/the_nsa_is_brea.html#c1675929">[4]</a>)。解決策として、<a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc7027">RFC 7027</a> で TLS に定義された <a rel="nofollow" class="external text" href="http://www.researchgate.net/profile/Johannes_Merkle/publication/260050106_Standardisierung_der_Brainpool-Kurven_fr_TLS_und_IPSec/file/60b7d52f36a0cc2fdd.pdf">Brainpool 曲線 [ドイツ語]</a> または <a rel="nofollow" class="external text" href="http://eprint.iacr.org/2007/286">Edwards 曲線</a>を使用することもできます。後者の最も有力な候補は <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/draft-josefsson-tls-curve25519-06">'Curve25519'</a> と <a rel="nofollow" class="external text" href="http://sourceforge.net/p/ed448goldilocks/wiki/Home/">Ed448-Goldilocks</a> (<a rel="nofollow" class="external text" href="https://tools.ietf.org/html/draft-irtf-cfrg-curves-02">DRAFT-irtf-cfrg-curves</a> を参照) ですが、まだ TLS に定義されていません (<a rel="nofollow" class="external text" href="http://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-8">IANA</a> を参照)。 
+</li>
+<li> RSA 鍵を使用します (DSA/DSS は使用しません。署名時に不適切なエントロピーソースを使用すると、DSA/DSS は非常に弱くなります。<a rel="nofollow" class="external autonumber" href="https://projectbullrun.org/dual-ec/tls.html">[5]</a>、<a rel="nofollow" class="external autonumber" href="https://factorable.net/weakkeys12.conference.pdf">[6]</a> を参照)。 
+</li>
+<li> 暗号サイズに関係なく、CBC よりも GCM を優先します。言い換えると、AES-GCM、AES-CCM などの AEAD (Authenticated Encryption with Associated Data) を使用します。
+</li>
+<li> 鍵ストリームとプレーンテキストの排他的論理和 (XOR) を求めるストリーム暗号にも注意します (AES/CTR モードなど)。 
+</li>
+<li> 暗号アルゴリズムと MAC のサイズによって暗号アルゴリズムに優先順位をつけます。
+</li>
+<li> ダイジェストには SHA1 以上を使用します。できれば SHA2 (または同等の関数) を使用します。
+</li>
+<li> サポートする必要のある古いブラウザーやボットを無効にすることなく、弱い暗号アルゴリズムを無効にします (これは、このホワイトリストによって暗黙的に行われます)。実際には、暗号アルゴリズム TLS_RSA_WITH_3DES_EDE_CBC_SHA (0xa) がこれを行います。
+<ul>
+<li> 暗号化を提供しない暗号スイートを無効にします (eNULL、NULL)。
+</li>
+<li> 認証を提供しない暗号スイートを無効にします (aNULL)。aNULL には匿名暗号スイート ADH (Anonymous Diffie-Hellman) と AECDH (Anonymous Elliptic Curve Diffie Hellman) が含まれます。
+</li>
+<li> エクスポートレベルの暗号アルゴリズム (EXP。DES を含む暗号アルゴリズムなど) を無効にします。
+</li>
+<li> 暗号化ペイロードトラフィックには 128 ビットより小さい鍵サイズを無効にします (<a rel="nofollow" class="external text" href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2_pdf.html">BSI: TR-02102 Part 2 (ドイツ語)</a> を参照)。
+</li>
+<li> ペイロードトラフィックのハッシュ化メカニズムとして MD5 の使用を無効にします。
+</li>
+<li> IDEA 暗号スイートの使用を無効にします (<a rel="nofollow" class="external autonumber" href="https://tools.ietf.org/html/rfc5469">[7]</a> を参照)。
+</li>
+<li> RC4 暗号スイートを無効にします (<a rel="nofollow" class="external autonumber" href="https://tools.ietf.org/html/rfc7465">[8]</a>、<a rel="nofollow" class="external autonumber" href="http://www.isg.rhul.ac.uk/tls/">[9]</a> を参照)。
+</li>
+</ul>
+</li>
+<li> 暗号アルゴリズムは、古いブラウザーを拒否することなく、2048 ビット以上の DH パラメーターで使用できることが必要です (暗号アルゴリズム DHE-RSA-AES128-SHA は、一部のブラウザーがこれを好んで使用するものの、1024 ビットを超える DH パラメーターを処理できないため抑制されています)。
+</li>
+</ul>
+</li>
+<li> openssl など、使用する暗号化ツールのさまざまなバージョンで動作する暗号文字列を定義します。
+</li>
+<li> 暗号文字列を検証します。
+<ul>
+<li> <a href="/index.php/O-Saft" title="O-Saft">OWASP 'O-Saft' (OWASP SSL audit for testers / OWASP SSL advanced forensic tool)</a> などの監査ツールを使用します。
+</li>
+<li> 暗号化ソフトウェアを使用して手動で暗号文字列を表示します。例: openssl ciphers -v <暗号文字列> (結果はバージョンによって異なることがあります)。次に例を示します。
+</li>
+</ul>
+</li>
+</ul>
+<div style="border: 2px dashed #444444; background-color: #E0E0E0; font-family: courier; padding: 4px;margin-left: +20px; margin-right: +20px;"> 
+<p>openssl ciphers -v "EDH+aRSA+AESGCM:EDH+aRSA+AES:DHE-RSA-AES256-SHA:EECDH+aRSA+AESGCM:EECDH+aRSA+AES:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:RSA+AESGCM:RSA+AES+SHA:DES-CBC3-SHA:-DHE-RSA-AES128-SHA" <br />
+ #オプションとして、古いバージョンの OpenSSL を保護するには、':!aNULL:!eNULL:!LOW:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!ECDSA:!ADH:!IDEA' を追加します。<br />
+#openssl 1.0.1 以上では openssl ciphers -V "..." を使用できます。
+<small>
+</p>
+<pre>0x00,0x9F - DHE-RSA-AES256-GCM-SHA384   TLSv1.2 Kx=DH     Au=RSA  Enc=AESGCM(256) Mac=AEAD
+0x00,0x9E - DHE-RSA-AES128-GCM-SHA256   TLSv1.2 Kx=DH     Au=RSA  Enc=AESGCM(128) Mac=AEAD
+0x00,0x6B - DHE-RSA-AES256-SHA256       TLSv1.2 Kx=DH     Au=RSA  Enc=AES(256)    Mac=SHA256
+0x00,0x39 - DHE-RSA-AES256-SHA          SSLv3   Kx=DH     Au=RSA  Enc=AES(256)    Mac=SHA1
+0x00,0x67 - DHE-RSA-AES128-SHA256       TLSv1.2 Kx=DH     Au=RSA  Enc=AES(128)    Mac=SHA256
+0xC0,0x30 - ECDHE-RSA-AES256-GCM-SHA384 TLSv1.2 Kx=ECDH   Au=RSA  Enc=AESGCM(256) Mac=AEAD
+0xC0,0x2F - ECDHE-RSA-AES128-GCM-SHA256 TLSv1.2 Kx=ECDH   Au=RSA  Enc=AESGCM(128) Mac=AEAD
+0xC0,0x28 - ECDHE-RSA-AES256-SHA384     TLSv1.2 Kx=ECDH   Au=RSA  Enc=AES(256)    Mac=SHA384
+0xC0,0x14 - ECDHE-RSA-AES256-SHA        SSLv3   Kx=ECDH   Au=RSA  Enc=AES(256)    Mac=SHA1
+0xC0,0x27 - ECDHE-RSA-AES128-SHA256     TLSv1.2 Kx=ECDH   Au=RSA  Enc=AES(128)    Mac=SHA256
+0xC0,0x13 - ECDHE-RSA-AES128-SHA        SSLv3   Kx=ECDH   Au=RSA  Enc=AES(128)    Mac=SHA1
+0x00,0x9D - AES256-GCM-SHA384           TLSv1.2 Kx=RSA    Au=RSA  Enc=AESGCM(256) Mac=AEAD
+0x00,0x9C - AES128-GCM-SHA256           TLSv1.2 Kx=RSA    Au=RSA  Enc=AESGCM(128) Mac=AEAD
+0x00,0x35 - AES256-SHA                  SSLv3   Kx=RSA    Au=RSA  Enc=AES(256)    Mac=SHA1
+0x00,0x2F - AES128-SHA                  SSLv3   Kx=RSA    Au=RSA  Enc=AES(128)    Mac=SHA1
+0x00,0x0A - DES-CBC3-SHA                SSLv3   Kx=RSA    Au=RSA  Enc=3DES(168)   Mac=SHA1
+</pre>
+<p></small>
+</p>
+</div>
+<ul>
+<li> 使用するサービスやハードウェアの設定を安全に構成する方法について確認します (<a rel="nofollow" class="external text" href="https://bettercrypto.org">BetterCrypto.org: Applied Crypto Hardening (ドラフト版) など)</a>
+</li>
+<li> 新バージョンのソフトウェアやハードウェアの新しいセキュリティを確認します。
+</li>
+</ul>
+<p><b>注:</b>
+</p>
+<ul>
+<li> 調べた限りでは、一般的なブラウザーの大半はこの設定にも対応しているはずです (<a rel="nofollow" class="external text" href="https://www.ssllabs.com/ssltest/index.html">SSL Labs: SSL Server Test -> SSL Report -> Handshake Simulation</a> も参照)。
+</li>
+<li> サーバーのパフォーマンスを監視します。たとえば、DHE での TLS ハンドシェイクは、ECDHE に比べ約 2.4 倍の負荷が CPU に掛かります (<a rel="nofollow" class="external text" href="http://vincent.bernat.im/en/blog/2011-ssl-perfect-forward-secrecy.html#some-benchmarks">Vincent Bernat, 2011</a>、<a rel="nofollow" class="external text" href="http://nmav.gnutls.org/2011/12/price-to-pay-for-perfect-forward.html">nmav's Blog, 2011</a> を参照)。
+</li>
+<li> 短期 Diffie-Hellman 鍵交換を使用すれば、対応する RSA または DSS サーバーのプライベート鍵が漏えいした場合でも、送信されたプレーンテキストデータの機密性が守られます。鍵交換時に攻撃者が送信されたプレーンテキストを抽出するためには、活発に中間者攻撃を行わなければならないはずです。Windows Vista より前の Internet Explorer を除く最新のブラウザーはすべてこの鍵交換をサポートしています。
+</li>
+</ul>
+<p>追加情報については、<a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc5246">TLS 1.2 RFC 5246</a>、<a rel="nofollow" class="external text" href="https://www.ssllabs.com/projects/best-practices/index.html">SSL Labs: SSL/TLS Deployment Best Practices</a>、<a rel="nofollow" class="external text" href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2_pdf.html">BSI: TR-02102 Part 2 (ドイツ語)</a>、<a rel="nofollow" class="external text" href="http://www.enisa.europa.eu/activities/identity-and-trust/library/deliverables/algorithms-key-sizes-and-parameters-report">ENISA: Algorithms, Key Sizes and Parameters Report</a>、<a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc7525">RFC 7525: Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)</a>、および <a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/STM/cmvp/documents/fips140-2/FIPS1402IG.pdf">FIPS 140-2 IG</a> を参照してください。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Support_TLS-PSK_and_TLS-SRP_for_Mutual_Authentication">ルール: 相互認証のための TLS-PSK と TLS-SRP をサポートする</span></h3>
+<p>共有シークレットまたは共有パスワードを使用するときは、TLS-PSK (Pre-Shared Key) または TLS-SRP (Secure Remote Password) を提供します。これらは PAKE (Password Authenticated Key Exchange) と呼ばれます。TLS-PSK と TLS-SRP は適切にチャネルをバインドします。つまり、外部トンネルと内部認証プロトコル間の暗号バインドです。IANA では現在、<a rel="nofollow" class="external text" href="http://www.iana.org/assignments/tls-parameters/tls-parameters.xml#tls-parameters-3">79 PSK 暗号スイート</a>と <a rel="nofollow" class="external text" href="http://www.iana.org/assignments/tls-parameters/tls-parameters.xml#tls-parameters-3">9 SRP 暗号スイート</a>を予約しています。
+</p><p>基本認証では、サーバー自身の認証後、ユーザーのパスワードがプレーンテキストで送信されます。基本認証は一方向の認証しか提供しません。これに対し、TLS-PSK と TLS-SRP はいずれも相互認証を提供します。つまり、パスワードをプレーンテキストで送信することなく、パスワードを認識していることを双方が証明します。
+</p><p>最後に、PAKE を使用すると、証明機関 (CA) など、外部の第三者に頼る必要がなくなります。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Only_Support_Secure_Renegotiations">ルール: 安全な再ネゴシエーションのみをサポートする</span></h3>
+<p><a rel="nofollow" class="external text" href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2009-3555">CVE-2009-3555</a> として識別されている、TLS の設計上の脆弱性により、攻撃者は任意のプレーンテキストを標的者の TLS セッションに挿入できます。HTTPS コンテキストでは、攻撃者が標的者の代わりに独自の HTTPS リクエストを挿入できる可能性があります。この問題は、TLS のサポートを無効にするか、<a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc5746">RFC 5746</a> に準拠した再ネゴシエーションのみをサポートすることで対処できます。最新のすべてのブラウザーは、アップデートにより、この RFC に準拠しています。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Disable_Compression">ルール: 圧縮を無効にする</span></h3>
+<p>CRIME (Compression Ratio Info-leak Made Easy) は、TLS プロトコルと SPDY プロトコルで使用されているデータ圧縮方式の攻略手段です。この攻略手段により、敵対者は HTTPS からユーザー認証 Cookie を回復できます。その後、回復された Cookie がセッションハイジャック攻撃に利用されるおそれがあります。
+</p>
+<h2><span class="mw-headline" id="Test_your_overall_TLS.2FSSL_setup_and_your_Certificate">TLS/SSL のセットアップ全体と証明書のテスト</span></h2>
+<p>ここでは、最も一般的な参照先のみを示します。その他のツールについては、「<a href="#Tools">ツール</a>」を参照してください。
+</p>
+<ul>
+<li> <a href="/index.php/Testing_for_SSL-TLS_(OWASP-CM-001)" title="Testing for SSL-TLS (OWASP-CM-001)"> OWASP Testing Guide: SSL/TLS のテストに関する章</a>
+</li>
+<li> <a href="/index.php/O-Saft" title="O-Saft">OWASP 'O-Saft' (OWASP SSL audit for testers / OWASP SSL advanced forensic tool)</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="https://www.ssllabs.com/ssltest">SSL LABS Server Test</a>
+</li>
+<li> その他のツール: <a href="/index.php/Testing_for_Weak_SSL/TSL_Ciphers,_Insufficient_Transport_Layer_Protection_(OWASP-EN-002)#References" title="Testing for Weak SSL/TSL Ciphers, Insufficient Transport Layer Protection (OWASP-EN-002)" class="mw-redirect"> Testing for Weak SSL/TSL Ciphers、Insufficient Transport Layer Protection (OWASP-EN-002) (ドラフト版)</a> の「References」-「Tools」
+</li>
+</ul>
+<h2><span class="mw-headline" id="Client_.28Browser.29_Configuration">クライアント (ブラウザー) の構成</span></h2>
+<p>証明書が有効であることを確認するための検証手順は複雑で、適切に実行するのは困難です。標準的な Web アプリケーションモデルでは、この確認はクライアントの Web ブラウザーによってローカルなブラウザー設定に基づいて実行されるので、アプリケーションの管理外です。ただし、次のような場合には、これらの要素に対処する必要があります。
+</p>
+<ul>
+<li> Web サービスやデータ交換などの目的で、アプリケーションサーバーが他のアプリケーションと TLS 経由で接続を確立する場合
+
+</li>
+<li> シッククライアントアプリケーションが TLS 経由でサーバーに接続する場合
+</li>
+</ul>
+<p>以上の場合、証明書の信ぴょう性を確かめるには、幅広い証明書妥当性チェックを行う必要があります。この機能の設計とテストに役立つ以下の資料を参照してください。NIST PKI Testing サイトには、証明書の完全なテストスイートとテストケースの望ましい結果が含まれています。
+</p>
+<ul>
+<li> <a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/ST/crypto_apps_infra/pki/pkitesting.html">NIST PKI Testing</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc5280">IETF RFC 5280</a>
+</li>
+</ul>
+<p>上のガイダンスに明記されているように、何らかの理由で証明書が検証できない場合は、クライアントとサーバー間の接続を削除する必要があります。証明書が適切に検証されていない接続を介して交換されたデータは、不正アクセスや改ざんを受ける可能性があります。
+</p>
+<h2><span class="mw-headline" id="Additional_Controls">その他の制御</span></h2>
+<h3><span class="mw-headline" id="Extended_Validation_Certificates">Extended Validation 証明書</span></h3>
+<p>業界の底辺競争に伴い、Extended Validation 証明書 (EV 証明書) の発行にあたっては、発行者による申請者の広範な審査が行われます。EV 証明書の目的は、証明書の所有者がそのサイトの確認済みの法人であるとの確実な保証をユーザーに与えることです。EV 証明書に対応しているブラウザーは、EV 証明書をさまざまな方法で区別します。Internet Explorer は URL の部分を緑色で表示します。Mozilla は URL の左側に緑色の部分を追加して会社名を表示します。 
+</p><p>高価値の Web サイトでは、EV 証明書の使用により、証明書に対する顧客の信頼度を高めることを検討してください。ただし、EV 証明書は TLS の技術的な安全性を高めるわけではないので注意してください。EV 証明書の目的は、対象のサイトが本物であるというユーザー側の信頼感を高めることにあります。
+</p>
+<h3><span class="mw-headline" id="Client-Side_Certificates">クライアント側の証明書</span></h3>
+<p>TLS でクライアント側証明書を使用すると、クライアントの同一性をサーバーに証明できます。"相互 TLS" と呼ばれるこの構成では、サーバーが自らの証明書をクライアントに提示するだけでなく、クライアントも自らの証明書をサーバーに提示する必要があります。クライアント証明書を使用する場合は、前述のサーバー証明書の検証と同様のクライアント証明書の検証がサーバーで必ず実行されるようにします。また、クライアント証明書が検証できないか、提示されない場合は、TLS 接続を削除するようにサーバーを構成してください。 
+</p><p>現時点では、証明書生成 / 安全な配布 / クライアント側の構成 / 証明書の失効と再発行が複雑であること、およびクライアントが認証できるのはクライアント側証明書がインストールされたマシン上だけであることから、クライアント側証明書の使用は比較的まれです。クライアント側証明書は、ユーザー数が少ない非常に高い価値を伴う接続で使用するのが一般的です。
+</p>
+<h3><span class="mw-headline" id="Certificate_and_Public_Key_Pinning">証明書と公開鍵のピン留め</span></h3>
+<p>ハイブリッドアプリケーションおよびネイティブアプリケーションでは、<a href="/index.php/Certificate_and_Public_Key_Pinning" title="証明書と公開鍵のピン留め">証明書と公開鍵のピン留め</a>を活用できます。ピン留めは、ホスト (サーバーなど) をアイデンティティ (証明書や公開鍵など) に関連付けます。これにより、アプリケーションは既存のリレーションシップの知識を利用できるようになります。実行時、アプリケーションはサーバーへの接続後に受け取った証明書または公開鍵を検証します。証明書または公開鍵が想定どおりであれば、アプリケーションは通常どおり続行します。想定外であった場合は、敵対者がチャネルまたはサーバーを制御している可能性があるので、アプリケーションはそのチャネルの使用を停止し、接続を閉じます。
+</p><p>ピン留めしても、失効などの通例の X509 チェックが引き続き必要とされますが、これは CRL と OCSP がリアルタイムのステータス情報を提供するためです。これ以外の場合、アプリケーションは (1) 既知の不正な証明書を受け入れるか、(2) アウトオブバンド方式の更新を要求できます。これには、App Store の承認に長い時間がかかる可能性があります。
+</p><p>大部分のブラウザーは既存のリレーションシップや<i>演繹的な</i>知識の活用をユーザーに許可していなため、ブラウザーベースのアプリケーションは不利です。また、JavaScript と WebSocket は、基となるセキュアな接続の情報 (証明書、公開鍵など) を問い合わせるメソッドを Web アプリケーションに公開していません。注目すべき点として、Chromium ベースのアプリケーションは特定のサイトでピン留めを実行しますが、そのリストは現在ベンダーによって管理されています。
+</p><p>詳細については、「<a href="/index.php/Pinning_Cheat_Sheet" title="ピン留めに関するチートシート">ピン留めに関するチートシート</a>」を参照してください。
+</p>
+<h1><span class="mw-headline" id="Providing_Transport_Layer_Protection_for_Back_End_and_Other_Connections">バックエンドなどの接続に対するトランスポート層の保護</span></h1>
+<p>このチートシートの主題からは外れますが、機密データの交換やユーザー ID の確認が行われるバックエンド接続およびその他すべての接続には、トランスポート層の保護が必要であることを強調しておかなければなりません。効果的で堅牢なトランスポート層セキュリティを実装しないと、機密データが漏えいし、認証やアクセス制御のあらゆるメカニズムの有効性が損なわれます。 
+</p>
+<h2><span class="mw-headline" id="Secure_Internal_Network_Fallacy">安全な社内ネットワークという誤解</span></h2>
+<p>企業の社内ネットワークも攻撃を免れてはいません。何千もの機密の顧客記録が漏えいした、最近の人目を引く侵入の多くは、社内ネットワークにアクセスした攻撃者がスニファーを使用して、社内ネットワークを流れる暗号化されていないデータを傍受する方法で実行されました。
+</p>
+<h2><span class="mw-headline" id="Protocol_and_Cipher_Configuration_for_Back_End_and_Other_Connections">バックエンドなどの接続に対するプロトコルと暗号アルゴリズムの構成</span></h2>
+<p>クライアントとサーバー間の通信だけでなく、サーバー同士の通信にも TLS を提供することが重要です。<a href="#Server_Protocol_and_Cipher_Configuration">サーバーのプロトコルと暗号アルゴリズムの構成</a>に従って、バックエンドなどの接続に使用されるサーバーのクライアント側構成の安全性を確保します。安全でないプロトコルと暗号アルゴリズムを必ず無効にしてください(サーバーが "クライアント" として機能するときは、最小限の強固な構成のみをサポートするなど)。
+</p>
+<h1><span class="mw-headline" id="Tools">ツール</span></h1>
+<h3><span class="mw-headline" id="local.2Foffline">ローカル / オフライン</span></h3>
+<ul>
+<li> <a href="/index.php/O-Saft" title="O-Saft">O-Saft - OWASP SSL advanced forensic tool</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="http://sourceforge.net/projects/sslscan/">SSLScan - Fast SSL Scanner</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="https://github.com/iSECPartners/sslyze">SSLyze</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="http://www.g-sec.lu/sslaudit/sslaudit.zip">SSL Audit</a>
+</li>
+</ul>
+<h3><span class="mw-headline" id="Online">オンライン</span></h3>
+<ul>
+<li> <a rel="nofollow" class="external text" href="https://www.ssllabs.com/ssltest">SSL LABS Server Test</a>
+</li>
+</ul>
+<ul>
+<li> <a rel="nofollow" class="external text" href="https://www.htbridge.com/ssl/">SSL/TLS が NIST SP 800-52 ガイドラインと PCI DSS 要件 に準拠しているかどうかを任意の TCP ポート上で検査する High-Tech Bridge のオンラインツール
+</a>
+</li>
+</ul>
+<h1><span class="mw-headline" id="Related_Articles">関連資料</span></h1>
+<ul>
+<li> Mozilla – <a rel="nofollow" class="external text" href="https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_configurations">Mozilla Recommended Configurations</a>
+</li>
+<li> OWASP – <a href="/index.php/Testing_for_SSL-TLS_(OWASP-CM-001)" title="Testing for SSL-TLS (OWASP-CM-001)">Testing for SSL-TLS</a>、および OWASP <a href="/index.php/Guide_to_Cryptography" title="Guide to Cryptography">Guide to Cryptography</a> 
+</li>
+<li> OWASP – <a rel="nofollow" class="external text" href="http://www.owasp.org/index.php/ASVS">Application Security Verification Standard (ASVS) – Communication Security Verification Requirements (V10)</a>
+</li>
+<li> OWASP – ASVS 資料 <a href="/index.php/Why_you_need_to_use_a_FIPS_140-2_validated_cryptomodule" title="Why you need to use a FIPS 140-2 validated cryptomodule">Why you need to use a FIPS 140-2 validated cryptomodule</a>
+</li>
+<li> SSL Labs – <a rel="nofollow" class="external text" href="https://www.ssllabs.com/projects/best-practices/index.html">SSL/TLS Deployment Best Practices</a>
+</li>
+<li> SSL Labs – <a rel="nofollow" class="external text" href="http://www.ssllabs.com/projects/rating-guide/index.html">SSL Server Rating Guide</a>
+</li>
+<li> ENISA – <a rel="nofollow" class="external text" href="http://www.enisa.europa.eu/activities/identity-and-trust/library/deliverables/algorithms-key-sizes-and-parameters-report">Algorithms, Key Sizes and Parameters Report</a>
+</li>
+<li> BSI – <a rel="nofollow" class="external text" href="https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR02102/BSI-TR-02102-2_pdf.html">BSI TR-02102 Part 2 (ドイツ語)</a>
+</li>
+<li> yaSSL – <a rel="nofollow" class="external text" href="http://www.yassl.com/yaSSL/Blog/Entries/2010/10/7_Differences_between_SSL_and_TLS_Protocol_Versions.html">Differences between SSL and TLS Protocol Versions</a>
+</li>
+<li> NIST – <a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/PubsSPs.html#800-52">SP 800-52 Rev. 1 Guidelines for the Selection, Configuration, and Use of Transport Layer Security (TLS) Implementations</a>
+</li>
+<li> NIST – <a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/fips/fips140-2/fips1402.pdf">FIPS 140-2 Security Requirements for Cryptographic Modules</a>
+</li>
+<li> NIST – <a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/STM/cmvp/documents/fips140-2/FIPS1402IG.pdf">Implementation Guidance for FIPS PUB 140-2 and the Cryptographic Module Validation Program</a>
+</li>
+<li> NIST – <a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf">NIST SP 800-57 Recommendation for Key Management, Revision 3</a>、<a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/PubsDrafts.html#SP-800-57-Part%203-Rev.1">公開ドラフト</a>
+</li>
+<li> NIST – <a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/drafts.html#sp800-95">SP 800-95 Guide to Secure Web Services</a> 
+</li>
+<li> IETF – <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc5280">RFC 5280 Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a>
+</li>
+<li> IETF – <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc2246">RFC 2246 The Transport Layer Security (TLS) Protocol Version 1.0 (1999 年 1 月)</a>
+</li>
+<li> IETF – <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc4346">RFC 4346 The Transport Layer Security (TLS) Protocol Version 1.1 (2006 年 4 月)</a>
+</li>
+<li> IETF – <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc5246">RFC 5246 The Transport Layer Security (TLS) Protocol Version 1.2 (2008 年 8 月)</a>
+</li>
+<li> IETF – <a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc7525">RFC 7525 Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)</a>
+</li>
+<li> bettercrypto - <a rel="nofollow" class="external text" href="https://bettercrypto.org">Applied Crypto Hardening: HOWTO for secure crypto settings of the most common services (ドラフト版)</a>
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Torsten Gigler - torsten.gigler[at]owasp.org<br />
+Michael Coates - michael.coates[at]owasp.org <br />
+Dave Wichers - dave.wichers[at]owasp.org <br />
+Tyler Reguly -treguly[at]sslfail.com
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Transport Layer Protection Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.175 seconds
+Real time usage: 0.192 seconds
+Preprocessor visited node count: 286/1000000
+Preprocessor generated node count: 434/1000000
+Post‐expand include size: 2555/2097152 bytes
+Template argument size: 12/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:10440-0!*!0!!en!2!* and timestamp 20151215044604 and revision id 203567
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;oldid=203567">https://www.owasp.org/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;oldid=203567</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li><li><a href="/index.php/Category:OWASP_Best_Practices" title="Category:OWASP Best Practices">OWASP Best Practices</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Transport+Layer+Protection+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Transport_Layer_Protection_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:Transport_Layer_Protection_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Transport_Layer_Protection_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Transport_Layer_Protection_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;oldid=203567" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Transport_Layer_Protection_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 19 November 2015, at 05:00.</li>
+											<li id="footer-info-viewcount">This page has been accessed 356,702 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":202});
+}</script>
+	</body>
+</html>

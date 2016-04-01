@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>クロスサイトリクエストフォージェリ (CSRF) の防止策に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet","wgTitle":"Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet","wgCurRevisionId":204925,"wgRevisionId":204925,"wgArticleId":10545,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets","Popular"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Cross-Site_Request_Forgery_CSRF_Prevention_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">クロスサイトリクエストフォージェリ (CSRF) の防止策に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd):<b>2015/12/08</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#No_Cross-Site_Scripting_.28XSS.29_Vulnerabilities"><span class="tocnumber">2</span> <span class="toctext">クロスサイトスクリプティング (XSS) 脆弱性の防止</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Prevention_Measures_That_Do_NOT_Work"><span class="tocnumber">3</span> <span class="toctext">機能しない防止法</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Using_a_Secret_Cookie"><span class="tocnumber">3.1</span> <span class="toctext">シークレットクッキーの使用</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Only_Accepting_POST_Requests"><span class="tocnumber">3.2</span> <span class="toctext">POST リクエストのみの受け入れ</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Multi-Step_Transactions"><span class="tocnumber">3.3</span> <span class="toctext">マルチステップトランザクション</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#URL_Rewriting"><span class="tocnumber">3.4</span> <span class="toctext">URL の書き換え</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#General_Recommendation:_Synchronizer_Token_Pattern"><span class="tocnumber">4</span> <span class="toctext">一般的な推奨事項: 同期トークンパターン</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Disclosure_of_Token_in_URL"><span class="tocnumber">4.1</span> <span class="toctext">URL でのトークンの開示</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Viewstate_.28ASP.NET.29"><span class="tocnumber">4.2</span> <span class="toctext">ViewState (ASP.NET)</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Double_Submit_Cookies"><span class="tocnumber">4.3</span> <span class="toctext">Cookie の二重送信</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Encrypted_Token_Pattern"><span class="tocnumber">4.4</span> <span class="toctext">暗号化トークンパターン</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Overview"><span class="tocnumber">4.4.1</span> <span class="toctext">概要</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="#Validation"><span class="tocnumber">4.4.2</span> <span class="toctext">検証</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#CSRF_Prevention_without_a_Synchronizer_Token"><span class="tocnumber">5</span> <span class="toctext">同期トークンを使用しない CSRF の防止</span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#Checking_The_Referer_Header"><span class="tocnumber">5.1</span> <span class="toctext">Referer ヘッダーのチェック</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Checking_The_Origin_Header"><span class="tocnumber">5.2</span> <span class="toctext">Origin ヘッダーのチェック</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Challenge-Response"><span class="tocnumber">5.3</span> <span class="toctext">チャレンジレスポンス</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-19"><a href="#Client.2FUser_Prevention"><span class="tocnumber">6</span> <span class="toctext">クライアントとユーザーの予防策</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">7</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-21"><a href="#Other_Cheatsheets"><span class="tocnumber">7.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>クロスサイトリクエストフォージェリ (CSRF) は攻撃の一種であり、悪意のある Web サイト、電子メール、ブログ、インスタントメッセージ、またはプログラムを使用して、ユーザーが現在認証されている信頼されたサイト上で、ユーザーの Web ブラウザーに意図しないアクションを実行させます。クロスサイトリクエストフォージェリ攻撃が成功した場合、影響を受けるのは脆弱性のあるアプリケーションによって露出される機能に限られています。たとえば、この攻撃により、送金処理、パスワード変更、ユーザーコンテキストを使用した物品の購入などが行われることがあります。実際、攻撃者は CSRF 攻撃を使用して、ターゲットのシステムにターゲットのブラウザー経由で機能 (送金処理、フォーム送信など) を実行させますが、少なくとも、承認されていない機能の実行が完了するまで、標的にされたユーザーは事態に気づきません。
+</p><p>CSRF 攻撃が成功した場合の影響は、被害者の役割によって大きく異なります。通常のユーザーをターゲットにした場合、CSRF 攻撃が成功すると、エンドユーザーのデータと関連する機能に危害を与える可能性があります。ターゲットにされたエンドユーザーが管理者アカウントの場合、CSRF 攻撃は Web アプリケーション全体に危害を与える可能性があります。攻撃される可能性が高いサイトは、コミュニティ Web サイト (ソーシャルネットワーキング、電子メール) や、高額のアカウントが関連するサイト (銀行、株式売買、請求書支払いサービス) です。強力な暗号化 (HTTPS) を使用している Web サイトに ユーザーがログインした場合でも、この攻撃が起きる可能性があります。ソーシャルエンジニアリングを利用して、攻撃者は悪意のある HTML または JavaScript コードを電子メールまたは Web サイトに埋め込み、「特定のタスクを実行させる URL」 にアクセスさせます。その結果、ユーザーの認識の有無に関係なく、直接またはクロスサイトスクリプティングの脆弱性を利用して(Samy MySpace Worm など)、タスクが実行されます。
+</p><p>CSRF の詳細については、「<a href="/index.php/Cross-Site_Request_Forgery_(CSRF)" title="クロスサイトリクエストフォージェリ (CSRF)">Cross-Site Request Forgery (CSRF)</a>」ページを参照してください。
+</p>
+<h1><span class="mw-headline" id="No_Cross-Site_Scripting_.28XSS.29_Vulnerabilities">クロスサイトスクリプティング (XSS) 脆弱性の防止</span></h1>
+<p>クロスサイトスクリプティングがなくても、CSRF は機能します。ただし、クロスサイトスクリプティング脆弱性が使用されると、トークン、Cookie の二重送信、Referer ヘッダおよびOrigin ヘッダにもとづくCSRF の防御が無効になる可能性があります。これは、XSS ペイロードが XMLHttpRequest を使用して簡単にサイト上のページを読み込み、生成されたトークンを応答から取得して、そのトークンを偽造したリクエストに含めることができるからです。この技術は、2005 年に <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Samy_(XSS)">MySpace (Samy) ワーム</a>が MySpace のCSRF 対策機能をかいくぐってワームを増殖させた方法そのものです。XSS は、チャレンジレスポンスの防御 (Captcha、再認証、ワンタイムパスワードなど) を無効にすることができません。CSRF 防御が回避されないようにするには、XSS 脆弱性が存在しないことが必須になります。XSS 脆弱性を防止する方法の詳細なガイダンスについては、「<a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="クロスサイトスクリプティング (XSS) 対策チートシート">XSS Prevention Cheat Sheet</a>」を参照してください。
+</p>
+<h1><span class="mw-headline" id="Prevention_Measures_That_Do_NOT_Work">機能しない防止法</span></h1>
+<h2><span class="mw-headline" id="Using_a_Secret_Cookie">シークレットクッキーの使用</span></h2>
+<p>すべての Cookie は (たとえシークレットのものでも)、あらゆるリクエストで送信されることに注意してください。エンドユーザーがだまされてリクエストを送信したのかどうかに関係なく、すべての認証トークンが送信されます。さらに、アプリケーションコンテナーは単純にセッション識別子を使用して、リクエストを特定のセッションオブジェクトに関連付けます。セッション識別子の有無を調べるだけでは、エンドユーザーがリクエストの送信を意図していたかどうかを検証できません。 
+</p>
+<h2><span class="mw-headline" id="Only_Accepting_POST_Requests">POST リクエストのみの受け入れ</span></h2>
+<p>アプリケーションは、ビジネスロジックを実行するための POST リクエストのみを受け入れるように開発できます。攻撃者が悪意のあるリンクを作成できなければ CSRF 攻撃は実行できない、というのは誤った認識です。残念ながら、この考え方は正しくありません。攻撃者が被害者をだまして、偽造された POST リクエストを送信させる方法は数多くあります(例えば、攻撃者の Web サイトに、非表示の値を含む単純なフォームを置いてアクセスさせるなど)。しかも、このフォームは JavaScript を使用して自動的にトリガさせることも、フォームが何か別のことをすると思っている被害者にトリガさせることもできます。
+</p>
+<h2><span class="mw-headline" id="Multi-Step_Transactions">マルチステップトランザクション</span></h2>
+<p>マルチステップトランザクションでは、CSRF を十分に防ぐことはできません。完了したトランザクションの各ステップについて予測や推測ができれば、CSRF は可能になります。
+</p>
+<h2><span class="mw-headline" id="URL_Rewriting">URL の書き換え</span></h2>
+<p>攻撃者が被害者のセッション ID を推測できないため、これは有効な CSRF 対策技法だと思われるかもしれません。しかし、ユーザーの資格情報が URL で露出します。
+</p>
+<h1><span class="mw-headline" id="General_Recommendation:_Synchronizer_Token_Pattern">一般的な推奨事項:同期トークンパターン</span></h1>
+<p>"透過的でわかりやすい" CSRF ソリューションを促進するために、開発者は 同期トークンパターン (<a rel="nofollow" class="external free" href="http://www.corej2eepatterns.com/Design/PresoDesign.htm">http://www.corej2eepatterns.com/Design/PresoDesign.htm</a>) を使用することをお勧めします。同期トークンパターンは、ユーザーの現在のセッションと関連するランダムな "チャレンジ" トークンを生成するよう要求します。これらのチャレンジトークンは、機密に関わるサーバー側の操作に関連する、HTML のフォームとリンクに挿入されます。ユーザーがこれらの機密に関わる操作を実行しようとする場合、このチャレンジトークンが HTTP リクエストに含まれている必要があります。すると、サーバーアプリケーションは、このトークンの存在と正確性を検証する責任を負います。各リクエストにチャレンジトークンを含めることによって、開発者は、ユーザーが実際に希望するリクエストを送信するつもりなのかを検証するための、強力なコントロールを持ちます。要求されたセキュリティトークンを機密に関わるビジネス機能と関連する HTTP リクエストに含めることは、CSRF 攻撃の軽減に役立ちます。攻略行為を成功させるには、攻撃者がターゲット被害者のセッションでランダムに生成されるトークンを知っていることが前提だからです。すなわち、攻撃者はターゲット被害者のセッション識別子を推測できる必要があります。次に、リクエストにチャレンジトークンを組み込むための一般的な方法について概説します。
+</p><p>Web アプリケーションは、リクエストを作成 (ユーザーが送信またはクリックするとリクエストを発生させるリンクまたはフォームを生成) するときに "CSRFToken" などの一般的な名前の付いた非表示の入力パラメーターを加えておきます。このトークンの値は、攻撃者が推測できないように、ランダムに生成される必要があります。Java アプリケーションの場合には、十分な長さのランダムなトークンを生成するために java.security.SecureRandom クラスを利用することを検討してください。または、256 ビットのハッシュ値を BASE64 でエンコードする方法もあります 。ただしこの方法を使う場合は、ランダムなトークンを生成するためにハッシュされるデータを確実にランダムで一意のものにする必要があります。
+</p>
+<pre>  &lt;form action="/transfer.do" method="post"&gt;
+  &lt;input type="hidden" name="CSRFToken" 
+  value="OWY4NmQwODE4ODRjN2Q2NTlhMmZlYWE...
+  wYzU1YWQwMTVhM2JmNGYxYjJiMGI4MjJjZDE1ZDZ...
+  MGYwMGEwOA=="&gt;
+  …
+  &lt;/form&gt;
+</pre>
+<p>通常、開発者は現在のセッションに対して、このトークンを 1 回だけ生成する必要があります。このトークンを最初に生成したら、値をセッションに保存します。この値はセッションが期限切れになるまで、後続の各リクエストに利用されます。エンドユーザーがリクエストを送信すると、サーバー側のコンポーネントはセッション内に保存されているトークンと比較して、リクエスト内のトークンの存在と有効性を検証する必要があります。リクエスト内にトークンが見当たらない場合や、提供される値がセッションに保存されている値と一致しない場合は、リクエストの処理を中止し、トークンをリセットして CSRF 攻撃進行中の可能性ありというイベントを記録する必要があります。
+</p><p>ここで提案した設計のセキュリティを強化するために、CSRF トークンのパラメーター名と各リクエストの値をランダム化することを検討してください。このアプローチを実装すると、セッション単位のトークンではなく、リクエスト単位のトークンが生成されます。ただし、これは使い勝手の問題につながる可能性がある点に注意してください。たとえば、ブラウザーの [戻る] ボタンの機能は頻繁に機能しなくなります。これは前のページに含まれているトークンが、すでに無効になっている場合があるためです。前のページとの対話により、サーバーでは CSRF 攻撃を受けたという誤ったセキュリティイベントが引き起こされます。どのような アプローチを採用するにしても、 認証された後のセッション識別子を保護する場合と同じ方法で (TLS の使用など)、CSRF トークンを保護することをお勧めします。
+</p>
+<h3><span class="mw-headline" id="Disclosure_of_Token_in_URL">URL でのトークンの開示</span></h3>
+<p>このコントロールの実装の多くでは、GET (URL) リクエストと POST リクエストにチャレンジトークンを含めます。ページなどの一般的なデザインパターンに埋め込まれたリンクから機密に関わるサーバー側の操作が呼び出されたときに、これを実装するのが一般的です。これらデザインパターンは、CSRF の知識も CSRF 対策のデザイン戦略の理解もないまま実装されることがよくあります。このコントロールは CSRF 攻撃のリスクを軽減するために役立ちますが、一意のセッション単位トークンが GET リクエストで露呈します。GET リクエストの CSRF のトークンは、ブラウザーの履歴、HTTP ログファイル、必ず HTTP リクエストの最初の行を記録するネットワークアプライアンス、および保護されたサイトが外部サイトにリンクする場合の Referer ヘッダーなど、いくつかの場所でリークされる可能性があります。
+</p><p>後者の場合 (リンクされたサイトで Referer ヘッダーが解析されることによる CSRF トークンのリーク)、リンクされたサイトはいとも簡単に保護されたサイトに CSRF 攻撃を開始できます。Referer ヘッダーからサイトと CSRF トークンが分かる ので、攻撃者はきわめて効果的に攻撃を仕掛けることができます。攻撃は JavaScript だけで 実行できます。サイトの HTML にスクリプトタグを追加するだけで (攻撃者が用意した 悪意のあるサイト上に追加するか、ハッキングされたサイト上に追加することで)、攻撃を起動できます。さらに、HTTPS コンテキストからの HTTPS リクエストは (HTTPS からの HTTP リクエストとは対照的に) Referer ヘッダーを削除しないため 、HTTPS アプリケーションでは、Referer を経由した CSRF トークンのリークが依然として発生する可能性があります。
+</p><p>理想的なソリューションは、POST リクエストにのみ CSRF トークンが含まれるようにし、サーバー側で状態変化を起こすようなアクションは POST リクエストでのみ可能とするよう修正することです。実は、これは <a rel="nofollow" class="external text" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.1.1">RFC 2616</a> が GET リクエストに要求していることです。機密に関わるサーバー側のアクションが POST リクエストへの応答以外にないことが保証されれば、トークンを GET リクエストに含める必要はありません。
+</p><p>しかし、ほとんどの JavaEE Web アプリケーションでは、リクエストから HTTP パラメーターを取得する際に HTTP メソッドのスコーピングを使用することは滅多にありません。"HttpServletRequest.getParameter" の呼び出しは、リクエストが GET メソッドと POST メソッドどちらを使ったものであっても、パラメーター値を返します。これは、HTTP メソッドのスコーピングを実施できないというわけではありません。開発者が HttpServlet クラスの doPost() を明示的にオーバーライドしたり、Spring の AbstractFormController クラスのようなフレームワーク固有の機能を活用することで実施できます。
+</p><p>これらの場合、既存アプリケーションをこのパターンに合わせて改修 しようとすると、開発に膨大な時間とコストが必要になり、一時的措置として CSRF トークンを URL に含めて渡す方がましかもしれません。アプリケーションが HTTP GET リクエストと POST リクエスト に適切に応答するように修正したら、GET リクエストの CSRF トークンはオフにする必要があります。
+</p>
+<h3><span class="mw-headline" id="Viewstate_.28ASP.NET.29">ViewState (ASP.NET)</span></h3>
+<p>ASP.NET には、ViewState と呼ばれる機能があります。ViewState はサーバーに送信されたときのページの状態を示します。状態は、<form runat="server"> コントロールで各ページに配置される非表示フィールドを使用して定義されます。攻撃者が有効な ViewState を偽造することは難しいため、ViewState は CSRF 対策として使用できます。攻撃者がパラメーター値を取得したり、推測することは可能なので、有効な ViewState の偽造は不可能ではありません。しかし、現在のセッション ID を ViewState に追加すると、それぞれの ViewState は一意になるため、CSRF の影響を受けません。 
+</p><p>ViewStateUserKey プロパティを ViewState で使用して、なりすましのポストバックを阻止するには、Page 派生クラスの OnInit 仮想メソッドに以下を追加します (このプロパティは Page.Init イベントで設定される必要があります)
+</p>
+<pre>  protected override OnInit(EventArgs e) {
+     base.OnInit(e); 
+     if (User.Identity.IsAuthenticated)
+        ViewStateUserKey = Session.SessionID; }
+</pre>
+<p>以下は、任意に選択した一意の値を使用して、ViewState に個人の鍵を設定します。
+</p>
+<pre>   (Page.ViewStateUserKey)
+</pre>
+<p>鍵は ViewState の読み込み前に提供する必要があるため、Page_Init で適用されている必要があります。このオプションは、ASP.NET 1.1 以上で使用可能になりました。
+</p><p>しかし、このメカニズムには制限があります。たとえば、ViewState の MAC はポストバック時にのみチェックされるため、ポストバックを使用しない他のアプリケーションリクエストは CSRF を許容してしまいます。
+</p>
+<h3><span class="mw-headline" id="Double_Submit_Cookies">Cookie の二重送信</span></h3>
+<p>Cookie の二重送信は、Cookie およびリクエストパラメーターの双方でランダムな値を送信し、サーバー側で Cookie の値とリクエストの値が等しいかどうか検証する手法です。 
+</p><p>ユーザーがサイトにログイン するとき、サイトは暗号強度の高い疑似ランダム値を生成し、その値を Cookie としてユーザーのマシンに、セッション ID とは別に送ります 。どんな形であれ、サイトはこの値を保存しておく必要はありません。次にサイトは、機密に関わる送信にはすべてこのランダム値が非表示のフォーム値　(または他のリクエストパラメーター) および Cookie の値として含まれていることを確認します。同一生成元ポリシーにより、攻撃者はサーバーから送信されるどんなデータも読み取ることができません。また、Cookie の値を変更することもできません。攻撃者は、任意の値を悪意のある CSRF リクエストに添付して送信できますが、Cookie に保存されている値は、変更することも、読み取ることもできません。Cookie の値と、リクエストパラメーターまたはフォームの値は同じにする必要があるので、攻撃者はランダムの CSRF 値を推測できない限り、フォームを正常に送信できません。
+</p><p><a rel="nofollow" class="external text" href="http://directwebremoting.org">Direct Web Remoting (DWR)</a> の Java ライブラリバージョン 2.0 には、CSRF 対策として、透過的に Cookieの二重送信を行う機能が組み込まれています。
+</p>
+<h3><span class="mw-headline" id="Encrypted_Token_Pattern">暗号化トークンパターン</span></h3>
+<h4><span class="mw-headline" id="Overview">概要</span></h4>
+<p>暗号化トークンパターンは、トークン検証のメソッドに比較ではなく暗号化を活用します。認証が正常に行われると、サーバーはサーバー上でのみ使用可能な一意の鍵を使用して、ユーザーの ID、タイムスタンプの値、および <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Cryptographic_nonce">nonce</a> で構成される一意のトークンを生成します。このトークンはクライアントに返され、非表示フィールドに埋め込まれます。後続の AJAX リクエストは二重送信パターンと同じように、このトークンをリクエストヘッダーに含めます。非 AJAX のフォームベースのリクエストは、トークンを暗黙的に非表示フィールドに保持します。このリクエストを受信すると、サーバーはトークンの作成に使用したキーと同じキーを使用して、トークンの値を読み取り、復号化します。正しく復号化できない場合は、侵入の試行があることを暗示しています。一度復号化すると、トークン内に含まれる UserId とタイムスタンプは、有効性を保証するために検証されます。UserId と現在ログインしているユーザーが比較され、タイムスタンプと現在の時間が比較されます。
+</p>
+<h4><span class="mw-headline" id="Validation">検証</span></h4>
+<p>トークンの復号化に成功すると、サーバーは解析された値にアクセスします (理想的には<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Claims-based_identity"> クレーム (claims)</a>の形で)。これらのクレームは、UserId 要求と、保存された UserId (すでにサイトに認証方法が含まれている場合は、Cookie またはセッション変数内に) を比較することにより処理されます。タイムスタンプは現在の時間と比較検証され、再生攻撃を防止します。
+また CSRF 攻撃の場合、サーバーは侵害されたトークンを復号化できず、攻撃をブロックして記録することができます。
+</p><p>このパターンは主として、開発者や設計担当者がセッション情報に依存せずに CSRF を阻止できるようにするためのものです。また、Cookie のサブドメイン問題と HTTPONLY の問題を回避してデータを Cookie に保存する必要性など、他のステートレスアプローチの欠陥にも対処します。
+</p>
+<h1><span class="mw-headline" id="CSRF_Prevention_without_a_Synchronizer_Token">同期トークンを使用しない CSRF の防止</span></h1>
+<p>CSRF は数多くの方法で防ぐことができます。同期トークンの使用も 1 つの方法です。この方法では、リクエストを認証するためにシークレットトークンを維持することで、アプリケーションは同一生成元ポリシーに依拠して CSRF を防ぐことができます。このセクションでは、アプリケーションが CSRF 攻撃で絶対に破られないようなルールに依拠することにより CSRF を防ぐ、その他の方法について説明します。
+</p>
+<h3><span class="mw-headline" id="Checking_The_Referer_Header">Referer ヘッダーのチェック</span></h3>
+<p>ブラウザーが送信する Referer ヘッダーをユーザー自身が改変するのは簡単ですが 、CSRF 攻撃でこれを行うのは不可能です。組み込み ネットワーク機器で CSRF 対策として一般に使用される手法は Referer チェックです。この手法はユーザー単位の状態を必要としないため、メモリ容量が少ない場合に有効な CSRF 対策手法になります。また、この手法は、認証が行われる前のリクエストに対しても一般的に使われます。認証が行われていなければ、同期トークンの追跡に必要な セッション状態が確立されて いないからです。 
+</p><p>しかし、Referer チェックは CSRF 対策としては弱い方法と見なされています。たとえば、オープンリダイレクト脆弱性を使用すれば、Referer チェックで保護されている GET ベースのリクエストを悪用することができます。また、一部の組織やブラウザーツールでは、データ保護の一環として Referer ヘッダーを削除しています。Referer チェックには、一般的な実装のミスもあります。たとえば、CSRF 攻撃が HTTPS ドメインから始まると、Referer は省略されます。この場合、リクエストが状態の変更を実行するものであるなら、Referer の欠如は攻撃と見なす必要があります。また、攻撃者が Referer に対して限定的ながら影響力を持っている点にも注意が必要です。たとえば、被害者のドメインが "site.com" であれば、攻撃者はドメイン "site.com.attacker.com" から攻撃することにより、壊れた Referer チェックの実装を欺く可能性があります。また、XSS を使用すれば Referer チェックを迂回できます。
+</p><p>つまり、Referer チェックは CSRF の侵入を発見および防止するための合理的な方法ではありますが、完璧な対策にはなりません。Referer チェックはある程度攻撃を検出できますが、すべての攻撃を阻止できるわけではありません。たとえば、HTTP Referrer が別のドメインからのもので、ユーザーは自分のドメインからのリクエストだけを想定している場合、ユーザーはそのリクエストを安全にブロックすることができます。
+</p>
+<h3><span class="mw-headline" id="Checking_The_Origin_Header">Origin ヘッダーのチェック</span></h3>
+<p><a rel="nofollow" class="external text" href="https://wiki.mozilla.org/Security/Origin">Origin HTTP ヘッダー</a>標準は、CSRF や他のクロスドメイン攻撃に対する防御メソッドとして導入されました。Referer ヘッダーとは異なり、Origin ヘッダーは HTTPS の URL から発生する HTTP リクエストにも含まれます。
+</p><p>Origin ヘッダーが存在する場合は、その一貫性をチェックする必要があります。
+</p>
+<h3><span class="mw-headline" id="Challenge-Response">チャレンジレスポンス</span></h3>
+<p>チャレンジレスポンスは、CSRF のもう 1 つの防御オプションです。チャレンジレスポンスオプションの例を次に示します。
+</p>
+<ul>
+<li>CAPTCHA
+</li>
+<li>再認証 (パスワード)
+</li>
+<li>ワンタイムトークン
+</li>
+</ul>
+<p>チャレンジレスポンスは (適切に実装されている場合) CSRF に対する非常に強力な防御となりますが、ユーザーが行うべき操作に影響を与えます。高度なセキュリティが必要なアプリケーションにおいては、リスクの高い機能の実行時にはトークン (透過的) とチャレンジレスポンスを使用すべきでしょう。
+</p>
+<h1><span class="mw-headline" id="Client.2FUser_Prevention">クライアントとユーザーの予防策</span></h1>
+<p>CSRF 脆弱性は広範囲に 報告されています。ベストプラクティスに従ってリスクを軽減することをお勧めします。例えば、 
+</p>
+<ul>
+<li> Web アプリケーションの使用後はすぐにログオフする。 
+</li>
+<li> ブラウザーにユーザー名やパスワードを保存しない。サイトにログインを "記憶" させない。 
+</li>
+<li> 機密に関わるアプリケーションへのアクセスと、インターネットの気ままなサーフィンに同じブラウザーを使用しない。(複数のタブを開いて異なるサイトを同時にブラウズするような使い方をしない。) 
+</li>
+<li> No-Script などのプラグインを使用して POST ベースの CSRF 脆弱性の悪用を難しくする 。これは、ページが 読み込まれた途端にフォームを自動的に送信させる、というような攻撃がJavascript を使って行われるからです。JavaScript が働かない場合、攻撃者はユーザーが手動でフォームを送信するよう仕向ける必要があります。 
+</li>
+</ul>
+<p>統合された HTML 対応のメール / ブラウザーや、ニュースリーダー / ブラウザーの環境は、さらなる危険をもたらします。メールメッセージやニュースメッセージをただ表示するだけで、攻撃が実行される可能性があるからです。 
+</p><p>これを移動
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Paul Petefish - paulpetefish[at]solutionary.com<br />
+Eric Sheridan - eric.sheridan[at]owasp.org<br />
+Dave Wichers - dave.wichers[at]owasp.org 
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.069 seconds
+Real time usage: 0.075 seconds
+Preprocessor visited node count: 99/1000000
+Preprocessor generated node count: 134/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:10545-0!*!0!!en!2!* and timestamp 20151215040544 and revision id 204925
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;oldid=204925">https://www.owasp.org/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;oldid=204925</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li><li><a href="/index.php/Category:Popular" title="Category:Popular">Popular</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Cross-Site+Request+Forgery+%28CSRF%29+Prevention+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;oldid=204925" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 8 December 2015, at 12:16.</li>
+											<li id="footer-info-viewcount">This page has been accessed 962,803 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":159});
+}</script>
+	</body>
+</html>

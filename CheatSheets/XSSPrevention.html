@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>クロスサイトスクリプティング (XSS) 対策チートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet","wgTitle":"XSS (Cross Site Scripting) Prevention Cheat Sheet","wgCurRevisionId":204242,"wgRevisionId":204242,"wgArticleId":8079,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets","Popular"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-XSS_Cross_Site_Scripting_Prevention_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">クロスサイトスクリプティング (XSS) 対策チートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd):<b>2015/12/01</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#A_Positive_XSS_Prevention_Model"><span class="tocnumber">1.1</span> <span class="toctext">ポジティブ XSS 対策モデル</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Why_Can.27t_I_Just_HTML_Entity_Encode_Untrusted_Data.3F"><span class="tocnumber">1.2</span> <span class="toctext">信頼されていないデータを単純に HTML エンティティエンコードしてはならない理由</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#You_Need_a_Security_Encoding_Library"><span class="tocnumber">1.3</span> <span class="toctext">セキュリティエンコードライブラリが必要</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#XSS_Prevention_Rules"><span class="tocnumber">2</span> <span class="toctext">XSS 対策ルール</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#RULE_.230_-_Never_Insert_Untrusted_Data_Except_in_Allowed_Locations"><span class="tocnumber">2.1</span> <span class="toctext">ルール 0 - 許可された場所以外に信頼されていないデータを挿入しない</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content"><span class="tocnumber">2.2</span> <span class="toctext">ルール 1 - 信頼されていないデータを HTML 要素コンテンツに挿入する前に HTML エスケープする</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#RULE_.232_-_Attribute_Escape_Before_Inserting_Untrusted_Data_into_HTML_Common_Attributes"><span class="tocnumber">2.3</span> <span class="toctext">ルール 2 - 信頼されていないデータを HTML 共通属性に挿入する前に属性エスケープする</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#RULE_.233_-_JavaScript_Escape_Before_Inserting_Untrusted_Data_into_JavaScript_Data_Values"><span class="tocnumber">2.4</span> <span class="toctext">ルール 3 - 信頼されていないデータを JavaScript データ値に挿入する前に JavaScript エスケープする</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#RULE_.233.1_-_HTML_escape_JSON_values_in_an_HTML_context_and_read_the_data_with_JSON.parse"><span class="tocnumber">2.4.1</span> <span class="toctext">ルール 3.1 - HTML コンテキストの JSON 値を HTML エスケープして JSON.parse を使用してデータを読み取る</span></a>
+<ul>
+<li class="toclevel-4 tocsection-11"><a href="#JSON_entity_encoding"><span class="tocnumber">2.4.1.1</span> <span class="toctext">JSON エンティティエンコード</span></a></li>
+<li class="toclevel-4 tocsection-12"><a href="#HTML_entity_encoding"><span class="tocnumber">2.4.1.2</span> <span class="toctext">HTML エンティティエンコード</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-13"><a href="#RULE_.234_-_CSS_Escape_And_Strictly_Validate_Before_Inserting_Untrusted_Data_into_HTML_Style_Property_Values"><span class="tocnumber">2.5</span> <span class="toctext">ルール 4 - 信頼されていないデータを HTML スタイルプロパティ値に挿入する前に、CSS エスケープして厳格に検証する</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#RULE_.235_-_URL_Escape_Before_Inserting_Untrusted_Data_into_HTML_URL_Parameter_Values"><span class="tocnumber">2.6</span> <span class="toctext">ルール 5 - 信頼されていないデータを HTML URL パラメーター値に挿入する前に URL エスケープする</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#RULE_.236_-_Sanitize_HTML_Markup_with_a_Library_Designed_for_the_Job"><span class="tocnumber">2.7</span> <span class="toctext">ルール 6 - ジョブ用に設計されたライブラリを使用して HTML マークアップをサニタイズする</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#RULE_.237_-_Prevent_DOM-based_XSS"><span class="tocnumber">2.8</span> <span class="toctext">ルール 7 - DOM ベース XSS の防止</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Bonus_Rule_.231:_Use_HTTPOnly_cookie_flag"><span class="tocnumber">2.9</span> <span class="toctext">ボーナスルール 1: HTTPOnly Cookie フラグの使用</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Bonus_Rule_.232:_Implement_Content_Security_Policy"><span class="tocnumber">2.10</span> <span class="toctext">ボーナスルール 2: コンテンツセキュリティポリシー (CSP) の実装</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Bonus_Rule_.233:_Use_an_Auto-Escaping_Template_System"><span class="tocnumber">2.11</span> <span class="toctext">ボーナスルール 3: 自動エスケープテンプレートシステムの使用</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Bonus_Rule_.234:_Use_the_X-XSS-Protection_Response_Header"><span class="tocnumber">2.12</span> <span class="toctext">ボーナスルール 4: X-XSS-Protection レスポンスヘッダーの使用</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#XSS_Prevention_Rules_Summary"><span class="tocnumber">3</span> <span class="toctext">XSS 対策ルールの要約</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Output_Encoding_Rules_Summary"><span class="tocnumber">4</span> <span class="toctext">出力エンコードのルールの要約</span></a></li>
+<li class="toclevel-1 tocsection-23"><a href="#Related_Articles"><span class="tocnumber">5</span> <span class="toctext">関連資料</span></a></li>
+<li class="toclevel-1 tocsection-24"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">6</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-25"><a href="#Other_Cheatsheets"><span class="tocnumber">6.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>この資料では、適切に出力のエスケープ / エンコードを使用した <a href="/index.php/XSS" title="XSS" class="mw-redirect">XSS</a> 対策について、シンプルかつポジティブなモデルを紹介します。極めて多くの XSS 攻撃ベクトルがありますが、いくつかのシンプルなルールに従うことで、この重大な攻撃を完全に防ぐことができます。この資料では、XSS の技術的な影響、ビジネスへの影響は扱いません。XSS を使用すれば、攻撃者は、被害者がブラウザーを使用して実行可能なあらゆる行為を行うことができるとだけ、ここでは述べておきます。
+</p><p><a href="/index.php/XSS#Stored_and_Reflected_XSS_Attacks" title="XSS" class="mw-redirect"> 反射型 XSS と格納型 XSS</a> の両方ともに、サーバー側で適切な検証とエスケープを実行することで対応できます。<a href="/index.php/DOM_Based_XSS" title="DOM ベースの XSS">DOM ベース XSS</a> には、<a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM ベース XSS 対策チートシート">DOM ベース XSS 対策チートシート</a>で説明する特殊なルールのサブセットにより対応できます。
+</p><p>XSS 関連の攻撃ベクトルについてのチートシートは、<a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS フィルター回避チートシート">XSS フィルター回避チートシート</a>を参照してください。ブラウザーセキュリティおよびさまざまなブラウザーについてより詳細な情報は、<a rel="nofollow" class="external text" href="http://code.google.com/p/browsersec/">ブラウザーセキュリティハンドブック</a>を参照してください。
+</p><p>このチートシートを読む前に、<a href="/index.php/Injection_Theory" title="インジェクションのセオリー">インジェクションのセオリー</a>についてしっかり理解しておくことが重要です。
+</p>
+<h2><span class="mw-headline" id="A_Positive_XSS_Prevention_Model">ポジティブ XSS 対策モデル</span></h2>
+<p>この資料では、HTML ページをテンプレートと同じように扱います。スロットがあり、開発者はそのスロットに信頼されていないデータを配置できます。これらのスロットは、開発者が信頼されていないデータを配置する可能性のある一般的な場所の大半を網羅しています。信頼されていないデータを HTML の他の場所に配置することは許可されません。これは "ホワイトリスト" モデルであり、ここで明示的に許可されているもの以外はすべて拒否されます。
+</p><p>ブラウザーによる HTML の解析を想定すれば、異なる種類のスロットごとに、少しずつ異なるセキュリティルールがあります。これらのスロットに信頼されていないデータを配置するとき、特定の手順を踏んで、データがスロットの外に抜け出して、コードの実行が可能なコンテキストに入らないようにする必要があります。ある意味で、このアプローチは、HTML ドキュメントをパラメーター化されたデータベースクエリと同じように扱います。データは特定の場所に保持され、エスケープによってコードコンテキストから分離されます。
+</p><p>このドキュメントでは、最も一般的な種類のスロットと、そのスロットに信頼されていないデータを安全に配置するためのルールを提示します。さまざまな仕様、既知の XSS ベクトル、すべての一般的なブラウザーを使用した大量の手動テストに基づいて、ここで提案するルールが安全と判断しました。
+</p><p>スロットの定義、そのいくつかの例を提示しています。開発者は、極めて慎重に分析し、安全であることを確認しない限り、絶対に他のスロットにデータを置いてはいけません。ブラウザーによる HTML の解析処理はとても複雑 であり、一見無害に見える多くの文字が、コンテキストによっては極めて重要になる場合があります。
+</p>
+<h2><span class="mw-headline" id="Why_Can.27t_I_Just_HTML_Entity_Encode_Untrusted_Data.3F">信頼されていないデータを単純に HTML エンティティエンコードしてはならない理由</span></h2>
+<p>HTML エンティティエンコードは、&lt;div&gt; タグ内など、HTML ドキュメントの本文に 信頼されていないデータを配置する場合には有効です。また、 属性を必ず引用符で囲むようにしている場合、属性に 信頼されていないデータを配置するときに効果を発揮します。しかし、 任意の場所の &lt;script&gt; タグ 、onmouseover などのイベントハンドラ属性、 CSS や URL の中に信頼されていないデータを 置く場合には、HTML エンティティエンコードは適切に機能しません。そのため、データを配置する場所を考慮せずに HTML エンティティエンコード を行っている場合は、 XSS に対して脆弱なままになります。<b>信頼されていないデータを配置する HTML ドキュメントの場所に合わせたエスケープ構文を使用しなければなりません。</b>以下のルールはこのことをより具体的に説明するもの です。
+</p>
+<h2><span class="mw-headline" id="You_Need_a_Security_Encoding_Library">セキュリティエンコードライブラリが必要</span></h2>
+<p>これらのエンコーダーを作成するのはさほど難しくはありませんが、いくつかの落とし穴があります。たとえば、JavaScript で \" などのエスケープショートカットを使用したいと考えるかもしれません。しかし、これらの値は危険であり、ブラウザーのネストされたパーサーが誤って解釈する可能性があります。また、エスケープ文字のエスケープを失念する場合があります。攻撃者はこれを利用して、ユーザーの安全対策を無力化できます。OWASP は、セキュリティに特化したエンコードライブラリを使用し、ルールが適切に実装されるようにすることを推奨します。
+</p><p>Microsoft は、.NET プラットフォーム向けに <a rel="nofollow" class="external text" href="http://wpl.codeplex.com">Microsoft Anti-Cross Site Scripting Library</a> というエンコードライブラリを提供しています。また、ASP.NET フレームワークには、<a rel="nofollow" class="external text" href="http://msdn.microsoft.com/en-us/library/ms972969.aspx#securitybarriers_topic6">ValidateRequest</a> 関数が組み込み済みで、<b>限定的な</b>サニタイズを可能としています。
+</p><p>OWASP <a href="/index.php/ESAPI" title="ESAPI" class="mw-redirect">ESAPI</a> プロジェクトでは、Java 用のエスケープライブラリを作成しています。また、 ハイパフォーマンスなエンコーダーを作成する <a href="/index.php/OWASP_Java_Encoder_Project" title="OWASP Java Encoder Project">OWASP Java Encoder </a> プロジェクトも活動 しています。
+</p>
+<h1><span class="mw-headline" id="XSS_Prevention_Rules">XSS 対策ルール</span></h1>
+<p>以下のルールは、アプリケーションにおける、あらゆる XSS を防ぐことを目的としています。これらのルールでは、信頼されていないデータを HTML ドキュメントに自由に配置することを禁止しています。これにより、一般的なユースケースの大半に対処できるはずです。組織で必ずしも<b>すべての</b>ルールを適用する必要はありません。多くの組織では、<b>ルール 1 とルール 2 を適用するだけで十分にニーズを満たす</b>と思われます。頻繁に必要となりエスケープによって安全に保護できる追加コンテキストがある場合は、ディスカッションページに書き加えて ください。
+</p><p>これらのルールで指定されている、一連のサンプル文字を単純にエスケープすることはしないでください。ここで例示したものをエスケープするだけでは不十分です。ブラックリストアプローチは脆弱です。ホワイトリストルールは、ブラウザーの変更によって将来新たに発生する可能性のある脆弱性に対する保護も提供できるように、注意深く設計されています。
+</p>
+<h2><span class="mw-headline" id="RULE_.230_-_Never_Insert_Untrusted_Data_Except_in_Allowed_Locations">ルール 0 - 許可された場所以外に信頼されていないデータを挿入しない</span></h2>
+<p>1 番目のルールは、<b>すべてを拒否</b>することです。ルール 1 からルール 5 で定義されたスロット以外の、 HTML ドキュメントのどの場所にも信頼されていないデータを置いてはいけません。ルール 0 を設定する理由は、HTML には厄介なコンテキストが多すぎて、エスケープルールのリストが複雑になるためです。これらのコンテキストに信頼されていないデータを置く妥当な理由が見当たりません。対象のコンテキストには、javascript 内の URLなど、"ネストされたコンテキスト" も含まれます。この場所にエンコードルールを設定するのは問題が多く、危険です。どうしてもネストされたコンテキストに信頼されていないデータを置きたい場合は、十分にクロスブラウザーテストを実施して、結果を知らせてください。
+</p>
+<pre> &lt;script&gt;<b>...NEVER PUT UNTRUSTED DATA HERE...</b>&lt;/script&gt;   直接スクリプト内
+ 
+ &lt;!--<b>...NEVER PUT UNTRUSTED DATA HERE...</b>--&gt;             HTML コメント内
+ 
+ &lt;div <b>...NEVER PUT UNTRUSTED DATA HERE...</b>=test /&gt;       属性名内
+ 
+ &lt;<b>NEVER PUT UNTRUSTED DATA HERE...</b> href="/test" /&gt;   タグ名内
+ 
+ &lt;style&gt;<b>...NEVER PUT UNTRUSTED DATA HERE...</b>&lt;/style&gt;   直接 CSS 内
+</pre>
+<p>最も重要なのは、絶対に、信頼されていないソースから JavaScript コード自体を受け入れて実行しないことです。たとえば、"callback" というパラメーターには、JavaScript コードスニペットが含まれています。どれだけエスケープしても、これを修正することはできません。
+</p>
+<h2><span class="mw-headline" id="RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content">ルール 1 - 信頼されていないデータを HTML 要素コンテンツに挿入する前に HTML エスケープする</span></h2>
+<p>ルール 1 は、信頼されていないデータを HTML 本文のどこかに直接置きたい場合を対象にしています。これには、div、p、b、td など、通常の内部タグが含まれます。多くの Web フレームワークは、以下に説明する文字に対して HTML エスケープする方法を備えています。しかし、これだけでは<b>他の HTML コンテキストに対して十分ではありません。</b>ここで説明する他のルールも実装する必要があります。
+</p>
+<pre> &lt;body&gt;<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</b>&lt;/body&gt;
+ 
+  &lt;div&gt;<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</b>&lt;/div&gt;
+ 
+ その他の通常の HTML 要素
+</pre>
+<p>HTML エンティティエンコードにより、次の文字をエスケープして、スクリプト、スタイル、イベントハンドラなど、実行コンテキストへの切り替えを防ぎます。仕様では、16 進数のエンティティを使用することが推奨されています。XML で重要な 5 つの文字 (&amp;、&lt;、&gt、"、') に加えて、HTML エンティティの終了を示すスラッシュ文字を含めます。
+</p>
+<pre> &amp; --&gt; &amp;amp;
+ &lt; --&gt; &amp;lt;
+ &gt; --&gt; &amp;gt;
+ " --&gt; &amp;quot;
+ ' --&gt; &amp;#x27;     &amp;apos; は HTML 仕様にないため推奨されません (<a rel="nofollow" class="external text" href="http://www.w3.org/TR/html4/sgml/entities.html">セクション 24.4.1</a> を参照)。 &amp;apos; は、XML および XHTML の仕様にあります。
+ / --&gt; &amp;#x2F;  スラッシュは、HTML エンティティの終了を示すための文字として使われます。
+</pre>
+<p>HTML エンティティのエスケープとアンエスケープについて <a rel="nofollow" class="external text" href="http://code.google.com/p/owasp-esapi-java/source/browse/trunk/src/main/java/org/owasp/esapi/codecs/HTMLEntityCodec.java">ESAPI 参照実装</a>を参照してください。
+</p>
+<pre> String safe = ESAPI.encoder().encodeForHTML( request.getParameter( "input" ) );
+</pre>
+<h2><span class="mw-headline" id="RULE_.232_-_Attribute_Escape_Before_Inserting_Untrusted_Data_into_HTML_Common_Attributes">ルール 2 - 信頼されていないデータを HTML 共通属性に挿入する前に属性エスケープする</span></h2>
+<p>ルール 2 は、信頼されていないデータを、width、name、value など標準的な属性値に置く場合を対象にしています。href、src、style などの複合属性や、onmouseover などのイベントハンドラに使用してはいけません。イベントハンドラ属性は、HTML JavaScript データ値に関するルール 3 に従うことが、極めて重要です。
+</p>
+<pre> &lt;div attr=<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</b>&gt;content&lt;/div&gt;     引用符のない属性内
+ 
+ &lt;div attr='<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'</b>&gt;content&lt;/div&gt;   一重引用符で囲まれた属性内
+ 
+ &lt;div attr="<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</b>"&gt;content&lt;/div&gt;    二重引用符で囲まれた属性内
+</pre>
+<p>英数字を除き、ASCII 値(文字コード) 256 未満のすべての文字を &#xHH; 形式 (または使用可能な場合は名前付きエンティティ) でエスケープして、属性から抜け出してコンテキストを切り替えるのを防ぎます。このルールの範囲が極めて広いのは、開発者が属性を引用符で囲まないままにする場合が多いためです。適切に引用符で囲まれた属性は、対応する引用符だけでエスケープできます。属性が引用符で囲まれていない場合、 [space] % * + , - / ; < = > ^ および | など、多くの文字を使用してコンテキストを変更する ことができます。
+</p><p>HTML エンティティのエスケープとアンエスケープについて <a rel="nofollow" class="external text" href="http://code.google.com/p/owasp-esapi-java/source/browse/trunk/src/main/java/org/owasp/esapi/codecs/HTMLEntityCodec.java">ESAPI 参照実装</a>を参照してください。
+</p>
+<pre> String safe = ESAPI.encoder().encodeForHTMLAttribute( request.getParameter( "input" ) );
+</pre>
+<h2><span class="mw-headline" id="RULE_.233_-_JavaScript_Escape_Before_Inserting_Untrusted_Data_into_JavaScript_Data_Values">ルール 3 - 信頼されていないデータを JavaScript データ値に挿入する前に JavaScript エスケープする</span></h2>
+<p>ルール 3 は、動的に生成された JavaScript コード (スクリプトブロックとイベントハンドラ属性の両方) に関連したルールです。これらの Javascript コードの中で信頼されていないデータを置くことができる安全な場所は、引用符で囲まれた "データ値" 内のみです。他の JavaScript コンテキスト内に信頼されていないデータを含めるのは非常に危険です。セミコロン、等号、スペース、プラス記号、その他多くの文字を使用して、極めて簡単に実行コンテキストに切り替えることができます。そのため、慎重に使用してください。
+</p>
+<pre> &lt;script&gt;alert('<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'</b>)&lt;/script&gt;     引用符で囲まれた文字列内
+ 
+ &lt;script&gt;x='<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'</b>&lt;/script&gt;          引用符で囲まれた式の片側
+ 
+ &lt;div onmouseover="x='<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...'</b>"&lt;/div&gt;  引用符で囲まれたイベントハンドラ内
+</pre>
+<p><b>JAVASCRIPT エスケープを行っていても</b>、一部の JavaScript 関数では、信頼されていないデータを入力データとして安全に使用できない場合があることに注意してください。  
+</p><p>次に例を示します。
+</p>
+<pre> &lt;script&gt;
+ window.setInterval('<b>...EVEN IF YOU ESCAPE UNTRUSTED DATA YOU ARE XSSED HERE...'</b>);
+ &lt;/script&gt;
+</pre>
+<p>英数字を除き、256 文字未満のすべての文字を \xHH 形式でエスケープして、データ値からスクリプトコンテキストまたは他の属性へコンテキストを切り替えるのを防ぎます。\" などのエスケープショートカットを使用しないでください。 先に実行されているHTML 属性パーサーが引用符文字の突き合わせを行う ためです。また、これらのエスケープショートカットは、"escape-the-escape" 攻撃にさらされる可能性が高くなります。すなわち、攻撃者が \" を送信することで、脆弱なコードはこれを \\" に変換し、引用符で囲むことができてしまいます。
+</p><p>イベントハンドラが適切に引用符で囲まれている場合、対応する引用符がなければ抜け出すことはできません。しかし、イベントハンドラ属性は引用符で囲まないままにされている場合が多いため、このルールをあえて広く設定しました。引用符で囲まれていない属性は、[space] % * + , - / ; < = > ^ および | など、多くの文字を使用して抜け出すことができます。また、HTML パーサーは JavaScript パーサーより前に実行されるため、&lt;/script&gt; 終了タグは、引用符で囲まれた文字列内にあってもスクリプトブロックを閉じると解釈されます。
+</p><p>JavaScript のエスケープとアンエスケープについて <a rel="nofollow" class="external text" href="http://code.google.com/p/owasp-esapi-java/source/browse/trunk/src/main/java/org/owasp/esapi/codecs/JavaScriptCodec.java">ESAPI 参照実装</a>を参照してください。
+</p>
+<pre> String safe = ESAPI.encoder().encodeForJavaScript( request.getParameter( "input" ) );
+</pre>
+<h3><span class="mw-headline" id="RULE_.233.1_-_HTML_escape_JSON_values_in_an_HTML_context_and_read_the_data_with_JSON.parse">ルール 3.1 -  HTML コンテキストの JSON 値を HTML エスケープし、 JSON.parse を使用してデータを読み取る</span></h3>
+<p>Web 2.0 の世界では、Javascript コンテキストでアプリケーションにデータを動的に生成させることが一般的に求められます。一つの戦略は、AJAX 呼び出しを作成して値を取得するというものですが、この方法は常に高性能とは限りません。多くの場合、JSON の最初のブロックがページに読み込まれ、複数の値を格納するための単一の場所としての役割を果たします。このデータを、値の形式や内容を壊すことなく正確にエスケープするのは、不可能ではありませんが非常に困難です。
+</p><p><b>返される <i>Content-Type</i> ヘッダーは、text/html ではなく、application/json でなければなりません。 </b>
+これにより、ブラウザーはコンテキストを誤って解釈することなく、挿入されたスクリプトを実行します。
+</p><p><b>誤った HTTP レスポンス:</b>
+</p>
+<pre>   HTTP/1.1 200
+   Date: Wed, 06 Feb 2013 10:28:54 GMT
+   Server: Microsoft-IIS/7.5....
+   <b>Content-Type: text/html; charset=utf-8</b> &lt;-- 誤ったヘッダーです
+   ....
+   Content-Length:373
+   Keep-Alive: timeout=5, max=100
+   Connection: Keep-Alive
+   {"Message":"No HTTP resource was found that matches the request URI 'dev.net.ie/api/pay/.html?HouseNumber=9&amp;AddressLine
+   =The+Gardens<b>&lt;script&gt;alert(1)&lt;/script&gt;</b>&amp;AddressLine2=foxlodge+woods&amp;TownName=Meath'.","MessageDetail":"No type was found
+   that matches the controller named 'pay'."}   &lt;-- このスクリプトがポップアップされます。
+   
+</pre>
+<p><b>正しい HTTP レスポンス</b>
+</p>
+<pre>   HTTP/1.1 200
+   Date: Wed, 06 Feb 2013 10:28:54 GMT
+   Server: Microsoft-IIS/7.5....
+   <b>Content-Type: application/json; charset=utf-8</b> &lt;-- 正しいヘッダーです
+   .....
+   .....
+</pre>
+<p>よくある<b>アンチパターン</b>:
+</p>
+<pre>   &lt;script&gt;
+     var initData = &lt;%= data.to_json&#160;%&gt;; // <b>以下に挙げる技法のいずれかを使用してデータをエンコードしない限り、これは行わないでください。</b>
+   &lt;/script&gt;
+</pre>
+<h4><span class="mw-headline" id="JSON_entity_encoding">JSON エンティティエンコード</span></h4>
+<p>JSON エンコードのルールは、<a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#Output_Encoding_Rules_Summary">出力エンコードのルールの要約</a>を参照してください。この方法では、CSP 1.0 で提供されている XSS 保護を使用できないことに注意してください。
+</p>
+<h4><span class="mw-headline" id="HTML_entity_encoding">HTML エンティティエンコード</span></h4>
+<p>この技法には、HTML エンティティエスケープが広くサポートされており、コンテキスト境界を横断することなく、サーバー側コードからデータを分離できるという利点があります。通常の要素と同じように JSON ブロックをページに配置し、innerHTML を解析してコンテンツを取得することを想定してください。スパンを読み取る Javascript を、外部ファイルに存在させることができるため、CSP 強制の実装がより容易です。
+</p>
+<pre> &lt;script id="init_data" type="application/json"&gt;
+    &lt;%= html_escape(data.to_json)&#160;%&gt;
+ &lt;/script&gt;
+</pre>
+<pre> // external js file
+ var dataElement = document.getElementById('init_data');
+ // unescape the content of the span
+ var jsonText = dataElement.textContent || dataElement.innerText  
+ var initData = JSON.parse(html_unescape(jsonText));
+</pre>
+<p>JavaScript で直接 JSON をエスケープ / アンエスケープする代わりに、サーバー側で "<" を "\u003c" に変換して JSON データを正規化してからブラウザーに渡す方法もあります。
+</p>
+<h2><span class="mw-headline" id="RULE_.234_-_CSS_Escape_And_Strictly_Validate_Before_Inserting_Untrusted_Data_into_HTML_Style_Property_Values">ルール 4 - 信頼されていないデータを HTML スタイルプロパティ値に挿入する前に、CSS エスケープして厳格に検証する</span></h2>
+<p>ルール 4 は、信頼されていないデータをスタイルシートまたはスタイルタグに置きたい場合を対象にしています。CSS は極めて強力で、極めて多くの攻撃で使用されます。そのため、信頼されていないデータはプロパティの<b>値</b>でのみ使用し、スタイルデータの他の場所に入れないことが重要です。信頼されていないデータを、url、behavior、custom (-moz-binding) などの複合プロパティに置くことは避けてください。また、JavaScript を許可している IE の式プロパティ値に、信頼されていないデータを置くのも避けてください。
+</p>
+<pre> &lt;style&gt;selector { property&#160;: <b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</b>; } &lt;/style&gt;     property value<br />
+ &lt;style&gt;selector { property&#160;: &quot;<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</b>&quot;; } &lt;/style&gt;   property value<br />
+ &lt;span style=&quot;property&#160;: <b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE...</b>&quot;&gt;text&lt;/span&gt;       property value
+</pre>
+<p><b>CSS エスケープを適切に行っていても</b>、CSS コンテキストによっては、信頼されていないデータを入力データとして安全に使用できない場合があることに注意してください。URL が "javascript" ではなく "http" で始まっていること、またプロパティが "expression" で始まっていないことを確認する必要があります。
+</p><p>次に例を示します。
+</p>
+<pre> { background-url&#160;:"javascript:alert(1)"; }  // その他すべての URL
+ { text-size:"expression(alert('XSS'))"; } // IE のみ
+</pre>
+<p>英数字を除き、ASCII 値 (文字コード) 256 文字未満のすべての文字を \HH エスケープ形式でエスケープします。\" などのエスケープショートカットを使用しないでください。先に実行されている HTML 属性パーサーが引用符文字の突き合わせを行う ためです。また、これらのエスケープショートカットは、"escape-the-escape" 攻撃にさらされる可能性が高くなります。すなわち、攻撃者が \" を送信することで、脆弱なコードはこれを \\" に変換し、引用符で囲むことができてしまいます。
+</p><p>属性が引用符で囲まれている場合、抜け出すには対応する引用符が必要です。すべての属性を引用符で囲む必要があります。ただし、信頼されていないデータが引用符で囲まれていないコンテキストに置かれている場合でも XSS を防ぐことができるような、十分に強いエンコードでなければなりません。引用符で囲まれていない属性は、[space] % * + , - / ; < = > ^ および | など、多くの文字を使用して抜け出すことができます。また、&lt;/style&gt; タグは、HTML パーサーが JavaScript パーサーより前に実行されるため、引用符で囲まれた文字列内にあっても、スタイルブロックを閉じるために使用できます。引用符で囲まれた属性、囲まれていない属性の両方で、XSS 攻撃を防ぐために、アグレッシブな CSS エンコードと検証を推奨します。
+</p><p>CSS のエスケープとアンエスケープの <a rel="nofollow" class="external text" href="http://code.google.com/p/owasp-esapi-java/source/browse/trunk/src/main/java/org/owasp/esapi/codecs/CSSCodec.java">ESAPI 参照実装</a>を参照してください。
+</p>
+<pre> String safe = ESAPI.encoder().encodeForCSS( request.getParameter( "input" ) );
+</pre>
+<h2><span class="mw-headline" id="RULE_.235_-_URL_Escape_Before_Inserting_Untrusted_Data_into_HTML_URL_Parameter_Values">ルール 5 - 信頼されていないデータを HTML URL パラメーター値に挿入する前に URL エスケープする</span></h2>
+<p>ルール 5 は、信頼されていないデータを HTTP GET パラメーター値に置きたい場合を対象にしています。 
+</p>
+<pre> &lt;a href="http&#x3a;&#x2f;&#x2f;www.somesite.com&#x3f;test&#x3d;<b>...ESCAPE UNTRUSTED DATA BEFORE PUTTING HERE..."</b>&gt;link&lt;/a &gt;  
+</pre>
+<p>英数字を除き、ASCII 値 (文字コード) 256 文字未満のすべての文字を %HH エスケープ形式でエスケープします。信頼されていないデータをプロトコルスキーム data: の URL に含めないでください。URL からの切り替えを防ぎ、攻撃を無効化するための有効な手段がないためです。すべての属性を引用符で囲む必要があります。引用符で囲まれていない属性は、[space] % * + , - / ; < = > ^ および | など、多くの文字を使用して抜け出すことができます。このコンテキストでは、エンティティエンコードが役に立たないことに注意してください。
+</p><p>URL のエスケープとアンエスケープについて <a rel="nofollow" class="external text" href="http://code.google.com/p/owasp-esapi-java/source/browse/trunk/src/main/java/org/owasp/esapi/codecs/PercentCodec.java">ESAPI 参照実装</a>を参照してください。
+</p>
+<pre> String safe = ESAPI.encoder().encodeForURL( request.getParameter( "input" ) );
+</pre>
+<p>警告:URL エンコードで、完全な URL または相対 URL をエンコードしないでください。信頼されていない入力が href、src、またはその他の URL ベースの属性内に置かれる場合、その入力を検証して、予期していないプロトコル、特に Javascript リンクを指していないことを確認する必要があります。それから、他のデータと同様に、URL は、表示のコンテキストに基づいて、エンコードする必要があります。たとえば、HREF リンク内のユーザー主導の URL は、エンコードされた属性でなければなりません。次に例を示します。
+</p>
+<pre> String userURL = request.getParameter( "userURL" )
+ boolean isValidURL = ESAPI.validator().isValidInput("URLContext", userURL, "URL", 255, false); 
+ if (isValidURL) {  
+     &lt;a href="&lt;%=encoder.encodeForHTMLAttribute(userURL)%&gt;"&gt;link&lt;/a&gt;
+ }
+</pre>
+<h2><span class="mw-headline" id="RULE_.236_-_Sanitize_HTML_Markup_with_a_Library_Designed_for_the_Job">ルール 6 – 専用に設計されたライブラリを使用して HTML マークアップをサニタイズする</span></h2>
+<p>アプリケーションでマークアップ (HTML が含まれることが想定される信頼されていない入力) を処理する場合、検証は非常に難しくなります。また、入力内に存在すると想定されるすべてのタグを壊す可能性があるため、エンコードも難しくなります。そのため、HTML 形式のテキストを解析し、クリーニングできるライブラリが必要になります。OWASP では、簡単に使用できるライブラリをいくつか用意しています。
+</p><p><b>HtmlSanitizer</b> - <a rel="nofollow" class="external free" href="https://github.com/mganss/HtmlSanitizer">https://github.com/mganss/HtmlSanitizer</a>
+</p><p>オープンソースの .Net ライブラリです。HTML は、ホワイトリストアプローチによってクリーニングされます。許可されたすべてのタグと属性を構成できます。このライブラリは、<a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet">OWASP XSS フィルター回避チートシート</a>を使用して、単体テストが実施されています。
+</p>
+<pre>  var sanitizer = new HtmlSanitizer();
+  sanitizer.AllowedAttributes.Add("class");
+  var sanitized = sanitizer.Sanitize(html);
+</pre>
+<p><b>OWASP Java HTML Sanitizer</b> - <a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/OWASP_Java_HTML_Sanitizer_Project">https://www.owasp.org/index.php/OWASP_Java_HTML_Sanitizer_Project</a>
+</p>
+<pre>  import org.owasp.html.Sanitizers;
+  import org.owasp.html.PolicyFactory;
+  PolicyFactory sanitizer = Sanitizers.FORMATTING.and(Sanitizers.BLOCKS);
+  String cleanResults = sanitizer.sanitize("&lt;p&gt;Hello, &lt;b&gt;World!&lt;/b&gt;");
+</pre>
+<p>OWASP Java HTML Sanitizer のポリシー構築について詳しくは、<a rel="nofollow" class="external free" href="http://owasp-java-html-sanitizer.googlecode.com/svn/trunk/distrib/javadoc/org/owasp/html/Sanitizers.html">http://owasp-java-html-sanitizer.googlecode.com/svn/trunk/distrib/javadoc/org/owasp/html/Sanitizers.html</a> を参照してください。
+</p><p><b>Ruby on Rails SanitizeHelper</b> - <a rel="nofollow" class="external free" href="http://api.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html">http://api.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html</a>
+</p><p>SanitizeHelper モジュールは、不適切な HTML 要素のテキストをクリーンにするための一連の手法を提供します。
+</p>
+<pre>  &lt;%= sanitize @comment.body, tags:&#160;%w(strong em a), attributes:&#160;%w(href)&#160;%&gt;   
+</pre>
+<p><b>HTML サニタイズを提供するその他のライブラリは、以下のとおりです。</b><br />
+</p><p>PHP Html Purifier - <a rel="nofollow" class="external free" href="http://htmlpurifier.org/">http://htmlpurifier.org/</a><br />
+JavaScript/Node.JS Bleach - <a rel="nofollow" class="external free" href="https://github.com/ecto/bleach">https://github.com/ecto/bleach</a><br />
+Python Bleach - <a rel="nofollow" class="external free" href="https://pypi.python.org/pypi/bleach">https://pypi.python.org/pypi/bleach</a>
+</p>
+<h2><span class="mw-headline" id="RULE_.237_-_Prevent_DOM-based_XSS">ルール 7 - DOM ベース XSS の防止</span></h2>
+<p>DOM ベース XSS の詳細およびその対策については、<a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM ベース XSS 対策チートシート">DOM ベース XSS 対策チートシート</a> を参照してください。
+</p>
+<h2><span class="mw-headline" id="Bonus_Rule_.231:_Use_HTTPOnly_cookie_flag">ボーナスルール 1: HTTPOnly Cookie フラグの使用</span></h2>
+<p>アプリケーションにおけるすべての XSS 欠陥を防ぐのは、ご承知のとおり困難です。サイトにおける XSS 欠陥の影響を軽減するために、OWASP は、セッション Cookieおよび Javascript からアクセスされることを想定していないカスタム Cookie に、HTTPOnly フラグを設定することを推奨します。.NET アプリケーションでは、この Cookie フラグは通常デフォルトで 設定されていますが、他の言語では手動で設定する必要があります。HTTPOnly Cookie フラグの機能など詳しくは、<a href="/index.php/HTTPOnly" title="HTTPOnly" class="mw-redirect">HTTPOnly</a> に関する OWASP の資料を参照してください。
+</p>
+<h2><span class="mw-headline" id="Bonus_Rule_.232:_Implement_Content_Security_Policy">ボーナスルール 2: コンテンツセキュリティポリシー (CSP) の実装</span></h2>
+<p>XSS 欠陥の影響を軽減する優れた複合ソリューションとして、もう 1 つ、コンテンツセキュリティポリシー (CSP) が挙げられます。これは、ブラウザー側のメカニズムで、Web アプリケーションのクライアント側リソース (JavaScript、CSS、イメージなど) に関して、ソースのホワイトリストを作成できます。CSP は、特殊な HTTP ヘッダーを介して、特定のソースからリソースの実行やレンダリングを行うようにブラウザーに指示します。たとえば、以下の CSP があるとします。 
+</p>
+<pre>Content-Security-Policy: default-src:'self'; script-src:'self' static.domain.tld
+</pre>
+<p>この CSP は、すべてのリソースをページと同一のオリジンから読み込むこと、および JavaScript ソースコードファイルを読み込む先としてはページと同一のオリジンに加えて static.domain.tld も許可するように指示します。コンテンツセキュリティポリシー (CSP) の機能や使用法など詳しくは、<a href="/index.php/Content_Security_Policy" title="コンテンツセキュリティポリシー">コンテンツセキュリティポリシー (CSP)</a> に関する OWASP の資料を参照してください。
+</p>
+<h2><span class="mw-headline" id="Bonus_Rule_.233:_Use_an_Auto-Escaping_Template_System">ボーナスルール 3: 自動エスケープテンプレートシステムの使用</span></h2>
+<p>多くの Web アプリケーションフレームワークは、コンテキストに応じて自動的にエスケープ処理を行う機能を提供しています。例えば、<a rel="nofollow" class="external text" href="https://docs.angularjs.org/api/ng/service/$sce">AngularJS のコンテキストに応じたエスケープ機能</a>や <a rel="nofollow" class="external text" href="https://golang.org/pkg/html/template/">Go テンプレート</a>などがあります。使用可能な場合は、これらのテクノロジを使用してください。
+</p>
+<h2><span class="mw-headline" id="Bonus_Rule_.234:_Use_the_X-XSS-Protection_Response_Header">ボーナスルール 4: X-XSS-Protection レスポンスヘッダーの使用</span></h2>
+<p>この HTTP レスポンスヘッダーを使用すると、最新のいくつかの Web ブラウザーで実装されているクロスサイトスクリプティング (XSS) フィルターを有効にできます。このヘッダーは、通常デフォルトで有効になっています。そのため、このヘッダーの役割は、XSSフィルターがユーザーによって無効に設定されている場合に、特定の Web サイトで XSS フィルターを再度有効にすることです。
+</p>
+<h1><span class="mw-headline" id="XSS_Prevention_Rules_Summary">XSS 対策ルールの要約</span></h1>
+<p>以下の HTML のスニペットは、さまざまな異なるコンテキストにおいて、信頼されていないデータをどのようにして安全にレンダリングするかを示しています。  
+</p>
+<table class="wikitable nowraplinks">
+
+<tr>
+<th> データ型
+</th>
+<th> コンテキスト
+</th>
+<th> コードサンプル
+</th>
+<th> 防御
+</th></tr>
+<tr>
+<td> 文字列
+</td>
+<td> HTML 本文
+</td>
+<td> &lt;span&gt;<span style="color:red;">UNTRUSTED DATA</span>&lt;/span&gt;
+</td>
+<td> <ul><li><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content">HTML エンティティエンコード</a></li></ul>
+</td></tr>
+<tr>
+<td> 文字列
+</td>
+<td> 安全な HTML 属性
+</td>
+<td> &lt;input type="text" name="fname" value="<span style="color:red;">UNTRUSTED DATA</span>"&gt;
+</td>
+<td> <ul><li><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.232_-_Attribute_Escape_Before_Inserting_Untrusted_Data_into_HTML_Common_Attributes">アグレッシブな HTML エンティティエンコード</a></li><li>ホワイトリスト上の安全な属性 (以下にリスト) にのみ信頼されていないデータを置く。</li><li>background、id、name など、安全でない属性は厳格に検証する。</ul>
+</td></tr>
+<tr>
+<td> 文字列
+</td>
+<td> GET パラメーター
+</td>
+<td> &lt;a href="/site/search?value=<span style="color:red;">UNTRUSTED DATA</span>"&gt;clickme&lt;/a&gt;
+</td>
+<td> <ul><li><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.235_-_URL_Escape_Before_Inserting_Untrusted_Data_into_HTML_URL_Parameter_Values">URL エンコード</a></li></ul>
+</td></tr>
+<tr>
+<td> 文字列
+</td>
+<td> SRC 属性または HREF 属性における信頼されていない URL
+</td>
+<td> &lt;a href="<span style="color:red;">UNTRUSTED URL</span>"&gt;clickme&lt;/a&gt;<br />&lt;iframe src="<span style="color:red;">UNTRUSTED URL</span>" /&gt;
+</td>
+<td> <ul><li>入力を正規化</li><li>URL の検証</li><li>安全な URL の検証</li><li>http と https の URL のみをホワイトリストに計上 (<a href="/index.php/Avoid_the_JavaScript_Protocol_to_Open_a_new_Window" title="JavaScript プロトコルを使用して新規ウィンドウを開くことは避ける">JavaScript プロトコルを使用して新規ウィンドウを開くことは避ける</a>)</li><li>属性エンコーダー</li></ul>
+</td></tr>
+<tr>
+<td> 文字列
+</td>
+<td> CSS 値
+</td>
+<td> &lt;div style="width: <span style="color:red;">UNTRUSTED DATA</span>;"&gt;Selection&lt;/div&gt;
+</td>
+<td> <ul><li><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.234_-_CSS_Escape_And_Strictly_Validate_Before_Inserting_Untrusted_Data_into_HTML_Style_Property_Values">厳格な構造検証</a><li>CSS Hex エンコード<li>CSS 機能の優れた設計</ul>
+</td></tr>
+<tr>
+<td> 文字列
+</td>
+<td> JavaScript 変数
+</td>
+<td> &lt;script&gt;var currentValue='<span style="color:red;">UNTRUSTED DATA</span>';&lt;/script&gt;<br />&lt;script&gt;someFunction('<span style="color:red;">UNTRUSTED DATA</span>');&lt;/script&gt;
+</td>
+<td> <ul><li>JavaScript 変数は必ず引用符で囲む</li><li>JavaScript Hex エンコード</li><li>JavaScript Unicode エンコード</li><li>バックスラッシュ (\"、\' または \\) のエンコードの回避</li></ul>
+</td></tr>
+<tr>
+<td> HTML
+</td>
+<td> HTML 本文
+</td>
+<td> &lt;div&gt;<span style="color:red;">UNTRUSTED HTML</span>&lt;/div&gt;
+</td>
+<td> <ul><li><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.236_-_Use_an_HTML_Policy_engine_to_validate_or_clean_user-driven_HTML_in_an_outbound_way">HTML 検証 (JSoup、AntiSamy、HTML Sanitizer)</a></li></ul>
+</td></tr>
+<tr>
+<td> 文字列
+</td>
+<td> DOM XSS
+</td>
+<td> &lt;script&gt;document.write(<span style="color:red;">"UNTRUSTED INPUT: " + document.location.hash</span>);&lt;script/&gt;
+</td>
+<td> <ul><li><a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM ベース XSS 対策チートシート">DOM ベース XSS 対策チートシート</a></li></ul>
+</td></tr></table>
+<p><i><b>安全な HTML 属性の例:</b></i> align、alink、alt、bgcolor、border、cellpadding、 cellspacing、class、color、cols、colspan、coords、dir、face、height、hspace、ismap、lang、marginheight、marginwidth、multiple、nohref、noresize、noshade、nowrap、ref、rel、rev、rows、rowspan、scrolling、shape、span、summary、tabindex、title、usemap、valign、value、vlink、vspace、width
+</p>
+<h1><span class="mw-headline" id="Output_Encoding_Rules_Summary">出力エンコードのルールの要約</span></h1>
+<p>クロスサイトスクリプティングに関連した出力エンコードの目的は、信頼されていない入力を、ブラウザーで入力が<b>コード</b>として実行されることなく、<b>データ</b>としてユーザーに表示されるように、安全な形式に変換することです。以下の表は、クロスサイトスクリプティングを阻止するために必要な、重要な出力エンコード方式を一覧にしています。
+</p>
+<table class="wikitable">
+
+<tr>
+<th> エンコードタイプ
+</th>
+<th> エンコードメカニズム
+</th></tr>
+<tr>
+<td> HTML エンティティエンコード
+</td>
+<td>   Convert &amp; to &amp;amp;<br />Convert &lt; to &amp;lt;<br />Convert &gt; to &amp;gt;<br />Convert " to &amp;quot;<br />Convert ' to &amp;#x27;<br />Convert / to &amp;#x2F;
+</td></tr>
+<tr>
+<td> HTML 属性エンコード
+</td>
+<td> 英数字を除き、スペースを含む、HTML エンティティ &#xHH; 形式のすべての文字をエスケープします。(HH = 16 進値)
+</td></tr>
+<tr>
+<td> URL エンコード
+</td>
+<td> 標準的なパーセントエンコード (<a rel="nofollow" class="external free" href="http://www.w3schools.com/tags/ref_urlencode.asp">http://www.w3schools.com/tags/ref_urlencode.asp</a> を参照)。URL エンコードは、パラメーター値のエンコードにのみ使用し、URL 全体や、URL のパスフラグメントに使用してはいけません。
+</td></tr>
+<tr>
+<td> JavaScript エンコード
+</td>
+<td> 英数字を除き、\uXXXX unicode エスケープ形式 (X は整数) のすべての文字をエスケープします。
+</td></tr>
+<tr>
+<td> CSS Hex エンコード
+</td>
+<td> CSS エスケープは、\XX および \XXXXXX をサポートします。2 文字エスケープを使用すると、次の文字がエスケープシーケンスを続行する場合に問題が発生する可能性があります。2 つの解決策があります。a) CSS エスケープの後にスペースを追加する (CSS パーサーによって無視されます)。b) 値にゼロを埋め込んで、可能な限り全部の CSS エスケープを使用する。
+</td></tr></table>
+<h1><span class="mw-headline" id="Related_Articles">関連資料</span></h1>
+<p><b>XSS 攻撃に関するチートシート</b>
+</p><p>次の資料は、さまざまな XSS 脆弱性がどのように利用されるかを説明しています。
+</p>
+<ul>
+<li> OWASP: <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS フィルター回避チートシート">XSS フィルター回避チートシート</a> - RSnake の次の資料をベースにしています。「XSS チートシート」
+</li>
+</ul>
+<p><b>Web アプリケーションフレームワークにおける XSS サニタイズの系統的分析</b>
+</p><p><a rel="nofollow" class="external free" href="http://www.cs.berkeley.edu/~prateeks/papers/empirical-webfwks.pdf">http://www.cs.berkeley.edu/~prateeks/papers/empirical-webfwks.pdf</a>
+</p><p><b>XSS 脆弱性の説明</b>
+</p>
+<ul>
+<li> <a href="/index.php/XSS" title="XSS" class="mw-redirect">XSS</a> 脆弱性に関する OWASP の資料
+</li>
+</ul>
+<p><b>さまざまな XSS 脆弱性の種類に関するディスカッション</b>
+</p>
+<ul>
+<li> <a href="/index.php/Types_of_Cross-Site_Scripting" title="クロスサイトスクリプティングの種類">クロスサイトスクリプティングの種類</a>
+</li>
+</ul>
+<p><b>クロスサイトスクリプティングの脆弱性に関するコードのレビュー方法</b>
+</p>
+<ul>
+<li> <a href="/index.php/Reviewing_Code_for_Cross-site_scripting" title="クロスサイトスクリプティングに関するコードのレビュー">クロスサイトスクリプティングに関するコードのレビューの脆弱性</a>に関する <a href="/index.php/Category:OWASP_Code_Review_Project" title="カテゴリ: OWASP コードレビュープロジェクト">OWASP コードレビューガイド</a>の資料
+</li>
+</ul>
+<p><b>クロスサイトスクリプティングの脆弱性に関するテスト方法</b>
+</p>
+<ul>
+<li> <a href="/index.php/Testing_for_Cross_site_scripting" title="クロスサイトスクリプティングのテスト">クロスサイトスクリプティングのテストの脆弱性</a>に関する <a href="/index.php/Category:OWASP_Testing_Project" title="カテゴリ: OWASP テストプロジェクト" class="mw-redirect">OWASP テストガイド</a>
+</li>
+</ul>
+<ul>
+<li> <a href="/index.php/XSS_Experimental_Minimal_Encoding_Rules" title="XSS 実験用の最小限のエンコードルール">XSS 実験用の最小限のエンコードルール</a>
+</li>
+</ul>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Eoin Keary - eoin.keary[at]owasp.org<br />
+Jeff Williams - jeff.williams[at]owasp.org<br />
+Jim Manico - jim[at]owasp.org<br />
+Neil Mattatall - neil[at]owasp.org
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">XSS (Cross Site Scripting) Prevention Cheat Sheet</strong>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.114 seconds
+Real time usage: 0.124 seconds
+Preprocessor visited node count: 125/1000000
+Preprocessor generated node count: 170/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:8079-0!*!0!!en!2!* and timestamp 20151215040056 and revision id 204242
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;oldid=204242">https://www.owasp.org/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;oldid=204242</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li><li><a href="/index.php/Category:Popular" title="Category:Popular">Popular</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=XSS+%28Cross+Site+Scripting%29+Prevention+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;oldid=204242" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 1 December 2015, at 21:55.</li>
+											<li id="footer-info-viewcount">This page has been accessed 1,889,117 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":162});
+}</script>
+	</body>
+</html>

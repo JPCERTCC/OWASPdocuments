@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>モバイルデバイスのジェイルブレイクに関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Mobile_Jailbreaking_Cheat_Sheet","wgTitle":"Mobile Jailbreaking Cheat Sheet","wgCurRevisionId":197588,"wgRevisionId":197588,"wgArticleId":25581,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Mobile_Jailbreaking_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Mobile_Jailbreaking_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">モバイルデバイスのジェイルブレイクに関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd): <b>2015/07/18</b> 
+</p>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#What_is_.22jailbreaking.22.2C_.22rooting.22_and_.22unlocking.22.3F"><span class="tocnumber">1</span> <span class="toctext">"ジェイルブレイク"、"root 化"、"アンロック" とは</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Why_do_they_occur.3F"><span class="tocnumber">2</span> <span class="toctext">ジェイルブレイク、root 化、アンロックが行われる理由</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#What_are_the_common_tools_used.3F"><span class="tocnumber">3</span> <span class="toctext">よく使用されるツール</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Why_can_it_be_dangerous.3F"><span class="tocnumber">4</span> <span class="toctext">なぜ危険なのか</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Technical_Risks"><span class="tocnumber">4.1</span> <span class="toctext">技術的なリスク</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Non-technical_Risks"><span class="tocnumber">4.2</span> <span class="toctext">非技術的なリスク</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Technical_Controls"><span class="tocnumber">4.3</span> <span class="toctext">技術的な制御</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Non-Technical_Controls"><span class="tocnumber">4.4</span> <span class="toctext">非技術的な制御</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Conclusion"><span class="tocnumber">5</span> <span class="toctext">結論</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">6</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Other_Cheatsheets"><span class="tocnumber">6.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="What_is_.22jailbreaking.22.2C_.22rooting.22_and_.22unlocking.22.3F">"ジェイルブレイク"、"root 化"、"アンロック" とは</span></h2>
+<p>ジェイルブレイク、root 化、アンロックとは、許可されていないアクセス権やシステムに対する高度な権限を取得するプロセスです。オペレーティングシステムによって用語が異なります。この用語の違いには、各オペレーティングシステムベンダーが採用するセキュリティモデルの相違が反映されています。
+</p><p>iOS の<b>ジェイルブレイク</b>は、iOS システムのカーネルを改変して、ファイルシステムへの読み取り / 書き込みアクセスを可能にするプロセスです。大半のジェイルブレイクツール (およびエクスプロイト) は、カスタムカーネルを使用してオペレーティングシステムに無許可の変更を加えることで、製造元である Apple ("監獄") が設定した制限やセキュリティ機能を取り除きます。ほぼすべてのジェイルブレイクツールは、Apple による承認も署名もないコードの実行をユーザーに許可します。これにより、ユーザーは Apple の App Store の管理外にある追加のアプリケーション、拡張機能、パッチをインストールできます。
+</p><p>Android の <b>root 化 (ルート化)</b> は、Android OS の管理 (特権) アクセス権を取得するプロセスです。Android OS は Linux カーネルが元になっているため、デバイスの root 化は、Linux で root ユーザーと同等の管理アクセス権を得ることに類似しています。iOS とは異なり、Google Play 外のアプリケーションを実行するために root 化する必要は通常ありません。通信事業者によっては、オペレーティングシステムの設定またはデバイスファームウェアでこれを制御している場合があります。root 化すると、ユーザーはデバイスのオペレーティングシステムを完全に削除して入れ替えることもできます。
+</p><p>Windows Phone OS の<b>アンロック (ロック解除) </b> は、Windows Phone OS レジストリの特定のキーを編集するか、基となるプラットフォームを改変して、Microsoft が認定していないアプリケーションや予備機能を使用するアプリケーションの実行を可能にするプロセスです。アンロックには、OS とデバイスのバージョンによって複数のレベルが存在します。
+</p>
+<ul>
+<li><b>開発者アンロック</b>: Microsoft では、独立系ソフトウェアベンダー (ISV) がシステムをアンロックし、自社製アプリを物理デバイスにサイドロードしてテストしてから、ストアに送信することを許可しています。開発者アンロックでは、Windows Phone ストアの承認プロセスで署名されていないアプリケーションをサイドロードすることだけが許可されますが、多くの場合、これがより高度なアンロック (相互運用アンロック) を実現するための前提条件となります。開発者アンロックされたデバイスでは、アプリがサンドボックスから脱出したり、レジストリを編集してシステムを調整したりすることはできません。Windows Phone デバイスは、Microsoft が提供するユーティリティを使用して公式に無償で開発者アンロックできます。
+</li>
+</ul>
+<ul>
+<li><b>相互運用アンロック</b>: Windows Phone 7.5 Mango (7.10.7720.68) のリリースにより、Microsoft は相互運用アンロックという新しいプラットフォームセキュリティ機能を導入しました。この機能は、ドライバーへのアクセスを、相互運用サービス機能を備えたアプリだけに限定します (<b>ID_CAP_INTEROPSERVICES</b>)。さらに、Mango は、この機能を備えた未署名のアプリのサイドロードを拒否することで、ドライバーのアクセスを Windows Phone Store <i>認定</i>アプリだけに限定しています。WP7 Root Tools スイートの開発者である Heathcliff74 氏は、この件について調査し、<b>MaxUnsignedApp</b> レジストリキー (<b>HKLM\Software\Microsoft\DeviceReg\Install\MaxUnsignedApp</b>) の値を操作すれば、Windows Phone デバイスのアンロックレベルを制御できることに気付きました。1 から 299 までの値はデバイスが開発者アンロックされていることを意味しますが、300 以上の値に設定すると、ID_CAP_INTEROPSERVICES 機能を備えたアプリのサイドロードに関する制限が取り除かれます。これにより、アプリは高い権限を持つアプリ機能を利用して、制限されたファイルシステム領域にアクセスしたり、レジストリを編集したりできるようになります。MaxUnsignedApp レジストリキーに格納された "マジックナンバー" は、Microsoft が OEM 向けに導入した機能であるため、<b>OEM 開発者アンロック</b>という呼び名はここからきているようです。通常、相互運用アンロックしただけでは、システムにある機能すべてが使用可能にはならないので注意してください。この状態は<b>機能アンロック</b>ともいいます。
+</li>
+</ul>
+<ul>
+<li><b>完全アンロック</b>: 完全アンロックは、OS に実装されているセキュリティメカニズムの一部または全部を無効にすることで、システムのフルアクセスとカスタマイズを可能にすることが目的です (ファイルシステムやレジストリへの無制限アクセスなど)。完全アンロックは通常、カスタム ROM フラッシングによって実現されます。これにより、OS バイナリにパッチがあてられ、ポリシーチェックなどの OS セキュリティ機能が無効化されます。完全アンロックされた環境では、アプリが高い権限で実行できるため、アプリがサンドボックスから脱出できる可能性が高くなります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Why_do_they_occur.3F">ジェイルブレイク、root 化、アンロックが行われる理由</span></h2>
+<p><b>iOS</b>: 多くのユーザーが Cydia などのサードパーティソースから入手できるアプリを活用するためにジェイルブレイクする誘惑に駆られます。こうしたアプリは Apple に禁止されているか未承認であるため、ジェイルブレイクしない限り使用できません。このようなアプリケーションは、品質が管理されておらず、Apple 承認プロセスもアプリケーション承認プロセスも経ていないため、インストールには必然的にリスクが伴います。したがって、これらのアプリケーションには、デバイスの侵害を許しかねない脆弱なコードや悪意のあるコードが含まれているおそれがあります。また、ジェイルブレイクによって、デバイスに組み込まれている一部の機能をユーザーが拡張できる場合があります。たとえば、ジェイルブレイクした携帯電話は、構成されたキャリアとは別のキャリアで使用したり、FaceTime を 3G 接続で使用したり、ロック解除してすぐに使用したりできます。さらに技術的な知識のあるユーザーも、ユーザーインターフェイスのカスタマイズ、設定、および通常のソフトウェアインターフェイスでは利用できない機能を有効にするためにジェイルブレイクしたりします。通常、これらの機能は、オペレーティングシステム内の特定のバイナリにパッチをあてることで実現されます。iOS コミュニティで議論されていたジェイルブレイクの目的のひとつは、海賊版 iOS アプリケーションのインストールです。ジェイルブレイクの支持者たちは、この使用を防止しようとしています。たとえば、Cydia では、ユーザーが海賊版ソフトウェアリポジトリを追加すると、海賊版ソフトウェアであることを警告します。しかし、Hackulous などのリポジトリでは海賊版アプリケーションやその作成および配布ツールを奨励しています。
+</p><p><b>Android</b>: Android デバイスを root 化すると、ユーザーは追加のハードウェアアクセス権を取得できるほか、バックアップユーティリティへのアクセス、およびハードウェアへの直接アクセスが可能になります。また、root 化 すると、プレインストールされている "ブロートウェア" を削除できるようになります。ブロートウェアとは、多くの通信事業者やメーカーがデバイスに追加している付加機能で、大量のディスク領域やメモリを消費することがあります。ほとんどのユーザーは、Android コミュニティが開発したカスタム ROM (読み取り専用メモリ) を利用する目的でデバイスを root 化します。このカスタム ROM は、通信事業者によってインストールされた公式 ROM では利用できない独自の機能を提供します。カスタム ROM はまた、オペレーティングシステムを "アップグレード" し、テザリングなど、通常は通信事業者によってブロックまたは制限されている機能へのアクセスを可能にすることでモバイル体験を最適化するオプションをユーザーにもたらします。
+</p><p><b>Windows Phone OS</b>: Windows Phone ユーザーは一般にシステムを調整したり、自作アプリをサイドロードしたりする目的でデバイスをアンロックします。アンロックのレベルに応じて、ストア OEM 設定、ネイティブコードの実行、テーマ、着信音、未署名のアプリや通常は Microsoft または OEM 専用に予約されている機能を使用するアプリをサイドロードする機能について、OS をカスタマイズできます。また、開発者は、自作の製品をストアに送信する前に実際のシステムでテストするためにデバイスをアンロックします。相互運用アンロックされたデバイスでは、Store アプリがインストールされているファイルシステム領域にユーザーがアクセスできます。したがって、DLL 抽出、リバースエンジニアリング、アプリのクラッキングが可能です。
+</p>
+<h2><span class="mw-headline" id="What_are_the_common_tools_used.3F">よく使用されるツール</span></h2>
+<p><b>iOS</b>: ジェイルブレイクソフトウェアは、大きく 2 つのグループに分けられます。
+</p>
+<ol>
+<li><b>紐付き</b>: iOS デバイスの iBoot 署名確認を回避するには、デバイスをシステムに接続することが必要です。iOS デバイスが redsn0w などのジェイルブレイクアプリケーションにアクセスして正常に起動するためには、再起動が必要になるたびに、iOS デバイスをコンピューターシステムに接続またはテザーする必要があります。
+</li>
+<li><b>紐なし</b>: 最初のジェイルブレイクプロセスには接続が必要ですが、sn0wbreeze など、すべてのソフトウェアがデバイス上に存在します。その後は、ジェイルブレイクや携帯電話の機能を損なうことなく、紐なしで再起動できます。
+</li>
+</ol>
+<p>一般的な iOS ジェイルブレイクツールの一部を次に示します。
+</p>
+<ul>
+<li>Absinthe 
+</li>
+<li>blackra1n 
+</li>
+<li>Corona 
+</li>
+<li>greenpois0n 
+</li>
+<li>JailbreakMe 
+</li>
+<li>limera1n 
+</li>
+<li>PwnageTool 
+</li>
+<li>redsn0w
+</li>
+<li>evasi0n 
+</li>
+<li>sn0wbreeze 
+</li>
+<li>Spirit
+</li>
+<li>Pangu
+</li>
+<li>TaiGJBreak
+</li>
+</ul>
+<p>iOS のジェイルブレイクツール、エクスプロイト、およびカーネルパッチのより包括的な一覧については、<i><a rel="nofollow" class="external text" href="http://theiphonewiki.com/wiki/Main_Page">iPhoneWiki</a> Web サイトを参照してください。 </i>
+</p><p><b>Android</b>: Android にはさまざまな root 化ソフトウェアがあります。ツールとプロセスはユーザーのデバイスによって異なります。一般的なプロセスは次のとおりです。
+</p>
+<ol>
+<li>ブートローダーをアンロックする。
+</li>
+<li>root 化アプリケーションをインストールするか、回復モードでカスタム ROM をフラッシュする (またはこの両方を実行)。 
+</li>
+</ol>
+<p>上記のすべての作業が必要なわけではなく、デバイスごとの root 化プロセスに対応したさまざまなツールキットが入手できます。カスタム ROM は 使用されているハードウェアに基づいています。いくつかの例を次に示します。
+</p>
+<ul>
+<li><b>CyanogenMod ROMs</b>: Android の世界で最も一般的なアフターマーケット代替ファームウェア。デバイス別のファームウェア、フラッシングガイド、root 化ツール、およびパッチの詳細は、ホームページから参照できます。
+</li>
+<li><b>ClockWorkMod</b>: Android フォンおよびタブレット用のカスタム回復オプション。さまざまな高度な回復、復元、インストール、およびメンテナンスの操作などが行えます。詳細については、XDA-Developers を参照してください。
+</li>
+</ul>
+<p>他にも Android root 化ツールとして、次のものがあります。
+</p>
+<ul>
+<li> Kingo Root
+</li>
+<li> SRS Root
+</li>
+<li> CF-Auto-Root
+</li>
+</ul>
+<p><b>Windows Phone OS</b>: Windows Phone デバイスをアンロックするためのツールや手法は、OS バージョン、デバイスベンダー、および目的のアンロックレベルに応じて複数存在します。
+</p>
+<ul>
+<li><b>Microsoft 公式の開発者アンロック</b>: Windows Phone SDK には "Windows Phone 開発者の登録" ユーティリティが含まれており、これを使用して Windows Phone OS デバイスを無償で開発者アンロックできます。過去には、無償の開発者アンロックは DreamSpark プログラムで承認された学生に限られていました。
+</li>
+<li><b>ChevronWP7 Unlocker および Tokens</b>: Windows Phone ハッキングの初期に ChevronWP7 Labs がアンロッカーユーティリティ (ChevronWP7.exe) をリリースし、これが非公式に Windows Phone 7 デバイスの開発者アンロックに使用されていました。このアンロッカーはローカル PC のホストファイルを変更して、すべての "developerservices.windowsphone.com" トラフィックを HTTPS プロトコル対応のローカル Web サーバーへ再ルーティングしていました。作成されたデジタル証明書 (ChevronWP7.cer) も対象の Windows Phone デバイスにインポートする必要がありました。このように構成された環境では、アンロッカーが正規のアンロックプロセスをシミュレートして、USB 付きデバイスに対する中間者 (MiTM) 攻撃を実行できました。
+基本的に、このユーティリティは Windows Phone プラットフォームの初期バージョンに存在した証明書検証の弱点を利用していました。その後、ChevronWP7 Labs は Microsoft と協力関係を築き、ユーザーが特別に低価格のアンロックトークンを取得することで、公式にデバイスを開発者アンロックできるようになりました。
+</li>
+<li><b>Heathcliff74 氏による相互運用アンロックエクスプロイト</b>: XDA-developers の Heathcliff74 氏が、カスタムプロビジョニング XML ファイル (provxml) をロードして実行することで Windows Phone 7 デバイスを相互運用アンロックできる手法を開発しました。この手法は、"<b>../../../../provxml</b>" という名前のディレクトリを格納した XAP ファイル (単純な圧縮アーカイブ) を作成し、そのフォルダの中身 (カスタム provxml ファイル) を \<b>provxml</b>\ システム フォルダに展開するしくみになっています。脆弱な OEM アプリ (Samsung 診断アプリなど) を利用すると、provxml ファイルを実行できます。これによりレジストリの設定 (MaxUnsingedApp キーなど) を変更して、目的のアンロックを実現できました。この手法では、XAP エクスプロイトをサイドロードするために、対象デバイスを開発者アンロックしておく必要があります。
+</li>
+<li><b>WindowsBreak プロジェクト</b>: windowsphonehacker.com の Jonathan Warner (Jaxbot) 氏が、開発者アンロックと相互運用アンロックの両方を実現する手法を開発しました。この手法では、Heathcliff74 氏が考案した方式を利用しながらも、未署名のアプリをサイドロードする必要がありません。このエクスプロイトは、"<b>../../../../provxml</b>" という名前のフォルダ内にカスタム provxml ファイルを格納した ZIP ファイルから成ります。ZipView アプリケーションを使用することで、カスタム provxml ファイルを \provxml\ システムフォルダに展開できました。このオリジナルのオンラインエクスプロイトは既に入手できません。WindowsBreak が利用していた脆弱性に対して Samsung がパッチを適用したためです。
+</li>
+<li><b>WP7 Root Tools</b>: WP7 Root Tools は、相互運用アンロックまたは完全アンロックされたプラットフォーム内で root アクセス権を取得するためのユーティリティ集で、Heathcliff74 氏により開発されました。このスイーツには一連のツールが含まれており、たとえば Policy Editor を使用すると、root アクセス権を取得してサンドボックスから抜け出すことを許可する信頼できるアプリを選択できます。このスイートは、Windows Phone 7 デバイスだけを対象としています。
+</li>
+<li><b>カスタム ROM</b>: カスタム ROM は通常、相互運用アンロックまたは完全アンロックの状態を実現する目的でフラッシュされます。Windows Phone 7 プラットフォームでは、さまざまなカスタム ROM が利用できます ( RainbowMod ROM、DeepShining、Nextgen+、DFT の MAGLDR など)。Samsung Ativ S デバイスを対象とした最初のカスタム ROM は XDA-developers の -W_O_L_F- 氏によって開発されました。相互運用アンロック機能や再ロック防止機能などのシステム調整機能を備えています。
+</li>
+<li><b>OEM アプリおよびドライバーのエクスプロイト</b>: OS に付属する OEM ドライバーやアプリの実装におけるセキュリティの不備を突いたり、隠し機能を利用したりして、アンロックアクセスを実現する場合もあります。有名な例に Samsung Ativ S ハックで利用された Samsung 診断アプリがあります。このアプリには隠しレジストリエディターと LG MFG アプリが含まれていますが、この両方が、MaxUnsignedApp レジストリ値を変更して相互運用アンロックを実現するために利用されました。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Why_can_it_be_dangerous.3F">なぜ危険なのか</span></h2>
+<p>以上のツールは、大きく以下のカテゴリに分けられます。
+</p>
+<ul>
+<li><b>ユーザーランドエクスプロイト</b>: ジェイルブレイクアクセス権がユーザー層内でのみ取得されます。たとえば、ユーザーが root アクセス権を取得しても、ブートプロセスの変更はできません。このようなエクスプロイトは、ファームウェアの更新でパッチをあてることができます。
+</li>
+<li><b>iBoot エクスプロイト</b>: ユーザーレベルとブートプロセスに対するジェイルブレイクアクセス権。iBoot エクスプロイトは、ファームウェアの更新でパッチをあてることができます。
+</li>
+<li><b>ブート ROM エクスプロイト</b>: ユーザーレベルとブートプロセスに対するジェイルブレイクアクセス権。ブート ROM エクスプロイトは、ファームウェアの更新でパッチをあてることができません。このような場合は、ブート ROM のハードウェア更新が必要となります。
+</li>
+</ul>
+<p>デバイスをジェイルブレイク、root 化、またはアンロックするリスクのうち、危険度が高いものを次にいくつか挙げます。
+</p>
+<h3><span class="mw-headline" id="Technical_Risks">技術的なリスク</span></h3>
+<ul>
+<li><b>モバイルデバイス全般</b>
+</li>
+</ul>
+<ol>
+<li>一部のジェイルブレイク手法は、Secure Shell を周知の既定のパスワード (alpine など) で使用できる状態のまま放置します。これを攻撃者が指令と制御に利用するおそれがあります。
+</li>
+<li>ジェイルブレイクしたデバイスのファイルシステム全体が、悪意のあるユーザーによるファイルの挿入や抽出に対して脆弱になります。この脆弱性は Droid Kung Fu、Droid Dream、Ikee など多くのマルウェアソフトウェアによって悪用されています。これらの攻撃は、実現したアンロックのレベルによっては、アンロックした Windows Phone デバイスにも影響する可能性があります。
+</li>
+<li>銀行取引アプリケーションや企業向けアプリケーションといった機密情報を扱うアプリケーションの資格情報が、キーロギング、スニッフィングなどの悪意のあるソフトウェアによって盗み出され、インターネット接続を介して転送されるおそれがあります。
+</li>
+</ol>
+<ul>
+<li><b>iOS:</b>
+</li>
+</ul>
+<ol>
+<li>ジェイルブレイクしたデバイス上のアプリケーションは、root として iOS サンドボックス外で実行されます。このため、アプリケーションがサンドボックス機能を無効にして他のアプリケーションに格納されている機密データにアクセスしたり、悪意のあるソフトウェアをインストールしたりできる可能性があります。
+</li>
+<li>ジェイルブレイクしたデバイスは、自己署名したアプリケーションのインストールや実行をユーザーに許すおそれがあります。このようなアプリケーションは、App Store を経由しないので Apple によるレビューが行われません。また、デバイスの攻略に利用できる脆弱なコードや悪意のあるコードを含んでいる可能性もあります。
+</li>
+</ol>
+<ul>
+<li><b>Android:</b>
+</li>
+</ul>
+<ol>
+<li>Android ユーザーがデバイス上のアクセス許可を変更して root アクセス権をアプリケーションに付与すると、悪意のあるアプリケーションやアプリケーションの潜在的な欠陥に対するセキュリティ上のリスクが高まります。
+</li>
+<li>サードパーティの Android アプリケーション市場が、リモート管理 (RAT) 機能を備えた悪意のあるアプリケーションをホストしていることが明らかになっています。
+</li>
+</ol>
+<ul>
+<li><b>Windows Phone OS:</b>
+</li>
+</ul>
+<ol>
+<li>他のモバイルプラットフォームの場合と同様に、アンロックされた Windows Phone システムでは、Microsoft が認証していない、脆弱性や悪意のあるコードを含む可能性がより高いアプリのインストールを許容してしまいます。
+</li>
+<li>アンロックされたデバイスでは、未署名のうえ、Windows Phone ストアの認定アプリケーションには通常許可されていない機能も使用できるアプリをユーザーがサイドロードできるため、攻撃対象領域が拡大します。
+</li>
+<li>より高いレベルのアンロック (相互運用アンロックなど) の場合でも、アプリケーションのサンドボックスからの脱出は通常できません (ただし、完全アンロックされたシステムでは可能です)。
+</li>
+</ol>
+<h3><span class="mw-headline" id="Non-technical_Risks">非技術的なリスク</span></h3>
+<ul>
+<li>デジタルミレニアム著作権法 (DMCA) の適用除外を公布する米国議会図書館館長によると、非侵害的な使用にかかわる個人について、スマートフォンのジェイルブレイクや root 化は、米国では違法と<b>見なされません</b>。この承認は一部のユーザーに、ジェイルブレイクや root 化は無害であるという誤った安心感を与えかねません。注目すべきは、同図書館長がタブレットのジェイルブレイクは承認していないという点です。専門家でない人物による分析については、<i><a rel="nofollow" class="external text" href="http://www.theinquirer.net/inquirer/news/2220251/us-rules-jailbreaking-tablets-is-illegal">US rules jailbreaking tablets is illegal</a></i> (米国、タブレットのジェイルブレイクを違法と規定) を参照してください。
+</li>
+</ul>
+<ul>
+<li>ソフトウェア更新プログラムを適用するとジェイルブレイクが解消されてしまうため、ソフトウェア更新プログラムをただちに適用できません。このため、パッチをあてていない既知のソフトウェアの脆弱性に対してデバイスが無防備な状態のままになります。
+</li>
+<li>ユーザーがだまされて悪意のあるソフトウェアをダウンロードするおそれがあります。たとえば、マルウェアはよく次のような戦術でユーザーをだましてソフトウェアをダウンロードさせます。
+</li>
+</ul>
+<ol>
+<li>アプリは追加機能を提供するとか一般的なアプリから広告を取り除くとか宣伝しますが、悪意のあるコードも含まれています。
+</li>
+<li>アプリの初期バージョンには悪意のあるコードが含まれていないものもありますが、その後の "更新プログラム" が悪意のあるコードを挿入します。
+</li>
+</ol>
+<ul>
+<li>メーカー各社は、ジェイルブレイク、root 化、およびアンロックは利用規約違反にあたり、保証は無効になると断定しています。ユーザーにとってこれは、デバイスのハードウェア修理や技術サポートが必要になった場合に問題となる可能性があります (注意: デバイスは復元可能なので大きな問題ではありません。ただし、ジェイルブレイクなどをしていなければ保証対象であるはずのハードウェア損傷が原因で復元できない場合があります)。 
+</li>
+</ul>
+<p>これを防止するためには、どのような管理制御を行えばよいのでしょうか。モバイルソリューションを自組織の環境に導入する選択をする前に、十分なリスク評価を実施することをお勧めします。このリスク評価には、ジェイルブレイクしたデバイスが招くリスクの評価を含めてください。ジェイルブレイクしたデバイスは、悪意のあるアプリケーションや OWASP Mobile Top 10 Risks (OWASP モバイルのリスク上位 10 項目) に挙がっている脆弱性に対して本質的に通常のデバイスよりも脆弱です。この評価が完了したら、経営陣はどのリスクを受け入れ、どのリスクを軽減するために追加の制御が必要かを判断できます。
+</p><p>組織で採用可能な技術的な制御と非技術的な制御の両方の例を次にいくつか示します。
+</p>
+<h3><span class="mw-headline" id="Technical_Controls">技術的な制御</span></h3>
+<p>ジェイルブレイクしたデバイスを監視するための検出制御として、次のような方法があります。 
+</p>
+<ul>
+<li>サードパーティのアプリストア (Cydia など) を識別する。
+</li>
+<li>アプリケーションがジェイルブレイクしていないデバイスでアクセス権を持つ特定のシステムファイルと、正常であることがわかっているファイルのハッシュとを比較することで、改変されたカーネルの検出を試みる。この手法は、検出のよい出発点となります。
+</li>
+<li>アプリケーションのルートディレクトリ外にあるファイルに書き込んでみる。この試行は、ジェイルブレイクしていないデバイスでは失敗します。
+</li>
+<li>全般的に、基になるシステムの異常を識別したり、特権機能や特権メソッドを実行できるかどうかを確認したりしてみる。
+</li>
+</ul>
+<p>ジェイルブレイクしたシステムの存在を突き止めるための技術的制御は、一般的なソリューションになっているものの、基になるプラットフォームが提供する情報と、危殆化した環境が偽造した可能性のある情報に基づいて結論を導き出す必要があるため、そもそものメカニズム自体が有効なものではありません。さらに、これらの技術的制御のほとんどは、アプリケーションバイナリに単純な変更を加えるだけで簡単に回避できます。最良の場合でも、ジェイルブレイクしたデバイスへのアプリのインストールを遅らせるのがせいぜいで、ブロックはできません。
+</p><p>ほとんどのモバイルデバイス管理 (MDM) ソリューションは、これらのチェックを実行できますが、特定のアプリケーションをデバイスにインストールする必要があります。
+</p><p>Windows Phone の世界では、独立系ソフトウェアベンダーには通常認められない特権 API の使用がジェイルブレイク防止メカニズムで必要になる場合があります。OEM アプリでは、代わりにさらに上位の特権機能の使用が許可される可能性があるので、理論的にはこの種のセキュリティチェックを導入できます。
+</p>
+<h3><span class="mw-headline" id="Non-Technical_Controls">非技術的な制御</span></h3>
+<p>モバイルセキュリティについて組織で検討する際には、以下のキーポイントを理解する必要があります。
+</p>
+<ul>
+<li>リスク評価を実施して、モバイルデバイスの使用に関するリスクが正しく識別され、優先度付けされ、軽減されているかどうかを確認します。これにより、経営陣にとって受け入れ可能な水準までリスクを緩和し、管理します。
+</li>
+<li>アプリケーションの見直しを定期的に行い、モバイル環境に重大なリスクをもたらしているアプリケーションを特定します。
+</li>
+<li>モバイルデバイス管理 (MDM) やモバイルアプリケーション管理 (MAM) などの技術ソリューションは、セキュリティ戦略全体のごく一部でなければなりません。高次の考慮事項として、次のような項目が挙げられます。
+</li>
+</ul>
+<ol>
+<li>ポリシーと手順
+</li>
+<li>ユーザーの意識と協力
+</li>
+<li>技術的制御とプラットフォーム 
+</li>
+<li>監査、ロギング、監視 
+</li>
+</ol>
+<ul>
+<li>多くの組織では BYOD (個人所有デバイスの業務使用) 戦略を選択しますが、この戦略を実行に移す前にそのリスクとメリットを検討し、対処しておくことが必要です。たとえば、環境に持ち込まれる多様なデバイスとオペレーティングシステムに対するサポート計画の立案を検討することが考えられます。デバイスの種類が、特に Android デバイスについては非常に幅広いため、多くの組織がこの課題に苦闘しています。
+</li>
+<li>モバイルセキュリティに "万能" ソリューションは存在しません。モバイルデバイスまたはモバイルアプリケーションで収集、保存、処理されるデータの機密度に応じて、さまざまなレベルのセキュリティ制御が必要とされます。
+</li>
+<li>ユーザーの意識と協力が鍵となります。コンシューマーや顧客の場合は、プライバシーと個人情報 (PII) の扱い方が焦点となります。従業員の場合は、個人所有デバイスの利用規約 (AUA) とプライバシーが焦点となります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Conclusion">結論</span></h2>
+<p>ジェイルブレイク、root 化、およびアンロックのためのツール、リソース、プロセスは絶えず更新されており、エンドユーザーにとってそのプロセスはますます簡単になっています。デバイスのさらなる制御権を得たり、オペレーティングシステムをアップグレードしたり、標準のチャネルからでは通常入手できないパッケージをインストールしたりするために、多くのユーザーがデバイスをジェイルブレイクする誘惑に駆られます。これによってユーザーはデバイスをより有効に活用できるようになるかもしれませんが、ジェイルブレイクすると、デバイスに組み込まれているセキュリティ機能をマルウェアが迂回できるようになる可能性を多くのユーザーは理解していません。この 1 年間にすべてのモバイルプラットフォームでマルウェア攻撃の増加を見ているため、ユーザーエクスペリエンスと企業セキュリティとのバランスを慎重に考慮する必要があります。現在ではモバイルデバイスに以前より多くの個人データや企業データが保存されており、攻撃者にとってモバイルデバイスは非常に魅力的な攻撃対象となっています。総合すると、企業を守る最善の防御は、環境内の技術的な制御、非技術的な制御、およびユーザーから成る包括的なモバイル戦略を構築することです。
+MDM などのソリューションだけを重視するのではなく、BYOD やユーザーのセキュリティ意識という一般的な課題に関するポリシーと手順にも重点を置いて検討する必要があります。
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Suktika Mukhopadhyay<br />
+Brandon Clark<br />
+Talha Tariq<br />
+<b><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/User:Daath">Luca De Fulgentis</a></b>
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Mobile Jailbreaking Cheat Sheet</strong>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.066 seconds
+Real time usage: 0.075 seconds
+Preprocessor visited node count: 59/1000000
+Preprocessor generated node count: 94/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:25581-0!*!0!!en!2!* and timestamp 20151215042422 and revision id 197588
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;oldid=197588">https://www.owasp.org/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;oldid=197588</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Mobile+Jailbreaking+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:Mobile_Jailbreaking_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Mobile_Jailbreaking_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Mobile_Jailbreaking_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;oldid=197588" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Mobile_Jailbreaking_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 18 July 2015, at 17:16.</li>
+											<li id="footer-info-viewcount">This page has been accessed 56,819 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":166});
+}</script>
+	</body>
+</html>

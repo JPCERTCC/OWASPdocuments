@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>トランザクション認可に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Transaction_Authorization_Cheat_Sheet","wgTitle":"Transaction Authorization Cheat Sheet","wgCurRevisionId":197581,"wgRevisionId":197581,"wgArticleId":45369,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Transaction_Authorization_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Transaction_Authorization_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">トランザクション認可に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd): <b>2015/07/18</b> 
+</p>
+<div class="noautonum"> <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#1.0_Functional_Guidelines"><span class="tocnumber">2</span> <span class="toctext">1.0 機能に関するガイドライン</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#1.1..09Transaction_authorization_method_has_to_allow_a_user_to_verify_significant_transaction_data"><span class="tocnumber">2.1</span> <span class="toctext">1.1.	トランザクション認可方式は、重要なトランザクションデータをユーザーが確認できることが必要</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#1.2..09Change_of_authorization_credentials_should_be_authorized_using_current_authorization_credentials"><span class="tocnumber">2.2</span> <span class="toctext">1.2.	認可資格情報の変更は、現在の認可資格情報を使用して認可する</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#1.3..09Change_of_authorization_method_should_be_authorized_using_current_authorization_method"><span class="tocnumber">2.3</span> <span class="toctext">1.3.	認可方式の変更は、現在の認可方式を使用して認可する</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#1.4..09Different_methods_should_be_used_for_user_authentication_and_transaction_authorization_or_user_should_be_able_to_easily_distinguish_between_these_two_operations"><span class="tocnumber">2.4</span> <span class="toctext">1.4.	ユーザー認証とトランザクション認可に別々の方式を採用するか、ユーザーがこの 2 つの操作を容易に区別できることが必要</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#1.5..09Each_operation_should_be_authorized_using_unique_authorization_credentials"><span class="tocnumber">2.5</span> <span class="toctext">1.5.	各操作はそれぞれ一意な認可資格情報を使用して認可する</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#1.6..09Authorization_component_should_present_authorized_operation_data_clearly"><span class="tocnumber">2.6</span> <span class="toctext">1.6.	認可コンポーネントでは、認可される操作データを明示する</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#2.0_Non-functional_guidelines"><span class="tocnumber">3</span> <span class="toctext">2.0 機能以外に関するガイドライン</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#2.1..09Authorization_should_be_performed_and_enforced_server-side"><span class="tocnumber">3.1</span> <span class="toctext">2.1.	認可はサーバー側で実行および強制する</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#2.2..09Authorization_method_should_be_enforced_server_side"><span class="tocnumber">3.2</span> <span class="toctext">2.2.	認可方式はサーバー側で強制する</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#2.3..09Transaction_verification_data_should_be_generated_server-side"><span class="tocnumber">3.3</span> <span class="toctext">2.3.	トランザクション確認データはサーバー側で生成する</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#2.4..09Application_should_prevent_authorization_credentials_brute-forcing"><span class="tocnumber">3.4</span> <span class="toctext">2.4.	アプリケーションで認可資格情報のブルートフォース攻撃を防止する</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#2.5..09Application_should_control_which_transaction_state_transitions_are_allowed"><span class="tocnumber">3.5</span> <span class="toctext">2.5.	どのトランザクション状態遷移を許可するかをアプリケーションで制御する</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#2.6..09Transaction_data_should_be_protected_against_modification_after_their_entering"><span class="tocnumber">3.6</span> <span class="toctext">2.6.	トランザクションデータを入力後の改ざんから守る</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#2.7..09When_a_transaction_is_executed.2C_the_system_should_check_whether_it_was_authorized"><span class="tocnumber">3.7</span> <span class="toctext">2.7.	トランザクションの実行時にそのトランザクションが認可されたかどうかをシステムでチェックする</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#2.8..09Authorization_data_should_be_valid_only_by_limited_period_of_time"><span class="tocnumber">3.8</span> <span class="toctext">2.8.	認可データの有効期間を限定する</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#2.9..09Authorization_data_should_be_unique_for_every_operation"><span class="tocnumber">3.9</span> <span class="toctext">2.9.	認可データをすべての操作に対して一意にする</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-19"><a href="#Remarks"><span class="tocnumber">4</span> <span class="toctext">注意事項</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">5</span> <span class="toctext">著者と編集者</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Contributors"><span class="tocnumber">6</span> <span class="toctext">共同作成者</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#References_and_future_reading"><span class="tocnumber">7</span> <span class="toctext">参考資料</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#Other_Cheatsheets"><span class="tocnumber">7.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+<p>一部のアプリケーションでは、センシティブな操作を行っているのが認可されたユーザーであるかどうかを確認するために第 2 の要素を使用しています。一般的な例として、インターネットやモバイル向けのバンキングアプリケーションでよく使用される電信送金の認可が挙げられます。このプロセスを、ここでは"トランザクション認可" と呼ぶことにします。ただし、使用シナリオは金融システムだけに限ったものではありません。たとえば、ユーザーアカウントのロックを解除するためのある種のトークンが含まれたリンクや秘密のコードを記載した電子メールもトランザクション認可の特殊なケースです。ユーザーは、第 2 の要素 (自分の電子メールアドレス宛てに送られてきた一意のコード) を使用してアカウントのロック解除操作を認可します。
+</p><p>トランザクション認可は現在、さまざまな方法で行われています。一般的な例を次に示します。
+</p>
+<ul>
+<li> トランザクション認証番号 (TAN) を記載したカード
+</li>
+<li> 時間ベースのワンタイムパスワード (OTP) トークン (SecureID など)
+</li>
+<li> 携帯電話の SMS で送信されるか、電子メールアドレス宛てに送信される OTP
+</li>
+<li> スマートカードを使用したデジタル署名
+</li>
+<li> チャレンジ応答トークン ("非接続のカードリーダー" や、コンピューター画面からトランザクションデータをスキャンするソリューションを含む)
+</li>
+</ul>
+<p>これらの中には、物理デバイスまたはモバイルアプリケーションに実装できるものもあります。
+</p><p>マルウェア、フィッシング、パスワードやセッションのハイジャック、CSRF、XSS などによる攻撃の結果としての不正な電信送金を防ぐために、最新の金融システムにはトランザクション認可が導入されています。残念ながら、どんなコードでもそうですが、これらの保護対策も不適切な形で実装されることがあり、そのため迂回される可能性があります。このチートシートの目的は、トランザクション認可が迂回されないように適切にトランザクション認可を実装する方法についてのガイドラインを提供することです。
+</p>
+<h1><span class="mw-headline" id="1.0_Functional_Guidelines">1.0 機能に関するガイドライン</span></h1>
+<h2><span class="mw-headline" id="1.1..09Transaction_authorization_method_has_to_allow_a_user_to_verify_significant_transaction_data">1.1	トランザクション認可方式は、重要なトランザクションデータをユーザーが確認できることが必要</span></h2>
+<p>認可する対象が何であるかをユーザーが認識する必要があります。このため、認可方式は、当該トランザクションにおいて重要なデータをユーザーが確認できなければなりません。たとえば電信送金の場合は、送金先口座と金額です。
+</p><p>外部デバイスでトランザクションデータを確認できない方式 (生成された OTP だけを表示し、トランザクションデータを表示しない時間ベースの OTP トークンなど) は、ユーザーをマルウェア攻撃から防御しません。マルウェア攻撃を受ける可能性のあるアプリケーションでは使用しないでください。
+</p><p>どのトランザクションデータが重要であるかの判断は、実際のリスク、選択する認可方式の技術性能、およびユーザーエクスペリエンスの快適さに基づいて行います。たとえば、SMS メッセージを使用して重要なトランザクションデータを送信する場合、送金先口座、送金額および種別を送信できますが、非接続の <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Chip_Authentication_Program">CAP リーダー</a>でユーザーがこれらのデータをすべて入力するのは不便です。このような場合は、最も重要なトランザクションデータ (たとえば、送金先口座番号の一部と金額) を入力するだけで十分でしょう。
+</p>
+<h2><span class="mw-headline" id="1.2..09Change_of_authorization_credentials_should_be_authorized_using_current_authorization_credentials">1.2	認可資格情報の変更は、現在の認可資格情報を使用して認可する</span></h2>
+<p>ユーザーがアプリケーションインターフェイスを介して認可資格情報を変更できる場合は、その操作を、現在の認可資格情報を使用して認可する必要があります。たとえば、ユーザーが SMS コード用の電話番号を変更する場合には、現在の電話番号宛てに送信された SMS コードを使用して、この操作を認可します。
+</p>
+<h2><span class="mw-headline" id="1.3..09Change_of_authorization_method_should_be_authorized_using_current_authorization_method">1.3	認可方式の変更は、現在の認可方式を使用して認可する</span></h2>
+<p>アプリケーションによっては複数のトランザクション認可方式が用意されていて、ユーザーが現在使用している認可方式をアプリケーションインターフェイスから変更できます。このような場合、ユーザーは現在の認可方式を使用してこの変更を認可する必要があります。そうしないと、マルウェアによって、最も攻撃しやすい認可方式に変更されるおそれがあります。
+</p>
+<h2><span class="mw-headline" id="1.4..09Different_methods_should_be_used_for_user_authentication_and_transaction_authorization_or_user_should_be_able_to_easily_distinguish_between_these_two_operations">1.4	ユーザー認証とトランザクション認可に別々の方式を採用するか、ユーザーがこの 2 つの操作を容易に区別できることが必要</span></h2>
+<p>アプリケーションが本人認証と認可とでまったく同じ操作をユーザーに求めると、これをマルウェアが悪用し、ユーザーをだまして不正な操作を認可させる可能性があります。 
+次の例を見てみましょう。 
+</p>
+<ul>
+<li> 本人認証では、ユーザーがログイン名、パスワード、およびログインページに表示された数値チャレンジに対するトークン応答を入力する必要があります。 
+</li>
+<li> トランザクション認可では、チャレンジ (トランザクション確認ページに表示される乱数) と送金先口座番号の一部の桁に基づいてトークン応答を提供する必要があります。
+</li>
+<li> マルウェアは、最初のステップ (アプリケーションに対する本人認証) の後で偽のエラーメッセージをユーザーに表示して、認証手順をもう一度実行するように誘い込みます。このとき、マルウェアが偽のログインページに表示したチャレンジは、トランザクション確認ページから収集したチャレンジ値です。ユーザーはそうとは知らずに不正なトランザクションを認可してしまいます。このような攻撃シナリオは、<a rel="nofollow" class="external text" href="http://securityintelligence.com/back-basics-malware-authors-downgrade-tactics-stay-radar/#.VX_qI_krLDc">電子銀行決済へのマルウェア攻撃</a>で広く利用されています。
+</li>
+</ul>
+<p>上記の場合、ユーザー認証とトランザクション認可に同じ方式 (チャレンジ応答トークン) が使用されていました。マルウェアは、この点を悪用して、ユーザーに気付かれることなく、トランザクションの認可資格情報を引き出したのです。もちろん、<a rel="nofollow" class="external text" href="http://securityintelligence.com/tatanga-attack-exposes-chiptan-weaknesses/#.VZAy9PkrLDc">採用された本人認証方式と操作認可方式にかかわらず</a>、ソーシャルエンジニアリングによる攻撃が行われる可能性はありますが、アプリケーションではこのような攻撃シナリオを単純化してはいけません。
+</p><p>一般に、認可する対象の詳細がユーザーに明示されていれば、ユーザーをだまして無用なトランザクションを認可させることは、はるかに難しくなります。
+</p>
+<h2><span class="mw-headline" id="1.5..09Each_operation_should_be_authorized_using_unique_authorization_credentials">1.5	各操作はそれぞれ一意な認可資格情報を使用して認可する</span></h2>
+<p>アプリケーションによっては、操作の認可資格情報 (静的なパスワード、SMS 経由で送信されたコード、トークン応答など) を一度しか要求しません。この場合、ユーザーはそのセッション全体を通して任意のトランザクションを認可することになるか、操作の認可が必要になるたびに同じ資格情報を再利用することになります。このような動作は、マルウェア攻撃の防御には不十分です。マルウェアはこうした資格情報を盗聴し、それを使用して、ユーザーに気付かれることなく任意のトランザクションを認可するからです。
+</p>
+<h2><span class="mw-headline" id="1.6..09Authorization_component_should_present_authorized_operation_data_clearly">1.6	認可コンポーネントでは、認可される操作データを明示する</span></h2>
+<p>操作を認可するとき、ユーザーは何に対する捜査を認可するのかを知る必要があります。マルウェアの脅威を考慮すると、ユーザーのコンピューターを信頼できるものと見なすことはできません。したがって、認可される操作データを、アプリケーションだけでなく認可コンポーネントにも明示してください。また、操作データを表示するかどうかの判断をユーザーに委ねてはいけません。たとえば、認可するトランザクションデータを表示するための追加手順 / 入力をユーザーに要求するのはお勧めできません (たとえば、モバイル認証アプリで、トランザクションの詳細を表示するためにキーを押すようユーザーに強制しないでください)。重要なトランザクションデータ (第 1.1 項を参照) は、トランザクション認可プロセスに不可欠な要素として必ず表示してください。また、重要トランザクションデータの確認を促すためのスムーズなユーザーエクスペリエンスを組み込むことが必要です。
+</p><p>トランザクション認可プロセスで外部デバイスへのトランザクションデータの入力をユーザーに求める場合は、(送金先口座番号などのように) このトランザクションに固有の値 の入力を促すプロンプトをユーザーに表示すべきです。プロンプトなしで値の入力だけを要求する方式は、第 1.4 項の例で説明したように、簡単にマルウェアに悪用されます。入力オーバーロード問題の詳細については、<a rel="nofollow" class="external text" href="http://www.cl.cam.ac.uk/~sjm217/papers/fc09optimised.pdf">こちらの資料</a>を参照してください。
+</p>
+<h1><span class="mw-headline" id="2.0_Non-functional_guidelines">2.0 機能以外に関するガイドライン</span></h1>
+<h2><span class="mw-headline" id="2.1..09Authorization_should_be_performed_and_enforced_server-side">2.1	認可はサーバー側で実行および強制する</span></h2>
+<p>他のセキュリティ対策と同様、トランザクション認可はサーバー側で強制します。クライアントからサーバーへ送信される任意のデータを変更または削除することによって認可結果を変えたり、認可結果に影響を及ぼしたりできないようにする必要があります。たとえば、次のようなものです。
+</p>
+<ul>
+<li> 認可データが格納されているパラメーターの削除
+</li>
+<li> 認可チェックを無効にするパラメーターの追加
+</li>
+<li> エラーの誘発
+</li>
+</ul>
+<p>これを実現するには、次のような一般的なセキュリティプログラミングのベストプラクティスを実践します。
+</p>
+<ul>
+<li> デフォルトで拒否する
+</li>
+<li> 本番コードではデバッグ機能を避ける
+</li>
+</ul>
+<h2><span class="mw-headline" id="2.2..09Authorization_method_should_be_enforced_server_side">2.2	認可方式はサーバー側で強制する</span></h2>
+<p>複数のトランザクション認可方式がユーザーに提供されている場合、サーバーは現在の (ユーザーがアプリケーション設定で選択した) 認可方式を強制する必要があります。クライアントから渡されたパラメーターによる操作では認可方式の変更ができないことが必要です。これが可能な場合、マルウェアが認可方式をより安全性の低い、あるいは最も安全性の低いものに変更するおそれがあります。
+</p><p>これが特に重要なのは、アプリケーションに、より安全な新しい認可方式を追加するときです。新しい認可方式が古いコードの上に構築されることは少なくありません。結果として、クライアントが古い方式向けのパラメーターを送信すると、ユーザーが既に新しい方式に切り替えたにもかかわらず、トランザクションが認可されることがあります。
+</p>
+<h2><span class="mw-headline" id="2.3..09Transaction_verification_data_should_be_generated_server-side">2.3	トランザクション確認データはサーバー側で生成する</span></h2>
+<p>トランザクション認可方式では、重要なトランザクションデータをプログラムを介して認可コンポートに渡す際に、これらのトランザクションデータの改変をクライアントに許さないよう特に注意してください。ユーザーが確認する重要なトランザクションデータはサーバー上で生成し、サーバー側に保持して、認可コンポートに渡すようにして、クライアントによる改ざんの可能性を完全に排除する必要があります。
+</p><p>よくあるアンチパターンは、重要なトランザクションデータをクライアント側で収集し、それをサーバーに渡す方法です。この場合、マルウェアがこれらのデータを操作できます。その結果、認可コンポーネントに渡すトランザクションデータを偽造できます。
+</p>
+<h2><span class="mw-headline" id="2.4..09Application_should_prevent_authorization_credentials_brute-forcing">2.4	アプリケーションで認可資格情報のブルートフォース攻撃を防止する</span></h2>
+<p>トランザクションの認可資格情報をサーバーに送信して検証するとき、アプリケーションではブルートフォース攻撃を防護する必要があります。たとえば、サーバー側で定義された試行失敗の後にはトランザクション認可プロセスを再度やり直してください。または、その他のブルートフォース対策技術を採用する必要があります (「<a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Authentication_Cheat_Sheet#Prevent_Brute-Force_Attacks">OWASP Authentication Cheat Sheet</a>」を参照)。
+</p>
+<h2><span class="mw-headline" id="2.5..09Application_should_control_which_transaction_state_transitions_are_allowed">2.5	どのトランザクション状態遷移を許可するかをアプリケーションで制御する</span></h2>
+<p>トランザクションの認可は通常、複数のステップで実行されます。次に例を示します。 
+</p>
+<ol>
+<li> ユーザーがトランザクションデータを入力
+</li>
+<li> ユーザーが入力したデータを確認し、認可をリクエスト
+</li>
+<li> アプリケーションが認可メカニズムを開始 (またはチャレンジを送信)
+</li>
+<li> ユーザーが OTP (認可資格情報) を入力
+</li>
+<li> アプリケーションが認可を検証し、トランザクションを実行
+</li>
+</ol>
+<p>アプリケーションは、このようなビジネスロジックフローを順次処理し、順番どおりでない手順の処理や特に手順のスキップを防ぐ必要があります (OWASP ASVS 要件 15.8 を参照)。
+これにより、次のような攻撃手法から保護できます。
+</p>
+<ul>
+<li> ユーザーが OTP を入力する前にトランザクションデータを上書き
+</li>
+<li> 認可のスキップ 
+</li>
+</ul>
+<h2><span class="mw-headline" id="2.6..09Transaction_data_should_be_protected_against_modification_after_their_entering">2.6	トランザクションデータを入力後の改ざんから守る</span></h2>
+<p>トランザクション認可プロセスでは、ユーザーによる初期入力後にトランザクションデータを改ざんする攻撃シナリオから保護する必要があります。たとえば、トランザクション認可プロセスの不適切な実装により、以下の攻撃を許してしまうことがあります (第 2.5 項で説明したトランザクション認可手順を参照)。
+</p>
+<ul>
+<li> ユーザーが認可資格情報を入力する前に、ステップ 1 (トランザクションデータの送信) の応答をバックグラウンドで勝手に行い 、トランザクションの詳細を不正なトランザクションで上書きする。
+</li>
+<li> トランザクションデータを埋め込んだパラメーターを、トランザクションを認可する HTTP リクエストに追加する。このような場合、実装が不適切であると、初期トランザクションを認可し、不正なトランザクションを実行してしまいます (<a rel="nofollow" class="external text" href="https://cwe.mitre.org/data/definitions/367.html">TOCTTOU (Time of Check to Time of Use) 脆弱性</a>の具体例)。
+</li>
+</ul>
+<p>改ざんの防止の実装には、使用するプラットフォームに応じてさまざまな手法を取ることができますが、以下の項目を加味してください。
+</p>
+<ul>
+<li> トランザクションデータが改ざんされたら、先行するすべての認可データの無効化をトリガーする。たとえば、生成された OTP またはチャレンジを無効化する。
+</li>
+<li> トランザクションデータが改ざんされたら、認可プロセスのリセットをトリガーする。
+</li>
+<li> ユーザーによる初期入力後にトランザクションデータの改ざんが試みられたら、それはアプリケーションを操作する前兆なのでログに記録し、慎重に調査する。
+</li>
+</ul>
+<h2><span class="mw-headline" id="2.7..09When_a_transaction_is_executed.2C_the_system_should_check_whether_it_was_authorized">2.7	トランザクションの実行時にそのトランザクションが認可されたかどうかをシステムでチェックする</span></h2>
+<p>トランザクション入力と第 2.5 項で説明した認可プロセスの結果として、トランザクションが実行されます。トランザクションを実行する直前に、そのトランザクションがユーザーによって適切に認可されたかどうかを検証する最終関門を設けてください。実行に連動したこの最終関門によって次のような攻撃を防ぎます。
+</p>
+<ul>
+<li> TOCTOU (Time of Check to Time of Use) (第 2.6 項の例を参照)
+</li>
+<li> トランザクション入力プロセスにおける認可チェックのスキップ (第 2.5 項を参照)
+</li>
+</ul>
+<h2><span class="mw-headline" id="2.8..09Authorization_data_should_be_valid_only_by_limited_period_of_time">2.8	認可データの有効期間を限定する</span></h2>
+<p>一部のマルウェア攻撃シナリオでは、ユーザーの入力した認可データが C&C サーバーに送信されて、攻撃者の制御するマシンから利用されます。このプロセスは、多くの場合、攻撃者が手動で行います。このような攻撃を困難にするためには、トランザクションを認可する期間を、チャレンジまたは OTP の生成からトランザクション認可までの一定期間だけに限定する必要があります。また、こうした安全対策はリソース枯渇攻撃の防止にも有効です。通常のユーザーの行動を妨げないように、慎重に有効期間を選択してください。
+</p>
+<h2><span class="mw-headline" id="2.9..09Authorization_data_should_be_unique_for_every_operation">2.9	認可データをすべての操作に対して一意にする</span></h2>
+<p>あらゆる種類のリプレイ攻撃を防ぐためには、認可されたトランザクションデータがすべての操作に対して一意であることが必要です。これを実現するには、採用するトランザクション認可メカニズムによってさまざまな方法があります。たとえば、タイムスタンプ、通し番号、または乱数を、署名されたトランザクションデータ内かチャレンジの一部として使用します。
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="Remarks">注意事項</span></h1>
+<p>他にも、トランザクション認可の実装に際して考慮すべき点として以下が挙げられますが、これらはこのチートシートの範囲外です。
+</p>
+<ul>
+<li> すべてのトランザクションデータを認可するか、それとも一部のトランザクションだけを認可するか。アプリケーションはそれぞれに異なるので、アプリケーション所有者が当該アプリケーションのリスク分析、リスクへの露出、他の安全対策を考慮して、すべてのトランザクションデータを認可するか、一部だけを認可するかを判断する必要があります。
+</li>
+<li> ある種の暗号演算を使用してトランザクションに "署名" することで、完全性と否認防止を確保できます。
+</li>
+<li> デバイスの登録、つまり外部認可デバイス (またはモバイルアプリケーション) とユーザーアカウントとの "ペアリング"。 
+</li>
+<li> ユーザーのトレーニング。たとえば、トランザクション認可方式では、ユーザーが重要なトランザクションデータを認可コンポーネント (外部の専用デバイスやモバイルアプリケーションなど) に入力する場合、コンピューター画面ではなく信頼できるソースに基づいてトランザクションデータを書き直すことを学ぶ必要があります。
+</li>
+<li> マルウェアの脅威を防ぐマルウェア対策ソリューションがいくつか存在しますが、こうしたソリューションは <a rel="nofollow" class="external text" href="http://www.securing.pl/en/script-based-malware-detection-in-online-banking-security-overview/index.html">100% の有効性を保証するものではありません</a>。単に追加の防御層として使用してください。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/User:Wojciech_Dworakowski">Wojciech Dworakowski</a>, SecuRing <a rel="nofollow" class="external text" href="mailto:wojciech.dworakowski@owasp.org">@</a><br />
+</p>
+<h1><span class="mw-headline" id="Contributors">Contributors</span></h1>
+<p>I would like to thank the following persons who helped by reviewing and providing valuable feedback to this work:<br />
+</p>
+<ul>
+<li> Steven Wierckx, Toreon
+</li>
+<li> Adam Zachara, SecuRing
+</li>
+<li> Adam Lange
+</li>
+</ul>
+<h1><span class="mw-headline" id="References_and_future_reading">参考資料</span></h1>
+<p>参考資料は次のとおりです。<br />
+</p>
+<ol>
+<li> Wojciech Dworakowski; E-banking transaction authorization - possible vulnerabilities, security verification and best practices for implementation.AppSec EU 2015 での講演: <a rel="nofollow" class="external autonumber" href="http://www.slideshare.net/wojdwo/ebanking-transaction-authorization-appsec-eu-2015-amsterdam">[1]</a> 
+</li>
+<li> Saar Drimer, Steven J. Murdoch, and Ross Anderson; Optimised to Fail: Card Readers for Online Banking, <a rel="nofollow" class="external autonumber" href="http://www.cl.cam.ac.uk/~sjm217/papers/fc09optimised.pdf">[2]</a>
+</li>
+<li> Jakub Kałużny, Mateusz Olejarka; Script-based Malware Detection in Online Banking Security Overview; <a rel="nofollow" class="external autonumber" href="http://www.securing.pl/en/script-based-malware-detection-in-online-banking-security-overview/index.html">[3]</a> 
+</li>
+<li> List of websites and whether or not they support 2FA.<a rel="nofollow" class="external autonumber" href="https://twofactorauth.org/">[4]</a>
+</li>
+<li> Laerte Peotta, Marcelo D. Holtz, Bernardo M. David, Flavio G. Deus, Rafael Timóteo de Sousa Jr.; A Formal Classification Of Internet Banking Attacks and Vulnerabilities; <a rel="nofollow" class="external autonumber" href="http://airccse.org/journal/jcsit/0211ijcsit13.pdf">[5]</a>
+</li>
+<li> Marco Morana, Tony Ucedavelez; Threat Modeling of Banking Malware-Based Attacks; <a rel="nofollow" class="external autonumber" href="https://www.owasp.org/images/5/5f/Marco_Morana_and_Tony_UV_-_Threat_Modeling_of_Banking_Malware.pdf">[6]</a>
+</li>
+<li> OWASP Anti-Malware - Knowledge Base; <a rel="nofollow" class="external autonumber" href="https://www.owasp.org/index.php/OWASP_Anti-Malware_-_Knowledge_Base">[7]</a>
+</li>
+<li> OWASP Anti-Malware Project - Awareness Program; <a rel="nofollow" class="external autonumber" href="https://www.owasp.org/index.php/OWASP_Anti-Malware_Project_-_Awareness_Program">[8]</a>
+</li>
+</ol>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Transaction Authorization Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.074 seconds
+Real time usage: 0.086 seconds
+Preprocessor visited node count: 108/1000000
+Preprocessor generated node count: 144/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:45369-0!*!0!!en!2!* and timestamp 20151215043957 and revision id 197581
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;oldid=197581">https://www.owasp.org/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;oldid=197581</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Transaction+Authorization+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Transaction_Authorization_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:Transaction_Authorization_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Transaction_Authorization_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Transaction_Authorization_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Transaction_Authorization_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;oldid=197581" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Transaction_Authorization_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 18 July 2015, at 17:14.</li>
+											<li id="footer-info-viewcount">This page has been accessed 9,878 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":162});
+}</script>
+	</body>
+</html>

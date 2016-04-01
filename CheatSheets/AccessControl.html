@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>アクセス制御に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Access_Control_Cheat_Sheet","wgTitle":"Access Control Cheat Sheet","wgCurRevisionId":204799,"wgRevisionId":204799,"wgArticleId":23129,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Access_Control_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<script>document.styleSheets[0].insertRule?document.styleSheets[0].insertRule(".unselected {display:none;}", 0):document.styleSheets[0].addRule(".unselected", "display:none");</script><!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Access_Control_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">アクセス制御に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="headertabs" class="large"><span class="ht-editsection" id="edittab">[<a href="" title="［編集］ タブ">編集</a>]</span><ul><li class="selected" ><a href="#Introduction">はじめに</a></li>
+<li class="unselected"><a href="#Attacks_on_Access_Control">アクセス制御に対する攻撃</a></li>
+<li class="unselected"><a href="#Access_Control_Vulnerabilities">アクセス制御の脆弱性</a></li>
+<li class="unselected"><a href="#Access_Control_Anti-Patterns">アクセス制御のアンチパターン</a></li>
+<li class="unselected"><a href="#Testing_for_Broken_Access_Control">突破されたアクセス制御のテスト</a></li>
+<li class="unselected"><a href="#Defenses_Against_Access_Control_Attacks">アクセス制御に対する攻撃への防御</a></li>
+<li class="unselected"><a href="#Best_Practices">ベストプラクティス</a></li>
+<li class="unselected"><a href="#SQL_Integrated_Access_Control">SQL 統合アクセス制御</a></li>
+<li class="unselected"><a href="#Access_Control_Positive_Patterns">アクセス制御のポジティブパターン</a></li>
+<li class="unselected"><a href="#Data_Contextual_Access_Control">データコンテキストによるアクセス制御</a></li>
+<li class="unselected"><a href="#References">参照先</a></li>
+<li class="unselected"><a href="#Authors_and_Primary_Editors">著者と編集者</a></li>
+</ul><div id="Introduction" class="section-1"><p>
+<p><b> ドラフト版チートシート - 編集中</b>
+</p><p>この資料は、アプリケーションにアクセス制御セキュリティを備えるための、簡単でわかりやすい実用的なガイダンスを提供することに重点を置いています。Web アプリケーションにおけるアクセス制御を設計、作成、および保守管理する開発者、レビュー担当者、設計者、アーキテクトにガイダンスを提供することを目的としています。
+</p>
+<h2><span class="mw-headline" id="What_is_Access_Control_.2F_Authorization.3F">アクセス制御と認可について</span></h2>
+<p>認可とは、特定のリソースに対するアクセスリクエストを許可または拒否するプロセスのことです。認可と認証、この 2 つの用語とその定義は頻繁に混同されますが、同じものではないことに注意する必要があります。認証とは、識別情報の提示と検証のことです。ユーザー名とパスワードによる単純な認証方式を使用するシステムの場合の認証処理は、ユーザー名を受け取り、パスワードを使用して識別情報を検証します。認可とは、アクセス制御のプロパティを実施することです。すなわち、認証が正常に完了した際にアクセス権を適切に割り当てます。
+</p><p>アクセス制御とは、システムのリソースや機能へのアクセスリクエストを認可するための方法またはメカニズムのことです。
+</p><p>リソースへのアクセスを要求するエンティティがサブジェクト (主体) であり、リソースがオブジェクト (客体) であることを理解している必要があります。 
+通常、Web アプリケーションでは、さまざまなユーザー (ユーザー毎に権限は異なる) にアプリケーションを使用させたり、管理者にアプリケーション管理作業を許可したりするためにアクセス制御が必要になります。アクセス制御には、さまざまな方法があります。リスク評価により脅威と脆弱性を特定し、リスク値を許容できるレベルにまで下げられる最適な方法を選択する必要があります。
+</p>
+<h2><span class="mw-headline" id="Access_Control_Policy">アクセス制御ポリシー</span></h2>
+<p>Web 開発には、なぜアクセス制御ポリシーが必要なのでしょうか。
+</p><p>アクセス制御ポリシーを用意する目的は、アーキテクト、設計者、開発者、およびサポートチームに、セキュリティ要件を明確に説明し、組織内の複数の Web アプリケーションプロジェクトにおけるアクセス制御の設計、実装に整合性を持たせることです。
+</p><p>アクセス制御ポリシーのメンテナンスに関するガイドライン
+</p><p>1. 組織にとって重要なアクティビティを一覧にし、それらに配慮したポリシーにします。
+</p><p>例えば、
+次のようなポリシーが考えられます。
+</p>
+<pre>     a. アクセス制御機能の設計に先立って、リスク評価の実施を要件とする 
+     b. リスク評価の結論に基づいてアクセス制御モデルを決定する 
+     c. クライアント側で行うアクセス制御において追加の制御機能が必要かどうか
+</pre>
+<p>2. 第 1 項を適切に維持するために、少なくとも 1 年に 1 回は、アクセス制御ポリシーをレビューします。
+</p>
+<h2><span class="mw-headline" id="Risk_assess_the_functionality_to_arrive_at_a_model_for_implementation_of_access_control">機能のリスク評価を行い、アクセス制御の実装に適したモデルに到達する</span></h2>
+<p>アクセス制御の方法を決定する前にアプリケーションのリスク評価を行います。その結果、例えば、最高機密データを扱うアプリケーションには強制アクセス制御が必要、社内で使用する財務アプリケーションにはロールベースのアクセス制御が適切であり、あわせて頻繁なアクセスのレビューも必要、といったような検討結果が得られます。
+</p><p>リスク評価の例を次に示します。
+</p><p>1. リスク評価の対象となるデータ要素を特定します。 
+</p><p>2. これらのデータ要素について、機密性、完全性、可用性の値を特定します。 
+</p><p>3. データ要素の機密性、完全性、可用性が侵害された場合の組織への影響度を特定します。 
+</p><p>4. 侵害の発生確率を特定します。
+</p><p>影響度と発生確率に基づいて、次を行います。
+</p><p>1. 適切なアクセス制御モデルを特定します。
+</p><p>2. アクセス制御を必要とするセグメントを特定します。
+</p><p>3. 以下は、考慮に入れる必要のあるセグメントの例です。
+</p>
+<pre>         a. API
+         b. Web アプリケーション
+         c. サーバー
+         d. ネットワーク
+         e. データベース
+         f. 物理的境界
+</pre>
+<h2><span class="mw-headline" id="Role_Based_Access_Control_.28RBAC.29">ロールベースアクセス制御 (RBAC)</span></h2>
+<p>ロールベースアクセス制御 (RBAC) では、組織内またはユーザーベース内での個人のロールと職責に基づいて、アクセス権を決定します。 
+</p><p>ロールを定義するプロセスは通常、組織の基本的な目的と構造に関する分析に基づいて行われ、セキュリティポリシーに関連付けられます。例えば医療組織の場合、医師、看護師、付添い人、患者など、さまざまなユーザーロールがあります。当然のことながら、これらのメンバーには、それぞれの職務を遂行するために異なるレベルのアクセス権が必要になります。さらに、Web トランザクションの種類と、それらを許容するコンテキストは、セキュリティポリシーと関連法規 (HIPAA やグラム・リーチ・ブライリー法など) によっても大きく異なります。 
+</p><p>ロールベースアクセス制御フレームワークでは、どのようなアクションを、誰が、いつ、どこから、どの順序で実行できるようにするか、また、場合によってはどのような条件下で実行できるようにするかを Web アプリケーションのセキュリティ管理者が決定できるようにする必要があります。  
+</p><p>この方式を使用する利点は、次のとおりです。
+</p>
+<ul>
+<li>ロールは、組織のセキュリティポリシーを重視しながら組織の構造に基づいて割り当てられます。
+</li>
+<li>簡単に使用できます。
+</li>
+<li>簡単に管理できます。
+</li>
+<li>ほとんどすべてのフレームワークに組み込めます。
+</li>
+<li>権限分離や最小特権などのようなセキュリティの原則に従う形で使用できます。
+</li>
+</ul>
+<p>この方式を使用したときに発生する可能性のある問題点は次のとおりです。
+</p>
+<ul>
+<li>ロールとアクセスについての文書を厳格に維持する必要があります。 
+</li>
+<li>マルチテナント環境では、マルチテナント機能の要件 (Active Directory における OU など) にロールを関連付ける方法がないと効果的に実装できません。
+</li>
+<li>スコープクリープ、すなわち、意図した以上のアクセス権や特権を付与してしまう傾向があります。また、アクセス権割り当て状況のレビューと不要な権限の取り消しを適切に実行しないと、ユーザーが 2 つのロールに含まれることがあります。
+</li>
+<li>データに基づいたアクセス制御はサポートされません。
+</li>
+</ul>
+<p>ロールベースアクセス制御を行う際には、次のような点に注意します。
+</p>
+<ul>
+<li>ロールの移転や委譲は、厳格な承認と手続きを使用してのみ行われる必要があります。
+</li>
+<li>ユーザーがロールを変更する場合、管理者は、以前のアクセス権の取り消しを確実に実行し、いかなる時点においても必要なロールのみがユーザーに割り当てられているようにする必要があります。
+</li>
+<li>厳格なアクセス制御のレビューによって、ロールベースアクセス制御が適切に行われていることを保証する必要があります。 
+</li>
+</ul>
+<p>OWASP には、ロールベースアクセス制御の実装プロジェクト <a href="/index.php/OWASP_PHPRBAC_Project" title="OWASP PHPRBAC プロジェクト">OWASP RBAC プロジェクト</a>があります。
+</p>
+<h2><span class="mw-headline" id="Discretionary_Access_Control_.28DAC.29">任意アクセス制御 (DAC)</span></h2>
+<p>任意アクセス制御 (DAC) とは、ユーザーの識別情報や特定のグループに所属しているかどうかといった情報に基づいて、アクセス権限を制御する方法のことです。アクセス権は通常、ユーザー認証時に提示された識別情報 (ユーザー名、パスワード、ハードウェア/ソフトウェアトークンなど) に基づいて与えられる認可により決定されます。最も一般的な DAC モデルでは、情報またはリソースの所有者が権限を変更できます (任意アクセス制御という名前はここからきています)。
+</p><p>任意アクセス制御 では、Web アプリケーションのセキュリティ管理者が、きめ細かいアクセス制御を実装できます。このモデルを基準にして、データに基づくアクセス制御を実装できます。
+</p><p>このモデルの使用による利点は、次のとおりです。
+</p>
+<ul>
+<li>簡単に使用できます。
+</li>
+<li>簡単に管理できます。
+</li>
+<li>最小特権という原則に従う形で使用できます。
+</li>
+<li>オブジェクトの所有者が、アクセス権の付与について完全な制御を持ちます。
+</li>
+</ul>
+<p>この方式を使用したときに発生する可能性のある問題点は次のとおりです。
+</p>
+<ul>
+<li>ロールとアクセスについての文書を厳格に維持する必要があります。
+</li>
+<li>トロイの木馬による攻撃には脆弱です。
+</li>
+<li>マルチテナントは、マルチテナント機能の要件 (Active Directory における OU など) にロールを関連付ける方法がない場合には効果的に実装できません。
+</li>
+<li>スコープクリーク、すなわち、意図した以上のアクセス権や特権を付与してしまう傾向があります。 
+</li>
+</ul>
+<p>任意アクセス制御を行う際には 、次のような点に注意します。
+</p>
+<ul>
+<li>信頼の付与
+</li>
+</ul>
+<ul>
+<li>厳格なアクセス制御のレビューによって、任意アクセス制御が適切に行われていることを保証する必要があります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Mandatory_Access_Control_.28MAC.29">強制アクセス制御 (MAC)</span></h2>
+<p>強制アクセス制御 (MAC) により、Web アプリケーションのユーザーによる自発的なコンプライアンスに頼らずに、企業のセキュリティポリシーの適用を強制できるようになります。強制アクセス制御では、情報に機密性ラベルを割り当てて、このラベルと、ユーザー操作の機密性レベルとを比較することで、情報を保護します。通常、強制アクセス制御は、多重保護の軍用アプリケーションやミッションクリティカルなデータアプリケーションなど、極めてセキュアなシステムに適しています。 
+</p><p>この方式を使用する利点は、次のとおりです。
+</p>
+<ul>
+<li>オブジェクトに対するアクセス制御は、オブジェクトの機密性に基づいて行います。
+</li>
+<li>アクセス許可を最小限におさえることができ、スコープクリープの可能性は最小限になります。
+</li>
+<li>管理者のみがアクセス権を付与できます。 
+</li>
+</ul>
+<p>この方式を使用したときに発生する可能性のある問題点は次のとおりです。
+</p>
+<ul>
+<li>実装が困難であり実装コストが (他の方式と比較して) 高くなる
+</li>
+<li>迅速な対応が難しい
+</li>
+</ul>
+<p>強制アクセス制御を行う際には、次のような点に注意します。
+</p>
+<ul>
+<li>適切で実用的なレベルでの分類と機密性の割り当て
+</li>
+</ul>
+<p>適切なレベルでオブジェクトを分類することで、強制アクセス制御が適切に行われていることを保証する必要があります。
+</p>
+<h2><span class="mw-headline" id="Attribute_Based_Access_Control_.28ABAC.29">属性ベースアクセス制御 (ABAC)</span></h2>
+<p><a rel="nofollow" class="external text" href="http://nvlpubs.nist.gov/nistpubs/specialpublications/NIST.sp.800-162.pdf">NIST Special Publication (SP) 800-162 (Final)</a>
+</p>
+</p></div><div id="Attacks_on_Access_Control" class="section-9 unselected"><p>
+<ul>
+<li>権限昇格
+</li>
+<li>機密データの開示 - 管理者レベルのアカウントへのセキュリティ侵害は、多くの場合、ユーザーの機密データへのアクセスにつながります。
+</li>
+<li>データ改ざん - 特権レベルでは、データの閲覧のみが可能なユーザーと、データの変更を許可されたユーザーが区別されません。
+</li>
+</ul>
+<p>アクセス制御に対する攻撃としては、次のようなものがあります。
+</p><p>垂直的なアクセス制御攻撃:
+</p>
+<ul>
+<li>低い権限のサブジェクトが、より高い権限を持つサブジェクト向けのオブジェクトにアクセスします。
+</li>
+</ul>
+<p>以下に、垂直的なアクセス制御攻撃の例を示します。
+</p><p>1. Web アプリケーション向けのサービスがローカルユーザー権限で実行されている場合、攻撃者は脆弱性を攻略して(たとえば、バッファオーバーフロー)、サービスの実行権限をローカル管理者に昇格します。
+</p><p>2. ユーザー入力の不適切な検証により、攻撃者はクロスサイトスクリプティングを使用して、Web アプリケーションの管理者権限を取得できます。
+</p><p>3. ジェイルブレイクされたデバイスにより、ユーザーはモバイルデバイスに対する高いアクセス権を獲得できます。悪意のあるプログラムは、特権昇格してデバイス内のコンタクト情報を収集できます。
+</p><p>4. コアダンプファイルを制御することで、攻撃者は特権を取得して任意のプログラムを実行できます。
+</p><p>5. Web アプリケーションが常に管理者 ID を使ってデータベースにアクセスしている場合、攻撃者は Web アプリケーション経由でデータベースの管理者アクセス権を取得します。
+</p><p>水平的なアクセス制御攻撃:
+</p>
+<ul>
+<li> サブジェクトが、同じ権限を持つオブジェクトや別のサブジェクト向けのオブジェクトにアクセスします。
+</li>
+</ul>
+<p>次に、水平的なアクセス制御攻撃の例を示します。
+</p><p>1. 銀行取引アプリケーションのユーザーが、セッション ID を予測してログインし、送金処理を実行します。
+</p><p>2. ユーザーは、パスワードを推測してショッピングアプリケーションにログインし、実際のユーザーが知らないうちに購入物を自分の住所に送付させます。
+</p><p>3. 従業員がワークステーションにログインしたままロックしていない間に、そのワークステーションを使って別の従業員がイントラネットポータルにログインし、給与明細にアクセスします。 
+</p><p>ビジネスロジックのアクセス制御攻撃 – 複数のアクティビティが連携して動作するアプリケーションに対し、1 つ以上のアクティビティを不正使用する
+</p><p><br />
+</p>
+</p></div><div id="Access_Control_Vulnerabilities" class="section-10 unselected"><p>
+<ul>
+<li>多くのアプリケーションが「オールオアナッシング」方式を使用している – どのユーザーも認証されたらすべて同じ特権を持つ 
+</li>
+</ul>
+<ul>
+<li>認可ロジックが、以下を前提にした隠蔽によるセキュリティ (STO、Security Through Obscurity) に依存している。
+<ul>
+<li>ユーザーは、リンクされていない (または表示されていない) パスや機能を見つけることはない
+</li>
+<li>ユーザーは、「隠蔽された」クライアント側のパラメーター (Cookie や入力フォームの hidden フィールドなど) を見つけて悪用することはない
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>複数の特権レベルやロールを扱うアプリケーションでは、アクセス許可の不整合が起きて想定外の特権付与をもたらす可能性があります。
+</li>
+</ul>
+<ul>
+<li>多くの管理インターフェイスでは、認証の際にパスワードしか求められません。
+</li>
+<li>共有アカウントで監査およびロギングが適切に行われていない場合、悪意のある管理者と誠実な管理者の区別が極端に難しくなります。
+</li>
+<li>管理インターフェイスは、多くの場合、管理者は信頼できるユーザーであると仮定して設計されており、一般ユーザー向けのインターフェイスほど「セキュア」な設計はなされていません。
+</li>
+<li>認可やアクセス制御が、クライアント側の情報 (非表示フィールドなど) に依存している。
+</li>
+<li>Web サーバーやアプリケーションサーバーのプロセスが 、root、Administrator、LOCALSYSTEM などのような特権アカウントで実行されている。
+</li>
+<li>Web アプリケーションが sa のようなシステム管理用アカウント (または必要以上の権限を持ったアカウント) でデータベースにアクセスしている。
+</li>
+<li>各ページにファイルや Web コントロールの読み込み、またはコードスニペットを直接埋め込むことで認可の制御を実装している。
+</li>
+</ul>
+<pre>    &lt;input type="text" name="fname" value="Derek"&gt;
+    &lt;input type="text" name="lname" value="Jeter"&gt;
+    &lt;input type="hidden" name="usertype" value="admin"&gt;
+</pre>
+<ul>
+<li>特権レベルを考慮してロールを設計していない。例えば、アプリケーションの「読み取り専用」ロールが、読み書き両方の権限を持った状態でデータベースにアクセスする、など。この問題の対策としては、(ユーザーやロールとその権限をまとめた) アクセス制御マトリックスの設計が役立つ。
+</li>
+<li>入力データのサニタイズや検証を行っていない。
+</li>
+<li>信頼されていないデータを認可に使用している。
+</li>
+</ul>
+</p></div><div id="Access_Control_Anti-Patterns" class="section-11 unselected"><p>
+<ul>
+<li>アプリケーションコードにハードコードされたロールをチェックしている
+</li>
+<li>一元化されたアクセス制御ロジックの欠如
+</li>
+<li>信頼されていないデータに基づいてアクセス制御
+</li>
+<li>「デフォルトでオープン」のアクセス制御
+</li>
+<li>水平的なアクセス制御対策の欠如 (標準化された方法があったとしても行っていない)
+</li>
+<li>コード内のエンドポイントごとに手動で追加する必要のあるアクセス制御ロジック
+</li>
+<li>非匿名のエントリポイントでアクセス制御を行っていない
+</li>
+<li>機密性の高いアクティビティを実装するコードの開始点または開始点付近で認可処理を行っていない
+</li>
+<li>多要素認証の追加により権限昇格の問題に対応できる
+</li>
+</ul>
+<h2><span class="mw-headline" id="Hard_Coded_Roles">ハードコードされたロール</span></h2>
+<pre> if (user.isManager() ||
+     user.isAdministrator() ||
+     user.isEditor() ||
+     user.isUser()) {
+     //アクションの実行
+ }
+</pre>
+<p><b>ハードコードされたロールにより、次のような問題が発生する可能性があります。</b>
+</p>
+<ul>
+<li>アプリケーションのポリシーが監査や Q/A の目的に「役立て」にくくなる 
+</li>
+<li>アクセス制御ポリシーへの変更が必要になるたびに、新しいコードをプッシュすることになる 
+</li>
+<li>脆弱であり、間違いが起きやすい
+</li>
+</ul>
+<h2><span class="mw-headline" id="Order_Specific_Operations">オーダー固有の操作</span></h2>
+<p>次に示すパラメーターがあるとします。
+</p>
+<pre> <a rel="nofollow" class="external free" href="http://example.com/buy?action=chooseDataPackage">http://example.com/buy?action=chooseDataPackage</a>
+ <a rel="nofollow" class="external free" href="http://example.com/buy?action=customizePackage">http://example.com/buy?action=customizePackage</a>
+ <a rel="nofollow" class="external free" href="http://example.com/buy?action=makePayment">http://example.com/buy?action=makePayment</a>
+ <a rel="nofollow" class="external free" href="http://example.com/buy?action=downloadData">http://example.com/buy?action=downloadData</a>
+</pre>
+<p><b>攻撃者は順序を制御できるでしょうか。</b>
+</p><p><b>攻撃者は同時実行によって、これを悪用できるでしょうか。</b>
+</p>
+<h2><span class="mw-headline" id="Never_Depend_on_Untrusted_Data">信頼されていないデータに依存しないこと</span></h2>
+<ul>
+<li>アクセス制御の判断を行う際にユーザーデータを信頼してはいけません。
+</li>
+<li>JavaScript でアクセス制御の決定を行ってはいけません。
+</li>
+<li>クライアントから送信される値の順序に依存してはいけません。
+</li>
+<li>次に示す事項のみで認可の判断を行ってはいけません。
+<ul>
+<li>hidden フィールド
+</li>
+<li>Cookie の値
+</li>
+<li>入力フォームのパラメーター
+</li>
+<li>URL のパラメーター
+</li>
+<li>その他リクエストから得られるあらゆる情報
+</li>
+</ul>
+</li>
+</ul>
+<p><br />
+</p>
+</p></div><div id="Testing_for_Broken_Access_Control" class="section-15 unselected"><p>
+<ul>
+<li>匿名ユーザーまたは通常ユーザーとして、管理コンポーネントや管理機能へのアクセスを試行します。
+<ul>
+<li>「関心をひく」非表示フォームフィールドについて、HTML ソースを調査します。
+</li>
+<li>admin、administrator、manager のような名前について Web アクセス可能なディレクトリ構造をテストします (つまり、「制限された」領域の直接的な参照を試します)。
+</li>
+</ul>
+</li>
+<li>管理者がどのように認証されたかを調べます。適切な認証が使用され強制されていることを確認します。
+</li>
+<li>ユーザーロールごとに、そのロールにとって適切なページまたはコンポーネントにのみアクセス可能なことを確認します。
+</li>
+<li>低い権限のユーザーとしてログインし、より高い権限のユーザーのアクセスをたどってページにアクセスし、元の認可情報が前のセッションに渡されないか確認する。
+</li>
+<li>管理者レベルのアカウントを侵害できる場合は、その他すべての一般的な Web アプリケーションの脆弱性についてテストします (不十分な入力検証や特権でのデータベースアクセスなど)。
+</li>
+</ul>
+</p></div><div id="Defenses_Against_Access_Control_Attacks" class="section-16 unselected"><p>
+<ul>
+<li>垂直的なアクセス制御要件として、アプリケーションユーザーに権限を割り当てる場合は、ロールベースアクセス制御を実装します。
+</li>
+<li>水平的なアクセス制御要件、特定のデータ項目に関するコンテキストでアプリケーションユーザーに権限を割り当てる場合は、データコンテキストに応じたアクセス制御を実装します。
+</li>
+<li>ユーザー単位で権限を割り当てることを避けます。
+</li>
+<li>アプリケーションが提供するすべてのページで、一貫性のある認可処理を実行します。
+</li>
+<li>該当する場合は、特権の拒否を最後に適用し、状況に応じて特権の許可を発行します。
+</li>
+<li>可能な場合は、ローカルエリアネットワークに配置されたマシンへの管理者アクセスを制限します (つまり、公衆ネットワークのアクセスポイントからの管理者アクセスを避けることが最良策です)。
+</li>
+<li>すべての失敗したアクセス認可リクエストは、管理者によるレビューのために保護された場所に記録します。
+</li>
+<li>失敗したログインの試行については、定期的にレビューを実行します。
+</li>
+<li>選択した SSO ソリューションに備わった長所と機能を活用します。
+</li>
+<li>ユーザーインターフェイスとデータアクセスインターフェイスのアクセス制御マトリックスを作成し、アクセス制御のレビューを実行します。
+</li>
+<li>職務分離が実現されている (リクエスト側が自分では認可を実行できない) ことをアクセス制御マトリックスで確認します。
+</li>
+</ul>
+<p><br />
+<b>Java</b>
+</p>
+<pre>
+
+if ( authenticated ) {
+
+	request.getSession(true).setValue(“AUTHLEVEL”) = X_USER;
+
+}
+
+</pre>
+<p><b>.NET (C#)</b>
+</p>
+<pre>
+
+if ( authenticated ) {
+
+	Session[“AUTHLEVEL”] = X_USER;
+
+}
+
+</pre>
+<p><br />
+<b>PHP</b>
+</p>
+<pre>
+
+if ( authenticated ) {
+
+	$_SESSION[‘authlevel’] = X_USER; 	// X_USER は、認可されていることを表すものとして、別の場所で定義されている
+
+}
+
+</pre>
+</p></div><div id="Best_Practices" class="section-17 unselected"><p>
+<h2><span class="mw-headline" id="Best_Practice:_Code_to_the_Activity">ベストプラクティス: Code to the Activity</span></h2>
+<pre>  if (AC.hasAccess(ARTICLE_EDIT)) {
+      //アクティビティの実行 
+  }
+</pre>
+<ul>
+<li>コードを 1 回記述したら、再変更の必要をなくします。
+</li>
+<li>何らかの方法でポリシーが永続化および一元化されていることを暗示します。
+</li>
+<li>ユーザー単位で権限を割り当てることを避けます。
+</li>
+<li>適切なものにするには、さらに設計と作業が必要になります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Best_Practice:_Centralized_ACL_Controller">ベストプラクティス: 一元化された ACL コントローラー</span></h2>
+<ul>
+<li>一元化されたアクセスコントローラーを定義します。
+</li>
+</ul>
+<pre>     ACLService.isAuthorized(ACTION_CONSTANT)
+     ACLService.assertAuthorized(ACTION_CONSTANT)
+</pre>
+<ul>
+<li>このような簡単な API を通じてアクセス制御を決定します。
+</li>
+<li>ポリシーの動作と永続性を推進するロジックの一元化
+</li>
+<li>データに応じたアクセス制御ポリシー情報を含めることができます。
+</li>
+<li>ポリシー言語は、アクセス許可と禁止の両方を表現する能力をサポートしている必要があります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Best_Practice:_Using_a_Centralized_Access_Controller">ベストプラクティス: 一元化されたアクセスコントローラーの使用</span></h2>
+<ul>
+<li>プレゼンテーション層では、次のようにします。
+</li>
+</ul>
+<pre>      if (isAuthorized(VIEW_LOG_PANEL))
+      {
+         ここにログを示します
+         &lt;%=getLogs();%/&gt;
+      }
+</pre>
+<ul>
+<li>コントローラーでは、次のようにします。
+</li>
+</ul>
+<pre>      try (assertAuthorized(DELETE_USER))
+      {
+         deleteUser();
+      }
+</pre>
+<h2><span class="mw-headline" id="Best_Practice:_Verifying_policy_server-side">ベストプラクティス: サーバー側のポリシーの検証</span></h2>
+<ul>
+<li>セッションでは、常にユーザー識別情報を検証します。
+</li>
+<li>信頼されたソースからサーバー側にエンタイトルメントをロードします。
+</li>
+<li>すべてのリクエストに対して認可の処理を強制します。
+<ul>
+<li>JS ファイル、イメージ、AJAX および FLASH のリクエストも同様にします。
+</li>
+<li>可能であれば、フィルターを使用してこのチェックを強制します。
+</li>
+</ul>
+</li>
+</ul>
+<h2><span class="mw-headline" id="Best_Practice:_Least_Privilege">ベストプラクティス: 最小権限</span></h2>
+<p>アクティビティの実行に必要なレベルの特権のみを割り当てます。
+</p><p>次に例を示します。
+</p><p>1. 銀行取引アプリケーションで、ユーザーが口座明細を読み込むためのアクセスを行う場合は、「読み取り専用」権限を持つアプリケーション ID を設計します。このユーザー ID に資金移動や口座明細変更を行う権限を割り当ててはいけません。
+</p><p>2. 「読み取り専用」のアプリケーション ID を「読み取り専用」のデータベース ID にマップします。「管理」用のデータベース ID に対応させてはいけません。
+</p><p>3. ユーザーが 1 つの口座へのアクセスだけを必要としている場合は、それ以上の権限を与える可能性のあるアクセスをサブネストしてはいけません。
+</p>
+<h2><span class="mw-headline" id="Best_Practice:_Segregation_of_Duties">ベストプラクティス: 職務の分離</span></h2>
+<p>アクセス制御の設計時には、アクセスリクエストを行う者とリクエストに対して認可処理を行う者を分離してください。 つまり、ユーザーが特定のリソースへのアクセスを要求した場合、ユーザー自身がこのリクエストを認可できないようにします。
+</p>
+<h2><span class="mw-headline" id="Best_Practice:_Access_Control_Reviews">ベストプラクティス: アクセス制御のレビュー</span></h2>
+<p>ユーザーに割り当てた権限を定期的にレビューします。次の項目に関連するアクセスをレビューします。
+</p><p>1. Web アプリケーションで、現在リストされているユーザー / ユーザー ID / アプリケーション ID / データベース ID / その他の ID をアクティブにしておく必要があるかどうか。
+</p><p>2. リストされたアクティブなユーザー / ユーザー ID / アプリケーション ID / データベース ID / その他の ID が適切な程度の権限を持っているかどうか。
+</p><p>3. Web アプリケーションを構成するすべてのコンポーネントがアクセスについてレビューされているかどうか。たとえば、Web アプリケーションに割り当てられた DBA が組織外に移動したら、その DBA のデータベースへのアクセス権は取り消されていますか。
+注目すべき典型的なコンポーネントは、データベース、キーストア、Web サービス、アプリケーションサーバー、ファイアウォール、その他、ユーザーを "内部" 資産に誘導する可能性のあるアプリケーションです。
+</p><p>4. すべての非アクティブなユーザー / ユーザー ID / アプリケーション ID / データベース ID / その他の ID が取り消されているかどうか。
+</p>
+<h2><span class="mw-headline" id="Best_Practice:_Monitoring_of_access">ベストプラクティス: アクセスの監視</span></h2>
+<p>Web アプリケーションでは、次に示すアクティビティについてのログと監視が必要です。
+</p><p>次のような項目についてログを取るとよいでしょう。 
+</p><p>1. ユーザーの作成
+</p><p>2. ユーザーの削除
+</p><p>3. ユーザーへの管理者権限の付与
+</p><p>4. 権限の変更
+</p><p>5. 管理者アカウントや特権アカウントによる、作成、変更、削除および実行イベント 
+</p><p>6. 無効な論理アクセスの試行
+</p><p>7. セキュリティログへのユーザーアクセス
+</p><p>8. システムレベルアカウントの作成、変更および削除
+</p><p>ログには、次のような項目を含めるべきです。
+</p><p>1. ユーザーや管理者/特権ユーザーを一意に識別する情報
+</p><p>2. イベントの種類 (ログイン、読み取り、作成、変更、削除、実行など)
+</p><p>3. 日付とタイムスタンプ
+</p><p>4. アクションの成功または失敗
+</p><p>5. 拒否の理由 (もしあれば)
+</p>
+<h2><span class="mw-headline" id="Best_Practice:_Access_management">ベストプラクティス: アクセス管理</span></h2>
+<p>管理対象とするオブジェクト (アプリケーション、開発環境、データベース、API、サーバー、ネットワークコンポーネントなど) について、次の手順でプロセスを維持します。
+</p><p>1. ユーザーアクセスのリクエスト 
+</p><p>2. ユーザーアクセスの認可 
+</p><p>3. ユーザーアクセスの実装 
+</p><p>4. ユーザーアクセス資格情報の配布 
+</p><p>5. ユーザーアクセスのレビュー 
+</p><p>6. ユーザーアクセスの取り消し 
+</p><p>7. 解雇した従業員 / 請負業者 / サードパーティ納入業者のユーザーアクセスの取り消し
+</p>
+</p></div><div id="SQL_Integrated_Access_Control" class="section-27 unselected"><p>
+<p><b>機能の例</b>
+</p>
+<pre>   <a rel="nofollow" class="external free" href="http://mail.example.com/viewMessage?msgid=2356342">http://mail.example.com/viewMessage?msgid=2356342</a>
+</pre>
+<p><b>この SQL には、改ざんに対する脆弱性があります。</b>
+</p>
+<pre> select * from messages where messageid = 2356342
+</pre>
+<p><b>クエリでは、必ず所有者も参照するようにします。</b>
+</p>
+<pre> select * from messages where messageid = 2356342 AND messages.message_owner = 
+</pre>
+</p></div><div id="Access_Control_Positive_Patterns" class="section-28 unselected"><p>
+<ul>
+<li>ロールではなく、アクティビティに対するコードを記述する
+</li>
+<li>アクセス制御ロジックを一元化する
+</li>
+<li>アクセス制御をフィルターとして設計する
+</li>
+<li>デフォルトは拒否とする、エラー時の動作はセキュアな方向に倒す
+</li>
+<li>一元化したアクセス制御メカニズムを構築する
+</li>
+<li>プレゼンテーション層のアクセス制御およびサーバー側のアクセス制御は同一のコアロジックによる処理を行う
+</li>
+<li>アクセス制御はサーバー側にある信頼できるデータにもとづいて行う
+</li>
+</ul>
+</p></div><div id="Data_Contextual_Access_Control" class="section-29 unselected"><p>
+<p><b>データコンテキスト / 水平的なアクセス制御 API の例</b>
+</p>
+<pre>   ACLService.isAuthorized(EDIT_ORG, 142)
+   ACLService.assertAuthorized(VIEW_ORG, 900)
+</pre>
+<p>長い形式
+</p>
+<pre>   isAuthorized(user, EDIT_ORG, Organization.class, 14)
+</pre>
+<ul>
+<li>基本的には、特定のオブジェクトを扱う状況でユーザーが適切なロールを持つかどうかをチェックする
+</li>
+<li>アクセス制御ロジックを一元化する
+</li>
+<li>最も低いレベルでデータを保護する
+</li>
+</ul>
+</p></div><div id="References" class="section-30 unselected"><p>
+<ul>
+<li> <a href="/index.php/Testing_for_Authorization" title="認可のテスト">認可のテスト</a>
+</li>
+</ul>
+</p></div><div id="Authors_and_Primary_Editors" class="section-31 unselected"><p>
+<p>Shruti Kulkarni - shruti.kulkarni [at] owasp.org<br />
+Mennouchi Islam Azeddine - azeddine.mennouchi [at] owasp.org<br />
+Jim Manico - jim [at] owasp.org<br />
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>OWASP Cheat Sheets Project Homepage</b>
+</p>
+<ul>
+<li> <a href="/index.php/OWASP_Cheat_Sheet_Series" title="OWASP Cheat Sheet Series">OWASP Cheat Sheet Series</a>
+</li>
+</ul>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <strong class="selflink">Access Control Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul></p></div></div>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.100 seconds
+Real time usage: 0.116 seconds
+Preprocessor visited node count: 159/1000000
+Preprocessor generated node count: 220/1000000
+Post‐expand include size: 4204/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:23129-0!*!0!!*!*!* and timestamp 20151215041031 and revision id 204799
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Access_Control_Cheat_Sheet&amp;oldid=204799">https://www.owasp.org/index.php?title=Access_Control_Cheat_Sheet&amp;oldid=204799</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Access+Control+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Access_Control_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:Access_Control_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Access_Control_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Access_Control_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Access_Control_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Access_Control_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Access_Control_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Access_Control_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Access_Control_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Access_Control_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Access_Control_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Access_Control_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Access_Control_Cheat_Sheet&amp;oldid=204799" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Access_Control_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 7 December 2015, at 03:51.</li>
+											<li id="footer-info-viewcount">This page has been accessed 157,366 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":158});
+}</script>
+	</body>
+</html>

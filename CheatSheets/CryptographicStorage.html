@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>暗号化ストレージに関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Cryptographic_Storage_Cheat_Sheet","wgTitle":"Cryptographic Storage Cheat Sheet","wgCurRevisionId":203883,"wgRevisionId":203883,"wgArticleId":11467,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Cryptographic_Storage_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Cryptographic_Storage_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">暗号化ストレージに関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd): <b>2015/11/26</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Architectural_Decision"><span class="tocnumber">1.1</span> <span class="toctext">アーキテクチャの決定</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Providing_Cryptographic_Functionality"><span class="tocnumber">2</span> <span class="toctext">暗号化機能の提供</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Secure_Cryptographic_Storage_Design"><span class="tocnumber">2.1</span> <span class="toctext">安全な暗号化ストレージの設計</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Rule_-_Only_store_sensitive_data_that_you_need"><span class="tocnumber">2.1.1</span> <span class="toctext">ルール - 必要な機密データのみを保存する</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Rule_-_Use_strong_approved_Authenticated_Encryption"><span class="tocnumber">2.1.2</span> <span class="toctext">ルール - 強力な公認の認証付き暗号化を使用する</span></a>
+<ul>
+<li class="toclevel-4 tocsection-7"><a href="#Rule_-_Use_strong_approved_cryptographic_algorithms"><span class="tocnumber">2.1.2.1</span> <span class="toctext">ルール - 強力な公認の暗号化アルゴリズムを使用する</span></a></li>
+<li class="toclevel-4 tocsection-8"><a href="#Rule_-_Use_approved_cryptographic_modes"><span class="tocnumber">2.1.2.2</span> <span class="toctext">ルール - 公認の暗号化モードを使用する</span></a></li>
+<li class="toclevel-4 tocsection-9"><a href="#Rule_-_Use_strong_random_numbers"><span class="tocnumber">2.1.2.3</span> <span class="toctext">ルール - 強力な乱数を使用する</span></a></li>
+<li class="toclevel-4 tocsection-10"><a href="#Rule_-_Use_Authenticated_Encryption_of_data"><span class="tocnumber">2.1.2.4</span> <span class="toctext">ルール - データの認証付き暗号化を使用する</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-11"><a href="#Rule_-_Store_a_one-way_and_salted_value_of_passwords"><span class="tocnumber">2.1.3</span> <span class="toctext">ルール - パスワードは一方向の salt 値を保存する</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Rule_-_Ensure_that_the_cryptographic_protection_remains_secure_even_if_access_controls_fail"><span class="tocnumber">2.1.4</span> <span class="toctext">ルール - アクセス制御に失敗した場合でも暗号保護が安全に維持されるようにする</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Rule_-_Ensure_that_any_secret_key_is_protected_from_unauthorized_access"><span class="tocnumber">2.1.5</span> <span class="toctext">ルール - あらゆる秘密鍵が不正なアクセスから保護されるようにする</span></a>
+<ul>
+<li class="toclevel-4 tocsection-14"><a href="#Rule_-_Define_a_key_lifecycle"><span class="tocnumber">2.1.5.1</span> <span class="toctext">ルール - 鍵のライフサイクルを定義する</span></a></li>
+<li class="toclevel-4 tocsection-15"><a href="#Rule_-_Store_unencrypted_keys_away_from_the_encrypted_data"><span class="tocnumber">2.1.5.2</span> <span class="toctext">ルール - 暗号化されたデータと暗号化されていない鍵を離して保存する</span></a></li>
+<li class="toclevel-4 tocsection-16"><a href="#Rule_-_Use_independent_keys_when_multiple_keys_are_required"><span class="tocnumber">2.1.5.3</span> <span class="toctext">ルール - 複数の鍵が必要な場合は個別の鍵を使用する</span></a></li>
+<li class="toclevel-4 tocsection-17"><a href="#Rule_-_Protect_keys_in_a_key_vault"><span class="tocnumber">2.1.5.4</span> <span class="toctext">ルール - Key Vault で鍵を保護する</span></a></li>
+<li class="toclevel-4 tocsection-18"><a href="#Rule_-_Document_concrete_procedures_for_managing_keys_through_the_lifecycle"><span class="tocnumber">2.1.5.5</span> <span class="toctext">ルール - ライフサイクルを通した鍵管理の具体的な手順を文書化する</span></a></li>
+<li class="toclevel-4 tocsection-19"><a href="#Rule_-_Build_support_for_changing_algorithms_and_keys_when_needed"><span class="tocnumber">2.1.5.6</span> <span class="toctext">ルール - アルゴリズムと鍵を必要なときに変更するためのサポートを構築する</span></a></li>
+<li class="toclevel-4 tocsection-20"><a href="#Rule_-_Document_concrete_procedures_to_handle_a_key_compromise"><span class="tocnumber">2.1.5.7</span> <span class="toctext">ルール - 鍵の危殆化を処理するための具体的な手順を文書化する</span></a></li>
+<li class="toclevel-4 tocsection-21"><a href="#Rule_-_Limit_quantity_of_data_encrypted_with_one_key"><span class="tocnumber">2.1.5.8</span> <span class="toctext">ルール - 1 つの鍵で暗号化するデータの量を制限する</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-22"><a href="#Rule_-_Follow_applicable_regulations_on_use_of_cryptography"><span class="tocnumber">2.1.6</span> <span class="toctext">ルール - 暗号の使用に適用される法規に従う</span></a>
+<ul>
+<li class="toclevel-4 tocsection-23"><a href="#Rule_-_Under_PCI_DSS_requirement_3.2C_you_must_protect_cardholder_data"><span class="tocnumber">2.1.6.1</span> <span class="toctext">ルール - PCI DSS 要件 3 に従い、カード所有者データを保護する必要がある</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Related_Articles"><span class="tocnumber">3</span> <span class="toctext">関連資料</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">4</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-26"><a href="#Other_Cheatsheets"><span class="tocnumber">4.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>この資料では、保存データを保護するソリューションの実装時に基準となるシンプルなモデルを紹介します。<br /> 
+</p>
+<h2><span class="mw-headline" id="Architectural_Decision">アーキテクチャの決定</span></h2>
+<p>保存データを適切に保護する方法を判断するには、アーキテクチャを決定する必要があります。暗号化ストレージには、さまざまな製品、方法、およびメカニズムがあります。このチートシートは、暗号化ソリューションを実装する開発者およびアーキテクトに向けて、詳細レベルのガイダンスを示すことに焦点を合わせています。具体的なベンダーのソリューションや、暗号化アルゴリズムの設計については取り上げません。
+</p>
+<h1><span class="mw-headline" id="Providing_Cryptographic_Functionality">暗号化機能の提供</span></h1>
+<h2><span class="mw-headline" id="Secure_Cryptographic_Storage_Design">セキュアな暗号化ストレージの設計</span></h2>
+<h3><span class="mw-headline" id="Rule_-_Only_store_sensitive_data_that_you_need">ルール - 必要な機密データのみを保存する</span></h3>
+<p>多くの電子商取引ビジネスでは、定期請求のためのクレジットカード情報の保存に、サードパーティの支払プロバイダーを利用しています。それにより、クレジットカード番号を安全に維持するという負担を負わずにすみます。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Use_strong_approved_Authenticated_Encryption">ルール - 強力な公認の認証付き暗号を使用する</span></h3>
+<p>たとえば、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/CCM_mode">CCM</a> や <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/GCM_mode">GCM</a> は、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> アルゴリズムに基づいた公認の<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Authenticated_encryption">認証付き暗号</a>モードです。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Use_strong_approved_cryptographic_algorithms">ルール - 強力な公認の暗号化アルゴリズムを使用する</span></h4>
+<p>たとえ簡単そうであっても、 既存の暗号化アルゴリズムを独自に実装してはいけません。広く受け入れられているアルゴリズムと、広く受け入れられている実装を使用します。 
+</p><p>公認の公開アルゴリズム (共有鍵暗号 AES、公開鍵暗号 RSA、SHA-256 以上のハッシングなど) のみを使用します。脆弱なアルゴリズム (MD5 や SHA1 など) は使用してはなりません。パスワードの保存にはハッシングを避けて、PBKDF2、bcrypt または scrypt を使用します。"強力" に区分される暗号化アルゴリズムは、時間の経過とともに変化する点に注意してください。<a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf">NIST 公認のアルゴリズム</a>、ISO TR 14742 「暗号化アルゴリズム及びその使用に関する勧告」、欧州連合ネットワーク情報セキュリティ庁の「<a rel="nofollow" class="external text" href="http://www.enisa.europa.eu/activities/identity-and-trust/library/deliverables/algorithms-key-size-and-parameters-report-2014/at_download/fullReport">Algorithms, key size and parameters report – 2014</a>」を参照してください。 
+たとえば、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> 128、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/RSA_(cryptosystem)">RSA</a> 3072、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Secure_Hash_Algorithm">SHA</a> 256 など。 
+</p><p>実装には、少なくとも作成段階では暗号の専門家が関わるようにします。可能な場合は、FIPS 140-2 認定の実装を使用します。 
+</p><p>各アルゴリズムと鍵長の強度 (セキュリティのビット数)、およびそれらの比較方法については、<a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/nistpubs/800-57/sp800-57_part1_rev3_general.pdf">NIST 公認のアルゴリズム</a>の表 2「Comparable strengths」を参照してください。 
+</p>
+<ul>
+<li> 一般に、異なるアルゴリズムを使用するときには、すべての強度が同等になるようにします。たとえば、AES-128 鍵の暗号化には、AES-128 鍵以上、または RSA-3072 以上を使用できます。 
+</li>
+<li> 一般に、ハッシュの長さは、対称 / 非対称アルゴリズムによって提供されるセキュリティビット数の 2 倍の長さにします。たとえば、3TDEA (セキュリティのビット数 112) の場合は SHA-224 になります (これは、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Birthday_attack">誕生日攻撃</a>によるものです)。
+</li>
+</ul>
+<p>鍵の保護にパスワードを使用する場合は、保護する鍵の強度に相当する<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Password_strength">パスワード強度</a>が必要になります。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Use_approved_cryptographic_modes">ルール - 公認の暗号化モードを使用する</span></h4>
+<p>一般に、AES や DES などの対称暗号プリミティブを直接使用してはいけません。代わりに、<a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/ST/toolkit/BCM/current_modes.html">NIST 公認のモード</a>を使用する必要があります。 
+</p><p>注: 大量データの暗号化に <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation#Electronic_codebook_.28ECB.29">ECB モード</a>を使用してはなりません (その他のモードは、データのブロックを 1 つにつなげてデータセキュリティを向上させているため、より良い選択肢です)。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Use_strong_random_numbers">ルール - 強力な乱数を使用する</span></h4>
+<p>すべての乱数、特に暗号化パラメーター (鍵、IV、MAC タグ)、ランダムなファイル名、ランダムな GUID、およびランダムな文字列に使用される乱数が、暗号強度の高い形で生成されるようにします。 
+</p><p>乱数のアルゴリズムでは、十分なエントロピーのシード値が使用されるようにします。
+</p><p><a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/ST/toolkit/rng/documentation_software.html">NIST RNG テストツール</a> (PCI PTS Derived Test Requirements に使用) のようなツールは、乱数ジェネレーターの包括的な品質評価に使用できます。たとえば、RNG ソースから 128MB のデータを読み込んで、このツールを使用して、当該データのランダム性を評価します。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Use_Authenticated_Encryption_of_data">ルール - データの認証付き暗号化を使用する</span></h4>
+<p>一定の API で (<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Authenticated_encryption">AE</a>) モードを使用します。推奨モードには、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/CCM_mode">CCM</a> や <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Galois/Counter_Mode">GCM</a> などがあります。2014 年 11 月以降は、これらのみが <a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/ST/toolkit/BCM/current_modes.html">NIST 公認のモード</a>に規定されています。ISO IEC 19772 (2009) 「Information technology — Security techniques — Authenticated encryption」、および「<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/IEEE_P1619">IEEE P1619 Standard for Cryptographic Protection of Data on Block-Oriented Storage Devices</a>」を参照してください。 
+</p>
+<ul>
+<li> <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Authenticated_encryption">認証付き暗号化</a>により、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Confidentiality">機密性</a>、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Data_integrity">完全性</a>、および<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Authentication">信頼性</a> (CIA) が確保されます。暗号化だけでは、機密性しか得られません。暗号化は、メッセージの完全性と信頼性の保護を常に併せ持っている必要があります。そうでないと、特に信頼できないチャネル (URL や Cookie) を通じて渡された暗号文は、元のプレーンテキストデータの改ざんに対して脆弱になることがあります。 
+</li>
+<li> これらのモードでは、鍵が 1 つのみ必要になります。一般に、タグのサイズと IV のサイズは、最大値に設定する必要があります。
+</li>
+</ul>
+<p>前述の推奨 <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Authenticated_encryption">AE</a> モードが使用できない場合は、次のようにします。
+</p>
+<ul>
+<li> <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Block_cipher_modes_of_operation#Cipher-block_chaining_.28CBC.29">暗号ブロック連鎖 (CBC) モード</a>の暗号化と、暗号化後のメッセージ認証コード (<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/HMAC">HMAC</a> や <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/CMAC">CMAC</a> など) を組み合わせます (つまり、Encrypt-then-MAC)。 
+<ul>
+<li> 完全性のみよりも、完全性と信頼性の組み合わせの方がより安全です。つまり、HMAC-SHA256 や HMAC-SHA512 などの MAC は、SHA-256 や SHA-512 よりもより良い選択肢です。
+</li>
+</ul>
+</li>
+<li> これら 2 つの個別の操作には、2 つの個別の鍵を使用します。 
+</li>
+<li> <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/CBC-MAC#Security_with_fixed_and_variable-length_messages">可変長データに CBC MAC</a> を使用してはなりません。 
+</li>
+<li> AES がない場合や、CCM、EAX、CMAC などの機密性と信頼性を提供する認証付き暗号モード (データ発信元認証) のない場合には、<a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/STM/cavp/index.html">CAVP プログラム</a>による暗号化アルゴリズムの検証状況を確認してください。Java では、SunJCE を使用している場合に当てはまります。JDK 1.5 以上でサポートされている暗号モードは、CBC、CFB、CFBx、CTR、CTS、ECB、OFB、OFBx、PCBC です。いずれの暗号モードも認証付き暗号モードではありません。(そのため、明示的に追加されています。)代替の JCE プロバイダー (Bouncy Castle、RSA JSafe、IAIK など) を使用している場合は、それらが提供する認証付き暗号モードを使用します。
+</li>
+</ul>
+<p>注: <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Disk_encryption_theory">ディスク暗号化</a>は、特殊な<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Data_at_Rest">保存データ</a>のケースです (ハードディスクドライブ上の暗号化ファイルシステムなど)。<a rel="nofollow" class="external text" href="http://csrc.nist.gov/publications/nistpubs/800-38E/nist-sp-800-38E.pdf">XTS-AES モード</a>は、ディスク暗号化に最適化された、<a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/ST/toolkit/BCM/current_modes.html">NIST 公認のモード</a>の 1 つです。このモードでは、機密性とデータ改ざんに対するある程度の防御が提供されます (ただし、<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Authenticated_encryption">AE</a> <a rel="nofollow" class="external text" href="http://csrc.nist.gov/groups/ST/toolkit/BCM/current_modes.html">NIST 公認のモード</a>ほど強力ではありません)。これについても、「<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/IEEE_P1619">IEEE P1619 Standard for Cryptographic Protection of Data on Block-Oriented Storage Devices</a>」で規定されています。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Store_a_one-way_and_salted_value_of_passwords">ルール - パスワードは一方向の salt 値を保存する</span></h3>
+<p>パスワードの保存には、PBKDF2、bcrypt、または scrypt を使用します。パスワードの保存の詳細については、「<a href="/index.php/Password_Storage_Cheat_Sheet" title="パスワードの保存に関するチートシート">パスワードの保存に関するチートシート</a>」を参照してください。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Ensure_that_the_cryptographic_protection_remains_secure_even_if_access_controls_fail">ルール - アクセス制御が適切になされていない場合でも暗号保護が安全に維持されるようにする</span></h3>
+<p>このルールにより、多層防御の原則をサポートします。(ユーザー名、パスワード、権限 などによる) アクセス制御は、1 つの防御層です。ストレージ暗号化は、攻撃者がデータベースアクセス制御層を侵害したとしても、データを保護し続ける追加の保護層になります。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Ensure_that_any_secret_key_is_protected_from_unauthorized_access">ルール - あらゆる秘密鍵が不正なアクセスから保護されるようにする</span></h3>
+<h4><span class="mw-headline" id="Rule_-_Define_a_key_lifecycle">ルール - 鍵のライフサイクルを定義する</span></h4>
+<p>鍵のライフサイクルでは、鍵が有効期間中に推移するさまざまな状態を詳しく記述します。鍵のライフサイクルでは、暗号化使用の有効期限、復号化使用の有効期限 (この2つの有効期限は必ずしも一致するとは限らない)、新しい鍵の導入時にデータを暗号化し直すかどうか、そして鍵を全面使用停止にする時期を指定します。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Store_unencrypted_keys_away_from_the_encrypted_data">ルール - 暗号化されたデータと暗号化されていない鍵を離して保存する</span></h4>
+<p>データとともに鍵を保存していると、データの侵害によって、簡単に鍵も侵害されてしまいます。暗号化されていない鍵は、データと同じマシンやクラスターに存在しないようにする必要があります。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Use_independent_keys_when_multiple_keys_are_required">ルール - 複数の鍵が必要な場合は独立した鍵を使用する</span></h4>
+<p>鍵マテリアルは、独立的なものにします。つまり、最初の鍵 (または以前の鍵) との関連が容易にわかるような 2 番目の鍵を選んではいけません。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Protect_keys_in_a_key_vault">ルール - Key Vault で鍵を保護する</span></h4>
+<p>鍵は、常に保護された Key Vault に収めておく必要があります。特に、データに直接アクセスされる脅威ベクトルと、鍵に直接アクセスされる脅威ベクトルとの間に隔たりを設けるようにします。つまり、(アプリケーションの攻撃者が関連する脅威モデルに含まれるとの前提に立てば) アプリケーションや Web サーバーに鍵を保存してはならないことを意味します。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Document_concrete_procedures_for_managing_keys_through_the_lifecycle">ルール - ライフサイクル全体を通した鍵管理の具体的な手順を文書化する</span></h4>
+<p>これら手順は文書に記録しておく必要があり、鍵の管理者は適切なトレーニングを受けている必要があります。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Build_support_for_changing_algorithms_and_keys_when_needed">ルール - アルゴリズムと鍵を必要時に変更するためのサポートを構築する</span></h4>
+<p>鍵が侵害された場合や、外部機関が鍵を期限切れにした場合は、鍵の変更が必要になります。アプリケーションポリシーや緊急の必要性により、アプリケーション管理者はどこかの時点で鍵のローテーションや、場合によっては新たな鍵によるデータの再暗号化 が必要になります。このような状況に素早く対処できるように準備しておくのが適切です。暗号化したデータに鍵のバージョンと暗号化アルゴリズムのバージョンを含めておくと役に立つでしょう。たとえば、暗号化したデータの前に "<code>{1,1}...</code>" のような単純なプレフィックス文字列を付けることで、アルゴリズムバージョン 1、鍵バージョン 1 を表せます。これにより、すべての既存のデータを一度に再暗号化することなく、暗号化アルゴリズムと鍵を "オンライン" で変更できます。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Document_concrete_procedures_to_handle_a_key_compromise">ルール - 鍵の危殆化を処理するための具体的な手順を文書化する</span></h4>
+<p>暗号鍵のローテーションの実行が必要になったときに、運用担当者が必要情報にすぐにアクセスして利用できるようにしておきます。鍵のローテーションでは、ソースコードへの変更や危険を伴う展開方法への変更を要求してはなりません。これをインシデントの最中に行うことは、当該担当者に多大なストレスをかけることになります。
+</p>
+<h4><span class="mw-headline" id="Rule_-_Limit_quantity_of_data_encrypted_with_one_key">ルール - 1 つの鍵で暗号化するデータの量を制限する</span></h4>
+<p>暗号化したデータの量が<b>特定のしきい値</b>を超えた場合は、新しい鍵を使用する必要があります。この<b>特定のしきい値</b>は、どの暗号化アルゴリズムを使用しているかによって異なりますが、一般に、64 ビットのブロック暗号 (DES、3DES、Blowfish、RC5 など) の場合は 2<sup>35</sup> バイト (～ 34 ギガバイト)、128 ビットのブロック暗号 (AES、TwoFish、Serpent) の場合は 2<sup>68</sup> バイト (～ 295,147,905 テラバイト) になります。最新の暗号で暗号化している場合、このしきい値に達する可能性はほとんどありませんが、アルゴリズムとローテーションの手順を評価する際には考慮に入れておく必要があります。
+</p>
+<h3><span class="mw-headline" id="Rule_-_Follow_applicable_regulations_on_use_of_cryptography">ルール - 暗号の使用に適用される法規に従う</span></h3>
+<h4><span class="mw-headline" id="Rule_-_Under_PCI_DSS_requirement_3.2C_you_must_protect_cardholder_data">ルール - PCI DSS 要件 3 によれば、カード所有者データを保護しなければならない</span></h4>
+<p>PCI (Payment Card Industry) DSS (Data Security Standard) は、カード所有者データセキュリティの奨励と改善、および世界的に一貫したデータセキュリティ対策の広範な採用を促進するために制定されました。この標準は、それまでの Visa、Mastercard、Amex、JCB および Diners による個別の基準に代わるものとして、2005 年に発表されました。現行バージョンは、2015 年 4 月に発行された 3.1 です。 
+</p><p>PCI DSS 要件 3 は、クレジットカードデータの安全な保存を対象範囲にしています。この要件では、絶対に保存してはならないデータなど安全な保存に関するいくつかの側面について規定しています。ここでは、次に示す要件 3.4、3.5 および 3.6 で規定されている暗号化ストレージについて説明します。 
+</p><p><b>3.4 PAN (カード所有者番号) は、どこに保存するとしても少なくとも判読不能な状態にしておく</b> 
+</p><p>要件 3.4 への準拠は、この標準で説明されている 4 種類の安全な保存のいずれかを実装することで満たされるようになります。その安全な保存には、データの暗号化とハッシングが含まれています。これら 2 つのアプローチは、選択肢のリストから最もよく選ばれるものです。標準では、特定のアルゴリズムを取り上げていませんが、<b>強力な暗号化技術</b>の使用を要求しています。PCI Council の用語集では、<b>強力な暗号化技術</b>は次のように定義されています。 
+</p><p><i>業界で認められたテスト済みのアルゴリズムに、十分な鍵の長さと適切な鍵管理の実践が伴った暗号化技術です。暗号化技術とは、データを保護する方法で、暗号化 (復号可能) とハッシング (復号不能な "一方向") の両方を含みます。SHA-1 は、業界で認められたテスト済みのハッシュアルゴリズムの一例です。業界で認められているテスト済みの暗号化の標準およびアルゴリズムの例として、AES (128 ビット以上)、TDES (最小倍長鍵)、RSA (1024 ビット以上)、ECC (160 ビット以上)、および ElGamal (1024 ビット以上) が挙げられます。</i> 
+</p><p>このチートシートの 2 番目のルールを実施している場合は、PCI DSS 要件 3.4 以上に準拠している強力な暗号化アルゴリズムを実装していることになります。カードデータが保存される可能性のあるすべての場所 (ログなども含む) を特定して、適切なレベルの保護を適用する必要があります。この範囲は、データの暗号化から、ログ内のカード番号の置換にまで及ぶ可能性があります。 
+</p><p>この要件は、ファイルまたは列レベルの暗号化ではなく、ディスクの暗号化を実装することで満たすこともできます。<b>強力な暗号化技術</b>の要件は、ディスク暗号化とバックアップメディアにも当てはまります。カードデータは決してプレーンテキストで保存してはなりません。また、このチートシートのガイダンスに従うことで、PCI DSS 要件 3.4 に準拠した方法で安全にデータを保存できるようになります。 
+</p><p><b>3.5 カード所有者データのセキュリティ保護に使用される鍵を開示や誤使用から保護する</b> 
+</p><p>この要件名が示しているように、暗号鍵自体を安全に保存することが求められています。これは、鍵に対する強力なアクセス制御、監査、およびロギングの実施を意味します。鍵は安全な場所に保存する必要があります。さらに、暗号化されたデータとは "異なる" 場所に保存する必要もあります。つまり、鍵データは Web サーバーやデータベースサーバーに保存してはならないということです。 
+</p><p>鍵へのアクセスは、必要最小限のユーザーに制限します。理想を言えば、このユーザーグループは、鍵管理者の責務を遂行するだけの高い信頼性と十分なトレーニングを積んだユーザーであるべきです。当然ながら、データの暗号化 / 復号化を実行するために鍵データにアクセスするシステム / サービスアカウントには要件があります。 
+</p><p>鍵自体をプレーンテキストで保存してはなりません。KEK (鍵暗号鍵) を使用して暗号化します。KEK は、それを暗号化している暗号鍵と同じ場所に保存してはなりません。 
+</p><p><b>3.6 カード所有者データの暗号化に使用される暗号鍵の鍵管理プロセスおよび手順をすべて文書化して実施する</b> 
+</p><p>要件 3.6 は、PCI に準拠する会社の鍵管理プロセスでは、次に示す 8 つの具体的な鍵ライフサイクルの段階をカバーするよう義務付けています。 
+</p><p><b>3.6.1 強力な暗号鍵の生成</b> 
+</p><p>このチートシートで前述したように、高度なデータセキュリティを実現するアルゴリズムを使用する必要があります。また、強力な鍵を生成することで、脆弱な暗号鍵によるデータセキュリティの侵害を防ぐようにします。強力な鍵は、データセキュリティ要件を十分に満たし、PCI DSS に準拠する鍵長を使用することで生成されます。鍵サイズ単独では、鍵の強さの基準にはなりません。鍵の生成に使用するデータには、十分な無作為性が必要です ("十分" かどうかは通常、データセキュリティ要件によって決まります)。また、鍵データ自体のエントロピーも高くする必要があります。<br /> 
+</p><p><b>3.6.2 暗号鍵の安全な配布</b> 
+</p><p>鍵の配布に使用する方法は、転送中に鍵が盗難されないように安全にする必要があります。Diffie Hellman などのプロトコルの使用は、鍵の安全な配布に役立ちます。また、TLS や SSHv2 などの安全なトランスポートを使用することも、転送中の鍵の安全確保につながります。SSLv3 などの古いプロトコルは、使用してはいけません。<br /> 
+</p><p><b>3.6.3 暗号鍵の安全な保存</b>
+</p><p>暗号鍵の安全な保存については、KEK も含めて、要件 3.5 の説明の中で触れています (上記参照)。
+</p><p><b>3.6.4 定期的な暗号鍵の変更</b>
+</p><p>PCI DSS 標準では、暗号に使用する鍵は少なくとも毎年 1 回ローテーションする必要があると規定しています。鍵のローテーションプロセスでは、暗号 / 復号プロセスから古い鍵を削除して、新しい鍵に置き換える必要があります。システムに入力する新しいデータは、すべて新しい鍵で暗号化する必要があります。少なくとも 1 年から 3 年ごとにデータの鍵を更新するという上記のルールでは、既存データを新しい鍵で更新することが推奨されていますが、これを求める明確な規定は PCI DSS にはありません。
+</p><p><b>3.6.5 鍵の完全性が脆弱になっている場合、または鍵の侵害が疑われる場合に必要と考えられる鍵の破棄や更新</b>
+</p><p>鍵管理プロセスでは、鍵のアーカイブ、廃棄、または侵害への対応が必要です。このような鍵の安全な保存と更新のプロセスは、要件 3.6.2、3.6.3、および 3.6.4 のプロセスで対応できるはずです。
+</p><p><b>3.6.6 暗号鍵の知識分割と二重管理の確立</b>
+</p><p>鍵管理に対する知識分割や二重管理の要件により、鍵のローテーションや削除などの鍵管理タスクが単独ユーザーでは実行できないようにします。このシステムでは、2 人のユーザーがアクション (自分の OTP の値を入力するなど) を実行してそれぞれ異なる値を生成してから、これらの値を連結することにより完全な鍵データを生成します。
+</p><p><b>3.6.7 暗号鍵の不正置換の禁止</b>
+</p><p>要件 3.6.6 への準拠を実施しているシステムは、鍵データの不正な置換を十分に防止できます。二重管理プロセスに加えて、強力なアクセス制御、鍵データの監査とロギングを実施して、不正なアクセス試行を阻止し、記録する必要があります。
+</p><p><b>3.6.8 暗号鍵管理者が、鍵管理者としての職責を理解して受諾したことを示す書面に署名することを義務付け </b>
+</p><p>要件 3.6 に示された強力な鍵管理の職務を果たすには、鍵管理の責務を果たす方法について理解している、信頼性の高いトレーニングを積んだ鍵管理者が必要になります。また、鍵管理者は、この役割に付随する職責について理解していることを示す書面に署名することも必要です。
+</p>
+<h1><span class="mw-headline" id="Related_Articles">関連資料</span></h1>
+<p>OWASP - <a href="/index.php/Testing_for_SSL-TLS_(OWASP-CM-001)" title="Testing for SSL-TLS (OWASP-CM-001)">Testing for SSL-TLS</a>、および OWASP <a href="/index.php/Guide_to_Cryptography" title="Guide to Cryptography">Guide to Cryptography</a> 
+</p><p>OWASP – <a rel="nofollow" class="external text" href="http://www.owasp.org/index.php/ASVS">Application Security Verification Standard (ASVS) – Communication Security Verification Requirements (V10)</a>
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Kevin Kenan - kevin[at]k2dd.com<br />
+David Rook - david.a.rook[at]gmail.com<br />
+Kevin Wall - kevin.w.wall[at]gmail.com<br />
+Jim Manico - jim[at]owasp.org<br />
+Fred Donovan - fred.donovan(at)owasp.org
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Cryptographic Storage Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.095 seconds
+Real time usage: 0.109 seconds
+Preprocessor visited node count: 128/1000000
+Preprocessor generated node count: 174/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:11467-0!*!0!!en!2!* and timestamp 20151215041219 and revision id 203883
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;oldid=203883">https://www.owasp.org/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;oldid=203883</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Cryptographic+Storage+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Cryptographic_Storage_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:Cryptographic_Storage_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Cryptographic_Storage_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Cryptographic_Storage_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Cryptographic_Storage_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;oldid=203883" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Cryptographic_Storage_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 26 November 2015, at 11:06.</li>
+											<li id="footer-info-viewcount">This page has been accessed 231,581 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":184});
+}</script>
+	</body>
+</html>

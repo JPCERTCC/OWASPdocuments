@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>iOS 開発者のためのチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"IOS_Developer_Cheat_Sheet","wgTitle":"IOS Developer Cheat Sheet","wgCurRevisionId":197587,"wgRevisionId":197587,"wgArticleId":25698,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"IOS_Developer_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-IOS_Developer_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">iOS 開発者のためのチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd): <b>2015/07/18</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Basics"><span class="tocnumber">2</span> <span class="toctext">基礎</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Remediation.E2.80.99s_to_OWASP_Mobile_Top_10_Risks"><span class="tocnumber">3</span> <span class="toctext">OWASP モバイルリスク Top 10 への対策</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Insecure_Data_Storage_.28M1.29"><span class="tocnumber">3.1</span> <span class="toctext">安全でないデータストレージ (M1)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Remediations"><span class="tocnumber">3.1.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="#Weak_Server_Side_Controls_.28M2.29"><span class="tocnumber">3.2</span> <span class="toctext">脆弱なサーバー側制御 (M2)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Remediations_2"><span class="tocnumber">3.2.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="#Insufficient_Transport_Layer_Protection_.28M3.29"><span class="tocnumber">3.3</span> <span class="toctext">不十分なトランスポート層の保護 (M3)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Remediations_3"><span class="tocnumber">3.3.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Client_Side_Injection_.28M4.29"><span class="tocnumber">3.4</span> <span class="toctext">クライアント側インジェクション (M4)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Remediations_4"><span class="tocnumber">3.4.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Poor_Authorization_and_Authentication_.28M5.29"><span class="tocnumber">3.5</span> <span class="toctext">認可や認証の不備 (M5)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Remediations_5"><span class="tocnumber">3.5.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Improper_Session_Handling_.28M6.29"><span class="tocnumber">3.6</span> <span class="toctext">不適切なセッション操作 (M6)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#Remediations_6"><span class="tocnumber">3.6.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-16"><a href="#Security_Decisions_via_Untrusted_Inputs_.28M7.29"><span class="tocnumber">3.7</span> <span class="toctext">信頼できない入力にもとづくセキュリティ判断 (M7)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-17"><a href="#Remediations_7"><span class="tocnumber">3.7.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-18"><a href="#Side_Channel_Data_Leakage_.28M8.29"><span class="tocnumber">3.8</span> <span class="toctext">サイドチャネル攻撃によるデータ漏えい (M8)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-19"><a href="#Remediations_8"><span class="tocnumber">3.8.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-20"><a href="#Broken_Cryptography_.28M9.29"><span class="tocnumber">3.9</span> <span class="toctext">暗号化処理の間違った使い方 (M9)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-21"><a href="#Remediations_9"><span class="tocnumber">3.9.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-22"><a href="#Sensitive_Information_Disclosure_.28M10.29"><span class="tocnumber">3.10</span> <span class="toctext">機密情報の漏えい (M10)</span></a>
+<ul>
+<li class="toclevel-3 tocsection-23"><a href="#Remediations_10"><span class="tocnumber">3.10.1</span> <span class="toctext">対策</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#References_and_Further_Reading"><span class="tocnumber">4</span> <span class="toctext">参考資料</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">5</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-26"><a href="#Other_Cheatsheets"><span class="tocnumber">5.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>このドキュメントは、iOS アプリの開発者を対象に、Apple の iOS オペレーティングシステム向けのセキュアなアプリを開発するときに重要となる項目について、その基本を説明することを目的としています。このドキュメントは、「<a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/OWASP_Mobile_Security_Project">OWASP Mobile Top 10 Risks</a> 」(OWASP モバイルリスク Top 10) 一覧に基づいています。
+</p>
+<h1><span class="mw-headline" id="Basics">基礎</span></h1>
+<p>ユーザーの観点から、自分の iOS デバイスを守るためにできる最善のことを 2 つ挙げるとすれば、強力なパスワードを有効にすることと、<a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Mobile_Jailbreaking_Cheat_Sheet">ジェイルブレイクしない</a>ことです。しかし、開発者にとっては、このどちらも問題を含んでいます。アプリのサンドボックス環境内では、いずれも検証できないからです。(Appleは以前、ジェイルブレイクしているかどうかデバイスをテストするための API を提供していましたが、その API は 2010 年に廃止されました。)企業の場合、強力なパスワードとその他のさまざまなセキュリティ関連の設定をモバイルデバイス管理 (MDM) 製品で管理し、強制できます。小規模な会社や複数のデバイスを所有する個人は、Apple の iPhone 構成ユーティリティ (<a rel="nofollow" class="external free" href="http://www.apple.com/support/iphone/enterprise/">http://www.apple.com/support/iphone/enterprise/</a>) と Apple Configurator (Mac App Store で入手可能) を使用することで、安全な構成プロファイルを構築して複数のデバイスに展開できます。
+</p>
+<h1><span class="mw-headline" id="Remediation.E2.80.99s_to_OWASP_Mobile_Top_10_Risks">OWASP モバイルリスク Top 10 への対策</span></h1>
+<h2><span class="mw-headline" id="Insecure_Data_Storage_.28M1.29">安全でないデータストレージ (M1)</span></h2>
+<p>モバイルデバイスの個人ユーザーが直面する最大のリスクは、間違いなく、デバイスの紛失や盗難によるものです。この場合、デバイスに保存されている情報が、デバイスを見つけた人や盗んだ人の目にさらされてしまいます。アプリが保存するデータを適切に保護する責任の大部分は、デバイス上の各アプリにあります。Apple  iOS には、データを保護するためのメカニズムがいくつか用意されています。これら組み込み済みの保護メカニズムは、大半の個人ユーザーレベルの情報の保護に十分な機能を持っています。財務データなど、より厳重なセキュリティ要件が求められる場合は、これらApple が提供するメカニズムを超える追加の保護機能をアプリケーションに組み込むことができます。
+</p>
+<h3><span class="mw-headline" id="Remediations">対策</span></h3>
+<p>一般に、アプリでは、その基本タスクの実行に必要なデータだけをローカルに保存することをお勧めします。これには、システムロギングなどのサイドチャネルデータも含まれます (下の M8 を参照)。どのような形式であれ、機密データを、アプリのサンドボックス内 (~/Documents/* など) のプレーンテキストデータストレージに保存することは絶対に避けてください。個人ユーザーレベルの機密データは、Apple が提供する API を使用して安全なコンテナーに保存します。
+</p>
+<ul>
+<li> ユーザー認証の資格情報やセッショントークンなど、少量の個人ユーザーレベルの機密データは、デバイスのキーチェーンに安全に保存できます (Apple の「iOS Developer Library」の「Keychain Services Reference」を参照)。
+</li>
+<li> より大量の、あるいは、より一般的な種類の個人ユーザーレベルの機密データには、Apple のファイル保護メカニズムを使用できます (保護オプションについては「NSData Class Reference」を参照)。
+</li>
+<li> 通常の個人ユーザーレベルの機密度を超えるデータについては、どうしてもローカルに保存する必要がある場合は、Apple の暗号化に固有の問題 (例: 暗号化鍵がユーザーのデバイスパスコードで暗号化されている。通常は 4 桁の PIN) に煩わされることのないサードパーティのコンテナー暗号化 API の使用を検討してください。例えば無償で提供されているSQLcipher (<a rel="nofollow" class="external free" href="http://sqlcipher.net">http://sqlcipher.net</a> を参照) などがあります。これを行う際は、適切なキー管理が極めて重要ですが、このドキュメントでは扱いません。
+</li>
+<li> キーチェーンに保存するアイテムについては、最もセキュアな API 指定である kSecAttrAccessibleWhenUnlocked (iOS 5/6 ではデフォルト) を使用します。
+</li>
+<li> 機密情報の保存に NSUserDefaults は使用しないでください。
+</li>
+<li> NSManagedObects を使用するデータ / エンティティはすべて、暗号化されていないデータベースファイルに保存されることに注意してください。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Weak_Server_Side_Controls_.28M2.29">脆弱なサーバー側制御 (M2)</span></h2>
+<p>大部分のサーバー側制御は、現にサーバー側で処理する必要がありますが (「<a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web サービスのセキュリティに関するチートシート">Web サービスのセキュリティに関するチートシート</a>」でもそのように述べています)、サーバーで行う作業を助けるためにモバイル上でできることがいくつかあります。
+</p>
+<h3><span class="mw-headline" id="Remediations_2">対策</span></h3>
+<p>一般的な一連のセキュリティ要件に対応するようにモバイルクライアントとサーバーを設計し、実装します。たとえば、サーバー上で機密とされている情報は、クライアント側でも同じく十分な注意を払って取り扱ってください。
+すべてのクライアント側入力データに対して徹底的な入力値検証と正規化を実施します。正規表現やその他のメカニズムを利用して、許容できるデータだけがクライアント側のアプリケーションに入力されるようにします。
+信頼できないデータに対しては、できる限り出力エンコードを実行します。
+</p>
+<h2><span class="mw-headline" id="Insufficient_Transport_Layer_Protection_.28M3.29">不十分なトランスポート層の保護 (M3)</span></h2>
+<p>機密データが傍受される問題は、すべてのネットワーク型アプリケーションに共通の問題であり、iOS モバイルアプリも例外ではありません。
+</p>
+<h3><span class="mw-headline" id="Remediations_3">対策</span></h3>
+<p>地球上で最も無防備な Wi-Fi ネットワーク上で使用されるという前提のもとで、すべてのアプリを設計し、実装してください。
+転送中に保護する必要のあるアプリデータをすべて一覧にまとめます。(ここで保護には機密性や完全性も含みます。)この一覧には、アプリケーションデータ自体に加えて認証トークンやセッショントークンも含めてください。
+一覧に記載されたすべてのデータの送受信時に SSL / TLS 暗号化が確実に使用されるようにします。(『CFNetwork Programming Guide』を参照。)
+アプリでは、適切に検証された SSL 証明書のみを受け入れるようにします。(テスト環境では CA チェーン検証を無効にしていることがよくあります。そのようなコードがアプリにあれば、公開前に確実に削除してください。)
+動的テストにより、一覧に記載された全データが、アプリのオペレーション全体を通して適切に保護されていることを確認します。
+動的テストにより、偽装や自己署名などがされた証明書を、どのような状況下でもアプリが受け入れないことを確認します。
+</p>
+<h2><span class="mw-headline" id="Client_Side_Injection_.28M4.29">クライアント側インジェクション (M4)</span></h2>
+<p>データインジェクション攻撃は、Web アプリと同様にモバイルアプリでも発生しますが、攻撃のシナリオが異なる傾向にあります (URL スキームを悪用したプレミアムテキストメッセージの送信や通話料の課金など)。
+</p>
+<h3><span class="mw-headline" id="Remediations_4">対策</span></h3>
+<p>原則として、Web アプリと同じ入力値検証や出力エスケープのルールに従います。
+すべてのデータ入力を正規化し、徹底的に検証します。
+ローカルの SQLite / SQLcipher 呼び出しにも、パラメータ化クエリーを使用します。 
+デバイス上のどのアプリも URL スキームを呼び出すことができるので、URL スキームを使用するときは、入力データの検証と取扱いに特に注意してください。
+ハイブリッド型の Web / モバイルアプリを構築するときは、アプリのネイティブ / ローカル機能を必要最小限に抑えてください。つまり、UIWebView で表示するコンテンツやアクセスするページを制限し、ユーザーが任意の信頼できない Web コンテンツにアクセスできないようにします。
+</p>
+<h2><span class="mw-headline" id="Poor_Authorization_and_Authentication_.28M5.29">認可や認証の不備 (M5)</span></h2>
+<p>ほとんどはサーバー側の制御ですが、モバイルの一部機能 (一意のデバイス ID など) や一般的な使用例が、ユーザーとその他のエンティティのセキュアな認可や認証に関する問題を悪化させる場合があります。
+</p>
+<h3><span class="mw-headline" id="Remediations_5">対策</span></h3>
+<p>原則として、Web アプリと同じ認可や認証のルールに従います。
+ユーザーやセッションの識別にデバイス ID (UDID、IP アドレス、MAC アドレス、IMEI など) は絶対に使用しないでください。
+"帯域外" の認証トークンをユーザーがログインに使用しているのと同じデバイスに送信することは、できるだけ避けてください (たとえば、SMS を同じ iPhone に送信するなど)。
+強力なサーバー側認証、認可、およびセッション管理を実装します (control # 4.1-4.6)。
+有料リソースに対する API 呼び出しをすべて認証します (control 8.4)。
+</p>
+<h2><span class="mw-headline" id="Improper_Session_Handling_.28M6.29">不適切なセッション操作 (M6)</span></h2>
+<p>同様に、セッション操作は一般に主としてサーバー側のタスクですが、モバイルデバイスが従来からの問題を予期せぬ形で増幅しがちです。たとえば、モバイルデバイスでは、多くの場合、"セッション" が従来の Web アプリケーションよりも長く継続します。
+</p>
+<h3><span class="mw-headline" id="Remediations_6">対策</span></h3>
+<p>ほとんどの場合、Web アプリケーションと同様に強固なセッション管理を実践してください。そこに、モバイルデバイス特有の工夫をいくつか加えます。
+セッションの識別にデバイス ID (UDID、IP 番号、MAC アドレス、IMEI など) は絶対に使用しないでください。(control 1.13) 
+デバイスの紛失 / 盗難やセッションの侵害が発生した場合にただちに無効にできるよう、トークンを使った処理を行います。
+セッショントークンの機密性と完全性を常時保護します (送信時には常に SSL / TLS を使用するなど)。
+セッションの生成には信頼できるソースだけを使用します。
+</p>
+<h2><span class="mw-headline" id="Security_Decisions_via_Untrusted_Inputs_.28M7.29">信頼できない入力にもとづくセキュリティ判断 (M7)</span></h2>
+<p>iOS は、アプリ同士の通信チャネルを多くは用意していませんが、いくつか存在します。それらのチャネルはデータインジェクション攻撃や悪質なアプリなどにより攻撃者に悪用されるおそれがあります。
+</p>
+<h3><span class="mw-headline" id="Remediations_7">対策</span></h3>
+<p>入力値検証、出力エスケープ、認可制御を組み合わせて使用することで、このような脆弱性の対策を行うことができます。
+すべての入力データを、特にアプリ間の境界で正規化し、徹底的に検証します。
+デバイス上のどのアプリも URL スキームを呼び出すことができるので、URL スキームを使用するときは、入力データの検証と取扱いに特に注意してください。
+信頼できないデータの出力処理では、出力の意味内容そのものを変更できないように、コンテキストに応じたエスケープ処理を行います。
+リソースへのアクセスリクエストに対しては、呼び出し元によるアクセスが許可されていることを確認します。そうするのが適切な場合には、リソースへのアクセスリクエストの許可 / 拒否の判断をユーザーに求めます。
+</p>
+<h2><span class="mw-headline" id="Side_Channel_Data_Leakage_.28M8.29">サイドチャネルデータの漏えい (M8)</span></h2>
+<p>ここでいうサイドチャネルとは、Web キャッシュ (ブラウザーの速度最適化に使用) やキーボード操作ログ (スペルチェックに使用) など、管理目的または (直接には) 非機能的な目的で一般に使用されるデータ I/O を指します。Apple の iOS は、サイドチャネルデータがアプリから不注意に漏れ出す可能性がいくらかあります。そのデータは、多くの場合、被害者のデバイスを見つけた人や盗んだ人が入手できます。これらの大半は、アプリのプログラミングで制御できます。
+</p>
+<h3><span class="mw-headline" id="Remediations_8">対策</span></h3>
+<p>ユーザーのデバイスは紛失したり盗まれたりするという前提に立って、すべてのアプリを設計し、実装してください。
+まず、デバイス上に存在する可能性のあるサイドチャネルデータをすべて特定します。これらのソースには、少なくとも Web キャッシュ、キーボード操作ログ、スクリーンショット、システムログ、カット&amp; ペースト用バッファーを含めてください。サードパーティのライブラリを使用している場合は、それも必ず含めます。
+システムログには、機密データ (資格情報、トークン、PII など) を絶対に出力しないでください。
+アプリの最小化時にセンシティブなアプリデータがキャプチャされないように、iOS のスクリーンショット動作を制限します。
+極めて機密性の高いデータについては、キーボード操作のロギングを無効に、デバイスへの保存がプレーンテキストの状態で行われないようにします。
+極めて機密性の高いデータについては、カット &amp; ペースト用バッファーを無効にし、アプリ外へ漏れないようにします。
+アプリをそのデータストアと通信チャネルも含めて動的にテストし、不適切に送信されたり保存されたりする機密データがないことを確認します。
+</p>
+<h2><span class="mw-headline" id="Broken_Cryptography_.28M9.29">暗号化処理の間違った使い方 (M9)</span></h2>
+<p>ソフトウェアの暗号の脆弱性は、そのほとんどが鍵の不適切な管理に原因がありますが、暗号システムのあらゆる側面を慎重に設計し、実装する必要があります。この点において、モバイルアプリも違いはありません。
+</p>
+<h3><span class="mw-headline" id="Remediations_9">対策</span></h3>
+<p>暗号鍵を、攻撃者が簡単に復元できるような場所に "ハードコーディング" したり保存したりすることは絶対にしないでください。これには、プレーンテキストデータファイル、プロパティファイル、コンパイル済みバイナリなどが含まれます。
+暗号鍵の保存にはセキュアなコンテナーを使用します。または、鍵が安全なサーバーによって管理され、鍵がモバイルデバイス上にローカルに保存されることは絶対にない安全な鍵交換システムを構築します。
+鍵生成ツールやハッシュなど、強力な暗号アルゴリズムや実装だけを使用してください。可能であれば、プラットフォームの暗号 API を使用します。それができない場合は、信頼できるサードパーティのコードを使用します。
+個人ユーザーレベルの機密データは、Apple が提供する API を使用して安全なコンテナーに保存します。
+</p>
+<ul>
+<li> ユーザー認証の資格情報やセッショントークンなど、少量のデータは、デバイスのキーチェーンに安全に保存できます (Apple の「iOS Developer Library」の「Keychain Services Reference」を参照)。
+</li>
+<li> これより大きいか、より一般的な種類のデータには、Apple のファイル保護メカニズムを安全に使用できます (保護オプションについては「NSData Class Reference」を参照)。
+</li>
+</ul>
+<p>より安全に静的データを保護するには、Apple の暗号化に固有の脆弱性に煩わされることのないサードパーティの暗号化 API の使用を検討してください (例: ユーザーのデバイスパスコードに紐付けられた入力。通常は 4 桁の PIN)。例えば無償で提供されている SQLcipher (<a rel="nofollow" class="external free" href="http://sqlcipher.net">http://sqlcipher.net</a> を参照) などがあります。
+</p>
+<h2><span class="mw-headline" id="Sensitive_Information_Disclosure_.28M10.29">機密情報の漏えい (M10)</span></h2>
+<p>あらゆる種類の機密データが iOS アプリから漏えいする危険があります。これ以外に常に念頭に置いておくべきことは、各アプリのコンパイル済みバイナリコードはデバイス上にあり、リバースエンジニアリングされるおそれがある、ということです。
+</p>
+<h3><span class="mw-headline" id="Remediations_10">対策</span></h3>
+<p>完全に非公開にしておく必要のあるものは、モバイルデバイス上に置いてはいけません。非公開とすべき情報 (アルゴリズム、機密情報など) はサーバーに保持してください。
+非公開情報がどうしてもモバイルデバイス上に必要な場合は、非公開情報をプロセスメモリにとどめておき、非公開情報をデバイスに保存する必要があるときは、絶対に無防備な状態にさらさないでください。
+パスワード、セッショントークンなどをハードコーディングしたり、安易に保存したりすることは絶対にしないでください。
+プログラムバイナリは、出荷する前にストリップ処理を行ってください。コンパイル済み実行形式ファイルの中身は、リバースエンジニアリングによって分析することが可能です。
+</p>
+<h1><span class="mw-headline" id="References_and_Further_Reading">参考資料</span></h1>
+<p>「OWASP Top 10 Mobile Risks」プレゼンテーション、Appsec USA、ミネソタ州ミネアポリス、2011 年 9 月 23 日、Jack Mannino、Mike Zusman、Zach Lanier
+</p><p>「iOS Security」、Apple、2014 年 11 月、<a rel="nofollow" class="external free" href="https://www.apple.com/business/docs/iOS_Security_Guide_Oct_2014.pdf">https://www.apple.com/business/docs/iOS_Security_Guide_Oct_2014.pdf</a>
+</p><p>「Deploying iPhone and iPad: Apple Configurator」Apple、2012 年 3 月、<a rel="nofollow" class="external free" href="http://images.apple.com/iphone/business/docs/iOS_Apple_Configurator_Mar12.pdf">http://images.apple.com/iphone/business/docs/iOS_Apple_Configurator_Mar12.pdf</a> 
+</p><p>「iPhone OS: Enterprise Deployment Guide」、Apple、2010 年 <a rel="nofollow" class="external free" href="http://manuals.info.apple.com/en_US/Enterprise_Deployment_Guide.pdf">http://manuals.info.apple.com/en_US/Enterprise_Deployment_Guide.pdf</a> 
+</p><p>「iPhone in Business」、Apple リソース、<a rel="nofollow" class="external free" href="http://www.apple.com/iphone/business/resources/">http://www.apple.com/iphone/business/resources/</a> 
+</p><p>Apple iOS 開発者向け Web サイト
+</p><p>「iOS Application (in)Security」、MDSec - 2012 年 5 月、<a rel="nofollow" class="external free" href="http://www.mdsec.co.uk/research/iOS_Application_Insecurity_wp_v1.0_final.pdf">http://www.mdsec.co.uk/research/iOS_Application_Insecurity_wp_v1.0_final.pdf</a>
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Ken van Wyk ken[at]krvw.com
+</p><p>Contributors:Jason.Haddix@hp.com
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <strong class="selflink">IOS Developer Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.075 seconds
+Real time usage: 0.084 seconds
+Preprocessor visited node count: 119/1000000
+Preprocessor generated node count: 154/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:25698-0!*!0!!en!2!* and timestamp 20151215050245 and revision id 197587
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=IOS_Developer_Cheat_Sheet&amp;oldid=197587">https://www.owasp.org/index.php?title=IOS_Developer_Cheat_Sheet&amp;oldid=197587</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=IOS+Developer+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/IOS_Developer_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:IOS_Developer_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/IOS_Developer_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=IOS_Developer_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=IOS_Developer_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=IOS_Developer_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=IOS_Developer_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=IOS_Developer_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=IOS_Developer_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/IOS_Developer_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/IOS_Developer_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=IOS_Developer_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=IOS_Developer_Cheat_Sheet&amp;oldid=197587" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=IOS_Developer_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 18 July 2015, at 17:16.</li>
+											<li id="footer-info-viewcount">This page has been accessed 86,630 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":157});
+}</script>
+	</body>
+</html>

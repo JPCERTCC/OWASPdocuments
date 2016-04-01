@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>OWASP トップ 10 チートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"OWASP_Top_Ten_Cheat_Sheet","wgTitle":"OWASP Top Ten Cheat Sheet","wgCurRevisionId":201275,"wgRevisionId":201275,"wgArticleId":23579,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"OWASP_Top_Ten_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-OWASP_Top_Ten_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">OWASP トップ 10 チートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#OWASP_Top_Ten_Cheat_Sheet"><span class="tocnumber">2</span> <span class="toctext">OWASP トップ 10 チートシート</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">3</span> <span class="toctext">著者と編集者</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Other_Cheatsheets"><span class="tocnumber">4</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</div>
+
+<p>これは、2013 年版の <a href="/index.php/OWASP_Top_Ten_Project" title="OWASP トップ 10 プロジェクト" class="mw-redirect">OWASP トップ 10 プロジェクト</a>に対する開発者向け対策チートシートです。リスクの特定方法を調べられるように、<a href="/index.php/OWASP_Testing_Project" title="OWASP テストプロジェクト">OWASP テストプロジェクト</a>に基づくクイックリファレンスも掲載しています。
+</p>
+<h1><span class="mw-headline" id="OWASP_Top_Ten_Cheat_Sheet">OWASP トップ 10 チートシート</span></h1>
+<table border="1">
+<tr>
+<td>
+</td>
+<td><b>プレゼンテーション</b>
+</td>
+<td><b>コントローラー</b>
+</td>
+<td><b>モデル</b>
+</td>
+<td><b>テスト (OWASP テストガイド V4)</b>
+</td></tr>
+<tr>
+<td><b>A1 インジェクション</b>
+</td>
+<td>
+<p><i>レンダー:</i>
+</p>
+<ul>
+<li>適切なコンテンツタイプを設定する。
+</li>
+<li>安全な文字セット (UTF-8) を設定する。
+</li>
+<li>適切なロケールを設定する。
+</li>
+</ul>
+<p><i>On Submit:</i>
+</p>
+<ul>
+<li>入力フィールドの型と長さを強制する。
+</li>
+<li>フィールドを検証し、フィードバックを提供する。
+</li>
+<li>オプション選択肢とラジオに含まれているのが送信された値だけであることを確認する。
+</li>
+</ul>
+</td>
+<td><b>適切な文字セットを使用して正規化する</b>
+<p><b>適切な文字セットを使用してポジティブ入力値検証を行う</b>
+</p><p>(NR) ネガティブ入力値検証。
+(LR) 入力をサニタイズする。
+</p><p><i>ヒント: ネガティブリスト (たとえば、"script"、"sCrIpT"、"ßCrîpt" などを検索) の更新は、コストの高い常時展開が必要であり、"有害な" 文字列のリストが攻撃者に見破られるため、<b>必ず</b>失敗します。ポジティブ検証は、より簡単で、より速く、一般により安全であるほか、他のどの入力メカニズムよりも更新がはるかに少なくてすみます。 </i>
+</p>
+</td>
+<td>*<b><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet">パラメーター化されたクエリ</a></b>
+<ul>
+<li>オブジェクトリレーショナルモデル (休止状態)
+</li>
+<li>アクティブレコード設計パターン
+</li>
+<li>ストアドプロシージャ
+</li>
+</ul>
+<ul>
+<li>エスケープメカニズム (ESAPI のエンコーダーなど)
+<ul>
+<li>EncodeForLDAP()
+</li>
+<li>Encoder.EncodeforOS()
+</li>
+</ul>
+</li>
+</ul>
+<p><i>ヒント: <b>すべて</b>の SQL インジェクションは、動的 SQL クエリに原因があります。組織内での動的 SQL クエリの禁止を真剣に検討してください。 </i>
+</p>
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_SQL_Injection_%28OTG-INPVAL-005%29">SQL Injection (OTG-INPVAL-005)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_LDAP_Injection_(OTG-INPVAL-006)">LDAP Injection (OTG-INPVAL-006)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_ORM_Injection_%28OTG-INPVAL-007%29">ORM Injection (OTG-INPVAL-007)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_XML_Injection_(OTG-INPVAL-008)">XML Injection (OTG-INPVAL-008)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_SSI_Injection_(OTG-INPVAL-009)">SSI Injection (OTG-INPVAL-009)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_XPath_Injection_(OTG-INPVAL-010)">XPath Injection (OTG-INPVAL-010)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_IMAP/SMTP_Injection_(OTG-INPVAL-011)">IMAP/SMTP Injection (OTG-INPVAL-011)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Code_Injection_(OTG-INPVAL-012)">Code Injection (OTG-INPVAL-012)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Command_Injection_(OTG-INPVAL-013)">Command Injection (OTG-INPVAL-013)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Buffer_Overflow_(OTG-INPVAL-014)">Buffer Overflow (OTG-INPVAL-014)</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A2 認証とセッション管理の不備</b>
+</td>
+<td><i>レンダー:</i>
+<ul>
+<li>ユーザーが認証されていることを確認する。
+</li>
+<li>ロールがこのビューに十分であることを確認する。
+</li>
+<li>セッション Cookie に "secure" フラグと "HttpOnly" フラグを設定する。
+</li>
+<li>CSRF トークンをフォームと一緒に送信する。
+</li>
+</ul>
+</td>
+<td><i>設計:</i>
+<ul>
+<li>組み込みのセッション管理のみを使用する。
+</li>
+<li>セカンダリ SSO / フレームワーク / カスタムセッション ID をネイティブセッションオブジェクトに格納する (追加ヘッダーや Cookie として送信しない)。
+</li>
+</ul>
+<ul>
+<li>ユーザーが認証されていることを確認する。
+</li>
+<li>ロールがこのアクションの実行に十分であることを確認する。
+</li>
+<li>CSRF トークンを検証する。
+</li>
+</ul>
+</td>
+<td>ロールがデータの作成、読み取り、書き込み、更新、または削除に十分であることを確認する。
+<p><i>ヒント: ユーザーが 1 秒、1 分、または 1 時間あたりに実行できる最大リクエスト数を規制する "governor" の使用を検討してください。たとえば、一般的なバンキングユーザーが 1 分間に 10 件を超える取引を実行するはずはありません。1 秒間に 100 件は危険であり、禁止する必要があります。</i>
+</p>
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_Role_Definitions_(OTG-IDENT-001)">Test Role Definitions (OTG-IDENT-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_User_Registration_Process_(OTG-IDENT-002)">Test User Registration Process (OTG-IDENT-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_Account_Provisioning_Process_(OTG-IDENT-003)">Test Account Provisioning Process (OTG-IDENT-003)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Account_Enumeration_and_Guessable_User_Account_(OTG-IDENT-004)">Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Weak_or_unenforced_username_policy_(OTG-IDENT-005)">Testing for Weak or unenforced username policy (OTG-IDENT-005)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Credentials_Transported_over_an_Encrypted_Channel_(OTG-AUTHN-001)">Testing for Credentials Transported over an Encrypted Channel (OTG-AUTHN-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_default_credentials_(OTG-AUTHN-002)">Testing for default credentials (OTG-AUTHN-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Weak_lock_out_mechanism_(OTG-AUTHN-003)">Testing for Weak lock out mechanism (OTG-AUTHN-003)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Bypassing_Authentication_Schema_(OTG-AUTHN-004)">Testing for bypassing authentication schema (OTG-AUTHN-004)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Vulnerable_Remember_Password_(OTG-AUTHN-005)">Test remember password functionality (OTG-AUTHN-005)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Browser_cache_weakness_(OTG-AUTHN-006)">Testing for Browser cache weakness (OTG-AUTHN-006)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Weak_password_policy_(OTG-AUTHN-007)">Testing for Weak password policy (OTG-AUTHN-007)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Weak_security_question/answer_(OTG-AUTHN-008)">Testing for Weak security question/answer (OTG-AUTHN-008)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_weak_password_change_or_reset_functionalities_(OTG-AUTHN-009)">Testing for weak password change or reset functionalities (OTG-AUTHN-009)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Weaker_authentication_in_alternative_channel_(OTG-AUTHN-010)">Testing for Weaker authentication in alternative channel (OTG-AUTHN-010)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Bypassing_Authorization_Schema_(OTG-AUTHZ-002)">Testing for bypassing authorization schema (OTG-AUTHZ-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Privilege_escalation_(OTG-AUTHZ-003)">Testing for Privilege Escalation (OTG-AUTHZ-003)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Session_Management_Schema_(OTG-SESS-001)">Testing for Bypassing Session Management Schema (OTG-SESS-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_cookies_attributes_(OTG-SESS-002)">Testing for Cookies attributes (OTG-SESS-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Session_Fixation_(OTG-SESS-003)">Testing for Session Fixation (OTG-SESS-003)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Exposed_Session_Variables_(OTG-SESS-004)">Testing for Exposed Session Variables (OTG-SESS-004)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_CSRF_(OTG-SESS-005)">Testing for Cross Site Request Forgery (CSRF) (OTG-SESS-005)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_logout_functionality_(OTG-SESS-006)">Testing for logout functionality (OTG-SESS-006)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_Session_Timeout_(OTG-SESS-007)">Test Session Timeout (OTG-SESS-007)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Session_puzzling_(OTG-SESS-008)">Testing for Session puzzling (OTG-SESS-008)</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A3 クロスサイトスクリプティング (XSS)</b>
+</td>
+<td>
+<p><i>レンダー:</i>
+</p>
+<ul>
+<li>適切なコンテンツタイプを設定する。
+</li>
+<li>安全な文字セット (UTF-8) を設定する。
+</li>
+<li>適切なロケールを設定する。
+</li>
+<li>すべてのユーザーデータを出力コンテキストに従って出力エンコードする。
+</li>
+<li>入力制約を設定する。
+</li>
+</ul>
+<p><i>On Submit:</i>
+</p>
+<ul>
+<li>入力フィールドの型と長さを強制する。
+</li>
+<li>フィールドを検証し、フィードバックを提供する。
+</li>
+<li>オプション選択肢とラジオに含まれているのが送信された値だけであることを確認する。
+</li>
+</ul>
+</td>
+<td><b>適切な文字セットを使用して正規化する</b>
+<p><b>適切な文字セットを使用してポジティブ入力値検証を行う</b>
+</p><p>(NR) ネガティブ入力値検証 
+(LR) 入力をサニタイズする 
+</p><p><i>ヒント: 100% 信用できるデータだけを処理します。それ以外はすべて悪意のあるデータとして拒否してください。</i>
+</p>
+</td>
+<td><i>ヒント: HTML エンコードされたデータをデータベースに格納しないでください。これにより、データが別の用途 (Web サービス、RSS フィード、FTP バッチ、データウェアハウス、クラウドコンピューティングなど) に使用されるのを防止できます。</i>
+<p><i>ヒント: OWASP Scrubbr を使用すると、汚染されたデータや敵意のあるデータをレガシデータから消去できます。</i>
+</p>
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Reflected_Cross_site_scripting_(OTG-INPVAL-001)">Testing for Reflected Cross Site Scripting (OTG-INPVAL-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Stored_Cross_site_scripting_(OTG-INPVAL-002)">Testing for Stored Cross Site Scripting (OTG-INPVAL-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_DOM-based_Cross_site_scripting_(OTG-CLIENT-001)">Testing for DOM based Cross Site Scripting (OTG-CLIENT-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_JavaScript_Execution_(OTG-CLIENT-002)">Testing for JavaScript Execution (OTG-CLIENT-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_HTML_Injection_(OTG-CLIENT-003)">Testing for HTML Injection (OTG-CLIENT-003)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Cross_site_flashing_(OTG-CLIENT-008)">Testing for Cross Site Flashing (OTG-CLIENT-008)</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A4 安全でない直接オブジェクト参照</b>
+</td>
+<td>データが内部の信頼できるソースのものである場合は、データを送信しない。
+<p>または
+</p><p><i>レンダー:</i>
+</p>
+<ul>
+<li>間接ランダムアクセス参照マップ値を送信する。
+</li>
+</ul>
+</td>
+<td>内部の信頼できるソースからデータを取得する。
+<p>または
+</p><p>ランダムアクセス参照アクセスマップから直接値を取得する。
+</p>
+</td>
+<td>ロールがデータの作成、読み取り、書き込み、更新、または削除に十分であることを確認する。
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_Directory_traversal/file_include_(OTG-AUTHZ-001)">Testing Directory traversal/file include (OTG-AUTHZ-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Insecure_Direct_Object_References_(OTG-AUTHZ-004)">Testing for Insecure Direct Object References (OTG-AUTHZ-004)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Local_File_Inclusion">Testing for Local File Inclusion</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Remote_File_Inclusion">Testing for Remote File Inclusion</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A5 セキュリティ設定のミス</b>
+</td>
+<td>Web サーバーとアプリケーションサーバーが強固であることを確認する。
+<p>PHP: php.ini で allow_url_fopen と allow_url_include が両方とも無効になっていることを確認する。Suhosin エクステンションの使用を検討する。 
+</p>
+</td>
+<td>Web サーバーとアプリケーションサーバーが強固であることを確認する。
+<p>XML: XML スタックによって一般的な Web 攻撃 (リモート XSLT 変換、悪意のある XPath クエリ、再帰的 DTD など) が防止されていることを確認する。XML ドキュメントやクエリを手作業で作成しない。XML レイヤーを使用する。 
+</p>
+</td>
+<td>データベースサーバーが強固であることを確認する。
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Fingerprint_Web_Server_(OTG-INFO-002)">Fingerprint Web Server (OTG-INFO-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Fingerprint_Web_Application_Framework_(OTG-INFO-008)">Fingerprint Web Application Framework (OTG-INFO-008)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Fingerprint_Web_Application_(OTG-INFO-009)">Fingerprint Web Application (OTG-INFO-009)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_Network/Infrastructure_Configuration_(OTG-CONFIG-001)">Test Network/Infrastructure Configuration (OTG-CONFIG-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_Application_Platform_Configuration_(OTG-CONFIG-002)">Test Application Platform Configuration (OTG-CONFIG-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_File_Extensions_Handling_for_Sensitive_Information_(OTG-CONFIG-003)">Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Review_Old,_Backup_and_Unreferenced_Files_for_Sensitive_Information_(OTG-CONFIG-004)">Review Old, Backup and Unreferenced Files for Sensitive Information (OTG-CONFIG-004)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Enumerate_Infrastructure_and_Application_Admin_Interfaces_(OTG-CONFIG-005)">Enumerate Infrastructure and Application Admin Interfaces (OTG-CONFIG-005)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_HTTP_Methods_(OTG-CONFIG-006)">Test HTTP Methods (OTG-CONFIG-006)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_RIA_cross_domain_policy_(OTG-CONFIG-008)">Test RIA cross domain policy (OTG-CONFIG-008)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Error_Code_(OTG-ERR-001)">Analysis of Error Codes (OTG-ERR-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Stack_Traces_(OTG-ERR-002)">Analysis of Stack Traces (OTG-ERR-002)</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A6 機密データの露出</b>
+</td>
+<td><i>設計:</i>
+<ul>
+<li>強力な暗号 (AES 128 またはそれ以上) を安全なオペレーションモードで使用する (ECB は使用しない)。
+</li>
+<li>パスワードに強力なハッシュ (SHA 256 またはそれ以上) と salt を使用する。
+</li>
+<li>鍵を他のどの資産よりも強力に保護する。
+</li>
+<li>すべての Web 通信に TLS 1.2 以上を使用する。
+</li>
+<li>公開 Web サーバーに EV (Extended Validation) 証明書を購入する。
+</li>
+</ul>
+<p><i>ヒント: 内部でも必ず TLS 1.2 を使用してください。ほとんどのスヌーピングは社内ネットワークの内側で行われます。これは、ダイナマイト漁と同じくらい簡単で反倫理的です。</i>
+</p><p><i>レンダー:</i>
+</p>
+<ul>
+<li>鍵やハッシュをブラウザーに送信しない。
+</li>
+</ul>
+</td>
+<td><i>設計:</i>
+<ul>
+<li>強力な暗号 (AES 128 またはそれ以上) を安全なオペレーションモードで使用する (ECB は使用しない)。
+</li>
+<li>パスワードに強力なハッシュ (SHA 256 またはそれ以上) と salt を使用する。
+</li>
+<li>鍵を他のどの資産よりも強力に保護する。
+</li>
+<li>Web サーバー、データベースサーバー、その他のサーバー、管理ユーザーの間の通信に強力な暗号化を徹底する。
+</li>
+</ul>
+<p><i>ヒント: 特定の個人情報と機密データだけを必ず暗号化します。漏えいしたり盗まれたりしたら困るか損害が大きいデータを暗号化します。 </i>
+</p><p><i>ヒント: データベースサーバーではなくアプリケーションサーバーでデータを暗号化するのが最善です。</i>
+</p>
+</td>
+<td><i>設計:</i>
+<ul>
+<li>アプリケーションサーバーとその他のサーバー、または管理ユーザーとの通信に強力な暗号化を徹底する。
+</li>
+</ul>
+<p><i>ヒント: RDBMS データベースの row レベルまたはテーブルレベルの暗号化は使用しないでください。サーバーへの直接アクセスや、アプリケーションの資格情報を使用したネットワーク経由で、何者かにデータがクリアテキストで取得されるおそれがあります。ディスク上では "暗号化" されているにもかかわらず、データがネットワーク上をクリアテキストで流れる可能性さえあります。 </i>
+</p>
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Weak_SSL/TLS_Ciphers,_Insufficient_Transport_Layer_Protection_(OTG-CRYPST-001)">Testing for Weak SSL/TLS Ciphers, Insufficient Transport Layer Protection (OTG-CRYPST-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Padding_Oracle_(OTG-CRYPST-002)">Testing for Padding Oracle (OTG-CRYPST-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Sensitive_information_sent_via_unencrypted_channels_(OTG-CRYPST-003)">Testing for Sensitive information sent via unencrypted channels (OTG-CRYPST-003)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Test_HTTP_Strict_Transport_Security_(OTG-CONFIG-007)">Test HTTP Strict Transport Security (OTG-CONFIG-007)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Credentials_Transported_over_an_Encrypted_Channel_(OTG-AUTHN-001)">Testing for Credentials Transported over an Encrypted Channel (OTG-AUTHN-001)</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A7 機能レベルのアクセス制御の欠落</b>
+</td>
+<td><i>設計:</i>
+<ul>
+<li>すべての非 Web データが Web ルートの外にあることを確認する (ログ、構成など)。
+</li>
+<li>PDF や CSV などの実際のファイルへのアクセスを提供するのではなく、オクテット (バイト) ストリーミングを使用する。
+</li>
+<li>"guest" の場合も、すべてのページでロールを要求するようにする。
+</li>
+</ul>
+<p><i>レンダー前:</i>
+</p>
+<ul>
+<li>ユーザーが認証されていることを確認する。
+</li>
+<li>ロールがセキュリティで保護された URL の表示に十分であることを確認する。
+</li>
+</ul>
+<p><i>レンダー:</i>
+</p>
+<ul>
+<li>CSRF トークンを送信する。
+</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>ユーザーが認証されていることを確認する。
+</li>
+<li>ロールがセキュリティで保護されたアクションの実行に十分であることを確認する。
+</li>
+<li>CSRF トークンを検証する。
+</li>
+</ul>
+<p><i>ヒント: セキュリティで保護されたリソースでも、その Web アプリケーションサーバーが直接提供しないリソースについては、アクセスを制御できません。このため、バイナリオクテットストリーミングを使用して Web アプリケーションサーバーから PDF レポートなどを提供することをお勧めします。 </i>
+</p><p><i>ヒント: "隠し" ディレクトリや "ランダムな" ファイル名がある場所を攻撃者が<b>必ず</b>突きとめると想定して、これらのファイルを、直接リンクされていなくても Web ルート内に保存しないでください。</i>
+</p>
+</td>
+<td>ロールがデータの作成、読み取り、書き込み、更新、または削除に十分であることを確認する。
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_Directory_traversal/file_include_(OTG-AUTHZ-001)">Testing Directory traversal/file include (OTG-AUTHZ-001)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Bypassing_Authorization_Schema_(OTG-AUTHZ-002)">Testing for bypassing authorization schema (OTG-AUTHZ-002)</a></i>
+<i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Bypassing_Authentication_Schema_(OTG-AUTHN-004)">Testing for bypassing authentication schema (OTG-AUTHN-004)</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A8 クロスサイトリクエストフォージェリ (CSRF)</b>
+</td>
+<td><i>レンダー前:</i>
+<ul>
+<li>ユーザーが認証されていることを確認する。
+</li>
+<li>ロールがこのビューに十分であることを確認する。
+</li>
+</ul>
+<p><i>レンダー:</i>
+</p>
+<ul>
+<li>CSRF トークンを送信する。
+</li>
+<li>セッション Cookie に "secure" フラグと "HttpOnly" フラグを設定する。
+</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>CSRF トークンを検証する。
+</li>
+<li>ロールがこのアクションの実行に十分であることを確認する。
+</li>
+<li>ロールが十分であることを確認する。
+</li>
+</ul>
+<p><i>ヒント: XSS がある限り、CSRF は<b>常に</b>可能です。必ずアプリケーションから XSS を排除してください。</i>
+</p>
+</td>
+<td>ロールがデータの作成、読み取り、書き込み、更新、または削除に十分であることを確認する。
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_CSRF_(OTG-SESS-005)">Testing for Cross Site Request Forgery (CSRF) (OTG-SESS-005)</a></i>
+</p>
+</td></tr>
+<tr>
+<td><b>A9 既知の脆弱性を持つコンポーネントの使用</b>
+</td>
+<td>
+<p><br />
+</p>
+</td>
+<td>
+<p><br />
+</p>
+</td>
+<td>
+<p><br />
+</p>
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Enumerate_Applications_on_Webserver_(OTG-INFO-004)">Enumerate Applications on Webserver (OTG-INFO-004)</a></i> 
+</p>
+</td></tr>
+
+
+<tr>
+<td><b>A10 未検証のリダイレクトとフォワード</b>
+</td>
+<td>
+<ul>
+<li>URL リダイレクトパラメーターを使用しないアプリケーションを設計する。
+</li>
+</ul>
+<p>または
+</p><p><i>レンダー:</i>
+</p>
+<ul>
+<li>リダイレクトパラメーターにランダム間接オブジェクト参照を使用する。
+</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>URL リダイレクトパラメーターを使用しないアプリケーションを設計する。
+</li>
+</ul>
+<p>または
+</p>
+<ul>
+<li>ランダム間接参照アクセスマップから直接リダイレクトパラメーターを取得する。
+</li>
+<li>(LR) リダイレクトパラメーターのポジティブ検証。
+</li>
+<li>(NR) Java – SSO アクセス制御メカニズムが阻害されるので、リクエストをフォワードしない。
+</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>ロールがデータの作成、読み取り、書き込み、更新、または削除に十分であることを確認する。
+</li>
+</ul>
+</td>
+<td>
+<p><i><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Testing_for_Client_Side_URL_Redirect_(OTG-CLIENT-004)">Testing for Client Side URL Redirect (OTG-CLIENT-004)</a></i>
+</p>
+</td></tr>
+</table>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Andrew van der Stock vanderaj[at]owasp.org
+</p><p>Ismael Rocha Gonçalves ismaelrg[at]gmail.com
+</p><p>Jorge Correa jacorream@gmail.com
+</p>
+<h1><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h1>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">OWASP Top Ten Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.083 seconds
+Real time usage: 0.092 seconds
+Preprocessor visited node count: 22/1000000
+Preprocessor generated node count: 42/1000000
+Post‐expand include size: 2072/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:23579-0!*!0!!en!2!* and timestamp 20151215040039 and revision id 201275
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;oldid=201275">https://www.owasp.org/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;oldid=201275</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=OWASP+Top+Ten+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/OWASP_Top_Ten_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:OWASP_Top_Ten_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/OWASP_Top_Ten_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/OWASP_Top_Ten_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;oldid=201275" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=OWASP_Top_Ten_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 28 September 2015, at 14:40.</li>
+											<li id="footer-info-viewcount">This page has been accessed 193,982 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":178});
+}</script>
+	</body>
+</html>

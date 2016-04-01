@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>JAAS に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"JAAS_Cheat_Sheet","wgTitle":"JAAS Cheat Sheet","wgCurRevisionId":197575,"wgRevisionId":197575,"wgArticleId":24272,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"JAAS_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-JAAS_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">JAAS に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd): <b>2015/07/18</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#What_is_JAAS_authentication"><span class="tocnumber">1.1</span> <span class="toctext">JAAS 認証とは</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Configuration_file"><span class="tocnumber">1.2</span> <span class="toctext">構成ファイル</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Main.java_.28The_client.29"><span class="tocnumber">1.3</span> <span class="toctext">Main.java (クライアント)</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#LoginModule.java"><span class="tocnumber">1.4</span> <span class="toctext">LoginModule.java</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#initialize_.28.29"><span class="tocnumber">1.4.1</span> <span class="toctext">initialize ()</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#login_.28.29"><span class="tocnumber">1.4.2</span> <span class="toctext">login ()</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#commit_.28.29"><span class="tocnumber">1.4.3</span> <span class="toctext">commit ()</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#abort_.28.29"><span class="tocnumber">1.4.4</span> <span class="toctext">abort ()</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#logout_.28.29"><span class="tocnumber">1.4.5</span> <span class="toctext">logout ()</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="#CallbackHandler.java"><span class="tocnumber">1.5</span> <span class="toctext">CallbackHandler.java</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Related_Articles"><span class="tocnumber">2</span> <span class="toctext">関連資料</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Disclosure"><span class="tocnumber">3</span> <span class="toctext">開示</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">4</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Other_Cheatsheets"><span class="tocnumber">4.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="What_is_JAAS_authentication">JAAS 認証とは</span></h2>
+<p>ユーザーまたは別のシステムの ID を検証するプロセスが認証です。JAAS は、認証フレームワークとして、認証対象ユーザーの ID とクレデンシャル情報をログインからログアウトまで管理します。 <br />
+</p><p>JAAS 認証のライフサイクルは次のとおりです。
+</p>
+<ol>
+<li> LoginContext を生成する。
+</li>
+<li> 初期化する 1 つ以上の LoginModule の構成ファイルを読み込む。
+</li>
+<li> 初期化する LoginModule ごとに LoginContext.initialize () を呼び出す。
+</li>
+<li> LoginModule ごとに LoginContext.login () を呼び出す。
+</li>
+<li> ログインに成功した場合は LoginContext.commit () を呼び出し、それ以外の場合は LoginContext.abort () を呼び出す。
+</li>
+</ol>
+<h2><span class="mw-headline" id="Configuration_file">構成ファイル</span></h2>
+<p>JAAS 構成ファイルには、アプリケーションへのログオンに使用できる LoginModule ごとに LoginModule スタンザが 1 つずつ含まれています。  
+</p><p>JAAS 構成ファイルのスタンザの例を次に示します。
+</p>
+<pre>
+Branches
+{
+     USNavy.AppLoginModule required
+     debug=true
+     succeeded=true;
+}
+</pre>                 
+<p>LoginModule のエントリーとスタンザの両方を終了するセミコロンの位置に注意してください。required という語は、ユーザーがログインするには LoginContext の login () メソッドが成功裏に完了しなければならないことを意味します。debug="true"、succeeded="true" などのように、LoginModule 固有のキーと値が LoginModule に渡されます。これらの値は LoginModule によって定義され、その使用方法は LoginModule 内で管理されます。オプションを構成するには、debug="true" のようなキーと値のペアを使用します。キーと値は等号で区切ります。
+</p>
+<h2><span class="mw-headline" id="Main.java_.28The_client.29">Main.java (クライアント)</span></h2>
+<ul>
+<li> 実行構文
+</li>
+</ul>
+<pre>
+Java –Djava.security.auth.login.config==packageName/packageName.config 
+     packageName.Main Stanza1
+説明: 
+packageName は、構成ファイルが格納されているディレクトリです。 
+packageName.config は、Java パッケージ packageName 内の構成ファイルを指定します。 
+packageName.Main は、Java パッケージ packageName 内の Main.java を指定します。 
+Stanza1 は、Main () が構成ファイルから読み込むスタンザの名前です。
+</pre>
+<ul>
+<li> 実行時の第 1 コマンドライン引数は、構成ファイルのスタンザです。使用する LoginModule がこのスタンザで指定されます。第 2 引数は CallbackHandler です。
+</li>
+<li> Main.java に渡された引数を使用して新しい LoginContext を生成します。    
+<ul>
+<li> loginContext = new LoginContext (args[0], new AppCallbackHandler ());
+</li>
+</ul>
+</li>
+<li> LoginContext.Login モジュールを呼び出します。
+<ul>
+<li>  loginContext.login ();
+</li>
+</ul>
+</li>
+<li> 成功した Option 内の値が loginContext.login () から返されます。
+</li>
+<li> ログインに成功した場合は、サブジェクトが生成されています。
+</li>
+</ul>
+<h2><span class="mw-headline" id="LoginModule.java">LoginModule.java</span></h2>
+<p>LoginModule には以下の認証メソッドが必須です。
+</p>
+<ul>
+<li> initialize ()
+</li>
+<li> login ()
+</li>
+<li> commit ()
+</li>
+<li> abort ()
+</li>
+<li> logout () 
+</li>
+</ul>
+<h3><span class="mw-headline" id="initialize_.28.29">initialize ()</span></h3>
+<p>Main () で、LoginContext が構成ファイルから適切なスタンザを読み込んだ後、LoginContext がそのスタンザで指定された LoginModule のインスタンスを生成します。
+</p>
+<ul>
+<li> initialize () メソッドのシグネチャ 
+<ul>
+<li> Public void initialize (Subject subject, CallbackHandler callbackHandler, Map sharedState, Map options) 
+</li>
+</ul>
+</li>
+<li> 上の各引数は、次のように保存する必要があります。
+<ul>
+<li> this.subject = subject;
+</li>
+<li> this.callbackHandler = callbackHandler;
+</li>
+<li>  this.sharedState = sharedState;
+</li>
+<li> this.options = options;  
+</li>
+</ul>
+</li>
+<li> initialize () メソッドは以下の操作を実行します。
+<ul>
+<li> login () が成功したら、Subject クラスの subject オブジェクトを生成します。
+</li>
+<li> ログイン情報を取得するためにユーザーと対話する CallbackHandler を設定します。
+</li>
+<li> 1 つの LoginContext で複数の LoginModule が指定されている場合 (これは有効です)、各 LoginModule は sharedState マップを介して情報を共有できます。
+</li>
+<li> debug、succeeded などのステータス情報を options マップに保存します。
+</li>
+</ul>
+</li>
+</ul>
+<h3><span class="mw-headline" id="login_.28.29">login ()</span></h3>
+<p>ユーザーが指定したログイン情報を取得します。次のコードスニペットは、2 つのコールバックオブジェクトから成る配列を宣言しています。この配列は、callbackHandler.java プログラムの callbackHandler.handle メソッドに渡されると、ユーザーが入力したユーザー名とパスワードが読み込まれます。 
+</p>
+<pre>
+NameCallback nameCB = new NameCallback(&quot;Username&quot;);
+PasswordCallback passwordCB = new PasswordCallback (&quot;Password&quot;, false);
+Callback[] callbacks = new Callback[] { nameCB, passwordCB };
+callbackHandler.handle (callbacks);
+</pre>
+<ul>
+<li> ユーザーを認証します。
+</li>
+<li> ユーザーが入力した情報をコールバックオブジェクトから取得します。
+<ul>
+<li> String ID = nameCallback.getName ();
+</li>
+<li> char[] tempPW = passwordCallback.getPassword ();
+</li>
+</ul>
+</li>
+<li> 名前と tempPW を、LDAP などのリポジトリに格納されている値と照合します。
+</li>
+<li> 変数 succeeded の値を設定し、Main () に復帰します。
+</li>
+</ul>
+<h3><span class="mw-headline" id="commit_.28.29">commit ()</span></h3>
+<p>login () でユーザーの資格情報が正常に確認されると、JAAS 認証フレームワークは必要に応じてその資格情報をサブジェクトに関連付けます。資格情報には公開とプライベートの 2 種類があります。公開資格情報には公開鍵が含まれます。プライベート資格情報にはパスワードと公開鍵が含まれます。従業員番号やユーザーグループの会員 ID などのプリンシパル (サブジェクトが持つログイン名以外の ID) がサブジェクトに追加されます。次に commit () メソッドの例を示します。この例では、まず、認証されたユーザーが所属するグループごとに、グループ名がプリンシパルとしてサブジェクトに追加されます。次に、サブジェクトのユーザー名がその公開資格情報に追加されます。
+</p><p><br />
+任意のプリンシパルと 1 つの公開資格情報を設定してサブジェクトに追加するコードスニペットを次に示します。&#160;:
+</p>
+<pre>
+public boolean commit() {
+  If (userAuthenticated) {
+     Set groups = UserService.findGroups (username);
+     for (Iterator itr = groups.iterator (); itr.hasNext (); {
+        String groupName = (String) itr.next ();
+        UserGroupPrincipal group = new UserGroupPrincipal (GroupName);
+        subject.getPrincipals ().add (group);  
+     }
+     UsernameCredential cred = new UsernameCredential (username);
+     subject.getPublicCredentials().add (cred);
+  }
+}                     
+</pre>
+<h3><span class="mw-headline" id="abort_.28.29">abort ()</span></h3>
+<p>abort () メソッドは、認証に失敗したときに呼び出されます。abort () メソッドで LoginModule を終了する前に、ユーザー名とパスワードの入力フィールドなどの状態をリセットするように注意してください。
+</p>
+<h3><span class="mw-headline" id="logout_.28.29">logout ()</span></h3>
+<ul>
+<li> LoginContext.logout が呼び出されたら、ユーザーのプリンシパルと資格情報を解放します。
+</li>
+</ul>
+<p>public boolean logout() {
+if (!subject.isReadOnly()) {
+</p>
+<pre>  Set principals = subject.getPrincipals(UserGroupPrincipal.class);
+  subject.getPrincipals().removeAll(principals);
+  Set creds = subject.getPublicCredentials(UsernameCredential.class);
+  subject.getPublicCredentials().removeAll(creds);
+  return true;
+</pre>
+<p>}  else {
+</p>
+<pre>          return false;
+  }
+</pre>
+<p>}
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="CallbackHandler.java">CallbackHandler.java</span></h2>
+<p>さまざまなコールバックオブジェクトを持つ複数の LoginModule にサービスを提供できるように、callbackHandler はどの LoginModule からも独立したソース (.java) ファイルに存在します。
+</p>
+<ul>
+<li> CallbackHandler クラスのインスタンスを生成し、1 つのメソッド handle () だけを持ちます。
+</li>
+<li> ログインするためのユーザー名とパスワードを要求する LoginModule にサービスを提供する CallbackHandler を次に示します。  
+</li>
+</ul>
+<pre>
+public void handle(Callback[] callbacks) { 
+    for (int i = 0; i &lt; callbacks.length; i++) {
+        Callback callback = callbacks[i];
+        if (callback instanceof NameCallback) {
+            NameCallback nameCallBack = (NameCallback) callback; 
+            nameCallBack.setName(username); 
+    }  else if (callback instanceof PasswordCallback) {
+            PasswordCallback passwordCallBack = (PasswordCallback) callback;
+            passwordCallBack.setPassword(password.toCharArray());
+        }
+    }
+}
+</pre>
+<h1><span class="mw-headline" id="Related_Articles">関連資料</span></h1>
+<ul>
+<li> 「JAAS in Action」、Michael Coté、2009 年 9 月 27 日の投稿、2012 年 5 月 14 日時点の URL <a rel="nofollow" class="external free" href="http://jaasbook.com/">http://jaasbook.com/</a>
+</li>
+<li> Pistoia、Marco、Nagaratnam、Nataraj、Koved、Larry、Nadalin、Anthony『Enterprise Java Security』Addison-Wesley、2004 年
+</li>
+</ul>
+<h1><span class="mw-headline" id="Disclosure">開示</span></h1>
+<p>添付の JAAS に関するチートシートに記載のコードはすべて、<a rel="nofollow" class="external free" href="http://jaasbook.com/">http://jaasbook.com/</a> のフリーソースからそのままコピーしたものです。
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Dr. A.L.Gottlieb - AnthonyG [at] owasp.org
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">JAAS Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.060 seconds
+Real time usage: 0.067 seconds
+Preprocessor visited node count: 120/1000000
+Preprocessor generated node count: 210/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:24272-0!*!0!!en!2!* and timestamp 20151215055336 and revision id 197575
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=JAAS_Cheat_Sheet&amp;oldid=197575">https://www.owasp.org/index.php?title=JAAS_Cheat_Sheet&amp;oldid=197575</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=JAAS+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/JAAS_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:JAAS_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/JAAS_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=JAAS_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=JAAS_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=JAAS_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=JAAS_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=JAAS_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=JAAS_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/JAAS_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/JAAS_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=JAAS_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=JAAS_Cheat_Sheet&amp;oldid=197575" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=JAAS_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 18 July 2015, at 17:12.</li>
+											<li id="footer-info-viewcount">This page has been accessed 32,081 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":145});
+}</script>
+	</body>
+</html>

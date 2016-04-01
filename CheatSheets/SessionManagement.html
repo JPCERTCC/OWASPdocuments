@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>セッション管理に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Session_Management_Cheat_Sheet","wgTitle":"Session Management Cheat Sheet","wgCurRevisionId":201621,"wgRevisionId":201621,"wgArticleId":19721,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Session_Management_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Session_Management_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">セッション管理に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd): <b>2015/10/05</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Session_ID_Properties"><span class="tocnumber">2</span> <span class="toctext">セッション ID のプロパティ</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Session_ID_Name_Fingerprinting"><span class="tocnumber">2.1</span> <span class="toctext">セッション ID 名のフィンガープリント</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Session_ID_Length"><span class="tocnumber">2.2</span> <span class="toctext">セッション ID の長さ</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Session_ID_Entropy"><span class="tocnumber">2.3</span> <span class="toctext">セッション ID のエントロピー</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Session_ID_Content_.28or_Value.29"><span class="tocnumber">2.4</span> <span class="toctext">セッション ID の内容 (または値)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Session_Management_Implementation"><span class="tocnumber">3</span> <span class="toctext">セッション管理の実装</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Built-in_Session_Management_Implementations"><span class="tocnumber">3.1</span> <span class="toctext">組み込みセッション管理の実装</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Used_vs._Accepted_Session_ID_Exchange_Mechanisms"><span class="tocnumber">3.2</span> <span class="toctext">使用されるセッション ID 交換メカニズムと受け入れるセッション ID 交換メカニズム</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Transport_Layer_Security"><span class="tocnumber">3.3</span> <span class="toctext">トランスポート層セキュリティ</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Cookies"><span class="tocnumber">4</span> <span class="toctext">Cookie</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Secure_Attribute"><span class="tocnumber">4.1</span> <span class="toctext">Secure 属性</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#HttpOnly_Attribute"><span class="tocnumber">4.2</span> <span class="toctext">HttpOnly 属性</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Domain_and_Path_Attributes"><span class="tocnumber">4.3</span> <span class="toctext">Domain 属性および Path 属性</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Expire_and_Max-Age_Attributes"><span class="tocnumber">4.4</span> <span class="toctext">Expire 属性および Max-Age 属性</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Session_ID_Life_Cycle"><span class="tocnumber">5</span> <span class="toctext">セッション ID のライフサイクル</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#Session_ID_Generation_and_Verification:_Permissive_and_Strict_Session_Management"><span class="tocnumber">5.1</span> <span class="toctext">セッション ID の生成と検証: Permissive なセッション管理と Strict なセッション管理</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Manage_Session_ID_as_Any_Other_User_Input"><span class="tocnumber">5.2</span> <span class="toctext">セッション ID を他の任意のユーザー入力として管理</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Renew_the_Session_ID_After_Any_Privilege_Level_Change"><span class="tocnumber">5.3</span> <span class="toctext">特権レベルに変更があるたびにセッション ID を更新</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Considerations_When_Using_Multiple_Cookies"><span class="tocnumber">5.4</span> <span class="toctext">複数の Cookie を使用する際の考慮事項</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Session_Expiration"><span class="tocnumber">6</span> <span class="toctext">セッションの有効期限切れ</span></a>
+<ul>
+<li class="toclevel-2 tocsection-22"><a href="#Automatic_Session_Expiration"><span class="tocnumber">6.1</span> <span class="toctext">自動的なセッションの有効期限切れ</span></a>
+<ul>
+<li class="toclevel-3 tocsection-23"><a href="#Idle_Timeout"><span class="tocnumber">6.1.1</span> <span class="toctext">アイドル状態のタイムアウト</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Absolute_Timeout"><span class="tocnumber">6.1.2</span> <span class="toctext">絶対的なタイムアウト</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="#Renewal_Timeout"><span class="tocnumber">6.1.3</span> <span class="toctext">更新のタイムアウト</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-26"><a href="#Manual_Session_Expiration"><span class="tocnumber">6.2</span> <span class="toctext">手動によるセッションの有効期限切れ</span></a>
+<ul>
+<li class="toclevel-3 tocsection-27"><a href="#Logout_Button"><span class="tocnumber">6.2.1</span> <span class="toctext">ログアウトボタン</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-28"><a href="#Web_Content_Caching"><span class="tocnumber">6.3</span> <span class="toctext">Web コンテンツのキャッシュ</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-29"><a href="#Additional_Client-Side_Defenses_for_Session_Management"><span class="tocnumber">7</span> <span class="toctext">セッション管理に関する追加のクライアント側の防御</span></a>
+<ul>
+<li class="toclevel-2 tocsection-30"><a href="#Initial_Login_Timeout"><span class="tocnumber">7.1</span> <span class="toctext">最初のログインタイムアウト</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="#Force_Session_Logout_On_Web_Browser_Window_Close_Events"><span class="tocnumber">7.2</span> <span class="toctext">Web ブラウザーウィンドウを閉じる際の強制的なセッションログアウト</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Disable_Web_Browser_Cross-Tab_Sessions"><span class="tocnumber">7.3</span> <span class="toctext">Web ブラウザーのクロスタブセッションの無効化</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#Automatic_Client_Logout"><span class="tocnumber">7.4</span> <span class="toctext">自動クライアントログアウト</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-34"><a href="#Session_Attacks_Detection"><span class="tocnumber">8</span> <span class="toctext">セッション攻撃の検出</span></a>
+<ul>
+<li class="toclevel-2 tocsection-35"><a href="#Session_ID_Guessing_and_Brute_Force_Detection"><span class="tocnumber">8.1</span> <span class="toctext">セッション ID 推測およびブルートフォースの検出</span></a></li>
+<li class="toclevel-2 tocsection-36"><a href="#Detecting_Session_ID_Anomalies"><span class="tocnumber">8.2</span> <span class="toctext">セッション ID の異常の検出</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#Binding_the_Session_ID_to_Other_User_Properties"><span class="tocnumber">8.3</span> <span class="toctext">セッション ID を他のユーザープロパティにバインド</span></a></li>
+<li class="toclevel-2 tocsection-38"><a href="#Logging_Sessions_Life_Cycle:_Monitoring_Creation.2C_Usage.2C_and_Destruction_of_Session_IDs"><span class="tocnumber">8.4</span> <span class="toctext">セッションライフサイクルのロギング: セッション ID の作成、使用、破棄の監視</span></a></li>
+<li class="toclevel-2 tocsection-39"><a href="#Simultaneous_Session_Logons"><span class="tocnumber">8.5</span> <span class="toctext">同時セッションログオン</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-40"><a href="#Session_Management_WAF_Protections"><span class="tocnumber">9</span> <span class="toctext">セッション管理の WAF 防御</span></a></li>
+<li class="toclevel-1 tocsection-41"><a href="#Related_Articles"><span class="tocnumber">10</span> <span class="toctext">関連資料</span></a></li>
+<li class="toclevel-1 tocsection-42"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">11</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-43"><a href="#Other_Cheatsheets"><span class="tocnumber">11.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p><b>Web 認証、セッション管理、およびアクセス制御</b> 
+</p><p>Web セッションとは、同一ユーザーに関連付けられた、ネットワーク HTTP リクエストおよびレスポンスの一連のトランザクションのことです。最近の複雑な Web アプリケーションでは、複数のリクエストの間、各ユーザーについての情報や状態を保持することが必要になります。そのため、セッションには、アクセス権やローカライズ設定などの変数を確立できる機能があります。その変数は、セッションが終わるまで、ユーザーと Web アプリケーションとのあらゆる対話に適用されます。 
+</p><p>Web アプリケーションは、最初のユーザーリクエストの後に、匿名ユーザーを追跡記録するセッションを作成できます。ユーザーの言語設定の維持が一例です。さらに、Web アプリケーションは、一度ユーザー認証が完了してから、以後のセッションを使用します。これにより、後続のリクエストでユーザーを識別できるだけでなく、セキュリティアクセス制御、ユーザーの非公開データへの許可されたアクセスが適用可能になり、アプリケーションの使い勝手が向上します。そのため、現在の Web アプリケーションは、認証前と認証後どちらに対してもセッション管理を行うことが可能です。 
+</p><p>認証済みセッションが確立されると、セッション ID (またはトークン) は、アプリケーションで使用される最強の認証方法 (ユーザー名とパスワード、パスフレーズ、OTP (One Time Password)、クライアント証明書、スマートカード、生体認証 (指紋や網膜) など) と同等の役割を一時的に果たします。次の OWASP の認証に関するチートシートを参照してください。<a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Authentication_Cheat_Sheet">https://www.owasp.org/index.php/Authentication_Cheat_Sheet</a> 
+</p><p>HTTP は、ステートレスなプロトコルです (RFC2616 [5])。このプロトコルでは、リクエストと応答のペアが、Web とのやり取りごとに独立しています。そのため、セッションの概念を取り入れるには、Web アプリケーションで一般的に使用される認証とアクセス制御 (または許可) の両方のモジュールをリンクさせた、セッション管理機能の実装が必要になります。 
+</p>
+<div class="center"><div class="floatnone"><a href="/index.php/File:Session-Management-Diagram_Cheat-Sheet.png" class="image" title="Session-Management-Diagram Cheat-Sheet.png"><img alt="Session-Management-Diagram Cheat-Sheet.png" src="/images/1/1d/Session-Management-Diagram_Cheat-Sheet.png" width="753" height="171" /></a></div></div> <br /> セッション ID やトークンは、ユーザー認証の資格情報を (ユーザーセッションの形式で)、ユーザー HTTP トラフィック、および Web アプリケーションによって適用される該当のアクセス制御にバインドします。最新の Web アプリケーションに存在する、これら 3 つのコンポーネント (認証、セッション管理、およびアクセス制御) の複雑さと、その実装とバインディングが Web 開発者によってのみ行えるという事実 (Web 開発のフレームワークで、これらのモジュール間の厳格な関連付けが提供されていないため) により、セキュアなセッション管理モジュールの実装は、非常に困難なものになっています。 
+<p>セッション ID の開示、取得、予測、ブルートフォース、または固定は、セッションハイジャック (またはサイドジャック) 攻撃につながります。この攻撃では、攻撃者は Web アプリケーション内で完全に被害者ユーザーになりすますことができます。攻撃者は、標的型攻撃と汎用的な攻撃という 2 種類のセッションハイジャック攻撃を実行します。標的型攻撃の場合、攻撃者は、特定の (権限付与された) Web アプリケーションの被害者ユーザーになりすますことを目指します。汎用的な攻撃の場合、攻撃者は、Web アプリケーションの有効な、または正当なユーザーになりすます (それらのユーザーとしてのアクセス権を獲得する) ことを目指します。 
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Session_ID_Properties">セッション ID のプロパティ</span></h1>
+<p>Web アプリケーションで、認証された状態を維持し、ユーザーの進行を追跡するために、アプリケーションはユーザーにセッション識別子 (セッション ID やトークン) を提供します。この識別子は、セッションの作成時に割り当てられ、セッションが終わるまでユーザーと Web アプリケーションによって共有され交換されます (HTTP リクエストごとに送信されます)。セッション ID は、"名前=値" のペアです。 
+</p><p>セキュアなセッション ID を実装するために、識別子 (ID またはトークン) の生成は、次のプロパティを満たす必要があります。 
+</p>
+<h2><span class="mw-headline" id="Session_ID_Name_Fingerprinting">セッション ID 名のフィンガープリント</span></h2>
+<p>セッション ID に使用する名前は、ID の目的と意味について、極端に説明的であったり、不要な詳細を知らせるようなものであってはいけません。 
+</p><p>ほとんどの一般的な Web アプリケーション開発フレームワークで使用されているセッション ID 名は、PHPSESSID (PHP)、JSESSIONID (J2EE)、CFID &amp; CFTOKEN (ColdFusion)、ASP.NET_SessionId (ASP .NET) など、簡単にフィンガープリントを採取できます [0]。そのため、セッション ID 名によって、Web アプリケーションに使用されたテクノロジとプログラミング言語が開示されてしまいます。 
+</p><p>Web 開発フレームワークの既定のセッション ID名は、「id」などの汎用的な名前に変更することを推奨します。 
+</p>
+<h2><span class="mw-headline" id="Session_ID_Length">セッション ID の長さ</span></h2>
+<p>セッション ID には、ブルートフォース攻撃を防止するために十分な長さが必要です。ブルートフォース攻撃では、攻撃者は ID 値の範囲をすべて調べて、有効なセッションの存在を確認する方法をとるためです。 
+</p><p>セッション ID の長さは、少なくとも 128 ビット (16 バイト) にする必要があります。
+</p><p><i><b>注</b></i>: 128 ビットというセッション ID の長さは、次のセクション「セッション ID のエントロピー」の前提に基づいた参考値として示しています。ただし、この数字は最低限必要な絶対的な長さとは限りません。その他の実装の要因が強度に影響するためです。たとえば、よく知られた Microsoft ASP.NET の実装では、セッション ID に 120 ビットの乱数 (20 桁の文字列 [10]) が使用されています。これは、非常に効果的なエントロピーを提供しており、その結果、推測やブルートフォース攻撃を回避するのに十分と見なされています。
+</p>
+<h2><span class="mw-headline" id="Session_ID_Entropy">セッション ID のエントロピー</span></h2>
+<p>セッション ID は、攻撃を防ぐために予測不可でなければなりません (十分にランダムな値でなければなりません)。攻撃者は、統計分析手法を用いて、有効なセッションの ID を推測、予測しようとするためです。このためには、優れた PRNG (擬似乱数発生ルーチン) を使用する必要があります。 
+</p><p>セッション ID は、少なくとも 64 ビットのエントロピーを提供する必要があります (優れた PRNG を使用している場合、この値はセッション ID の半分の長さになります)。<br /> 
+</p><p><i><b>注</b></i>: セッション ID のエントロピーは、実際にはその他の外部の計測困難な要因に影響を受けます。Web アプリケーションが一般的に保持する同時アクティブセッション数、絶対的なセッション有効期限切れタイムアウト、攻撃者が実行可能な、また対象の Web アプリケーションがサポート可能な 1 秒当たりのセッション ID 推測数などの多くの要因があります [2]。64 ビットのエントロピーを持つセッション ID を使用している場合、Web アプリケーションで使用可能な有効な同時セッション数が 100,000 件で、攻撃者が 1 秒当たり 10,000 件の推測を実行すると仮定すると、有効なセッション ID の推測に成功するには、少なくとも 292 年かかることになります。 
+</p>
+<h2><span class="mw-headline" id="Session_ID_Content_.28or_Value.29">セッション ID の内容 (または値)</span></h2>
+<p>セッション ID の内容 (または値) は、情報開示攻撃を防ぐために意味を持たないものにしなければなりません。情報開示攻撃では、攻撃者は ID の内容をデコードして、Web アプリケーションのユーザー、セッション、内部作業に関する詳細情報を抽出しようとするためです。 
+</p><p>セッション ID は、クライアント側における単なる識別子でなければならず、その値に機密情報 (PII など) を絶対に含めてはいけません。セッション ID に関わる意味、ビジネスロジックまたはアプリケーションロジックは、セッションオブジェクトやセッション管理データベース、リポジトリなど、サーバー側に保管しなければなりません。保管された情報には、クライアントの IP アドレス、User-Agent、電子メール、ユーザー名、ユーザー ID、役割、特権レベル、アクセス権限、言語設定、アカウント ID、現在の状態、最終ログイン、セッションタイムアウト、その他の内部セッション情報が含まれます。セッションオブジェクトとプロパティに、クレジットカード番号などの機密情報が含まれている場合、セッション管理リポジトリを厳格に暗号化して保護する必要があります。 
+</p><p>SHA1 (160 ビット) などの暗号ハッシュ機能を使用して、暗号強度の高いセッション ID を作成することを推奨します。 
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Session_Management_Implementation">セッション管理の実装</span></h1>
+<p>セッション管理の実装では、セッション ID を共有し、継続的に交換するために、ユーザーと Web アプリケーション間で使用する交換メカニズムを定義します。セッション状態を Web アプリケーション内で維持するために HTTP で使用可能なメカニズムは複数あります。Cookie (標準 HTTP ヘッダー)、URL パラメーター (URL 書き換え - <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc2396">RFC 2396</a>)、GET リクエストの URL 引数、POST リクエストの body 引数、非表示形式のフィールド (HTML 形式)、専用の HTTP ヘッダーなどです。 
+</p><p>セッション ID 交換メカニズムは、トークンの有効期限日時やきめ細かい使用制限など、高度なトークンプロパティの定義が可能なメカニズムをお勧めします。Cookie (RFC 2109、2965、6265 [1]) が、セッション ID 交換メカニズムとして最も広く使用されているのはこのためで、他の手法では使用できない高度な機能を提供しています。 
+</p><p>ID が URL に含まれているものなど、使用するセッション ID 交換メカニズムによっては、 (Web リンクやログ、Web ブラウザー履歴やブックマーク、Referer ヘッダーや検索エンジンなどで) セッション ID が開示されたり、ID の操作やセッション固定攻撃など、他の攻撃にさらされやすくなる場合があります。 
+</p>
+<h2><span class="mw-headline" id="Built-in_Session_Management_Implementations">組み込みセッション管理の実装</span></h2>
+<p>J2EE、ASP .NET、PHP、その他の Web 開発フレームワークは、独自のセッション管理機能と関連した実装を提供しています。ゼロから独自で作成するよりも、これらの組み込みフレームワークを使用することを推奨します。これらは、世界中のさまざまな Web 環境で使用されており、長期にわたって Web アプリケーションセキュリティと開発のコミュニティによってテストされてきた実績があるためです。 
+</p><p>ただし、これらのフレームワークが過去にさまざまな脆弱性や弱点を露呈してきたことも忘れてはなりません。つまり、想定される既知の脆弱性をすべて修正した最新バージョンを常に使用すること、また本書に記載された推奨事項に従ってデフォルトの構成を見直し変更することで、セキュリティの強化を図ることが重要です。 
+</p><p>セッション ID の一時保存のためにセッション管理メカニズムが使用するストレージ機能やリポジトリは、安全に保護されている必要があり、セッション ID をローカルまたはリモートでの、偶発的な開示や不正アクセスから保護しなければなりません。 
+</p>
+<h2><span class="mw-headline" id="Used_vs._Accepted_Session_ID_Exchange_Mechanisms">使用されるセッション ID 交換メカニズムと受け入れるセッション ID 交換メカニズム</span></h2>
+<p>Web アプリケーションは、セッション ID 交換管理に Cookie を使用する必要があります。URL パラメーターなど、別の交換メカニズムを使用してユーザーがセッション ID を送信した場合、Web アプリケーションは、セッション固定を阻止する防御戦略の一環として、そのセッション ID の受け入れを回避する必要があります。
+</p><p><i><b>注</b></i>: Web アプリケーションが自身のデフォルトのセッション ID 交換メカニズムとして Cookie を使用していても、他の交換メカニズムも受け入れる場合があります。そのため、セッション ID の処理時および管理時に Web アプリケーションが現在受け入れているすべての異なるメカニズムを徹底的にテストすることによって確認し、受け入れるセッション ID 追跡メカニズムを Cookie のみに制限する必要があります。過去には、特定の条件を満たした場合に (Cookie をサポートしない Webクライアントの識別や、ユーザーのプライバシーの問題から Cookie を受け入れない場合など)、一部の Web アプリケーションでは、URL パラメーターを使用したり、Cookie から URL パラメーターへの切り替え (自動 URL  の書き換え) を行っていました。
+</p>
+<h2><span class="mw-headline" id="Transport_Layer_Security">トランスポート層セキュリティ</span></h2>
+<p>セッション ID 交換をネットワークトラフィックにおいて能動的な傍受や受動的な漏えいから守るには、ユーザーの資格情報が交換される認証プロセスだけでなく、Web セッション全体に対して暗号化された HTTPS (SSL/TLS) 接続を使用することが必須です。 
+</p><p>また、Cookie の “Secure” 属性 (下記参照) を使用して、セッション ID が暗号化されたチャネルを通じて交換されるようにする必要があります。暗号化された通信チャネルを使用することで、一部のセッション固定攻撃からセッションを保護することもできます。このような攻撃では、攻撃者は、Web トラフィックを傍受し操作して、被害者の Web ブラウザー上にセッション ID を挿入 (固定) するためです [4]。 
+</p><p>以下の一連の HTTPS (SSL/TLS) ベストプラクティスは、セッション ID の保護 (特に Cookie を使用している場合) と、Web アプリケーション内での HTTPS との統合の容易化に重点を置いています。 
+</p>
+<ul>
+<li>Web アプリケーションは、該当セッションを HTTP から HTTPS に切り替えることも、その逆も絶対に行ってはいけません。セッション ID がネットワークで暗号化されていない状態で開示されてしまうためです。 
+</li>
+<li>Web アプリケーションは、同じホスト上 (または同じドメイン上。Cookie の “domain” 属性を参照)  で暗号化されたコンテンツと暗号化されていないコンテンツを混在させてはいけません (HTML ページ、イメージ、CSS、Javascript ファイルなど)。暗号化されていないチャネルを介した Web オブジェクトのリクエストによってセッション ID が開示されてしまう場合があるためです。 
+</li>
+<li>一般的に、Web アプリケーションは、公開用の暗号化されていないコンテンツと、非公開の暗号化されたコンテンツを同じホストから提供してはいけません。2 つの異なるホストを使用することを推奨します。公開用コンテンツについては、HTTP (暗号化されていない) を使用した www.example.com、非公開の機密コンテンツについては、HTTPS (暗号化されている) を使用した secure.example.com というように 2 つのホストを使用します (セッションが発生する場所)。前者のホストは、ポート TCP/80 のみを開き、後者のホストは、ポート TCP/443 のみを開きます。 
+</li>
+<li>Web アプリケーションは、極めて一般的なホームページでの HTTP から HTTPS へのリダイレクト (30x HTTP レスポンスを使用) を避けるべきです。攻撃者は、この単一の保護されていない HTTP リクエスト / レスポンス交換を利用して、有効なセッション ID の収集 (または固定) を行うことができるためです。 
+</li>
+<li> Web アプリケーションは、HTTP Strict Transport Security (HSTS) (以前の STS) を使用して、HTTPS 接続を強制適用する必要があります。
+</li>
+</ul>
+<p>次の OWASP のトランスポート層の保護に関するチートシートを参照してください。<a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Transport_Layer_Protection_Cheat_Sheet">https://www.owasp.org/index.php/Transport_Layer_Protection_Cheat_Sheet</a> 
+</p><p>SSL/TLS (HTTPS) は、セッション ID の推測、ブルートフォース、クライアント側での改ざん、または固定に対する防御には役に立たない点に注意してください。ただ、セッション ID をネットワークトラフィックで開示させて取得するという攻撃は、現在最も多用される攻撃です。 
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Cookies">Cookie</span></h1>
+<p>Cookie に基づくセッション ID 交換メカニズムは、Cookie 属性の形式で複数のセキュリティ機能を提供します。以下の Cookie 属性を使用して、セッション ID の交換を保護できます。 
+</p>
+<h2><span class="mw-headline" id="Secure_Attribute">Secure 属性</span></h2>
+<p>Cookie の “Secure” 属性は、Web ブラウザーに対して、暗号化された HTTPS (SSL/TLS) 接続のみを使用して Cookie を送信するように指示します。このセッション保護メカニズムは、MitM (中間者) 攻撃によるセッション ID の開示を防ぐうえで必須です。このメカニズムによって、攻撃者は Web ブラウザーのトラフィックから簡単にセッション ID を取得できなくなります。 
+</p><p>Web アプリケーションに通信で HTTPS のみを使用するように強制しても (HTTP のポート TCP/80 が Web アプリケーションホストで閉じられている場合でも)、 Cookie の “Secure” 属性が設定されていなければセッション ID の開示を防ぐことはできません。Web ブラウザーをだまして、暗号化されてない HTTP 接続でセッション ID を開示させることができるためです。攻撃者は、被害者ユーザーのトラフィックを傍受し、操作して、暗号化されていない HTTP 参照を Web アプリケーションに挿入します。この HTTP 参照により、Web ブラウザーはセッション ID を暗号化されていない状態で送信してしまいます。  
+</p>
+<h2><span class="mw-headline" id="HttpOnly_Attribute">HttpOnly 属性</span></h2>
+<p>Cookie の “HttpOnly” 属性は、Web ブラウザーに対して、DOM document.cookie オブジェクトを介して Cookie にアクセスするスクリプト (JavaScript または VBscript) の機能を許可しないように指示します。このセッション ID 保護は、XSS 攻撃によるセッション ID の盗難を防ぐうえで必須です。 
+</p><p>次の OWASP の XSS 対策チートシートを参照してください。<a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</a> 
+</p>
+<h2><span class="mw-headline" id="Domain_and_Path_Attributes">Domain 属性および Path 属性</span></h2>
+<p>Cookie の “Domain” 属性は、Web ブラウザーに対して、指定されたドメイン、およびそのすべてのサブドメインにのみ Cookie を送信するように指示します。この属性が設定されていない場合、デフォルトで Cookie は発信元のサーバーにしか送信されません。Cookie の “Path” 属性は、Web ブラウザーに対して、 アプリケーション内で指定されたディレクトリまたはサブディレクトリ (またはパスやリソース) にのみ Cookie を送信するように指示します。この属性が設定されていない場合、デフォルトで Cookie は要求された、その Cookie を設定したリソースのディレクトリ (またはパス) にのみ送信されます。 
+</p><p>これら 2 つの属性は、狭い、限られた範囲で使用することを推奨します。この意味で、“Domain” 属性は設定するべきではありません (Cookie は発信元のサーバーに送信されるように制限しておきます)。また、 “Path” 属性は、そのセッション ID を使用する Web アプリケーションパスにできるだけ限定して設定する必要があります。  
+</p><p>“Domain” 属性を許容範囲が大きすぎる値 (“example.com” など) に設定すると、攻撃者は、同じドメインに属するさまざまなホストおよび Web アプリケーション間のセッション ID に対して攻撃を仕掛けることができます (クロスサブドメイン Cookie)。たとえば、www.example.com の脆弱性を利用して、攻撃者が secure.example.com からセッション ID にアクセスできる場合があります。 
+</p><p>また、同じドメイン上に異なるセキュリティレベルの Web アプリケーションを混在させないことを推奨します。Web アプリケーションの 1 つに脆弱性があると、攻撃者は許容範囲の大きい “Domain” 属性 (”example.com” など) を使用して、同じドメイン上の別の Web アプリケーションに対してセッション ID を設定できてしまいます。これは、セッション固定攻撃で使用される手法です [4]。 
+</p><p>"Path” 属性は、同じホスト上で異なるパスを使用する Web アプリケーション間で、セッション ID の分離を可能にしますが、同じホスト上で異なる Web アプリケーション (特にセキュリティレベルや範囲が異なるアプリケーション) を実行しないことを強く推奨します。これらのアプリケーションは、さまざまな他の方法を使用して、セッション ID にアクセスできてしまうためです (“document.cookie” オブジェクトなど)。また、任意の Web アプリケーションが、そのホスト上の任意のパスに Cookie を設定できてしまいます。 
+</p><p>Cookie は、DNS スプーフィング / ハイジャック / ポイズニング攻撃に対して脆弱です。これらの攻撃では、攻撃者は、DNS 解決を操作して、該当のホストまたはドメインのセッション ID を Web ブラウザーに強制的に開示させることができます。 
+</p>
+<h2><span class="mw-headline" id="Expire_and_Max-Age_Attributes">Expire 属性および Max-Age 属性</span></h2>
+<p>Cookie に基づくセッション管理メカニズムでは、非永続 (セッション) Cookie と永続 Cookie の、2 種類の Cookie を使用できます。Cookie が “Max-Age” 属性 (“Expires” 属性よりも優先される) または “Expires” 属性を提示している場合、この Cookie は永続 Cookie と考えられ、有効期限までディスク上に Web ブラウザーによって保管されます。通常、認証後にユーザーを追跡するセッション管理機能は、非永続 Cookie を使用します。これにより、現在の Web ブラウザーインスタンスが閉じられると、セッションは強制的にクライアントから消失します。そのため、セッション管理を目的とする場合、非永続 Cookie の使用を強く推奨します。セッション ID が長時間にわたって Web クライアントのキャッシュに残らず、キャッシュから攻撃者が取得することができないためです。 
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Session_ID_Life_Cycle">セッション ID のライフサイクル</span></h1>
+<h2><span class="mw-headline" id="Session_ID_Generation_and_Verification:_Permissive_and_Strict_Session_Management">セッション ID の生成と検証:Permissive なセッション管理と Strict なセッション管理</span></h2>
+<p>Web アプリケーションのセッション管理メカニズムには、セッション固定攻撃への脆弱性に関連して、permissive と strict の 2 種類があります。permissive なメカニズムでは、Web アプリケーションは、最初にユーザーによって有効として設定された任意のセッション ID を受け入れて、その ID で新規セッションを開始します。一方、strict なメカニズムでは、 Web アプリケーションは、その Web アプリケーションによって以前に生成されたことのあるセッション ID の値しか受け入れません。 
+</p><p>現在最も一般的に使用されているのは、strict な (よりセキュアな) メカニズムです。開発者は、状況にかかわらず、Web アプリケーションが permissive なメカニズムを使用しないようにしなければなりません。Web アプリケーションは、生成したことのないセッション ID を決して受け入れず、受け取った場合には、新規の有効なセッション ID を生成し、ユーザーに提示するようにしなければなりません。また、このようなシナリオが発生した場合、疑わしい活動として検出され、アラートが生成されるようにします。 
+</p>
+<h2><span class="mw-headline" id="Manage_Session_ID_as_Any_Other_User_Input">セッション ID を他の任意のユーザー入力として管理</span></h2>
+<p>セッション ID は、Web アプリケーションによって処理される他のあらゆるユーザー入力と同様に、信頼されていないものと見なす必要があります。そのため、妥当性を確認し検証する必要があります。使用しているセッション管理メカニズムに応じて、セッション ID は、GET パラメーターまたは POST パラメーター、URL や HTTP ヘッダー (Cookie など) で受け取ります。Web アプリケーションが、無効なセッション ID を検出せず除外できないまま処理してしまうと、他の Web 脆弱性の悪用をもたらす可能性があります。セッション ID がリレーショナルデータベースに保管されている場合は SQL インジェクション、セッション ID が Web アプリケーションによって保管され後で返される場合は持続型 XSS などにつながりかねません。 
+</p>
+<h2><span class="mw-headline" id="Renew_the_Session_ID_After_Any_Privilege_Level_Change">特権レベルに変更があるたびにセッション ID を更新</span></h2>
+<p>セッション ID は、関連したユーザーセッションで何らかの特権レベルの変更が発生したら、Web アプリケーションによって新たに更新、または再生成する必要があります。セッション ID の再生成が必須となる最も一般的なシナリオは認証プロセスです。ユーザーの特権レベルが非認証 (または匿名) の状態から認証済みの状態に変わるためです。Web アプリケーションにおける、パスワード変更、許可の変更、通常ユーザーの役割から管理者の役割への切り替えなど、他の一般的なシナリオも考慮しなければなりません。これらすべての Web アプリケーションの重要なページでは、前に使用されたセッション ID を無視しなければなりません。そして、重要なリソースに対して新規のリクエストを受け取るたびに、そのリクエストに新規のセッション ID を割り当てて、古い前のセッション ID を破棄しなければなりません。 
+</p><p>最も一般的な Web 開発フレームワークでは、セッション ID を新たに更新する、セッション機能と手法が提供されています。“request.getSession(true) & HttpSession.invalidate()” (J2EE)、 “Session.Abandon() & Response.Cookies.Add(new…)“ (ASP .NET)、 “session_start() & session_regenerate_id(true)” (PHP) などです。 
+</p><p>セッション ID の再生成は、セッション固定攻撃を阻止するうえで必須です [3]。この攻撃では、攻撃者は、他のセッションベースの攻撃の多くと異なり、被害者のセッション ID を取得するのではなく、被害者ユーザーの Web ブラウザーにセッション ID を設定します。HTTP または HTTPS のどちらを使用しているかも関係ありません。この保護によって、HTTP レスポンス分割または XSS などの、セッション固定攻撃の開始に使用できるその他の Web ベースの脆弱性の影響も軽減できます [4]。 
+</p><p>補完的な推奨事項として、認証前と認証後に、異なるセッション ID またはトークン名 (またはセッション ID のセット) を使用する方法も挙げられます。これにより、Web アプリケーションは、両方の状態の間のユーザーセッションが開示され、バインドされるリスクを負うことなく、匿名ユーザーと認証済みユーザーを追跡することができます。 
+</p>
+<h2><span class="mw-headline" id="Considerations_When_Using_Multiple_Cookies">複数の Cookie を使用する際の考慮事項</span></h2>
+<p>Web アプリケーションが、セッション ID 交換メカニズムとして Cookie を使用し、複数の Cookie が 1 つの該当セッションに設定されている場合、Web アプリケーションは、ユーザーセッションへのアクセスを許可する前に、すべての Cookie を検証 (および Cookie 間の関係を適用) する必要があります。 
+</p><p>一般的には、非認証 (または匿名) ユーザーを追跡するために、Web アプリケーションは、 HTTP を介して、ユーザーに認証前の Cookie を設定します。Web アプリケーションでユーザーが認証されると、新規の認証後のセキュアな Cookie が HTTPS を介して設定され、両方の Cookie 間のバインドとユーザーセッションが確立されます。Web アプリケーションが認証済みセッションについて、両方の Cookie の検証を行わない場合、攻撃者は認証前の保護されていない Cookie を使用して、認証済みのユーザーセッションにアクセスできてしまいます [4]。 
+</p><p>Web アプリケーションが、同じ Web アプリケーション内で、異なるパスまたはドメイン範囲に対して、同じ Cookie 名を使用するのは避けてください。ソリューションが複雑になるうえに、スコーピングの問題が発生する可能性が高まるためです。
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Session_Expiration">セッションの有効期限切れ</span></h1>
+<p>攻撃者が活動状態にあるセッションに対する攻撃を開始し、ハイジャックを実行するまでの時間を最小化するために、すべてのセッションに有効期限切れタイムアウトを設定し、セッションを活動状態のままにする時間を明確に設定しておく必要があります。Web アプリケーションによるセッションの有効期限切れの設定が不十分だと、他のセッションベースの攻撃に対するリスクが高まります。攻撃者が有効なセッション ID を再使用し、関連セッションをハイジャックするには、セッションが活動状態のままでなければならないためです。 
+</p><p>セッションの時間間隔が短ければ短いほど、攻撃者が有効なセッション ID を使用する時間が短くなります。セッションの期限切れタイムアウトの値は、Web アプリケーションの目的と性質に応じて設定し、セキュリティと使い勝手のバランスをとる必要があります。そうして初めて、ユーザーはセッションが頻繁に期限切れになることなく、Web アプリケーションにおける操作を快適に行うことができるのです。アイドル状態のタイムアウトと絶対的なタイムアウトの値は、対象の Web アプリケーションとそのデータの重要度に大きく依存します。一般的に、アイドル状態のタイムアウトの値は、重要度の高いアプリケーションの場合、2 分から 5 分、低リスクのアプリケーションの場合、15 分から 30 分です。 
+</p><p>セッションの有効期限が切れると、Web アプリケーションは、能動的にアクションを実行して、クライアントとサーバー両側のセッションを無効化しなければなりません。特に後者のサーバー側セッションの無効化は、セキュリティの観点から最も重要かつ必須です。 
+</p><p>セッション交換メカニズムの多くでは、クライアント側のセッション ID 無効化アクションは、トークン値の消去が中心です。たとえば、Cookie を無効化するには、次のようにセッション ID に空の値 (無効な値) を提供し、“Expires” 属性 (または “Max-Age” 属性) を過去の日付に設定します (永続 Cookie を使用している場合)。 
+</p>
+<pre>Set-Cookie: id=; Expires=Friday, 17-May-03 18:45:00 GMT </pre> 
+<p>サーバー側のセッションを終了して、無効化するには、セッションが期限切れになったとき、またはユーザーが能動的にログアウトしたときに 、Web アプリケーションがセッション管理メカニズムによって提供されている関数やメソッドを使用して、能動的にアクションをとる必要があります ( “HttpSession.invalidate()” (J2EE)、“Session.Abandon()“ (ASP .NET)、 “session_destroy()/unset()“ (PHP) など)。 
+</p>
+<h2><span class="mw-headline" id="Automatic_Session_Expiration">自動的なセッションの有効期限切れ</span></h2>
+<h3><span class="mw-headline" id="Idle_Timeout">アイドル状態のタイムアウト</span></h3>
+<p>すべてのセッションは、アイドル状態、または非活動状態のタイムアウトを実装する必要があります。このタイムアウトでは、まったく活動がないセッションを活動状態のままにしておく時間を定義します。該当のセッション ID について Web アプリケーションが最後に HTTP リクエストを受信したときから、ここで定義されたアイドル状態のタイムアウト期間が経過すると、セッションは終了し、無効化されます。 
+</p><p>アイドル状態のタイムアウトにより、攻撃者が有効なセッション ID を推測し、別のユーザーでそのセッション ID を使用する機会が制限されます。しかし、該当のセッションを攻撃者がハイジャックできる場合、アイドル状態のタイムアウトでは、攻撃者のアクションを制限できません。攻撃者は定期的にセッションに活動状態を作り出して、長時間セッションを活動状態のままにすることができるためです。 
+</p><p>セッションタイムアウト管理と有効期限は、サーバー側で適用されます。クライアントを使用してセッションタイムアウトを適用する場合、たとえばセッショントークンやその他のクライアントパラメーターを使用して時間参照 (ログインからの経過分数など) を追跡する場合、攻撃者はこれらの値を操作して、セッションの時間を長くすることができます。 
+</p>
+<h3><span class="mw-headline" id="Absolute_Timeout">絶対的なタイムアウト</span></h3>
+<p>すべてのセッションは、セッションの活動状態に関係なく、絶対的なタイムアウトを実装する必要があります。このタイムアウトでは、セッションを活動状態にできる最大時間を定義します。該当セッションが Web アプリケーションによって最初に作成されてから、ここで定義された絶対時間を経過すると、セッションは終了し、無効化されます。セッションが無効化されると、ユーザーは、Web アプリケーションで再度認証を行い、新しいセッションを確立しなければなりません。 
+</p><p>絶対的なセッションタイムアウトは、攻撃者がハイジャックしたセッションを使用し、被害者ユーザーになりすますことができる時間を制限します。 
+</p>
+<h3><span class="mw-headline" id="Renewal_Timeout">更新のタイムアウト</span></h3>
+<p>さらに、Web アプリケーションは、更新のタイムアウトを実装することもできます。このタイムアウトを経過すると、セッション ID は自動的に新しく更新されます。ユーザーセッションの最中であっても、セッションの活動状態、アイドル状態のタイムアウトにも関係なく更新されます。 
+</p><p>セッションが最初に作成されてから特定の時間が経過すると、Web アプリケーションはユーザーセッションについて新しい ID を再度生成し、クライアントで設定、または更新を試みます。前のセッション ID の値は、安全のために、クライアントが新規 ID を認識し、使用を開始するまでしばらくの間有効です。クライアントが現行セッション内で新規 ID に切り替えると、アプリケーションは前の ID を無効化します。
+</p><p>このシナリオによって、被害者ユーザーのセッションが活動状態にあっても、攻撃者がセッション ID を取得し、該当のセッション ID を再使用して、ユーザーセッションをハイジャックできる可能性のある時間を最小化します。関連したセッション ID 値は、更新のタイムアウトが期限切れになるたびに、セッション中でも定期的に自動的に新しく更新されますが、ユーザーセッションは、合法的なクライアント上で活動状態で開いたままになります。そのため、更新のタイムアウトは、アイドル状態のタイムアウトと絶対的なタイムアウトを補完する役割を果たします。特に、絶対的なタイムアウトの値が長時間の場合に有効です (ユーザーセッションを長時間開いたままにすることがアプリケーションの要件である場合)。
+</p><p>実装環境によっては、有効な以前のセッション ID を持つ攻撃者が、被害者のユーザーになりすましてリクエストを送信し、更新のタイムアウトの有効期限が切れた直後に、新しく更新されたセッション ID の値を最初に取得するというまれなケースも考えられます。このシナリオでは、関連のセッション ID が有効でなくなり、自分のセッションが突然終了してしまうので、被害者ユーザーは少なくとも攻撃に気がつくはずです。
+</p><p><br />
+</p>
+<h2><span class="mw-headline" id="Manual_Session_Expiration">手動によるセッションの有効期限切れ</span></h2>
+<p>Web アプリケーションは、セキュリティを意識しているユーザーが、Web アプリケーションの使用終了時に能動的にセッションを終了できるメカニズムを提供する必要があります。 
+</p>
+<h3><span class="mw-headline" id="Logout_Button">ログアウトボタン</span></h3>
+<p>Web アプリケーションは、目に見えてアクセスが容易なログアウト (ログオフ、終了、セッションのクローズなど) ボタンを提供する必要があります。このボタンは、Web アプリケーションのヘッダーやメニューに配置し、すべての Web アプリケーションリソースとページからアクセスでき、ユーザーがいつでもセッションを手動で閉じることができるようにしなければなりません。<a href="/index.php/Session_Management_Cheat_Sheet#Session_Expiration" title="セッション管理に関するチートシート">上記</a>のとおり、Web アプリケーションには、少なくともサーバー側でセッションを無効化できる機能は必須です。
+</p><p><b>注</b>: 残念ながら、すべての Web アプリケーションで、ユーザーが自分の現行セッションを終了できる機能を保有しているわけではありません。この場合は、PopUp LogOut Firefox アドオン [9] など、クライアント側の機能強化を使用することで、セキュリティに対して真剣なユーザーなら自分のセッションをこまめに終了し、セッションを保護することができます。
+</p>
+<h2><span class="mw-headline" id="Web_Content_Caching">Web コンテンツのキャッシュ</span></h2>
+<p>セッションの終了後も、Web ブラウザーのキャッシュを使用して、セッションで交換された非公開データや機密データにアクセス可能な場合があります。そのため、Web アプリケーションは、HTTP および HTTPS を介して交換されたすべての Web トラフィックのキャッシュ処理に関して、限定的なディレクティブを使用する必要があります。つまり、“Cache-Control: no-cache,no-store” および “Pragma: no-cache” HTTP ヘッダー [5]、または同等機能を持つ META タグ、あるいはその両方をすべての Web ページ 、少なくとも機密情報を扱うページ に設定する必要があります。 
+</p><p>Web アプリケーションで定義されたキャッシュポリシーにかかわらず、Web アプリケーションコンテンツのキャッシュ処理が許可されている場合、セッション ID をキャッシュに入れてはいけません。そのため、"Cache-Control: no-cache="Set-Cookie, Set-Cookie2"” ディレクティブを使用して、Web クライアントがセッション ID 以外をキャッシュに入れるように設定することを強く推奨します。 
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Additional_Client-Side_Defenses_for_Session_Management">セッション管理に関する追加のクライアント側の防御</span></h1>
+<p>Web アプリケーションは、クライアント側で追加の対策を講じることで、ここまで述べたセッション管理に関する防御策を補完することができます。クライアント側の保護は、通常 JavaScript の確認と検証の形式で行われるため、万全とはいえず、スキルを備えた攻撃者なら容易に打ち破ることができます。しかし、防御の層を追加することで、侵入者が迂回しなければならない障壁を増やすことができます。 
+</p>
+<h2><span class="mw-headline" id="Initial_Login_Timeout">最初のログインタイムアウト</span></h2>
+<p>Web アプリケーションは、ログインページで JavaScript コードを使用して、ページが読み込まれ、セッション ID が付与されてからの時間を計算、計測することができます。指定された時間以後もログインが試行される場合、クライアントコードにより、ログインが許可される最大時間が経過したこと、ログインページが再度読み込まれること、そのため新規のセッション ID が取得されることをユーザーに通知するようにできます。 
+</p><p>この追加の保護メカニズムにより、認証前セッション ID が強制的に新しく更新されるため、セッション固定攻撃に見られるような、前に使用された (または手動で設定された) セッション ID を、同じコンピューターを使用する次の被害者が再使用するというシナリオを回避できます。 
+</p>
+<h2><span class="mw-headline" id="Force_Session_Logout_On_Web_Browser_Window_Close_Events">Web ブラウザーウィンドウを閉じる際の強制的なセッションログアウト</span></h2>
+<p>Web アプリケーションは、JavaScript コードを使用して、すべての Web ブラウザータブやウィンドウを閉じる操作 (戻る操作も同様) を検知し、適切なアクションをとって、あたかもユーザーが手動でログアウトボタンを使用してセッションを終了したかのように、Web ブラウザーの終了前に現行セッションを終了させることができます。 
+</p>
+<h2><span class="mw-headline" id="Disable_Web_Browser_Cross-Tab_Sessions">Web ブラウザーのクロスタブセッションの無効化</span></h2>
+<p>Web アプリケーションは、JavaScript コードを使用して、ユーザーがログインし、セッションが確立したら、同じ Web アプリケーションに対して新規の Web ブラウザータブやウィンドウが開かれた場合にユーザーの再認証を強制的に行うようにすることができます。Web アプリケーションでは、複数の Web ブラウザータブやウィンドウが同じセッションを共有できるようにすることは好ましくありません。そのため、 Web アプリケーションでは、Web ブラウザーが複数のタブやウィンドウ間で同時に同じセッション ID を共有しないように設定することができます。 
+</p><p><i><b>注</b></i>: このメカニズムは、Cookie を介してセッション ID を交換している場合には実装できません。Cookie は、すべての Web ブラウザータブ / ウィンドウで共有されるためです。 
+</p>
+<h2><span class="mw-headline" id="Automatic_Client_Logout">自動クライアントログアウト</span></h2>
+<p>Web アプリケーションは、すべての (または重要な) ページで JavaScript コードを使用して、アイドル状態のタイムアウトが期限切れになるとクライアントセッションから自動的にログアウトするようにできます。たとえば、ユーザーをログアウトページにリダイレクトするなどの手法があります (前述のログアウトボタンが使用するリソースと同じです)。 
+</p><p>クライアント側のコードにより、サーバー側のアイドル状態のタイムアウト機能を強化することの利点として、セッションが非活動状態によって終了したことをユーザーが確認できることや、カウントダウンタイマーや警告メッセージによって、セッションがしばらくすると期限切れになることを前もってユーザーに通知できることが挙げられます。このユーザーフレンドリーなアプローチにより、サーバー側で自動的にセッションが期限切れになることで、Web ページで作業損失が発生し多大な入力データが必要になる事態を避けることができます。
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Session_Attacks_Detection">セッション攻撃の検出</span></h1>
+<h2><span class="mw-headline" id="Session_ID_Guessing_and_Brute_Force_Detection">セッション ID 推測およびブルートフォースの検出</span></h2>
+<p>攻撃者が有効なセッション ID を取得するために、推測やブルートフォースを試みる場合、単一の (または一連の) IP アドレスから異なる複数のセッション ID を使用して、標的の Web アプリケーションに対して複数の順次リクエストを発信する必要があります。また、攻撃者がセッション ID の予測可能性を分析しようとする場合 (統計分析の使用など)、単一の (または一連の) IP アドレスから、標的の Web アプリケーションに対して複数の順次リクエストを発信して、新規の有効なセッション ID を取得する必要があります。 
+</p><p>両方のシナリオともに、Web アプリケーションは、複数の異なるセッション ID を取得 (または使用) しようとする試みの回数に基づいて事態を検出し、ユーザーに警告できなければなりません。また、攻撃元の IP アドレスを遮断する機能も必要です。 
+</p>
+<h2><span class="mw-headline" id="Detecting_Session_ID_Anomalies">セッション ID の異常の検出</span></h2>
+<p>Web アプリケーションは、セッション ID に関連した異常 (セッション ID の操作など) の検出に重点を置く必要があります。OWASP AppSensor Project [7] は、Web アプリケーション内に組み込み侵入検知機能を実装するためのフレームワークと方法論を提供しています。これらの機能は、検出ポイントとレスポンスアクションの形で、異常および予期しない動作の検出に重点を置いています。外部の保護層を使用しないので、ビジネスロジックの詳細や高度なインテリジェンスは、Web アプリケーション内部からしか使用できません。ここでは、複数のセッションに関連した検出ポイントを確立できます。既存 Cookie が変更、削除されたとき、新規 Cookie が追加されたとき、別のユーザーのセッション ID が再使用されたとき、ユーザーの場所や User-Agent がセッション中に変更になったときなどです。 
+</p>
+<h2><span class="mw-headline" id="Binding_the_Session_ID_to_Other_User_Properties">セッション ID を他のユーザープロパティにバインド</span></h2>
+<p>ユーザーの不正行為やセッションのハイジャックを検出 (シナリオによっては阻止) するという目的のために、セッション ID を他のユーザーまたはクライアントのプロパティ (クライアント IP アドレス、User-Agent、クライアントベースのデジタル証明書など) にバインドすることを強く推奨します。セッションの最中に、これらのさまざまなプロパティで何らかの変更や異常を Web アプリケーションが検出した場合は、セッション操作やハイジャックの試みを示す明確な兆候であり、この単純な事実を使用して警告を発行したり、疑わしいセッションを強制終了することができます。 
+</p><p>これらのプロパティは、Web アプリケーションがセッション攻撃への万全の防御策として使用するまでには至りませんが、Web アプリケーション検出 (防御) 機能を大きく向上させます。ただし、高度なスキルを持つ攻撃者は、同じネットワークの共有 (Wi-Fi ホットスポットなど NAT 環境では一般的) や、同じアウトバウンド Web プロキシの使用 (企業の環境では一般的) 、あるいはユーザーエージェントを手動で変更して被害者ユーザーとまったく同じに見せかけたりすることで、被害者のユーザーに割り当てられた同じ IP アドレスを再使用して、制御を迂回することができます。 
+</p>
+<h2><span class="mw-headline" id="Logging_Sessions_Life_Cycle:_Monitoring_Creation.2C_Usage.2C_and_Destruction_of_Session_IDs">セッションライフサイクルのロギング:セッション ID の作成、使用、破棄の監視</span></h2>
+<p>Web アプリケーションは、セッションのライフサイクル全体に関する情報を含めることによって、ロギング機能を強化する必要があります。特に、セッション ID の作成、更新、破棄などのセッション関連イベント、ログイン、ログアウト操作におけるセッション ID の使用に関する情報、セッションにおける特権レベルの変更、タイムアウトの期限切れ、無効なセッション活動 (検出時)、セッション中の重要なビジネスオペレーションを記録することを推奨します。 
+</p><p>ログの詳細には、タイムスタンプ、ソース IP アドレス、要求された (およびセッション操作に含まれた) Web ターゲットリソース、HTTP ヘッダー (User-Agent および Referer)、GET パラメーターおよび POST パラメーター、エラーコード、メッセージ、ユーザー名 (またはユーザー ID)、そしてセッション ID (Cookie、URL、GET、POST など) などが含まれています。セッション ID などの機密データは、セッション ID のローカルまたはリモートでの漏えいや不正アクセスからセッションログを保護するうえで、ログに含めるべきではありません。しかし、一部のセッション固有情報は、ログエントリと特定のセッションを関連付けるために、ログに記録しておく必要があります。セッション ID を開示せずに、セッション固有のログ相関付けを可能にするために、セッション ID そのものではなく、セッション ID の salted ハッシュをログに記録することを推奨します。
+</p><p>特に、Web アプリケーションは、現在活動状態のすべてのセッションの管理に使用される、管理インターフェイス全体を保護しなければなりません。多くの場合、これらのインターフェイスは、セッション関連の問題や一般的な問題を解決するために、サポート担当者が使用します。サポート担当者は、ユーザーになり変わり、ユーザーと同じように Web アプリケーションを確認します。
+</p><p>セッションログは、Web アプリケーションの主要な侵入検知データソースの 1 つです。このデータを使用して、侵入防御システムが、1 つまたは複数の攻撃の検出時に、自動的にセッションを強制終了したり、ユーザーアカウントを無効化したりすることもできます。能動的な防御が実装されている場合、それらの防御アクションもログに記録する必要があります。
+</p>
+<h2><span class="mw-headline" id="Simultaneous_Session_Logons">同時セッションログオン</span></h2>
+<p>同一ユーザーによる、同一または異なるクライアント IP アドレスからの、複数の同時ログオンを許可するかどうかは、Web アプリケーション設計の決定事項です。Web アプリケーションで、同時セッションログオンを許可しない場合、暗黙的に前の使用可能セッションを強制終了したり、セッションを活動状態のままにする必要があるかどうかを、旧セッション、新規セッション、または両方のセッションでユーザーに確認したりするなど、新規の各認証イベント後に効果的なアクションをとる必要があります。 
+</p><p>Web アプリケーションに、いつでも活動状態のセッションの詳細を確認し、同時ログオンに関して監視してユーザーに警告できるユーザー機能を追加することを推奨します。また、リモートで手動によるセッションの強制終了ができ、IP アドレス、User-Agent、ログイン日時、アイドル状態の時間など、複数のクライアント詳細情報を記録することで、アカウント活動履歴 (ログブック) を追跡できるユーザー機能を提供することを推奨します。 
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Session_Management_WAF_Protections">セッション管理の WAF 防御</span></h1>
+<p>Web アプリケーションソースコードが入手できない場合、または変更できない場合、上記に記載した複数のセキュリティ推奨事項およびベストプラクティスの実装に必要な変更には、Web アプリケーションアーキテクチャの全面的な設計見直しが必要になるため、短期間に容易に実装できない場合があります。このような場合、あるいは Web アプリケーションの防御を補完したい場合、またできるだけ Web アプリケーションのセキュリティを維持するという目的の場合、 Web アプリケーションファイアウォール (WAF) など、外部の防御策を使用することを推奨します。この方法によって、これまで述べたセッション管理の脅威を軽減することができます。 
+</p><p>Web アプリケーションファイアウォールは、セッションベースの攻撃に対して検出と防御機能を提供します。WAF を使用すれば、"Secure” フラグおよび “HttpOnly” フラグなど、Cookie のセキュリティ属性を強制的に適用し、新規 Cookie を設定する、すべての Web アプリケーションレスポンスの “Set-Cookie” ヘッダーに基本的な書き換えルールを適用するのは容易です。一方、より高度な機能を実装して、WAF でセッションや対応するセッション ID を追跡することもできます。また、セッション固定に対するあらゆる種類の防御の適用 (特権変更が検出された際のクライアント側でのセッション ID の更新による)、スティッキーセッションの適用 (セッション ID と IP アドレスや User-Agent など、その他のクライアントプロパティ間の関係の検証による)、セッションの期限切れの管理 (クライアントと Web アプリケーションの両方にセッションを強制的に終了させることによる) などを可能にできます。 
+</p><p>オープンソース ModSecurity WAF は、OWASP Core Rule Set [6] に加えて、検出、セキュリティ Cookie 属性の適用、セッション固定攻撃への対抗手段、スティッキーセッションの強制適用のためのセッション追跡機能を提供します。 
+</p><p><br /> 
+</p>
+<h1><span class="mw-headline" id="Related_Articles">関連資料</span></h1>
+<p>[0] <b>"OWASP Cookies Database" OWASP</b><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Category:OWASP_Cookies_Database">https://www.owasp.org/index.php/Category:OWASP_Cookies_Database</a> 
+</p><p>[1] <b>"HTTP State Management Mechanism" <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc6265">RFC 6265</a>IETF</b><a rel="nofollow" class="external free" href="http://tools.ietf.org/html/rfc6265">http://tools.ietf.org/html/rfc6265</a> 
+</p><p>[2] <b>"Insufficient Session-ID Length" OWASP</b><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Insufficient_Session-ID_Length">https://www.owasp.org/index.php/Insufficient_Session-ID_Length</a> 
+</p><p>[3] <b>Session Fixation。 Mitja Kolšek2002</b><a rel="nofollow" class="external free" href="http://www.acrossecurity.com/papers/session_fixation.pdf">http://www.acrossecurity.com/papers/session_fixation.pdf</a> 
+</p><p>[4] <b>"SAP: Session (Fixation) Attacks and Protections (in Web Applications)"Raul SilesBlackHat EU 2011</b> 
+</p><p><a rel="nofollow" class="external free" href="https://media.blackhat.com/bh-eu-11/Raul_Siles/BlackHat_EU_2011_Siles_SAP_Session-Slides.pdf">https://media.blackhat.com/bh-eu-11/Raul_Siles/BlackHat_EU_2011_Siles_SAP_Session-Slides.pdf</a> 
+</p><p><a rel="nofollow" class="external free" href="https://media.blackhat.com/bh-eu-11/Raul_Siles/BlackHat_EU_2011_Siles_SAP_Session-WP.pdf">https://media.blackhat.com/bh-eu-11/Raul_Siles/BlackHat_EU_2011_Siles_SAP_Session-WP.pdf</a> 
+</p><p>[5] <b>"Hypertext Transfer Protocol -- HTTP/1.1" RFC2616IETF</b><a rel="nofollow" class="external free" href="http://tools.ietf.org/html/rfc2616">http://tools.ietf.org/html/rfc2616</a> 
+</p><p>[6] <b>"OWASP ModSecurity Core Rule Set (CSR) Project" OWASP</b><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project">https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project</a> 
+</p><p>[7] <b>"OWASP AppSensor Project" OWASP</b><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Category:OWASP_AppSensor_Project">https://www.owasp.org/index.php/Category:OWASP_AppSensor_Project</a> 
+</p><p>[8] <b>"HttpOnly Session ID in URL and Page Body | Cross Site Scripting"</b> <a rel="nofollow" class="external free" href="http://seckb.yehg.net/2012/06/httponly-session-id-in-url-and-page.html">http://seckb.yehg.net/2012/06/httponly-session-id-in-url-and-page.html</a>
+</p><p>[9] <b>PopUp LogOut Firefox add-on</b> <a rel="nofollow" class="external free" href="https://addons.mozilla.org/en-US/firefox/addon/popup-logout/">https://addons.mozilla.org/en-US/firefox/addon/popup-logout/</a> &amp; <a rel="nofollow" class="external free" href="http://popuplogout.iniqua.com">http://popuplogout.iniqua.com</a>
+</p><p>[10] <b>"How and why session IDs are reused in ASP.NET"</b> <a rel="nofollow" class="external free" href="https://support.microsoft.com/en-us/kb/899918">https://support.microsoft.com/en-us/kb/899918</a>
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Raul Siles (DinoSec) - raul[at]dinosec.com 
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Session Management Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.138 seconds
+Real time usage: 0.152 seconds
+Preprocessor visited node count: 196/1000000
+Preprocessor generated node count: 242/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:19721-0!*!0!!en!2!* and timestamp 20151215040235 and revision id 201621
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Session_Management_Cheat_Sheet&amp;oldid=201621">https://www.owasp.org/index.php?title=Session_Management_Cheat_Sheet&amp;oldid=201621</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Session+Management+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Session_Management_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:Session_Management_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Session_Management_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Session_Management_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Session_Management_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Session_Management_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Session_Management_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Session_Management_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Session_Management_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Session_Management_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Session_Management_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Session_Management_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Session_Management_Cheat_Sheet&amp;oldid=201621" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Session_Management_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 5 October 2015, at 01:24.</li>
+											<li id="footer-info-viewcount">This page has been accessed 368,546 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":166});
+}</script>
+	</body>
+</html>

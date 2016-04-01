@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>セキュリティの質問の選択と使用に関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Choosing_and_Using_Security_Questions_Cheat_Sheet","wgTitle":"Choosing and Using Security Questions Cheat Sheet","wgCurRevisionId":197565,"wgRevisionId":197565,"wgArticleId":26793,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Choosing_and_Using_Security_Questions_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Choosing_and_Using_Security_Questions_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">セキュリティの質問の選択と使用に関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div style="width:100%;height:160px;border:0,margin:0;overflow: hidden;"><img alt="Cheatsheets-header.jpg" src="/images/d/d8/Cheatsheets-header.jpg" width="2400" height="160" /></div>
+<table style="padding: 0;margin:0;margin-top:10px;text-align:left;">
+<tr>
+<td valign="top" style="border-right: 1px dotted gray;padding-right:25px;">
+<p>最終改訂日 (yy/mm/dd):<b>2015/07/18</b> 
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+ <div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Introduction"><span class="tocnumber">1</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#The_Problem"><span class="tocnumber">2</span> <span class="toctext">問題点</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Choosing_Security_Questions_and.2For_Identity_Data"><span class="tocnumber">3</span> <span class="toctext">セキュリティの質問と ID データの選択</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Desired_Characteristics"><span class="tocnumber">3.1</span> <span class="toctext">理想的な特徴</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Steps"><span class="tocnumber">3.2</span> <span class="toctext">手順</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Step_1.29_Decide_on_Identity_Data_vs_Canned_Questions_vs._User-Created_Questions"><span class="tocnumber">3.2.1</span> <span class="toctext">手順 1) ID データ、定型の質問、ユーザーが作成した質問を決定する</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Step_2.29_Review_Any_Canned_Questions_with_Your_Legal_Department_or_Privacy_Officer"><span class="tocnumber">3.2.2</span> <span class="toctext">手順 2) 定型の質問を法務部またはプライバシー責任者と確認する</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Step_3.29_Insist_on_a_Minimal_Length_for_the_Answers"><span class="tocnumber">3.2.3</span> <span class="toctext">手順 3) 回答の最小長を義務付ける</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Step_4.29_Consider_How_To_Securely_Store_the_Questions_and_Answers"><span class="tocnumber">3.2.4</span> <span class="toctext">手順 4) 質問と回答を安全に保存する方法を考える</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Step_5.29_Periodically_Have_Your_Users_Review_their_Questions"><span class="tocnumber">3.2.5</span> <span class="toctext">手順 5) ユーザーに自分の質問の定期的な再確認を促す</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Step_6.29_Authenticate_Requests_to_Change_Questions"><span class="tocnumber">3.2.6</span> <span class="toctext">手順 6) 質問の変更リクエストの認証</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Using_Security_Questions"><span class="tocnumber">4</span> <span class="toctext">セキュリティの質問の使用</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Security_Questions_Used_To_Reset_Forgotten_Passwords"><span class="tocnumber">4.1</span> <span class="toctext">忘れたパスワードのリセットに使用するセキュリティの質問</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Security_Questions_As_An_Additional_Means_Of_Authenticating"><span class="tocnumber">4.2</span> <span class="toctext">追加の認証手段としてのセキュリティの質問</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Related_Articles"><span class="tocnumber">5</span> <span class="toctext">関連資料</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">6</span> <span class="toctext">著者と編集者</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#Other_Cheatsheets"><span class="tocnumber">6.1</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<p>このチートシートでは、"パスワードを忘れた場合" に使用する Web アプリケーション機能を実装するために、セキュリティの質問を選択および使用するときに、開発者が手本にできるベストプラクティスを提供します。<br /> 
+</p>
+<h1><span class="mw-headline" id="The_Problem">問題点</span></h1>
+<p>パスワードを忘れた場合の機能を使用または実装するときに、ユーザーや開発者にガイダンスを提供するための業界標準はありません。その結果、開発者は通常、不適切な質問のセットを採用して、無防備に実装しています。開発者のこのような行為は、ユーザーに対するリスクだけでなく、潜在的な責任問題が原因で、開発者組織に対してもリスクをもたらすことになります。パスワードなど無用になるか、少なくとも、さまざまな多要素認証メカニズムの中の 1 つとして、あまり重要なものではなくなれば理想的なのですが、現実には、今でも Cobol に頼っているように、おそらくこれからもパスワードに頼らざるを得ないでしょう。そこで、パスワードを忘れた場合のソリューションをできるだけ無難なものにするためにできることは何でしょうか。
+</p>
+<h1><span class="mw-headline" id="Choosing_Security_Questions_and.2For_Identity_Data">セキュリティの質問と ID データの選択</span></h1>
+<p>ほとんどの人は、不適切な "セキュリティの質問" を見たら、すぐにおかしいと気づきます。大体の見当は付くはずです。「好きな色は何色ですか?」のようなものは、明らかに不適切な質問です。しかし、<a rel="nofollow" class="external text" href="http://goodsecurityquestions.com/">Good Security Questions</a> Web サイトが的確に指摘しているように、"適切なセキュリティの質問は、実のところ存在しません。まずまずの質問か、不適切な質問しかありません"。
+</p><p>ほとんどの組織では、忘れてしまったパスワードをユーザーが自分でリセットできるようにしていますが、これはセキュリティのためではなく、ユーザーがヘルプデスクに掛ける電話の回数を減らして自分たちの負担を軽くするためです。これは利便性とセキュリティの典型的なトレードオフであり、この場合、まず間違いなく利便性 (組織にとってはコストの低減、ユーザーにとってはセルフサービスのシンプル化) のほうに軍配が上がります。
+</p><p>コスト削減というビジネス面が通常は優勢になるという状況で、少しでもセキュリティを強化するために何をすべきかが課題です。
+</p><p>ここで、いくつか提案をします。ただし、具体的なセキュリティの質問を推奨することは、敢えて行いません。そうすると逆効果になる可能性があるからです。多くの開発者がその質問を深く考えずに使用したら、攻撃者は即座に各種のソーシャルネットワークから当該データの収集を開始するでしょう。
+</p>
+<h2><span class="mw-headline" id="Desired_Characteristics">理想的な特徴</span></h2>
+<p>忘れたパスワードをリセットするためにユーザーに提示されるセキュリティの質問や ID 情報は、次に示す 4 つの特徴を備えていることが理想的です。
+</p>
+<ol>
+<li> <b>憶えやすい</b>:ユーザーがセキュリティの質問の回答を憶えられないようでは、どうしようもありません。
+</li>
+<li> <b>一貫性がある</b>:ユーザーの回答は時間の経過により変化するようなものであってはなりません。たとえば、「配偶者の名前は何ですか?」といった質問の回答は、5 年後には変化している可能性があります。
+</li>
+<li> <b>おおよそ一般的</b>:セキュリティの質問は、できるだけ広範囲の人に適用できる必要があります。
+</li>
+<li> <b>安全</b>:セキュリティの質問の回答は、簡単に推測したり、調査できるもの (たとえば、公文書に記載されているものなど) にしてはいけません。
+</li>
+</ol>
+<h2><span class="mw-headline" id="Steps">手順</span></h2>
+<h3><span class="mw-headline" id="Step_1.29_Decide_on_Identity_Data_vs_Canned_Questions_vs._User-Created_Questions">手順 1) ID データ、定型の質問、ユーザーが作成した質問を決定する</span></h3>
+<p>通常、後のパスワードリセットに使用する情報はすべて、1 つの HTML フォームを使用して収集する必要があります。 
+</p><p>組織とユーザーの間に取引関係がある場合は、ユーザーが Web サイトに登録した際に、おそらく何らかの追加情報をユーザーから収集したはずです。たとえば、次のような情報があります。
+</p>
+<ul>
+<li> 電子メールアドレス
+</li>
+<li> 姓
+</li>
+<li> 生年月日
+</li>
+<li> アカウント番号
+</li>
+<li> 顧客番号
+</li>
+<li> 社会保障番号の下 4 桁
+</li>
+<li> 登録された住所の郵便番号
+</li>
+<li> 登録された住所の番地
+</li>
+</ul>
+<p>セキュリティ強化のために、まずユーザーに電子メールアドレスを尋ねて電子メールを送信し、そのメールに記載した専用ページにアクセスしてもらって他の識別要素を 2 つ (またはそれ以上) 入力させる、という方法があります。この方法では、ユーザーはランディングページに到着した後にも、いくつもの "秘密の" 質問に回答する必要があるので、電子メール自体はあまり有用にはなりません。
+</p><p>一方、たとえばソーシャルネットワーキングサイトや無料の電子メールサイト、ニュースサイト、写真共有サイトなど、一般の人を対象にした Web サイトをホストしている組織では、この ID 情報を持っていない可能性が高く、ありふれた "セキュリティの質問" を使用する必要があります。しかし、別の電子メールアドレスやショートメッセージサービスの電話番号など、帯域外のサイドチャネルにパスワードのリセットの情報を送信するための、何らかの手段を収集する必要もあります。
+</p><p>意外かもしれませんが、ユーザーがいくつかの "定型の" 質問セットから選択できるようにすることには、若干のメリットもあります。ユーザーは通常、当初のユーザープロファイル作成作業の一環として、セキュリティの質問への記入を求められますが、ほとんどのユーザーは急いでいます。ユーザーはサイトに登録して、中を見て回りたいだけです。もしユーザーにそのとき、独自の質問を作るよう要求したら、おそらくはしぶしぶするので、非常に質の悪い質問を作ってしまう可能性が高くなります。
+</p><p>しかし、ユーザー自身で質問を 1 つまたは複数作成するよう要求することには、それなりの根拠もあるのです。一般的な法的見解では、独自の質問の作成にあたって、ユーザーにある種の適切なガイダンスを提供したうえで質問作成を要請した場合には、潜在的責任の少なくとも一部が組織からユーザーへ移動するようなのです。その場合に、ユーザーの脆弱なセキュリティの質問 (たとえば、「一番好きなアイスクリームは何味ですか?」など) が原因でユーザーアカウントがハッキングされても、ユーザーの自己責任となって、組織が訴えられる可能性も低くなるというのが大勢の見方となっています。
+</p><p>OWASP は「<a href="/index.php/Forgot_Password_Cheat_Sheet" title="パスワードを忘れた場合に関するチートシート">パスワードを忘れた場合に関するチートシート</a>」で、複数のセキュリティの質問をユーザーに提示し、正しい回答を得てからパスワードの再設定を許可するように推奨しています。たとえば、定型の質問セットから 1 つか 2 つの質問をユーザーが選択し、ユーザー自身の (別の) 質問も作成することを義務付けたうえで、ユーザーが選択した定型の質問 1 つと、ユーザー自身の質問に回答するよう要求するなどの方法がお勧めです。
+</p>
+<h3><span class="mw-headline" id="Step_2.29_Review_Any_Canned_Questions_with_Your_Legal_Department_or_Privacy_Officer">手順 2) 定型の質問を法務部またはプライバシー責任者と確認する</span></h3>
+<p>ほとんどの開発者は通常、まず最初に関連事業部門と質問内容を検討することはしても、法務部や個人情報保護管理責任者と質問を検討しようとは思わないかもしれません。しかし、これは是非とも行う必要があります。質問が厳守する必要のある準拠法や規制 / コンプライアンスの問題が存在する可能性があるからです。たとえば、電気通信業界では、FCC の Customer Proprietary Network Information (CPNI) 規定で "個人情報" が含まれたセキュリティの質問を顧客に尋ねることを禁止しています。そのため、「あなたの出生地はどこですか?」といった質問は、通常は許可されません。
+</p>
+<h3><span class="mw-headline" id="Step_3.29_Insist_on_a_Minimal_Length_for_the_Answers">手順 3) 回答の最小長を義務付ける</span></h3>
+<p>たとえ適切なセキュリティの質問を提示しても、ユーザーは通常、長ったらしい文で質問に答えるのが面倒なので、短い回答を好む傾向があります。短いののしり言葉や、"xxx" や "1234" のような回答も、珍しくありません。フレーズか文で答える<i>必要がある</i>とか、受け入れ可能な回答には最小長 (10 文字や 12 文字など) があることをユーザーに伝えるとたいてい、比較的推測しにくい回答を作成するようになります。
+</p>
+<h3><span class="mw-headline" id="Step_4.29_Consider_How_To_Securely_Store_the_Questions_and_Answers">手順 4) 質問と回答を安全に保存する方法を考える</span></h3>
+<p>問題の保存と回答の保存には、2 つの面があります。質問は当然ユーザーに提示する必要があるので、プレーンテキストとして保存するか、元に戻せる暗号化テキストとして保存します。回答は基本的に人に見せる必要はないので、セキュリティ保護された暗号ハッシュを使用して保存することができます (もっとも、一部のヘルプデスクがパスワードのリセットに質問と回答の両方を使用し、回答は入力するのではなく、<i>読む</i>ことができるようにしてほしいと主張しているのもわかっています。立場により意見はそれぞれなのです)。いずれにせよ、回答はプレーンテキストで保存せず、少なくとも暗号化しておくことをお勧めします。これは、特に "独自の質問を作成する" タイプに対する回答で、潜在的にデリケートな回答が返される質問 (「私と妻が共有している私の預金口座番号は?」など) をユーザーが提示する場合に当てはまります。
+</p><p>何よりの問題は、質問をプレーンテキストにするか、元に戻せる暗号化テキストで保存する必要があるかです。我々の意見としては、少なくとも "独自の質問を作成する" タイプには、そういった質問を暗号化することをお勧めします。というのも、質問が暗号化されていれば、暇を持てあました悪意のある DBA が、セキュリティの質問と回答が保存されている DB を退屈しのぎに物色して、機密あるいは知られると恥ずかしい情報を偶然見つけたときに、会社が訴えられる可能性がかなり減るからです。
+</p><p>さらに、質問を暗号化していて回答をハッシュ化していることを説明すれば、顧客も少しでもセキュリティが向上するなら安心して多少恥ずかしい質問でもできるというものです。(想像力を働かせれば、どのような質問のことを指しているかはわかるはずです。)
+</p>
+<h3><span class="mw-headline" id="Step_5.29_Periodically_Have_Your_Users_Review_their_Questions">手順 5) ユーザーに自分の質問の定期的な見直しを促す</span></h3>
+<p>多くの企業では通常、電子メールアドレスや所在地住所などの連絡先情報が最新であるかどうかを確認するために、ユーザーに対して頻繁にユーザープロファイルの更新を求めます。この機会を利用して、ユーザーに自分のセキュリティの質問を見直してもらいましょう。(このとき、ユーザーに少し時間的余裕があれば、この機会を利用して、より良い質問を選択できるかもしれません。)ユーザーの回答をハッシュするのではなく暗号化している場合は、このときに、対応するセキュリティの回答を表示することもできます。
+</p><p>パスワードを忘れた場合のフローの一環としてそれぞれの質問が何者かに提示された回数の統計を取っている場合 (推奨) は、その情報も表示するとよいでしょう。(たとえば、アドバイスに反して、「あなたの一番の趣味は何ですか?」のような質問を作成したユーザーは、パスワードをリセットしたのは 5 回だけなのにこの質問が 113 回も提示されているのを知ったら、どうやらセキュリティの質問もパスワードも変更したほうがよいと自覚するでしょう。)
+</p>
+<h3><span class="mw-headline" id="Step_6.29_Authenticate_Requests_to_Change_Questions">手順 6) 質問の変更リクエストの認証</span></h3>
+<p>多くの Web サイトでは、現在のパスワードと一緒に希望する新しいパスワードを入力させることにより、適切にパスワード変更のリクエストを認証します。ユーザーが現行の正しいパスワードを指定できない場合、パスワードの変更リクエストは無視されます。セキュリティの質問を変更する際も、同様の認証制御を実施する必要があります。正しいパスワードを提示したうえで、新しいセキュリティの質問と回答を提供することをユーザーに義務付けます。ユーザーが正しいパスワードを指定できない場合、セキュリティの質問の変更リクエストは無視する必要があります。この制御により、クロスサイトリクエストフォージェリ攻撃だけでなく、ユーザーのワークステーションまたは認証済みアプリケーションセッションを乗っ取った攻撃者による変更も防止します。
+</p>
+<h1><span class="mw-headline" id="Using_Security_Questions">セキュリティの質問の使用</span></h1>
+<p>セキュリティの質問の回答をユーザーに要求するケースとして最もよくあるのは、次のまったく異なる 2 つのシナリオです。
+</p>
+<ul>
+<li> 忘れたパスワードをユーザーがリセットする手段(「<a href="/index.php/Forgot_Password_Cheat_Sheet" title="パスワードを忘れた場合に関するチートシート">パスワードを忘れた場合に関するチートシート</a>」を参照。)
+</li>
+<li> 追加の認証手段
+</li>
+</ul>
+<p>どちらのシナリオについても、セキュリティの質問に対する回答をユーザーに求めるときには、常に異なる 2 セットの質問 / 回答を使用するよう<i>強く</i>お勧めします。
+</p><p>パスワードの使用に加えてセキュリティの質問 / 回答を使用しても、多要素認証には<i><b>ならない</b></i>ことに注意する必要があります。それらは、どちらも「自分の知っていること」のカテゴリに分類されます。それらは<i>同じ</i>要素になるため、多要素にはなりません。もう 1 つ注意が必要なことは、パスワードがそもそも非常に弱い認証形式なのですが、セキュリティの質問に回答することは通常、さらに弱い認証形式であるという点です。その理由は、通常、ユーザーがパスワードを作成する際には、候補のパスワードをパスワードの複雑さの規則 (最小長 > 10 文字、少なくとも 1 つの英文字、1 つの数字および 1 つの特殊文字など) と照らし合わせてテストしますが、(最小長の要件を求めることを除けば) このような配慮をセキュリティの回答に対して行うことがほとんどないからです 。そのため、一般に、適切なパスワードのエントロピーは、セキュリティの質問に答えることよりも桁違いに高くなります。
+</p>
+<h3><span class="mw-headline" id="Security_Questions_Used_To_Reset_Forgotten_Passwords">忘れたパスワードのリセットに使用するセキュリティの質問</span></h3>
+<p>「<a href="/index.php/Forgot_Password_Cheat_Sheet" title="パスワードを忘れた場合に関するチートシート">パスワードを忘れた場合に関するチートシート</a>」では、セキュリティの質問に対する回答を<i>収集</i>する際に、開発者として知っておくべきことのほとんどすべてについて詳しく説明しています。ただし、セキュリティの質問を選択するとき (質問の候補リストから選択する場合)、または独自のセキュリティの質問 / 回答を記述するときに、ユーザーを支援する方法についてのガイダンスは提供していません。「<a href="/index.php/Forgot_Password_Cheat_Sheet" title="パスワードを忘れた場合に関するチートシート">パスワードを忘れた場合に関するチートシート</a>」では、セキュリティの質問 / 回答として追加の <i>ID</i> を実際に使用できるものと想定しています。ただし、そのようなことは、ほとんどありません。ユーザーが進んで ID を提供することは (今後も) まずありませんし、また、特定の法規への準拠のために禁止されていることもあります (たとえば、電気通信会社と [<a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Customer_proprietary_network_information">CPNI</a>] データの場合など)。
+</p><p>そのため、少なくとも一部の開発チームが、より一般的なセキュリティの質問と回答をユーザーから収集することになります。開発者として、これを実行する必要がある場合の正しいプラクティスを次に示します。
+</p>
+<ul>
+<li> 適切なセキュリティの質問 / 回答を選択することの重要性を手短に説明する。
+</li>
+<li> セキュリティの不適切な質問と適切な質問を構成する内容について、いくつかの例とともに何らかのガイダンスを提供する。
+</li>
+</ul>
+<p>後者については、ユーザーに [<a rel="nofollow" class="external text" href="http://goodsecurityquestions.com/">Good Security Questions</a>] Web サイトを参照するように勧めてください。
+</p><p>さらに、攻撃者は「忘れたパスワード」のリセットフローを使用してユーザーのパスワードをリセットしようとするため (特に、攻撃者が SMS テキストメッセージを受信する電子メールアカウントやモバイルデバイスなどのサイドチャネルを侵害している場合)、セキュリティの質問の意図しない無許可の情報公開を最小限に抑えることが正しいプラクティスになります。たとえば、ユーザーが 1 つのセキュリティの質問に答えない限り、それ以降の質問を表示しないようにするなどの方法もあります。このようにすると、攻撃者がすべての質問を一度に調べられるチャンスがなくなります。ただし、これは「<a href="/index.php/Forgot_Password_Cheat_Sheet" title="パスワードを忘れた場合に関するチートシート">パスワードを忘れた場合に関するチートシート</a>」のアドバイスに反することであり、スポンサーの事業部門が使い勝手が悪いと判断することもあります (ここでも、立場により意見はそれぞれなのです)。
+</p><p>最後に、ユーザーが入力するセキュリティの質問を "パスワード" タイプとして扱うか、単に通常の "テキスト" 入力として扱うかを検討する必要があります。前者はショルダーサーフィン攻撃を阻止できますが、入力ミスの発生が増えるというトレードオフがあります。おそらく、最良のアドバイスは、ユーザーに選択を任せることです。既定では、"パスワード" 入力タイプとして扱うことでテキストを非表示にしますが、チェックボックスをチェックすればセキュリティの回答がクリアテキストとして表示されるようにします。
+</p>
+<h3><span class="mw-headline" id="Security_Questions_As_An_Additional_Means_Of_Authenticating">追加の認証手段としてのセキュリティの質問</span></h3>
+<p>まず、繰り返しますが、パスワードが弱い認証とすれば、セキュリティの質問の使用はさらに弱いものです。また、本物の多要素認証や、強力な認証スタイル (ワンタイムパスワードの使用、サイドチャネル通信を必要とするものなど) の代わりにはなりません。一言で言えば、セキュリティの質問を使用しても、得られるものはほとんどないのです。しかし、そうする必要がある場合は、次のことを念頭に置いてください。
+</p>
+<ul>
+<li> ユーザーが (ユーザー名を入力してすぐではなく)、ユーザー名とパスワードを使用して認証に成功した<i>後</i>にのみ、別のページ上にセキュリティの質問を表示します。このようにすれば、少なくとも攻撃者はユーザーの現在のパスワードを知っていない限り、セキュリティの質問を表示したり、調査したりできなくなります。
+</li>
+<li> ユーザーのパスワードをリセットするためにセキュリティの質問を使用する場合も、追加の認証手段として、<i>別の</i>セキュリティの質問セットを使用する必要があります。
+</li>
+<li> 実際の認証目的で使用するセキュリティの質問は、パスワードのように、定期的に有効期限が切れるようにする必要があります。定期的に、新しいセキュリティの質問と回答をユーザーに選択させます。
+</li>
+<li> <i>後続</i>の認証メカニズムにセキュリティの質問への回答を使用する場合 (Web サイトの一般公開していないページに入るときなど) は、必ずアイドル状態のセッションのタイムアウトを思い切り短く (5 分未満程度) するか、ユーザーに自身のパスワードで再認証し、直後にセキュリティの質問に答えるよう要求します。
+</li>
+</ul>
+<h1><span class="mw-headline" id="Related_Articles">関連資料</span></h1>
+<p><a href="/index.php/Forgot_Password_Cheat_Sheet" title="パスワードを忘れた場合に関するチートシート">パスワードを忘れた場合に関するチートシート</a><br />
+<a rel="nofollow" class="external text" href="http://goodsecurityquestions.com/">Good Security Questions Web サイト</a>
+</p>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p>Kevin Wall - kevin.w.wall[at]gmail com
+</p>
+<h2><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h2>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <strong class="selflink">Choosing and Using Security Questions Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.061 seconds
+Real time usage: 0.073 seconds
+Preprocessor visited node count: 83/1000000
+Preprocessor generated node count: 118/1000000
+Post‐expand include size: 2078/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:26793-0!*!0!!en!2!* and timestamp 20151215045353 and revision id 197565
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;oldid=197565">https://www.owasp.org/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;oldid=197565</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Choosing+and+Using+Security+Questions+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:Choosing_and_Using_Security_Questions_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;oldid=197565" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Choosing_and_Using_Security_Questions_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 18 July 2015, at 17:06.</li>
+											<li id="footer-info-viewcount">This page has been accessed 105,587 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":159});
+}</script>
+	</body>
+</html>

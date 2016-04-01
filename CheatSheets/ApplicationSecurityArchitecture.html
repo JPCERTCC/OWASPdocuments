@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>アプリケーションのセキュリティ アーキテクチャに関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Application_Security_Architecture_Cheat_Sheet","wgTitle":"Application Security Architecture Cheat Sheet","wgCurRevisionId":204206,"wgRevisionId":204206,"wgArticleId":20855,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Application_Security_Architecture_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Application_Security_Architecture_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">アプリケーションのセキュリティアーキテクチャに関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先:					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><br />
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#DRAFT_CHEAT_SHEET_-_WORK_IN_PROGRESS"><span class="tocnumber">1</span> <span class="toctext">ドラフト版チートシート – 編集中</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Introduction"><span class="tocnumber">2</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Business_Requirements"><span class="tocnumber">3</span> <span class="toctext">ビジネスの要件</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Business_Model"><span class="tocnumber">3.1</span> <span class="toctext">ビジネスモデル</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Data_Essentials"><span class="tocnumber">3.2</span> <span class="toctext">データの要点</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#End.E2.80.90Users"><span class="tocnumber">3.3</span> <span class="toctext">エンドユーザー</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Partners"><span class="tocnumber">3.4</span> <span class="toctext">パートナー</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Administrators"><span class="tocnumber">3.5</span> <span class="toctext">管理者</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Regulations"><span class="tocnumber">3.6</span> <span class="toctext">法規</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Infrastructure_Requirements"><span class="tocnumber">4</span> <span class="toctext">インフラストラクチャの要件</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Network"><span class="tocnumber">4.1</span> <span class="toctext">ネットワーク</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Systems"><span class="tocnumber">4.2</span> <span class="toctext">システム</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Infrastructure_Monitoring"><span class="tocnumber">4.3</span> <span class="toctext">インフラストラクチャの監視</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Virtualization_and_Externalization"><span class="tocnumber">4.4</span> <span class="toctext">仮想化と具体化</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Application_Requirements"><span class="tocnumber">5</span> <span class="toctext">アプリケーションの要件</span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#Environment"><span class="tocnumber">5.1</span> <span class="toctext">環境</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Data_Processing"><span class="tocnumber">5.2</span> <span class="toctext">データ処理</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Access"><span class="tocnumber">5.3</span> <span class="toctext">アクセス</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Application_Monitoring"><span class="tocnumber">5.4</span> <span class="toctext">アプリケーションの監視</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Application_Design"><span class="tocnumber">5.5</span> <span class="toctext">アプリケーション設計</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Security_Program_Requirements"><span class="tocnumber">6</span> <span class="toctext">セキュリティプログラムの要件</span></a>
+<ul>
+<li class="toclevel-2 tocsection-22"><a href="#Operations"><span class="tocnumber">6.1</span> <span class="toctext">運用</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Change_Management"><span class="tocnumber">6.2</span> <span class="toctext">変更管理</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Software_Development"><span class="tocnumber">6.3</span> <span class="toctext">ソフトウェア開発</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Corporate"><span class="tocnumber">6.4</span> <span class="toctext">企業</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-26"><a href="#Authors_and_Primary_Editors"><span class="tocnumber">7</span> <span class="toctext">著者と編集者</span></a></li>
+<li class="toclevel-1 tocsection-27"><a href="#Other_Cheatsheets"><span class="tocnumber">8</span> <span class="toctext">その他のチートシート</span></a></li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="DRAFT_CHEAT_SHEET_-_WORK_IN_PROGRESS">ドラフト版チートシート - 編集中</span></h1>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+<p>このチートシートでは、アプリケーションのセキュリティアーキテクチャについて、初期設計とレビューのヒントを示します。
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="Business_Requirements">ビジネスの要件</span></h1>
+<h2><span class="mw-headline" id="Business_Model">ビジネスモデル</span></h2>
+<ul>
+<li> アプリケーションの主なビジネス目的は何ですか。
+</li>
+<li> アプリケーションでどのように利益を得ますか。
+</li>
+<li> アプリケーションの開発または改善について、計画されているビジネスのマイルストーンは何ですか。
+</li>
+<li> アプリケーションは、どのように販売されますか。
+</li>
+<li> アプリケーションがユーザーに提供する主な利益は何ですか。
+</li>
+<li> アプリケーションには、どのようなビジネス継続性の条件が定義されていますか。
+</li>
+<li> アプリケーションは、どの地域でサービスを行いますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Data_Essentials">データの要点</span></h2>
+<ul>
+<li> アプリケーションは、どのようなデータを受け取り、生成し、処理しますか。
+</li>
+<li> データは、どのように機密性に応じたカテゴリに分類できますか。
+</li>
+<li> データを取得または変更することで、攻撃者はどのような利益を得ますか。
+</li>
+<li> アプリケーションでは、どのようにデータのバックアップと保存の要件が定義されていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="End.E2.80.90Users">エンドユーザー</span></h2>
+<ul>
+<li> アプリケーションのエンドユーザーは誰ですか。
+</li>
+<li> エンドユーザーは、どのようにアプリケーションと対話しますか。
+</li>
+<li> エンドユーザーは、どのようなセキュリティの要望を持っていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Partners">パートナー</span></h2>
+<ul>
+<li> どのサードパーティがアプリケーションにデータを供給していますか。
+</li>
+<li> どのサードパーティがアプリケーションからのデータを受け取っていますか。
+</li>
+<li> どのサードパーティがアプリケーションのデータを処理していますか。
+</li>
+<li> サードパーティとのデータの共有において、アプリケーション自体のほかに、どのようなメカニズム (EDI 伝送、FTP ファイル処理、ベンダーの公開 API など) が使用されていますか。
+</li>
+<li> パートナーは、どのようなセキュリティ要件を課していますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Administrators">管理者</span></h2>
+<ul>
+<li> アプリケーションの管理機能を持っているのは誰ですか。
+</li>
+<li> アプリケーションは、どのような管理機能を提供していますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Regulations">法規</span></h2>
+<ul>
+<li> アプリケーションは、どの業界で運用されますか。
+</li>
+<li> どのようなセキュリティ関連の規制が適用されますか。
+</li>
+<li> どのような監査と法令遵守の法規が適用されますか。
+</li>
+<li> 時間の経過による規制の要件に対する変更は、どのように通達、管理、および実装されますか。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Infrastructure_Requirements">インフラストラクチャの要件</span></h1>
+<h2><span class="mw-headline" id="Network">ネットワーク</span></h2>
+<ul>
+<li> ルーティング、スイッチング、ファイアウォール設定、および負荷分散に関する詳細は、どのように定義されていますか。
+</li>
+<li> どのネットワーク設計が、アプリケーションをサポートしますか。
+</li>
+<li> どのコアネットワークデバイスが、アプリケーションをサポートしますか。
+</li>
+<li> どのようなネットワークのパフォーマンス要件がありますか。
+</li>
+<li> どのプライベートおよびパブリックネットワークのリンクがアプリケーションをサポートしていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Systems">システム</span></h2>
+<ul>
+<li> どのオペレーティングシステムがアプリケーションをサポートしていますか。
+</li>
+<li> どのようなハードウェア要件が定義されていますか。
+</li>
+<li> 必須の OS コンポーネントとロックダウンの必要性に関して、どのような詳細が定義されていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Infrastructure_Monitoring">インフラストラクチャの監視</span></h2>
+<ul>
+<li> ネットワークとシステムのパフォーマンスの監視について、どのような要件が定義されていますか。
+</li>
+<li> 悪意のあるコードや侵害されたアプリケーションコンポーネントを検出するために、どのようなメカニズムがありますか。
+</li>
+<li> ネットワークとシステムのセキュリティの監視について、どのような要件が定義されていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Virtualization_and_Externalization">仮想化と具体化</span></h2>
+<ul>
+<li> アプリケーションのどの側面が仮想化に適していますか。
+</li>
+<li> アプリケーションには、どのような仮想化要件が定義されていますか。
+</li>
+<li> クラウドコンピューティングモデルでホストすることが適切な (または適切でない) のは、製品のどの側面ですか。 
+</li>
+<li> 適切な場合は、どのようなクラウドコンピューティングのアプローチが採用されますか (マネージドホスティングまたは "ピュア" クラウド、AWS-EC2 などの "フルマシン" アプローチまたは AWS-RDS や Azure などの "ホストされたデータベース" アプローチなど)。 
+</li>
+<li> 各アプローチの利点と制限は、どのように比較され、決定されますか。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Application_Requirements">アプリケーションの要件</span></h1>
+<h2><span class="mw-headline" id="Environment">環境</span></h2>
+<ul>
+<li> アプリケーションの作成には、どのフレームワークとプログラミング言語が使用されましたか。
+</li>
+<li> アプリケーションには、どのプロセス、コード、またはインフラストラクチャの依存関係が定義されていますか。
+</li>
+<li> どのデータベースサーバーとアプリケーションサーバーがアプリケーションをサポートしていますか。
+</li>
+<li> データベース接続文字列や暗号化キーなどの機密コンポーネントは、どのように保管され、アクセスされ、認可されていない検出から保護されていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Data_Processing">データ処理</span></h2>
+<ul>
+<li> アプリケーションは、どのようなデータ入力パスをサポートしていますか。
+</li>
+<li> アプリケーションは、どのようなデータ出力パスをサポートしていますか。
+</li>
+<li> アプリケーションの内部コンポーネント間で、どのようなデータフローがありますか。
+</li>
+<li> データ入力検証の要件は、どのように定義されていますか。
+</li>
+<li> アプリケーションは、どのデータをどのように保存しますか。
+</li>
+<li> どのデータが暗号化され、どのデータの暗号化が必要になりますか。また、キー管理の要件は、どのように定義されていますか。
+</li>
+<li> 機密データの漏えいを検出するために、どのような機能がありますか。
+</li>
+<li> 移動中のデータ (WAN、LAN、SecureFTP 上の伝送、または http: や https: などの公的にアクセス可能なプロトコルを含む) に、どのような暗号要件が定義されていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Access">アクセス</span></h2>
+<ul>
+<li> アプリケーションは、どのようなユーザー特権のレベルをサポートしていますか。
+</li>
+<li> どのようなユーザー識別と認証の要件が定義されていますか。
+</li>
+<li> どのような認可の要件が定義されていますか。
+</li>
+<li> どのようなセッション管理の要件が定義されていますか。
+</li>
+<li> URI とサービスの呼び出しには、どのようなアクセス要件が定義されていますか。
+</li>
+<li> どのようなユーザーアクセス制限が定義されていますか。
+</li>
+<li> ユーザー識別情報は、どのようにトランザクション呼び出し全体を通して維持されますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Application_Monitoring">アプリケーションの監視</span></h2>
+<ul>
+<li> どのようなアプリケーション監査の要件が定義されていますか。
+</li>
+<li> どのようなアプリケーションパフォーマンス監視の要件が定義されていますか。
+</li>
+<li> どのようなアプリケーションセキュリティ監視の要件が定義されていますか。
+</li>
+<li> どのようなアプリケーションエラー処理とロギングの要件が定義されていますか。エラー時に必要最小限の情報のみをエンドユーザーに表示して、アプリケーションの設計、セキュリティ、および実装の様相を公開しないようにするため、どのようなプロセスが備わっていますか。
+</li>
+<li> 監査とデバッグのログは、どのようにアクセスされ、保管されますか。また、どのようにセキュリティで保護されていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Application_Design">アプリケーション設計</span></h2>
+<ul>
+<li> どのようなアプリケーション設計のレビューの履行が定義、実行されていますか。
+</li>
+<li> 中間または処理中のデータは、どのようにアプリケーションコンポーネントのメモリとキャッシュに保存されますか。
+</li>
+<li> アプリケーションのコンポーネントをグループ化する論理層はいくつありますか。
+</li>
+<li> どのようなステージング、テスト、および品質保証の要件が定義されていますか。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Security_Program_Requirements">セキュリティプログラムの要件</span></h1>
+<h2><span class="mw-headline" id="Operations">運用</span></h2>
+<ul>
+<li> どのようなプロセスで、アプリケーションの脆弱性を特定して対処しますか。
+</li>
+<li> どのようなプロセスで、ネットワークとシステムのコンポーネントの脆弱性を特定して対処しますか。
+</li>
+<li> システム管理者とネットワーク管理者には、アプリケーションの機密データへのどのようなアクセス権がありますか。
+</li>
+<li> どのようなセキュリティインシデントの要件が定義されていますか。
+</li>
+<li> 管理者はどのように実稼働インフラストラクチャにアクセスして、管理を行いますか。
+</li>
+<li> どのような物理的制御により、アプリケーションのコンポーネントとデータへのアクセスを制限しますか。
+</li>
+<li> どのようなプロセスで、アプリケーションをホストしている環境へのアクセスを付与しますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Change_Management">変更管理</span></h2>
+<ul>
+<li> コードに対する変更は、どのように制御されますか。
+</li>
+<li> インフラストラクチャに対する変更は、どのように制御されますか。
+</li>
+<li> どのように実稼働環境にコードを展開しますか。
+</li>
+<li> 変更管理の履行に対する違反を検出するために、どのようなメカニズムがありますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Software_Development">ソフトウェア開発</span></h2>
+<ul>
+<li> テストの際に、開発者はどのようなデータを使用できますか。
+</li>
+<li> アプリケーションのトラブルシューティングとデバッギングで、開発者はどのような支援を行いますか。
+</li>
+<li> アプリケーションのソースコードへのアクセスを制御するために、どのような要件が定義されていますか。
+</li>
+<li> セキュアなコード記述のために、どのようなプロセスが確立されていますか。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Corporate">企業</span></h2>
+<ul>
+<li> どのような企業のセキュリティプログラムの要件が定義されていますか。
+</li>
+<li> 開発者と管理者は、どのようなセキュリティトレーニングを受けていますか。
+</li>
+<li> アプリケーションに関連するセキュリティのプロセスと要件は、どの担当者が監視していますか。
+</li>
+<li> 従業員の雇用と解雇の手続きは、どのように定義されていますか。
+</li>
+<li> どのようなアプリケーション要件によって、職務の分離という方針の強制適用が必要になりますか。
+</li>
+<li> 企業環境内における侵害から実稼働環境が影響を受けないようにするために、どのような制御がありますか。
+</li>
+<li> どのようなセキュリティガバナンスの要件が定義されていますか。
+</li>
+</ul>
+<h1><span class="mw-headline" id="Authors_and_Primary_Editors">Authors and Primary Editors</span></h1>
+<p><a rel="nofollow" class="external text" href="http://www.zeltser.com">Lenny Zeltser - First Draft 2012</a>
+</p><p><a rel="nofollow" class="external text" href="mailto:tony.turner@owasp.org">Tony Turner - 2015 Format Change and Revisions</a>
+</p><p>Vin Miller - 2015 Revisions
+</p>
+<h1><span class="mw-headline" id="Other_Cheatsheets">Other Cheatsheets</span></h1>
+<p><b>OWASP Cheat Sheets Project Homepage</b>
+</p>
+<ul>
+<li> <a href="/index.php/OWASP_Cheat_Sheet_Series" title="OWASP Cheat Sheet Series">OWASP Cheat Sheet Series</a>
+</li>
+</ul>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Application Security Architecture Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_Coding_Cheat_Sheet" title="Secure Coding Cheat Sheet">Secure Coding Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.060 seconds
+Real time usage: 0.073 seconds
+Preprocessor visited node count: 111/1000000
+Preprocessor generated node count: 128/1000000
+Post‐expand include size: 4204/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:20855-0!*!0!!en!*!* and timestamp 20151215051023 and revision id 204206
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;oldid=204206">https://www.owasp.org/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;oldid=204206</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Application+Security+Architecture+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Application_Security_Architecture_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk"><span><a href="/index.php/Talk:Application_Security_Architecture_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Application_Security_Architecture_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Application_Security_Architecture_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Application_Security_Architecture_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;oldid=204206" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Application_Security_Architecture_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 1 December 2015, at 15:46.</li>
+											<li id="footer-info-viewcount">This page has been accessed 50,246 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":199});
+}</script>
+	</body>
+</html>

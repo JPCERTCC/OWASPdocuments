@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="utf-8" />
+<title>セキュアコーディングに関するチートシート - OWASP</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta name="generator" content="MediaWiki 1.23.11" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="OWASP (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://www.owasp.org/api.php?action=rsd" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="OWASP Atom フィード" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<link rel="stylesheet" href="/extensions/HeaderTabs/skins/ext.headertabs.large.css" /><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wiki:resourceloader:filter:minify-css:7:29b70323345a439ab9ed7007e0c178a6 */</style>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Secure_Coding_Cheat_Sheet","wgTitle":"Secure Coding Cheat Sheet","wgCurRevisionId":205021,"wgRevisionId":205021,"wgArticleId":21096,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cheatsheets"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Secure_Coding_Cheat_Sheet","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"htTabIndexes":[],"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"editsection":false,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs274":false,"searchNs275":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wiki:resourceloader:filter:minify-js:7:60712566bd995a32fa50031484a6bded */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Secure_Coding_Cheat_Sheet skin-vector action-view vector-animateLayout">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">セキュアコーディングに関するチートシート</span></h1>
+						<div id="bodyContent">
+								<div id="siteSub">OWASP 作成</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					ジャンプ先: 					<a href="#mw-navigation">移動</a>、					<a href="#p-search">検索</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2></h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#DRAFT_CHEAT_SHEET_-_WORK_IN_PROGRESS"><span class="tocnumber">1</span> <span class="toctext">ドラフト版チートシート - 編集中</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Introduction"><span class="tocnumber">2</span> <span class="toctext">はじめに</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#How_To_Use_This_Document"><span class="tocnumber">3</span> <span class="toctext">このドキュメントの使用方法</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Secure_Coding_Policy"><span class="tocnumber">4</span> <span class="toctext">セキュアコーディングポリシー</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Authentication"><span class="tocnumber">5</span> <span class="toctext">認証</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#User_Authentication"><span class="tocnumber">5.1</span> <span class="toctext">ユーザー認証</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#User_names"><span class="tocnumber">5.1.1</span> <span class="toctext">ユーザー名</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Password_Complexity"><span class="tocnumber">5.1.2</span> <span class="toctext">パスワードの複雑さ</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Password_Rotation"><span class="tocnumber">5.1.3</span> <span class="toctext">パスワードのローテーション</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Online_Password_Guessing_and_Password_Attacks"><span class="tocnumber">5.2</span> <span class="toctext">オンラインのパスワード推測とパスワード攻撃</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Password_Reset_Functions"><span class="tocnumber">5.2.1</span> <span class="toctext">パスワードのリセット機能</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Email_Verification_Functions"><span class="tocnumber">5.2.2</span> <span class="toctext">電子メールの検証機能</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Password_Storage"><span class="tocnumber">5.2.3</span> <span class="toctext">パスワードの保存</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Server_Authentication"><span class="tocnumber">5.3</span> <span class="toctext">サーバー認証</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Logging_and_Monitoring"><span class="tocnumber">5.4</span> <span class="toctext">ロギングと監視</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Session_Management"><span class="tocnumber">6</span> <span class="toctext">セッション管理</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#Session_ID_Length"><span class="tocnumber">6.1</span> <span class="toctext">セッション ID の長さ</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Session_ID_Creation"><span class="tocnumber">6.2</span> <span class="toctext">セッション ID の作成</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Inactivity_Time_Out"><span class="tocnumber">6.3</span> <span class="toctext">アイドル時間タイムアウト</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Secure_Flag"><span class="tocnumber">6.4</span> <span class="toctext">Secure フラグ</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#HTTP-Only_Flag"><span class="tocnumber">6.5</span> <span class="toctext">HTTP-Only フラグ</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Logout"><span class="tocnumber">6.6</span> <span class="toctext">ログアウト</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Logging_and_Monitoring_2"><span class="tocnumber">6.7</span> <span class="toctext">ロギングと監視</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Access_Control"><span class="tocnumber">7</span> <span class="toctext">アクセス制御</span></a>
+<ul>
+<li class="toclevel-2 tocsection-25"><a href="#Presentation_Layer"><span class="tocnumber">7.1</span> <span class="toctext">プレゼンテーション層</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#Business_Layer"><span class="tocnumber">7.2</span> <span class="toctext">ビジネス層</span></a></li>
+<li class="toclevel-2 tocsection-27"><a href="#Data_Layer"><span class="tocnumber">7.3</span> <span class="toctext">データ層</span></a></li>
+<li class="toclevel-2 tocsection-28"><a href="#Logging_and_Monitoring_3"><span class="tocnumber">7.4</span> <span class="toctext">ロギングと監視</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-29"><a href="#Input_Data_Validation"><span class="tocnumber">8</span> <span class="toctext">入力データ検証</span></a></li>
+<li class="toclevel-1 tocsection-30"><a href="#Output_Encoding"><span class="tocnumber">9</span> <span class="toctext">出力エンコード</span></a>
+<ul>
+<li class="toclevel-2 tocsection-31"><a href="#Preventing_XSS_and_Content_Security_Policy"><span class="tocnumber">9.1</span> <span class="toctext">XSS の防止とコンテンツセキュリティポリシー</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="#Preventing_SQL_Injection"><span class="tocnumber">9.2</span> <span class="toctext">SQL インジェクションの防止</span></a></li>
+<li class="toclevel-2 tocsection-33"><a href="#Preventing_OS_Injection"><span class="tocnumber">9.3</span> <span class="toctext">OS インジェクションの防止</span></a></li>
+<li class="toclevel-2 tocsection-34"><a href="#Preventing_XML_Injection"><span class="tocnumber">9.4</span> <span class="toctext">XML インジェクションの防止</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-35"><a href="#Secure_Transmission_.2F_Network_Layer_security"><span class="tocnumber">10</span> <span class="toctext">安全な伝送 / ネットワーク層セキュリティ</span></a>
+<ul>
+<li class="toclevel-2 tocsection-36"><a href="#When_To_Use_SSL.2FTLS"><span class="tocnumber">10.1</span> <span class="toctext">SSL / TLS を使用する状況</span></a></li>
+<li class="toclevel-2 tocsection-37"><a href="#Implement_HTTP_Strict_Transport_Security_.28HSTS.29"><span class="tocnumber">10.2</span> <span class="toctext">HTTP Strict Transport Security (HSTS) の実装</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-38"><a href="#File_Uploads"><span class="tocnumber">11</span> <span class="toctext">ファイルのアップロード</span></a>
+<ul>
+<li class="toclevel-2 tocsection-39"><a href="#Upload_Verification"><span class="tocnumber">11.1</span> <span class="toctext">アップロードの検証</span></a></li>
+<li class="toclevel-2 tocsection-40"><a href="#Upload_Storage"><span class="tocnumber">11.2</span> <span class="toctext">アップロードの保存</span></a></li>
+<li class="toclevel-2 tocsection-41"><a href="#Public_Serving_of_Uploaded_Content"><span class="tocnumber">11.3</span> <span class="toctext">アップロードしたコンテンツの一般公開</span></a></li>
+<li class="toclevel-2 tocsection-42"><a href="#Beware_of_.22special.22_files"><span class="tocnumber">11.4</span> <span class="toctext">"特殊" なファイルに関する注意</span></a></li>
+<li class="toclevel-2 tocsection-43"><a href="#Upload_Verification_2"><span class="tocnumber">11.5</span> <span class="toctext">アップロードの検証</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-44"><a href="#Error_Handling"><span class="tocnumber">12</span> <span class="toctext">エラー処理</span></a></li>
+<li class="toclevel-1 tocsection-45"><a href="#Logging_and_Auditing"><span class="tocnumber">13</span> <span class="toctext">ロギングと監査</span></a></li>
+<li class="toclevel-1 tocsection-46"><a href="#Cryptography"><span class="tocnumber">14</span> <span class="toctext">暗号化</span></a></li>
+<li class="toclevel-1 tocsection-47"><a href="#Cookie_Management"><span class="tocnumber">15</span> <span class="toctext">Cookie 管理</span></a></li>
+<li class="toclevel-1 tocsection-48"><a href="#Secure_Deployment"><span class="tocnumber">16</span> <span class="toctext">安全な展開</span></a></li>
+<li class="toclevel-1 tocsection-49"><a href="#Unvalidated_Redirects_and_Forwards_Cheat_Sheet"><span class="tocnumber">17</span> <span class="toctext">未検証のリダイレクトと転送に関するチートシート</span></a></li>
+<li class="toclevel-1 tocsection-50"><a href="#Common_Vulnerabilities"><span class="tocnumber">18</span> <span class="toctext">一般的な脆弱性</span></a>
+<ul>
+<li class="toclevel-2 tocsection-51"><a href="#SQL_Injection"><span class="tocnumber">18.1</span> <span class="toctext">SQL インジェクション</span></a></li>
+<li class="toclevel-2 tocsection-52"><a href="#Cross_Site_Scripting"><span class="tocnumber">18.2</span> <span class="toctext">クロスサイトスクリプティング</span></a></li>
+<li class="toclevel-2 tocsection-53"><a href="#Cross_Site_Request_Forgery"><span class="tocnumber">18.3</span> <span class="toctext">クロスサイトリクエストフォージェリ</span></a></li>
+<li class="toclevel-2 tocsection-54"><a href="#Preventing_Malicious_Site_Framing_.28ClickJacking.29"><span class="tocnumber">18.4</span> <span class="toctext">悪意のあるサイトのフレーム内表示 (クリックジャッキング) の防止</span></a></li>
+<li class="toclevel-2 tocsection-55"><a href="#Security_Misconfigurations"><span class="tocnumber">18.5</span> <span class="toctext">セキュリティの構成ミス</span></a></li>
+<li class="toclevel-2 tocsection-56"><a href="#Insecure_Direct_Object_references"><span class="tocnumber">18.6</span> <span class="toctext">セキュリティで保護されていない直接的なオブジェクト参照</span></a></li>
+<li class="toclevel-2 tocsection-57"><a href="#Directory_Listing"><span class="tocnumber">18.7</span> <span class="toctext">ディレクトリの一覧表示</span></a></li>
+<li class="toclevel-2 tocsection-58"><a href="#Concurrancy_and_Race_Conditions"><span class="tocnumber">18.8</span> <span class="toctext">同時実行と競合状態</span></a></li>
+<li class="toclevel-2 tocsection-59"><a href="#References"><span class="tocnumber">18.9</span> <span class="toctext">参考資料</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="DRAFT_CHEAT_SHEET_-_WORK_IN_PROGRESS">ドラフト版チートシート - 編集中</span></h1>
+<h1><span class="mw-headline" id="Introduction">はじめに</span></h1>
+<p>このドキュメントの目的は、セキュアコーディングの実践に向けた全体的なガイドラインを作成することです。ドキュメント全体のサイズはコンパクトに抑えながら、理解しやすいものにすることを目指しています。特定の分野についての追加情報を探している場合は、このドキュメントに記載された詳細へのリンクを参照してください。
+</p>
+<h1><span class="mw-headline" id="How_To_Use_This_Document">このドキュメントの使用方法</span></h1>
+<p>以下に挙げた情報は、広く受け入れられているセキュアコーディングの実践方法です。ただし、これらをベーステンプレートとして、それぞれのセクションを組織のポリシーとリスク許容度に応じた推奨事項で更新することをお勧めします。 
+</p>
+<h1><span class="mw-headline" id="Secure_Coding_Policy">セキュアコーディングポリシー</span></h1>
+<p>セキュアコーディングポリシーを常に維持します。セキュアコーディングの標準の維持 (この標準はテクノロジに固有のものと、テクノロジに依存しないものがあります)、トレーニングに向けたコードレビュー結果のフィードバック、入力データ検証、出力データ検証などのアクティビティを一覧にします。
+</p><p>セキュアコーディングポリシーは、なぜ必要になるのでしょうか。このポリシーは、組織全体で一貫性を維持するために役立ちます。また、Web 開発プロジェクトにおけるセキュアコーディング標準の使用を垂直的および水平的に拡大する際にも役立ちます。 
+</p>
+<h1><span class="mw-headline" id="Authentication">認証</span></h1>
+<h2><span class="mw-headline" id="User_Authentication">ユーザー認証</span></h2>
+<p>認証メカニズム
+</p><p>認証には、単一要素認証と多要素認証があります。通常、単一要素認証では、以下のいずれかが必要になります。
+</p><p>1.知識情報
+</p><p>2.所持情報
+</p><p>3.生体情報
+</p><p>4.場所情報
+</p><p>多要素認証では、上記の要素を複数使用します。
+</p><p>パスワードと PIN (個人識別番号) でユーザーを認証する場合、パスワードと PIN はどちらも知識情報になるため、単一要素認証になります。ただし、PIN がデバイス / ソフトトークンから生成される場合は、多要素認証になります。これは、所持情報であるデバイス / トークンから PIN が生成されるためです。
+</p><p>「リスクの高い」データ (クレジットカード、医療情報、個人を特定できるデータなど) を処理するトランザクションには、多要素認証を使用してください。
+</p><p>クライアント側認証のみを使用している場合は、その認証が迂回、改ざんまたは悪用される可能性のないことを確認します。
+</p>
+<h3><span class="mw-headline" id="User_names">ユーザー名</span></h3>
+<p>認証目的の場合、ユーザー名は一意であることが必要になります。リスクの高い / 重要なデータを処理するシナリオでは、ユーザーに一意の名前を選択します。たとえば、銀行取引アプリケーション、ショッピングアプリケーション、個人を特定できるデータを処理するアプリケーションなどの場合です。 
+</p>
+<h3><span class="mw-headline" id="Password_Complexity">パスワードの複雑さ</span></h3>
+<p>パスワードの複雑さの詳細については、<a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Authentication_Cheat_Sheet#Implement_Proper_Password_Strength_Controls">https://www.owasp.org/index.php/Authentication_Cheat_Sheet#Implement_Proper_Password_Strength_Controls</a> を参照してください。
+</p>
+<h3><span class="mw-headline" id="Password_Rotation">パスワードのローテーション</span></h3>
+<p>アプリケーション内で特権が付与されたアカウントには、90 日単位の周期でパスワードのローテーションを要求する必要があります。
+</p>
+<h2><span class="mw-headline" id="Online_Password_Guessing_and_Password_Attacks">オンラインのパスワード推測とパスワード攻撃</span></h2>
+<p>アプリケーションでは、以下のいずれかの方法で、オンラインのパスワード推測の試行を阻止する必要があります。
+</p>
+<ul>
+<li> アカウントのロックアウト - パスワードの試行が 5 回失敗したらアカウントをロックします。
+</li>
+<li> 一時的なアカウントのロックアウト - パスワードの試行が 5 回失敗したら一時的にアカウントをロックします。
+</li>
+<li> 自動化対策 Captcha - パスワードの試行が 5 回失敗したら正常な完了のために Captcha を要求します。
+</li>
+</ul>
+<p><a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/Blocking_Brute_Force_Attacks">追加資料</a>
+</p>
+<h3><span class="mw-headline" id="Password_Reset_Functions">パスワードのリセット機能</span></h3>
+<ul>
+<li> 可能であれば、パスワードのリセット時にアウトオブバンド検証を使用します。たとえば、登録済みのモバイルまたは電子メールの ID に OTP (One Time Password) を送信 します。このプロセスでは、ユーザーに電子メールの ID や電話番号の入力を求めてはいけません。悪意のあるユーザーが、その情報を悪用する可能性があるためです。
+</li>
+<li> 可能な場合は、ユーザー確認のためにセキュリティの質問について尋ねます。
+</li>
+</ul>
+<h3><span class="mw-headline" id="Email_Verification_Functions">電子メールの検証機能</span></h3>
+<p>アプリケーションで電子メールアドレスの所有権を検証する場合は、次の事項を調べます。
+</p>
+<ul>
+<li> 電子メールの検証リンクは、電子メールアドレスの所有権を検証するための要件のみを満たすようにして、認証されたセッションをユーザーに提供してはいけません (たとえば、ユーザーは通常と同じようにアプリケーションへのアクセスの認証を行う必要があります)。
+</li>
+<li> 電子メールの検証コードは、最初の使用後に無効にする必要があります。使用されなかった場合でも、8 時間後には無効にします。 
+</li>
+</ul>
+<h3><span class="mw-headline" id="Password_Storage">パスワードの保存</span></h3>
+<ul>
+<li> パスワードは、 オフラインでの高速なブルートフォース攻撃に耐える形式 (Bcrypt など) で保存する必要があります。
+</li>
+<li> パスワードの保存では、ハッシュアルゴリズムにユーザーごとの salt を加えることが良策になりますが、十分とはいえません。
+</li>
+<li> コード内や構成ファイル内にパスワードを保存してはいけません。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Server_Authentication">サーバー認証</span></h2>
+<p>SSL / TLS の使用時には、既知のルート証明書への信頼チェーンを辿ることでサーバー ID を確認します。
+</p><p>IP アドレスや DNS 名に依存してサーバー ID を確認してはいけません。
+</p><p>すべての内部接続と外部接続で、十分に適切な形式のユーザー認証とエンティティ認証が行われるようにします。 
+</p><p>この制御は迂回できないようにします。
+</p>
+<h2><span class="mw-headline" id="Logging_and_Monitoring">ロギングと監視</span></h2>
+<ul>
+<li>すべての失敗をログに記録してレビューします。
+</li>
+<li>すべてのパスワードの失敗をログに記録してレビューします。
+</li>
+<li>すべてのアカウントのロックアウトをログに記録してレビューします。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Session_Management">セッション管理</span></h1>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Session_Management_Cheat_Sheet">https://www.owasp.org/index.php/Session_Management_Cheat_Sheet</a>
+</p>
+<h2><span class="mw-headline" id="Session_ID_Length">セッション ID の長さ</span></h2>
+<ul>
+<li> セッショントークンは、128 ビット以上にする必要があります。 
+</li>
+</ul>
+<h2><span class="mw-headline" id="Session_ID_Creation">セッション ID の作成</span></h2>
+<ul>
+<li> セッショントークンは、可能な場合は Web サーバーで処理する必要があります。それ以外の場合は、暗号学的に安全な乱数生成器によって生成する必要があります。 
+</li>
+</ul>
+<h2><span class="mw-headline" id="Inactivity_Time_Out">アイドル時間タイムアウト</span></h2>
+<ul>
+<li> 認証したセッションは、一定のアイドル期間経過後にタイムアウトにする必要があります (15 分が推奨されています)。 
+</li>
+</ul>
+<h2><span class="mw-headline" id="Secure_Flag">Secure フラグ</span></h2>
+<ul>
+<li> "Secure" フラグは、Set-Cookie のたびに設定する必要があります。これにより、ブラウザーに対して HTTP 経由での Cookie の送信を決して行わないように指示を与えます。このフラグの目的は、ユーザーが HTTP リンクを辿ったときに、不用意な Cookie 値の露出を防止することです。 
+</li>
+</ul>
+<h2><span class="mw-headline" id="HTTP-Only_Flag">HTTP-Only フラグ</span></h2>
+<ul>
+<li> "HTTP-Only" フラグは、悪意のあるスクリプトによる Cookie の値 (セッション ID など) へのアクセスを禁止するために設定する必要があります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Logout">ログアウト</span></h2>
+<ul>
+<li> セッション ID は、ログアウト時にサーバー側で無効化して、クライアント側で削除します (値を有効期限切れにして上書きします)。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Logging_and_Monitoring_2">ロギングと監視</span></h2>
+<ul>
+<li> すべてのセッションをログに記録しますが、カード所有者データや個人を特定できる情報はロギングしません。
+</li>
+<li> 不審なアクティビティについて、すべてのログを監視します。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Access_Control">アクセス制御</span></h1>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Access_Control_Cheat_Sheet">https://www.owasp.org/index.php/Access_Control_Cheat_Sheet</a>
+</p>
+<h2><span class="mw-headline" id="Presentation_Layer">プレゼンテーション層</span></h2>
+<ul>
+<li> ユーザーがアクセスできないリンクや機能は、表示しないことをお勧めします。その目的は、不要なアクセス制御メッセージを最小限に抑えることと、不必要にユーザーに表示される特権情報を最小限に抑えることです。 
+</li>
+</ul>
+<h2><span class="mw-headline" id="Business_Layer">ビジネス層</span></h2>
+<ul>
+<li> システム内でアクションが実行される前に、確実にアクセス制御の検証を実行します。ユーザーは、細工した GET メッセージや POST メッセージで、許可されていない機能を実行しようとすることがあります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Data_Layer">データ層</span></h2>
+<ul>
+<li> アクセス制御の検証を確実に実行して、ターゲットデータに対する操作がユーザーに許可されていることを確認します。操作 X の実行を許可されているユーザーが、すべてのデータセットに対しても操作 X を実行できるものと想定してはいけません。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Logging_and_Monitoring_3">ロギングと監視</span></h2>
+<ul>
+<li> アクティビティに関連するアクセスのすべてをログに記録します。
+</li>
+<li> すべてのログを監視してレビューします。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Input_Data_Validation">入力データ検証</span></h1>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet</a>
+</p>
+<h1><span class="mw-headline" id="Output_Encoding">出力エンコード</span></h1>
+<h2><span class="mw-headline" id="Preventing_XSS_and_Content_Security_Policy">XSS の防止とコンテンツセキュリティポリシー</span></h2>
+<ul>
+<li> ユーザーが制御できる全てのデータは、HTML ページで返す際、悪意あるデータの実行 (XSS など) を防止するために、エンコードしておく必要があります。たとえば、&lt;script&gt; は &amp;lt;script&amp;gt; のようにして返します。
+</li>
+<li> エンコーディングの種類は、ユーザー制御のデータが挿入されるページのコンテキストによって決まります。たとえば、 HTML 本文内に配置されるデータには HTML エンティティエンコーディングが適しています。その一方、スクリプト内に配置されるユーザーデータには、JavaScript 固有の出力エンコーディングが必要になります。 
+</li>
+</ul>
+<p>XSS 対策の詳細については、次を参照してください。<a rel="nofollow" class="external text" href="http://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet">OWASP XSS 対策チートシート</a>
+</p>
+<h2><span class="mw-headline" id="Preventing_SQL_Injection">SQL インジェクションの防止</span></h2>
+<ul>
+<li> データの一部がユーザー制御であるかどうかを常に把握することは現実的ではありません。したがって、メソッド / 関数がデータを受け取って SQL ステートメントの一部として使用するときには、いつでもパラメーター化クエリを使用する必要があります。 
+</li>
+<li> ユーザー制御のデータを使用して文字列連結で SQL ステートメントを組み立てる処理は、SQL インジェクション脆弱性の原因になります。
+</li>
+<li> パラメーター化クエリは、SQL インジェクションの防止を保証するアプローチです。
+</li>
+</ul>
+<p>詳細資料: <a rel="nofollow" class="external text" href="http://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet">SQL インジェクション対策に関するチートシート</a>
+</p>
+<h2><span class="mw-headline" id="Preventing_OS_Injection">OS コマンドインジェクションの防止</span></h2>
+<ul>
+<li> ユーザー制御データの OS への送信をできる限り回避します。
+</li>
+<li> 堅牢なエスケープ処理ルーチンを用意して、OS で実行可能な文字列をユーザーが追加できないようにします (たとえば、ユーザーが悪意のあるデータに | を追加して、別の OS コマンドを実行するなど)。エスケープ処理ルーチンの作成時には、積極的なアプローチを使用するようにしてください。例 
+</li>
+</ul>
+<p>詳細資料: <a rel="nofollow" class="external text" href="http://www.owasp.org/index.php/Reviewing_Code_for_OS_Injection">Reviewing Code for OS Injection</a>
+</p>
+<h2><span class="mw-headline" id="Preventing_XML_Injection">XML インジェクションの防止</span></h2>
+<ul>
+<li> 既存の入力値検証に加えて、XML として解釈可能な文字をエスケープ / エンコードする積極的なアプローチを定義します。少なくとも、次のような文字があります: < > " ' & 
+</li>
+<li> 未処理の XML を受け入れる場合は、より強力な検証が必要になります。これは、複雑になる可能性があります。詳細については、インフラストラクチャのセキュリティチームに問い合わせてください。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Secure_Transmission_.2F_Network_Layer_security">安全な伝送 / ネットワーク層セキュリティ</span></h1>
+<h2><span class="mw-headline" id="When_To_Use_SSL.2FTLS">SSL / TLS を使用する状況</span></h2>
+<ul>
+<li> 暗号化されたチャネルを通じて情報を伝送する場合は、TLS を使用します (SSL はセキュリティに有効だと見なされなくなりました)。たとえば、カード所有者データ、個人を特定できる情報、情報分類ポリシーで "公開" に分類されない情報の伝送などです。
+</li>
+<li> ログインページからログアウトページまで、すべてを HTTPS 経由にする必要があります。
+</li>
+<li> ユーザーがログインフォームに記入するページには、HTTPS 経由でアクセスされるようにします。フォームを HTTPS 経由で POST 送信するのは言うまでもありません。
+</li>
+<li> すべての認証済みページは、HTTPS 経由で提示する必要があります。これには、CSS、スクリプト、イメージが含まれます。これを怠ると、中間者攻撃のベクトルを開いてしまうことになります。また、混在 SSL の警告メッセージがブラウザーに表示されるようにもなります。
+</li>
+<li> HTTP ページと HTTPS ページを切り替える方法には注意が必要です。このような遷移は、攻撃の潜在的なターゲットになります。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Implement_HTTP_Strict_Transport_Security_.28HSTS.29">HTTP Strict Transport Security (HSTS) の実装</span></h2>
+<ul>
+<li> HTTPS 経由でのみ提供されるアプリケーションは、HSTS を使用して、ドメインへの HTTP 接続を許可しないように準拠ブラウザーに指示する必要があります。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="File_Uploads">ファイルのアップロード</span></h1>
+<h2><span class="mw-headline" id="Upload_Verification">アップロードの検証</span></h2>
+<ul>
+<li>入力検証を使用して、アップロードされたファイル名が適切な拡張子タイプを使用していることを確認します。 
+</li>
+<li>アップロードされたファイルが、定義済みの最大ファイルサイズを超えていないことを確認します。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Upload_Storage">アップロードの保存</span></h2>
+<ul>
+<li>ファイルを OS 上に保存する際は新しいファイル名を使用します。このファイル名や一時ファイル名に、ユーザー制御のテキストを使用してはいけません。 
+</li>
+<li>ユーザーがアップロードしたファイルはすべて別のドメインに保存します(mozillafiles.net と mozilla.org など)。アーカイブに悪意のあるコンテンツが含まれていないか、分析する必要があります。(マルウェア対策やスタティック分析など)
+</li>
+</ul>
+<h2><span class="mw-headline" id="Public_Serving_of_Uploaded_Content">アップロードしたコンテンツの一般公開</span></h2>
+<ul>
+<li>イメージが正しい Content-Type (image/jpeg や application/x-xpinstall) で提供されていることを確認します。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Beware_of_.22special.22_files">"特殊" なファイルに関する注意</span></h2>
+<ul>
+<li> アップロード機能では、特定のファイルの種類と拡張子のみを許可するホワイトリストのアプローチを使用する必要があります。ただし、次に示すファイルの種類が許可されている場合には、セキュリティの脆弱性につながる可能性があるため、十分な注意が必要になります。
+</li>
+<li>"crossdomain.xml" は、Flash、Java および Silverlight でのクロスドメインのデータ読み込みを可能にします。認証によってサイトで許可されている場合、これによりクロスドメインのデータ窃盗や CSRF 攻撃を許す可能性があります。これは、問題になる特定のプラグインのバージョンによっては、かなり複雑になることがあるため、単に "crossdomain.xml" または "clientaccesspolicy.xml" という名前の付いたファイルを禁止することが最善策になります。
+</li>
+<li>".htaccess" および ".htpasswd" は、ディレクトリ単位でのサーバー構成オプションを提供するものであり、許可してはいけません。<a rel="nofollow" class="external free" href="http://en.wikipedia.org/wiki/Htaccess">http://en.wikipedia.org/wiki/Htaccess</a> を参照してください。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Upload_Verification_2">アップロードの検証</span></h2>
+<ul>
+<li>画像書き換えライブラリを使用して、画像が正当であることを検証して、無関係なコンテンツを取り除きます。 
+</li>
+<li>保存した画像の拡張子は、単にアップロードのヘッダーを信じるのではなく、画像処理によって検出された画像のコンテンツタイプに基づいて妥当な画像の拡張子に設定します。 
+</li>
+<li>検出された画像のコンテンツタイプが定義済みの画像の種類 (jpg や png など) のリストに含まれていることを確認します。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Error_Handling">エラー処理</span></h1>
+<p>一般的なエラーの種類: 
+• ビジネスロジックの条件が満たされていない結果。
+• ビジネスロジックが存在する環境に障害が発生した結果。
+• アプリケーションが依存する上流システムまたは下流システムに障害が発生した結果。
+• 技術的なハードウェア / 物理的障害。
+</p><p>このようなエラーには、次のように対処します。
+</p>
+<ul>
+<li> 値を返すメソッド / 関数のすべての呼び出しで、適切なエラー処理と戻り値のチェックを行うようにする。
+</li>
+<li> 例外とエラー条件が適切に処理されるようにする。
+</li>
+<li> ユーザーにシステムエラーを返さないようにする。
+</li>
+<li> 安全な方法でアプリケーションが失敗するようにする。
+</li>
+<li> エラーの発生時にはリソースを解放するようにする。
+</li>
+<li> スタックトレースがユーザーにスローされないようにする。
+</li>
+<li> 当該の言語に finally メソッドがある場合は、それを使用する。finally メソッドは常に呼び出されるコードであり、例外をスローしたメソッドが参照するリソースの解放にも使用できます。 
+</li>
+</ul>
+<p>これは、とても重要なことです。たとえば、あるメソッドが接続プールからデータベース接続を取得したときに、finally なしで例外が発生すると、接続オブジェクトは一定の時間 (タイムアウトになるまで) プールに返されなくなります。 
+これは、プールの枯渇につながります。メソッド finally() は、例外がスローされていない場合でも呼び出されます。
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="Logging_and_Auditing">ロギングと監査</span></h1>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Logging_Cheat_Sheet">https://www.owasp.org/index.php/Logging_Cheat_Sheet</a>
+</p><p><br />
+</p>
+<h1><span class="mw-headline" id="Cryptography">暗号化</span></h1>
+<ul>
+<li> 認証と安全な通信のためのプロトコルとアルゴリズムについては、すべて暗号コミュニティによる入念な検査が必要です。
+</li>
+<li> 証明書は、ホスト名 / ユーザーに対して適切に検証されるようにします (つまり、証明書が誰のものであるかを検証します)。
+</li>
+<li> ワイルドカード証明書は、それに関するビジネスニーズがない場合は使用を避けます。 
+</li>
+<li> 暗号化標準を維持して、開発者コミュニティにネットワークセキュリティプロトコル、アルゴリズム、許可された使用、暗号期間および鍵管理に承認された CipherSuite について知らせます。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Cookie_Management">Cookie 管理</span></h1>
+<ul>
+<li> 機密情報を永続化しない / 暗号化する / 必要に応じて必要な期間だけ保存するようにして、機密情報が含まれないようにします。
+</li>
+<li> Cookie の改ざんによる不正なアクティビティを実行できないようにします。
+</li>
+<li> Secure フラグを設定して、通信回線を通した伝送が不用意に安全でない方法で行われないようにします。
+</li>
+<li> アプリケーションのコード内のすべての状態遷移において適切にCookie がチェックされ、Cookie 使用が強制適用されているかを判断します。
+</li>
+<li> Cookie 内に機密データを永続化する場合は、Cookie 全体を暗号化する必要があります。
+</li>
+<li> アプリケーションで使用する Cookie のすべて、その名前、および必要な理由を定義します。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Secure_Deployment">安全な展開</span></h1>
+<ul>
+<li> ホスト上の構成ファイル、ディレクトリ、およびリソースへのアクセスを認証と認可で保護し、直接的なアクセスを禁止します。
+</li>
+<li> “すべて拒否” ルールを使用して、ホスト上のリソースへのアクセスを禁止しておき、必要に応じてアクセス権を付与します。
+</li>
+<li> Apache HTTP サーバーでは、WEB-INF や META-INF のようなディレクトリが保護されていることを確認します。ディレクトリとサブディレクトリのアクセス許可が .htaccess ファイルで指定されている場合は、“すべて拒否” ルールを使用して保護されていることを確認します。
+</li>
+<li> Struts フレームワークを使用している場合は、web.xml で *.jsp ファイルへのアクセスを禁止して、JSP ファイルに直接アクセスできないようにします。
+</li>
+<li> クリーンな環境を維持します。アプリケーションで使用されることのないソースコードを含むファイルは削除します。 
+</li>
+<li> 実稼働環境には、一切のソースコード / 開発ツールが含まれないようにします。 
+</li>
+<li> 実稼働環境には、コンパイルしたコード / 実行可能ファイルのみが含まれるようにします。 
+</li>
+<li> テストコード / デバッグコードを削除します (これらには、バックドアが含まれている可能性があります)。 
+</li>
+<li> コメント付きのコードとメタタグは、機密データを含んでいる可能性があるため削除します。
+</li>
+<li> 可能であれば、リバースエンジニアリングを回避するために、ソースコードに難読化を施します。
+</li>
+</ul>
+<p><br />
+</p>
+<h1><span class="mw-headline" id="Unvalidated_Redirects_and_Forwards_Cheat_Sheet">未検証のリダイレクトと転送に関するチートシート</span></h1>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet">https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet</a>
+</p>
+<h1><span class="mw-headline" id="Common_Vulnerabilities">一般的な脆弱性</span></h1>
+<h2><span class="mw-headline" id="SQL_Injection">SQL インジェクション</span></h2>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet</a>
+</p>
+<h2><span class="mw-headline" id="Cross_Site_Scripting">クロスサイトスクリプティング</span></h2>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet</a>
+</p><p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</a>
+</p><p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet">https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet</a>
+</p>
+<h2><span class="mw-headline" id="Cross_Site_Request_Forgery">クロスサイトリクエストフォージェリ</span></h2>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet</a>
+</p>
+<ul>
+<li> 状態が変化する操作では、安全なランダムトークン (CSRF トークン) を要求することで CSRF 攻撃を阻止します。
+</li>
+<li> CSRF トークンの特徴
+<ul>
+<li> ユーザーごと、およびユーザーセッションごとに一意。
+</li>
+<li> 1 つのユーザーセッションに結び付けられる。
+</li>
+<li> 巨大なランダム値。
+</li>
+<li> 暗号的に安全な乱数ジェネレーターによって生成されたもの。 
+</li>
+</ul>
+</li>
+<li> CSRF トークンは、フォームの hidden フィールドとして追加されるか、(状態が変化する操作が GET によって行われる場合は) URL に追加されます。
+</li>
+<li> サーバーでは、CSRF トークンの検証に失敗した場合はリクエストされたアクションを拒否します。 
+</li>
+</ul>
+<h2><span class="mw-headline" id="Preventing_Malicious_Site_Framing_.28ClickJacking.29">悪意のあるサイトによるフレーム内表示 (クリックジャッキング) の防止</span></h2>
+<p>HTML コンテンツを含むすべての応答に、x-frame-options ヘッダーを設定します。有効な値は、"DENY" または "SAMEORIGIN" です。
+</p>
+<pre>   DENY は、すべてのサイトを対象に (ドメインに関係なく)、コンテンツのフレーム内表示をブロックします。
+   SAMEORIGIN は、すべてのサイトを対象に、コンテンツのフレーム内表示をブロックします。ただし、同一ドメイン内のサイトはブロックしません。
+</pre>
+<p>フレーム内表示に特別な必要性が認められない場合は、"DENY" 設定が推奨されます。
+</p>
+<h2><span class="mw-headline" id="Security_Misconfigurations">セキュリティの構成ミス</span></h2>
+<ul>
+<li> 不要なサービス、ポート、プロトコルおよびデーモンは、すべて無効にします。
+</li>
+<li> 既定のパスワードやベンダーが用意したパスワードは、すべて変更します。
+</li>
+<li> 類似した機能を 1 つの VLAN にグループ化して、サーバーを保護します。
+</li>
+<li> 内部の仕組みを公開しないように、エラーメッセージを変更します。
+</li>
+<li> スタックトレースがコンテナーに残されないようにします。
+</li>
+<li> アクセスを許可するテータ / ページは最小限にします。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Insecure_Direct_Object_references">セキュリティで保護されていない直接的なオブジェクト参照</span></h2>
+<p><a rel="nofollow" class="external free" href="https://www.owasp.org/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet</a>
+</p>
+<h2><span class="mw-headline" id="Directory_Listing">ディレクトリの一覧表示</span></h2>
+<ul>
+<li> サーバーではディレクトリの一覧表示を有効にしてはいけません。
+</li>
+</ul>
+<h2><span class="mw-headline" id="Concurrancy_and_Race_Conditions">並行実行と競合状態</span></h2>
+<ul>
+<li> ロックメカニズムを使用して、共有リソースをロックします。
+</li>
+<li> 共有リソースを読み取る前にロックを取得します。
+</li>
+</ul>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<p><b>OWASP Cheat Sheets Project Homepage</b>
+</p>
+<ul>
+<li> <a href="/index.php/OWASP_Cheat_Sheet_Series" title="OWASP Cheat Sheet Series">OWASP Cheat Sheet Series</a>
+</li>
+</ul>
+<p><b>Developer Cheat Sheets (Builder)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Authentication_Cheat_Sheet" title="Authentication Cheat Sheet">Authentication Cheat Sheet</a> (<a href="/index.php/Authentication_Cheat_Sheet_Espa%C3%B1ol" title="Authentication Cheat Sheet Español">Spanish</a>)
+</li>
+<li> <a href="/index.php/Choosing_and_Using_Security_Questions_Cheat_Sheet" title="Choosing and Using Security Questions Cheat Sheet">Choosing and Using Security Questions Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Clickjacking_Defense_Cheat_Sheet" title="Clickjacking Defense Cheat Sheet">Clickjacking Defense Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/C-Based_Toolchain_Hardening_Cheat_Sheet" title="C-Based Toolchain Hardening Cheat Sheet">C-Based Toolchain Hardening Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet" title="Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet">Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Cryptographic_Storage_Cheat_Sheet" title="Cryptographic Storage Cheat Sheet">Cryptographic Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" title="DOM based XSS Prevention Cheat Sheet">DOM based XSS Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Forgot_Password_Cheat_Sheet" title="Forgot Password Cheat Sheet">Forgot Password Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/HTML5_Security_Cheat_Sheet" title="HTML5 Security Cheat Sheet">HTML5 Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Input_Validation_Cheat_Sheet" title="Input Validation Cheat Sheet">Input Validation Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/JAAS_Cheat_Sheet" title="JAAS Cheat Sheet">JAAS Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Logging_Cheat_Sheet" title="Logging Cheat Sheet">Logging Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/.NET_Security_Cheat_Sheet" title=".NET Security Cheat Sheet">.NET Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/OWASP_Top_Ten_Cheat_Sheet" title="OWASP Top Ten Cheat Sheet">OWASP Top Ten Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Password_Storage_Cheat_Sheet" title="Password Storage Cheat Sheet">Password Storage Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Pinning_Cheat_Sheet" title="Pinning Cheat Sheet">Pinning Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Query_Parameterization_Cheat_Sheet" title="Query Parameterization Cheat Sheet">Query Parameterization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Ruby_on_Rails_Cheatsheet" title="Ruby on Rails Cheatsheet">Ruby on Rails Cheatsheet</a>
+</li>
+<li> <a href="/index.php/REST_Security_Cheat_Sheet" title="REST Security Cheat Sheet">REST Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Session_Management_Cheat_Sheet" title="Session Management Cheat Sheet">Session Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SAML_Security_Cheat_Sheet" title="SAML Security Cheat Sheet">SAML Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/SQL_Injection_Prevention_Cheat_Sheet" title="SQL Injection Prevention Cheat Sheet">SQL Injection Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transaction_Authorization_Cheat_Sheet" title="Transaction Authorization Cheat Sheet">Transaction Authorization Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Transport_Layer_Protection_Cheat_Sheet" title="Transport Layer Protection Cheat Sheet">Transport Layer Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet" title="Unvalidated Redirects and Forwards Cheat Sheet">Unvalidated Redirects and Forwards Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/User_Privacy_Protection_Cheat_Sheet" title="User Privacy Protection Cheat Sheet">User Privacy Protection Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Service_Security_Cheat_Sheet" title="Web Service Security Cheat Sheet">Web Service Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="XSS (Cross Site Scripting) Prevention Cheat Sheet">XSS (Cross Site Scripting) Prevention Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Assessment Cheat Sheets (Breaker)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Attack_Surface_Analysis_Cheat_Sheet" title="Attack Surface Analysis Cheat Sheet">Attack Surface Analysis Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/XSS_Filter_Evasion_Cheat_Sheet" title="XSS Filter Evasion Cheat Sheet">XSS Filter Evasion Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/REST_Assessment_Cheat_Sheet" title="REST Assessment Cheat Sheet">REST Assessment Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Web_Application_Security_Testing_Cheat_Sheet" title="Web Application Security Testing Cheat Sheet">Web Application Security Testing Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Mobile Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/IOS_Developer_Cheat_Sheet" title="IOS Developer Cheat Sheet">IOS Developer Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Mobile_Jailbreaking_Cheat_Sheet" title="Mobile Jailbreaking Cheat Sheet">Mobile Jailbreaking Cheat Sheet</a>
+</li>
+</ul>
+<p><b>OpSec Cheat Sheets (Defender)</b>
+</p>
+<ul>
+<li> <a href="/index.php/Virtual_Patching_Cheat_Sheet" title="Virtual Patching Cheat Sheet">Virtual Patching Cheat Sheet</a>
+</li>
+</ul>
+<p><b>Draft Cheat Sheets</b>
+</p>
+<ul>
+<li> <a href="/index.php/Access_Control_Cheat_Sheet" title="Access Control Cheat Sheet">Access Control Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Application_Security_Architecture_Cheat_Sheet" title="Application Security Architecture Cheat Sheet">Application Security Architecture Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Business_Logic_Security_Cheat_Sheet" title="Business Logic Security Cheat Sheet">Business Logic Security Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/PHP_Security_Cheat_Sheet" title="PHP Security Cheat Sheet">PHP Security Cheat Sheet</a>
+</li>
+<li> <strong class="selflink">Secure Coding Cheat Sheet</strong>
+</li>
+<li> <a href="/index.php/Secure_SDLC_Cheat_Sheet" title="Secure SDLC Cheat Sheet">Secure SDLC Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Threat_Modeling_Cheat_Sheet" title="Threat Modeling Cheat Sheet">Threat Modeling Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Grails_Secure_Code_Review_Cheat_Sheet" title="Grails Secure Code Review Cheat Sheet">Grails Secure Code Review Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/IOS_Application_Security_Testing_Cheat_Sheet" title="IOS Application Security Testing Cheat Sheet">IOS Application Security Testing Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Key_Management_Cheat_Sheet" title="Key Management Cheat Sheet">Key Management Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet" title="Insecure Direct Object Reference Prevention Cheat Sheet">Insecure Direct Object Reference Prevention Cheat Sheet</a>
+</li>
+<li> <a href="/index.php/Content_Security_Policy_Cheat_Sheet" title="Content Security Policy Cheat Sheet">Content Security Policy Cheat Sheet</a>
+</li>
+</ul>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.077 seconds
+Real time usage: 0.083 seconds
+Preprocessor visited node count: 238/1000000
+Preprocessor generated node count: 256/1000000
+Post‐expand include size: 4204/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:21096-0!*!0!!en!*!* and timestamp 20151215044033 and revision id 205021
+ -->
+</div>								<div class="printfooter">
+				Retrieved from "<a href="https://www.owasp.org/index.php?title=Secure_Coding_Cheat_Sheet&amp;oldid=205021">https://www.owasp.org/index.php?title=Secure_Coding_Cheat_Sheet&amp;oldid=205021</a>"				</div>
+												<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Cheatsheets" title="Category:Cheatsheets">Cheatsheets</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+				<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	<h3 id="p-personal-label">Personal tools</h3>
+	<ul>
+<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Secure+Coding+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/index.php/Special:RequestAccount">Request account</a></li>	</ul>
+</div>
+				<div id="left-navigation">
+					<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+	<h3 id="p-namespaces-label">Namespaces</h3>
+	<ul>
+					<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Secure_Coding_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+					<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:Secure_Coding_Cheat_Sheet&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+			</ul>
+</div>
+<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+	<h3 id="mw-vector-current-variant">
+		</h3>
+	<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+				</div>
+				<div id="right-navigation">
+					<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+	<h3 id="p-views-label">Views</h3>
+	<ul>
+					<li id="ca-view" class="selected"><span><a href="/index.php/Secure_Coding_Cheat_Sheet" >Read</a></span></li>
+					<li id="ca-viewsource"><span><a href="/index.php?title=Secure_Coding_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+					<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Secure_Coding_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+			</ul>
+</div>
+<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+	<h3 id="p-cactions-label"><span>Actions</span><a href="#"></a></h3>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+<div id="p-search" role="search">
+	<h3><label for="searchInput">Search</label></h3>
+	<form action="/index.php" id="searchform">
+					<div id="simpleSearch">
+					<input type="search" name="search" placeholder="Search" title="Search OWASP [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />		</div>
+	</form>
+</div>
+				</div>
+			</div>
+			<div id="mw-panel">
+					<div id="p-logo" role="banner"><a style="background-image: url(/skins/owasplogo.png);" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+				<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+	<h3 id='p-Navigation-label'>Navigation</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Home"><a href="/index.php/Main_Page">Home</a></li>
+			<li id="n-About-OWASP"><a href="/index.php/About_OWASP">About OWASP</a></li>
+			<li id="n-Acknowledgements"><a href="https://www.owasp.org/index.php/Acknowledgements" rel="nofollow">Acknowledgements</a></li>
+			<li id="n-Advertising"><a href="https://www.owasp.org/index.php/Advertising" rel="nofollow">Advertising</a></li>
+			<li id="n-AppSec-Events"><a href="/index.php/Category:OWASP_AppSec_Conference">AppSec Events</a></li>
+			<li id="n-Books"><a href="http://stores.lulu.com/owasp" rel="nofollow">Books</a></li>
+			<li id="n-Brand-Resources"><a href="https://www.owasp.org/index.php/Marketing/Resources" rel="nofollow">Brand Resources</a></li>
+			<li id="n-Chapters"><a href="https://www.owasp.org/index.php/OWASP_Chapter" rel="nofollow">Chapters</a></li>
+			<li id="n-Donate-to-OWASP"><a href="https://www.owasp.org/index.php/Donate" rel="nofollow">Donate to OWASP</a></li>
+			<li id="n-Downloads"><a href="/index.php/Category:OWASP_Download">Downloads</a></li>
+			<li id="n-Funding"><a href="https://www.owasp.org/index.php/Funding" rel="nofollow">Funding</a></li>
+			<li id="n-Governance"><a href="https://www.owasp.org/index.php/Governance" rel="nofollow">Governance</a></li>
+			<li id="n-Initiatives"><a href="https://www.owasp.org/index.php/OWASP_Initiatives_Global_Strategic_Focus" rel="nofollow">Initiatives</a></li>
+			<li id="n-Mailing-Lists"><a href="http://lists.owasp.org/mailman/listinfo" rel="nofollow">Mailing Lists</a></li>
+			<li id="n-Membership"><a href="/index.php/Membership">Membership</a></li>
+			<li id="n-Merchandise"><a href="https://www.owasp.org/index.php/OWASP_Merchandise" rel="nofollow">Merchandise</a></li>
+			<li id="n-News"><a href="/index.php/Application_Security_News">News</a></li>
+			<li id="n-Portal"><a href="https://www.owasp.org/index.php/Portal" rel="nofollow" title="About the project, what you can do, where to find things">Community portal</a></li>
+			<li id="n-Presentations"><a href="/index.php/Category:OWASP_Presentations">Presentations</a></li>
+			<li id="n-Press"><a href="https://www.owasp.org/index.php/Press" rel="nofollow">Press</a></li>
+			<li id="n-Projects"><a href="/index.php/Category:OWASP_Project">Projects</a></li>
+			<li id="n-Video"><a href="/index.php/Category:OWASP_Video">Video</a></li>
+			<li id="n-Volunteer"><a href="http://owasp.force.com/volunteers/GW_Volunteers__VolunteersJobListing" rel="nofollow">Volunteer</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-Reference' aria-labelledby='p-Reference-label'>
+	<h3 id='p-Reference-label'>Reference</h3>
+	<div class="body">
+		<ul>
+			<li id="n-Activities"><a href="/index.php/Category:Activity">Activities</a></li>
+			<li id="n-Attacks"><a href="/index.php/Category:Attack">Attacks</a></li>
+			<li id="n-Code-Snippets"><a href="/index.php/Category:Code_Snippet">Code Snippets</a></li>
+			<li id="n-Controls"><a href="/index.php/Category:Control">Controls</a></li>
+			<li id="n-Glossary"><a href="/index.php/Category:Glossary">Glossary</a></li>
+			<li id="n-How-To..."><a href="/index.php/Category:How_To">How To...</a></li>
+			<li id="n-Java-Project"><a href="/index.php/Category:OWASP_Java_Project">Java Project</a></li>
+			<li id="n-.NET-Project"><a href="/index.php/Category:OWASP_.NET_Project">.NET Project</a></li>
+			<li id="n-Principles"><a href="/index.php/Category:Principle">Principles</a></li>
+			<li id="n-Technologies"><a href="/index.php/Category:Technology">Technologies</a></li>
+			<li id="n-Threat-Agents"><a href="/index.php/Category:Threat_Agent">Threat Agents</a></li>
+			<li id="n-Vulnerabilities"><a href="/index.php/Category:Vulnerability">Vulnerabilities</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-languageselector' aria-labelledby='p-languageselector-label'>
+	<h3 id='p-languageselector-label'>Language</h3>
+	<div class="body">
+		<ul>
+			<li id="n-languageselector" class="active"><a 0="https://www.owasp.org/index.php?title=Secure_Coding_Cheat_Sheet&amp;setlang=en" href="https://www.owasp.org/index.php?title=Secure_Coding_Cheat_Sheet&amp;setlang=en">English</a></li>
+			<li id="n-languageselector"><a 0="https://www.owasp.org/index.php?title=Secure_Coding_Cheat_Sheet&amp;setlang=es" href="https://www.owasp.org/index.php?title=Secure_Coding_Cheat_Sheet&amp;setlang=es">español</a></li>
+		</ul>
+	</div>
+</div>
+<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+	<h3 id='p-tb-label'>Tools</h3>
+	<div class="body">
+		<ul>
+			<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Secure_Coding_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+			<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Secure_Coding_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+			<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+			<li id="t-print"><a href="/index.php?title=Secure_Coding_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+			<li id="t-permalink"><a href="/index.php?title=Secure_Coding_Cheat_Sheet&amp;oldid=205021" title="Permanent link to this revision of the page">Permanent link</a></li>
+			<li id="t-info"><a href="/index.php?title=Secure_Coding_Cheat_Sheet&amp;action=info">Page information</a></li>
+		</ul>
+	</div>
+</div>
+			</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 11 December 2015, at 08:34.</li>
+											<li id="footer-info-viewcount">This page has been accessed 63,024 times.</li>
+											<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">a Creative Commons 3.0 License</a> unless otherwise noted.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/OWASP:Privacy_policy" title="OWASP:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/OWASP:About" title="OWASP:About">About OWASP</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/OWASP:General_disclaimer" title="OWASP:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+					<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="https://www.owasp.org/images/f/fa/Somerights20.png" alt="a Creative Commons 3.0 License" width="88" height="31" /></a>
+					</li>
+					<li id="footer-poweredbyico">
+						<a href="//www.mediawiki.org/"><img src="/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+						<a href="http://www.rackspace.com/cloud/managed_cloud/"><img src="/images/Powered_By_Rackspace_logo.png" alt="Powered by Rackspace Managed Cloud" height="30" width="100" /></a>
+					</li>
+				</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.languageSelector","ext.headertabs","skins.vector.collapsibleNav"],null,true);
+}</script>
+<script type="text/javascript">
+function buildContent (blog) {
+    var MONTH_NAMES = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    if (!blog || !blog.items) return;  var container=document.getElementById("container");
+    var code="";  for (var i = 0; i < blog.items.length; i++) {   var item = blog.items[i];
+    var date = new Date();    date.setTime( 4 + item.published * 1000 );
+    var datestring = MONTH_NAMES[date.getMonth()]+" "+(date.getDate());
+    code=code+"<div style='font-weight:bold'>"+datestring+" - ";    
+    code=code+"<a href='"+item.alternate.href+"'>"+item.title+"</a> (by ";
+    code=code+"<a href='"+item.origin.streamId.substring(5)+"'>"+item.author+"</a>)</div>";
+    var text=""+item.content;
+    if (text == "undefined" ) {
+	  text=item.summary;
+    }
+    code=code+"<div>"+text+"</div><br>";
+    }
+    container.innerHTML=code;
+}
+</script> 
+<script type="text/javascript">
+function build_bloglist(data) {
+  var container = document.getElementById('blogroll');
+  var list = document.createElement('div');
+  // Loop through all data items returned
+  for (var i=0; i < data.items.length; i++) {
+    var item = data.items[i];
+		var link = document.createElement('a');
+		link.appendChild(document.createTextNode(item.title));
+	link.href = item.id;
+    list.appendChild(link);
+    list.appendChild(document.createElement('br'));
+  }
+  container.appendChild(list);
+}
+</script>
+<script src="https://www.owasp.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4531126-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script><script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":159});
+}</script>
+	</body>
+</html>
