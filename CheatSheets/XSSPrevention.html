@@ -104,29 +104,29 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 </p><p>スロットの定義、そのいくつかの例を提示しています。開発者は、極めて慎重に分析し、安全であることを確認しない限り、絶対に他のスロットにデータを置いてはいけません。ブラウザーによる HTML の解析処理はとても複雑 であり、一見無害に見える多くの文字が、コンテキストによっては極めて重要になる場合があります。
 </p>
 <h2><span class="mw-headline" id="Why_Can.27t_I_Just_HTML_Entity_Encode_Untrusted_Data.3F">信頼されていないデータを単純に HTML エンティティエンコードしてはならない理由</span></h2>
-<p>HTML エンティティエンコードは、&lt;div&gt; タグ内など、HTML ドキュメントの本文に 信頼されていないデータを配置する場合には有効です。また、 属性を必ず引用符で囲むようにしている場合、属性に 信頼されていないデータを配置するときに効果を発揮します。しかし、 任意の場所の &lt;script&gt; タグ 、onmouseover などのイベントハンドラ属性、 CSS や URL の中に信頼されていないデータを 置く場合には、HTML エンティティエンコードは適切に機能しません。そのため、データを配置する場所を考慮せずに HTML エンティティエンコード を行っている場合は、 XSS に対して脆弱なままになります。<b>信頼されていないデータを配置する HTML ドキュメントの場所に合わせたエスケープ構文を使用しなければなりません。</b>以下のルールはこのことをより具体的に説明するもの です。
+<p>HTML エンティティエンコードは、&lt;div&gt; タグ内など、HTML ドキュメントの本文に信頼されていないデータを配置する場合には有効です。また、属性を必ず引用符で囲むようにしている場合、属性に信頼されていないデータを配置するときに効果を発揮します。しかし、任意の場所の &lt;script&gt; タグ、onmouseover などのイベントハンドラ属性、CSS や URL の中に信頼されていないデータを置く場合には、HTML エンティティエンコードは適切に機能しません。そのため、データを配置する場所を考慮せずに HTML エンティティエンコードを行っている場合は、 XSS に対して脆弱なままになります。<b>信頼されていないデータを配置する HTML ドキュメントの場所に合わせたエスケープ構文を使用しなければなりません。</b>以下のルールはこのことをより具体的に説明するものです。
 </p>
 <h2><span class="mw-headline" id="You_Need_a_Security_Encoding_Library">セキュリティエンコードライブラリが必要</span></h2>
 <p>これらのエンコーダーを作成するのはさほど難しくはありませんが、いくつかの落とし穴があります。たとえば、JavaScript で \" などのエスケープショートカットを使用したいと考えるかもしれません。しかし、これらの値は危険であり、ブラウザーのネストされたパーサーが誤って解釈する可能性があります。また、エスケープ文字のエスケープを失念する場合があります。攻撃者はこれを利用して、ユーザーの安全対策を無力化できます。OWASP は、セキュリティに特化したエンコードライブラリを使用し、ルールが適切に実装されるようにすることを推奨します。
 </p><p>Microsoft は、.NET プラットフォーム向けに <a rel="nofollow" class="external text" href="http://wpl.codeplex.com">Microsoft Anti-Cross Site Scripting Library</a> というエンコードライブラリを提供しています。また、ASP.NET フレームワークには、<a rel="nofollow" class="external text" href="http://msdn.microsoft.com/en-us/library/ms972969.aspx#securitybarriers_topic6">ValidateRequest</a> 関数が組み込み済みで、<b>限定的な</b>サニタイズを可能としています。
-</p><p>OWASP <a href="/index.php/ESAPI" title="ESAPI" class="mw-redirect">ESAPI</a> プロジェクトでは、Java 用のエスケープライブラリを作成しています。また、 ハイパフォーマンスなエンコーダーを作成する <a href="/index.php/OWASP_Java_Encoder_Project" title="OWASP Java Encoder Project">OWASP Java Encoder </a> プロジェクトも活動 しています。
+</p><p>OWASP <a href="/index.php/ESAPI" title="ESAPI" class="mw-redirect">ESAPI</a> プロジェクトでは、Java 用のエスケープライブラリを作成しています。また、ハイパフォーマンスなエンコーダーを作成する <a href="/index.php/OWASP_Java_Encoder_Project" title="OWASP Java Encoder Project">OWASP Java Encoder </a> プロジェクトも活動しています。
 </p>
 <h1><span class="mw-headline" id="XSS_Prevention_Rules">XSS 対策ルール</span></h1>
-<p>以下のルールは、アプリケーションにおける、あらゆる XSS を防ぐことを目的としています。これらのルールでは、信頼されていないデータを HTML ドキュメントに自由に配置することを禁止しています。これにより、一般的なユースケースの大半に対処できるはずです。組織で必ずしも<b>すべての</b>ルールを適用する必要はありません。多くの組織では、<b>ルール 1 とルール 2 を適用するだけで十分にニーズを満たす</b>と思われます。頻繁に必要となりエスケープによって安全に保護できる追加コンテキストがある場合は、ディスカッションページに書き加えて ください。
+<p>以下のルールは、アプリケーションにおける、あらゆる XSS を防ぐことを目的としています。これらのルールでは、信頼されていないデータを HTML ドキュメントに自由に配置することを禁止しています。これにより、一般的なユースケースの大半に対処できるはずです。組織で必ずしも<b>すべての</b>ルールを適用する必要はありません。多くの組織では、<b>ルール 1 とルール 2 を適用するだけで十分にニーズを満たす</b>と思われます。頻繁に必要となりエスケープによって安全に保護できる追加コンテキストがある場合は、ディスカッションページに書き加えてください。
 </p><p>これらのルールで指定されている、一連のサンプル文字を単純にエスケープすることはしないでください。ここで例示したものをエスケープするだけでは不十分です。ブラックリストアプローチは脆弱です。ホワイトリストルールは、ブラウザーの変更によって将来新たに発生する可能性のある脆弱性に対する保護も提供できるように、注意深く設計されています。
 </p>
 <h2><span class="mw-headline" id="RULE_.230_-_Never_Insert_Untrusted_Data_Except_in_Allowed_Locations">ルール 0 - 許可された場所以外に信頼されていないデータを挿入しない</span></h2>
-<p>1 番目のルールは、<b>すべてを拒否</b>することです。ルール 1 からルール 5 で定義されたスロット以外の、 HTML ドキュメントのどの場所にも信頼されていないデータを置いてはいけません。ルール 0 を設定する理由は、HTML には厄介なコンテキストが多すぎて、エスケープルールのリストが複雑になるためです。これらのコンテキストに信頼されていないデータを置く妥当な理由が見当たりません。対象のコンテキストには、javascript 内の URLなど、"ネストされたコンテキスト" も含まれます。この場所にエンコードルールを設定するのは問題が多く、危険です。どうしてもネストされたコンテキストに信頼されていないデータを置きたい場合は、十分にクロスブラウザーテストを実施して、結果を知らせてください。
+<p>1 番目のルールは、<b>すべてを拒否</b>することです。ルール 1 からルール 5 で定義されたスロット以外の、HTML ドキュメントのどの場所にも信頼されていないデータを置いてはいけません。ルール 0 を設定する理由は、HTML には厄介なコンテキストが多すぎて、エスケープルールのリストが複雑になるためです。これらのコンテキストに信頼されていないデータを置く妥当な理由が見当たりません。対象のコンテキストには、javascript 内の URL など、"ネストされたコンテキスト" も含まれます。この場所にエンコードルールを設定するのは問題が多く、危険です。どうしてもネストされたコンテキストに信頼されていないデータを置きたい場合は、十分にクロスブラウザーテストを実施してください。
 </p>
-<pre> &lt;script&gt;<b>...NEVER PUT UNTRUSTED DATA HERE...</b>&lt;/script&gt;   直接スクリプト内
+<pre> &lt;script&gt;<b>...NEVER PUT UNTRUSTED DATA HERE...</b>&lt;/script&gt;   スクリプト内に直接
  
- &lt;!--<b>...NEVER PUT UNTRUSTED DATA HERE...</b>--&gt;             HTML コメント内
+ &lt;!--<b>...NEVER PUT UNTRUSTED DATA HERE...</b>--&gt;             HTML コメントのなか
  
- &lt;div <b>...NEVER PUT UNTRUSTED DATA HERE...</b>=test /&gt;       属性名内
+ &lt;div <b>...NEVER PUT UNTRUSTED DATA HERE...</b>=test /&gt;       属性名の一部として
  
- &lt;<b>NEVER PUT UNTRUSTED DATA HERE...</b> href="/test" /&gt;   タグ名内
+ &lt;<b>NEVER PUT UNTRUSTED DATA HERE...</b> href="/test" /&gt;   タグ名の一部として
  
- &lt;style&gt;<b>...NEVER PUT UNTRUSTED DATA HERE...</b>&lt;/style&gt;   直接 CSS 内
+ &lt;style&gt;<b>...NEVER PUT UNTRUSTED DATA HERE...</b>&lt;/style&gt;   CSS 内に直接
 </pre>
 <p>最も重要なのは、絶対に、信頼されていないソースから JavaScript コード自体を受け入れて実行しないことです。たとえば、"callback" というパラメーターには、JavaScript コードスニペットが含まれています。どれだけエスケープしても、これを修正することはできません。
 </p>
@@ -139,7 +139,7 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
  
  その他の通常の HTML 要素
 </pre>
-<p>HTML エンティティエンコードにより、次の文字をエスケープして、スクリプト、スタイル、イベントハンドラなど、実行コンテキストへの切り替えを防ぎます。仕様では、16 進数のエンティティを使用することが推奨されています。XML で重要な 5 つの文字 (&amp;、&lt;、&gt、"、') に加えて、HTML エンティティの終了を示すスラッシュ文字を含めます。
+<p>HTML エンティティエンコードにより、次の文字をエスケープして、スクリプト、スタイル、イベントハンドラなど、実行コンテキストへの切り替えを防ぎます。仕様では、16進数のエンティティを使用することが推奨されています。XML で重要な 5 つの文字 (&amp;、&lt;、&gt、"、') に加えて、HTML エンティティの終了を示すスラッシュ文字を含めます。
 </p>
 <pre> &amp; --&gt; &amp;amp;
  &lt; --&gt; &amp;lt;
@@ -190,7 +190,7 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 </pre>
 <h3><span class="mw-headline" id="RULE_.233.1_-_HTML_escape_JSON_values_in_an_HTML_context_and_read_the_data_with_JSON.parse">ルール 3.1 -  HTML コンテキストの JSON 値を HTML エスケープし、 JSON.parse を使用してデータを読み取る</span></h3>
 <p>Web 2.0 の世界では、Javascript コンテキストでアプリケーションにデータを動的に生成させることが一般的に求められます。一つの戦略は、AJAX 呼び出しを作成して値を取得するというものですが、この方法は常に高性能とは限りません。多くの場合、JSON の最初のブロックがページに読み込まれ、複数の値を格納するための単一の場所としての役割を果たします。このデータを、値の形式や内容を壊すことなく正確にエスケープするのは、不可能ではありませんが非常に困難です。
-</p><p><b>返される <i>Content-Type</i> ヘッダーは、text/html ではなく、application/json でなければなりません。 </b>
+</p><p><b>返される <i>Content-Type</i> ヘッダーは、text/html ではなく、application/json でなければなりません。</b>
 これにより、ブラウザーはコンテキストを誤って解釈することなく、挿入されたスクリプトを実行します。
 </p><p><b>誤った HTTP レスポンス:</b>
 </p>
@@ -272,12 +272,12 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 <p>警告:URL エンコードで、完全な URL または相対 URL をエンコードしないでください。信頼されていない入力が href、src、またはその他の URL ベースの属性内に置かれる場合、その入力を検証して、予期していないプロトコル、特に Javascript リンクを指していないことを確認する必要があります。それから、他のデータと同様に、URL は、表示のコンテキストに基づいて、エンコードする必要があります。たとえば、HREF リンク内のユーザー主導の URL は、エンコードされた属性でなければなりません。次に例を示します。
 </p>
 <pre> String userURL = request.getParameter( "userURL" )
- boolean isValidURL = ESAPI.validator().isValidInput("URLContext", userURL, "URL", 255, false); 
- if (isValidURL) {  
+ boolean isValidURL = ESAPI.validator().isValidInput("URLContext", userURL, "URL", 255, false);
+ if (isValidURL) {
      &lt;a href="&lt;%=encoder.encodeForHTMLAttribute(userURL)%&gt;"&gt;link&lt;/a&gt;
  }
 </pre>
-<h2><span class="mw-headline" id="RULE_.236_-_Sanitize_HTML_Markup_with_a_Library_Designed_for_the_Job">ルール 6 – 専用に設計されたライブラリを使用して HTML マークアップをサニタイズする</span></h2>
+<h2><span class="mw-headline" id="RULE_.236_-_Sanitize_HTML_Markup_with_a_Library_Designed_for_the_Job">ルール 6 - 専用に設計されたライブラリを使用して HTML マークアップをサニタイズする</span></h2>
 <p>アプリケーションでマークアップ (HTML が含まれることが想定される信頼されていない入力) を処理する場合、検証は非常に難しくなります。また、入力内に存在すると想定されるすべてのタグを壊す可能性があるため、エンコードも難しくなります。そのため、HTML 形式のテキストを解析し、クリーニングできるライブラリが必要になります。OWASP では、簡単に使用できるライブラリをいくつか用意しています。
 </p><p><b>HtmlSanitizer</b> - <a rel="nofollow" class="external free" href="https://github.com/mganss/HtmlSanitizer">https://github.com/mganss/HtmlSanitizer</a>
 </p><p>オープンソースの .Net ライブラリです。HTML は、ホワイトリストアプローチによってクリーニングされます。許可されたすべてのタグと属性を構成できます。このライブラリは、<a rel="nofollow" class="external text" href="https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet">OWASP XSS フィルター回避チートシート</a>を使用して、単体テストが実施されています。
@@ -297,7 +297,7 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 </p><p><b>Ruby on Rails SanitizeHelper</b> - <a rel="nofollow" class="external free" href="http://api.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html">http://api.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html</a>
 </p><p>SanitizeHelper モジュールは、不適切な HTML 要素のテキストをクリーンにするための一連の手法を提供します。
 </p>
-<pre>  &lt;%= sanitize @comment.body, tags:&#160;%w(strong em a), attributes:&#160;%w(href)&#160;%&gt;   
+<pre>  &lt;%= sanitize @comment.body, tags:&#160;%w(strong em a), attributes:&#160;%w(href)&#160;%&gt;
 </pre>
 <p><b>HTML サニタイズを提供するその他のライブラリは、以下のとおりです。</b><br />
 </p><p>PHP Html Purifier - <a rel="nofollow" class="external free" href="http://htmlpurifier.org/">http://htmlpurifier.org/</a><br />
