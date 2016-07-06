@@ -1,0 +1,84 @@
+ASVS V7: Cryptography at rest
+  * 7.12: adhere to privacy laws
+         日本語訳:「個人情報が」→「個人情報は」
+         日本語訳:「...保存されて保護された...」→「...保存され、保護された...」
+
+* ASVS V9: data protection
+  * 9.1: protect against auto-complete/auto-fill
+    日本語訳: 「許可ない」→「許可しない」
+  * 9.5: protect server side caches
+         誤訳?
+  * 9.11: 日本語「なるや直ちに」→「なったら直ちに」かな?
+
+* ASVS V10: Communication
+  * 10.3: never fallback to unecrypted links
+        日本語訳: 「バックエンド方式による通信」→「バックエンドシステムとの通信」
+  * 10.10: certificate pinning
+         日本語訳: 修正必要
+
+* ASVS V15: Business Logic Flaws
+    日本語訳: 「なりしまし」→「なりすまし」
+
+* ASVS V19: Configuration
+  * 19.8: use known repos for libraries
+          always consider the provenance of third party libraries
+      日本語訳: 「信頼できるリポジトリから取得したサードパーティコンポーネントを使用している」
+      →「サードパーティコンポーネントは信頼できるリポジトリから取得している」
+
+- ASVS 3.0.1 final version uploaded
+
+  = figure.1 "ASVS use" is removed
+  = 1.6 revised: "Denial of Service" added
+  = 1.11 added
+    "such as all components, ..." の "all components" は冗長では?
+  = 2.2 revised: "password fields" changed to "credentials"
+     日本語訳: 誤訳, 意味が違っている
+  = 2.7 revised
+  = 2.12 revised
+  = 2.13 revised
+  = 2.20 revised
+  = 2.22 revised
+  = 2.24 revised
+  = 2.26 revised
+  = 2.30 deleted
+  = 2.33 added
+  = 5.18 
+      "client side validation is used as a second line of defense,
+       in addition to server side validation"
+    which is the intention?
+      1: server side validation (as a primary) and client side (as a secondary) should be used
+      2: client side validation (if used) should be a second line, not a first line.
+         the first line of defense should be server side.
+
+  = 5.19 日本語訳が微妙. 「HTMLのフォームのフィールド」→「HTML入力フォームからのデータ」など
+  = 5.21 日本語訳 「使用可能な文字と長さ等」→「使用可能な文字や長さ等」
+         後半部分も.
+  = V5 references adds one entry CWE915
+  = 7.11 revised: "virtualized or physical hardware key vault"
+  = 7.13 revised, the same as 9.11?
+  = 8.13 added
+  = 9.9 revised? looks no change compared to japanese
+  = 9.11 revised the same as 7.13?
+  = 10.10 changed level 2 from level 3, and contents revsed (e.g., adding "HPKP")
+  = 10.14--16: 日本語訳: 番号に "V" が付いている (V10.14,...)
+  = V10 references revised
+  = 11.4 revised
+  = 11.7 revised
+  = 11.8 revised
+  = V11 referenses one entry added
+  = V13 intro revised
+  = 13.2 revised
+  = 17.10 revised, the same as 9.11 and 7.13
+  = 17.11 revised (日本語訳はそのままで良さげ)
+  = 18.5 revised (one sentence added)
+  = 18.7 revised
+  = 18.9 revised
+  = 18.10 日本語訳: 「セキュリティレベルの低い代替アクセスパスが存在しない」
+  = V18 reference; two entries added
+  = 19.10 added
+  = Appendix A revised
+    . 8.12 has some garbage
+    . 11.1--13.9 has additional "V" in japanese
+
+x---x---x---x---x---x---x---x---x
+
