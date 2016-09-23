@@ -1,0 +1,5 @@
+- 文章中のタグの "<" や ">" がエスケープされてない (div と script)
+- 参照している Microsoft Anti XSS Library (wpl.codeplex.com) は End-of-Life になっている
+
+  
+

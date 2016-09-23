@@ -1,0 +1,26 @@
+[Transaction Authorization]
+
+- "Some applications use a second factor to check whether an authorized user is performing ..."
+
+  Some applications use a second factor authentication to ... てこと?
+  2要素認可(a second factor authorization)
+  ふつーは「2要素認証(a second factor authentication)」ていうけどなー.
+
+- "Some applications are asking for transaction authorization
+  credentials only once, e.g., .... Afterwards a user is able to
+  authorize any transaction during the whole user's session or at
+  least he has to reuse the same credentials each time he needs to
+  authorize a transaction."
+
+  「ひとつの credential を使いまわしている場合」という前提で書かれているのか?
+  また, "or at least he has to reuse ..." の部分はどういう意図で
+  書かれているのか?
+  credential を一回しか聞いてこない場合に authorize をアプリに任せる方は
+  分かるが, "he has to reuse ..." てのはユーザがなにかアクションするっぽい
+  表現だけど???
+
+- "when a client is sending parameters..., the transaction may be
+  authorized, despite the fact that the user has already switched to a
+  new method."
+
+  "a client" と "the user" は使い分けられてる? 統合しちゃダメ?

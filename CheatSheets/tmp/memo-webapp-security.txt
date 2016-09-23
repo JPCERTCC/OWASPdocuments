@@ -1,0 +1,6 @@
+[Web Application Security]
+- このファイルの各所から OWASP Testing Guide などへのリンクがはられている.
+  公開にあたってこのあたりどうするか検討すべき.
+
+- "Web Storage SQL injection" て「SQL」をつけるのはおかしいのでは?
+  "Web Storage Use" くらいなのか?

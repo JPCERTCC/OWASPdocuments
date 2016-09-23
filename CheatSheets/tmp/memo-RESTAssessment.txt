@@ -1,0 +1,5 @@
+[REST Assessment]
+
+- "Those used are often activated..."
+  これは "accessed dynamically, links are not placed in pages statically" てな感じ?
+

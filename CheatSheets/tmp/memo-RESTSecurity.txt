@@ -1,0 +1,12 @@
+[REST Security]
+
+- "change the internal state to be much better than it should be."
+  これっていったい何を言おうとしてるんだ?
+
+- "In short, even if you have ..."
+  ここもいったい何を言わんとしているのか伝わらない...
+
+- "farming"
+  "pharming" とは違うよね?
+  複数のサービスを一ヶ所でまとめて参照できるようにすることを
+  farming と言ってるぽい.

@@ -1,0 +1,3 @@
+- "secret cookie" とは?
+  もしかして "secure" 属性つきcookieのこと?
+

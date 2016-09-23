@@ -1,0 +1,20 @@
+[Ruby on Rails]
+
+- "here is the idiom for building ..."
+  ここは "you should use the following idiom for building ..."
+  とすべきでは?
+
+- "out of the gate on a vanilla Rails application, ..."
+  out-of-the-gate って分かりにくい.
+  よーするに「通常の Rails アプリでは」ということでいいのか?
+
+- "base ApplicationController"
+  「ベースとなる ApplicationController」てことでいいのか?
+
+- "The above request would redirect the user to http://www.example.com/checkout."
+  上段に示されている URL からすると www.example_commerce_site.com/checkout じゃないのか?
+
+- "Validation routine where we use \A and \z as anchors *not* ^ and $"
+  \A とか \z とかって何? Ruby on Rails のマニュアル見れば分かる?
+
+

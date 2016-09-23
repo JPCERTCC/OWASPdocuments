@@ -1,0 +1,20 @@
+[Transport Layer Protection]
+
+- "Architectural Decision" とは?
+
+  "An architectural decision must be made to determine the appropriate
+   method to protect data when it is being transmitted."
+
+  は "An APPROPRIATE architectural decision ..." (適切な選択をすべき) なのか,
+  "... must be made FIRST to determine ..."
+  (まずアーキテクチャが決まらないと...) なのか?
+
+- "The includes consideration for ..." はどう直すべき?
+
+- なんでこんな分りづらい表現してるの? FIPS からとってきてる?
+
+  "In addition, the cryptomodule must be installed, configured, and
+   operated in either an approved or an allowed mode to provide a high
+   degree of certainty that the FIPS 140-2 validated cryptomodule is
+   providing the expected security services in the expected manner."
+

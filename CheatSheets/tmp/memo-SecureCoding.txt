@@ -1,0 +1,29 @@
+[Secure Coding Cheat Sheet]
+
+- "List down the activities that are related to maintenance of secure coding standards
+   (would these standards be technology specific or technology agnostic),
+   feedback of code review output to training, input data validation, output data validation etc"
+
+  文章の構造がよく分からない.
+  (1) List down ...  (2) feedback ...
+  or
+  (0) List down ...  (1.1) feedback ... (1.2) input ... (1.3) output ...
+
+- "Email verification link", "Email verification code" ってどう説明すべき?
+  Email 検証のためにアクセスさせるリンク先
+  Email 検証でアクセスさせるページ
+  Email 検証のために用意したページ
+
+- "Logging and Monitoring" が重複してる
+
+- "Preventing OS injection"
+  OS Command injection と書くべき. Command って入れないとおかしい.
+
+- application/x-xpinstall ってなんだ?
+
+- "special" files の "the following file types" は "following files" とすべき
+
+- "prevent stack traces from leaving the container"
+  スタックトレースが発生すると処理フローがコンテナの外に出てしまう?
+
+

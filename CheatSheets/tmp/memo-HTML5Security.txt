@@ -1,0 +1,8 @@
+[HTML5 Security]
+
+- "Also known as Offline Storage. Web Storage."
+  文章になってない.
+  "Local Storage is also known as Offline Storage, or Web Storage."
+  とか.
+
+

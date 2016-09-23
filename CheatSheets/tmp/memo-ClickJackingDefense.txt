@@ -1,0 +1,9 @@
+[Click Jacking Defense]
+
+- prevention ...... 防止, 阻止, 回避, 対策
+
+- "symantics" should be "semantics" ?
+
+- "popup that cannot be framed" てどういうこと?
+  frame のなかのページからの popup は frame のなかでなく
+  外に出てくれる, てこと? "popup that pops up outside the frame"?

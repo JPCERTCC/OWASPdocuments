@@ -1,0 +1,15 @@
+[IOS Developer]
+
+- 「Introduction / はじめに」の位置が目次の前に来てるのおかしい.
+  元のページからそうなってる. 指摘してあげたほうがいいね.
+
+- "In doing this, proper key management is of utmost importance"
+  doing this ってなにを指してる?
+  third-party API を導入して使うこと?
+
+- "positively validate all data input" の "positively" はどういうキモチ?
+  明示的に検証を行うコードを入れろ, ってことかな?
+
+- "IP number" は "IP address" にすべき.
+
+- "Use only trustworthy sources for generating sessions." の source ってなに?

@@ -1,0 +1,36 @@
+[Logging]
+
+- "e.g., using Extended Log File Format" はどこにつながるフレーズなのか
+    = Web app logging ?
+    = Having web server logs enabled ?
+
+- "Application logging should be always be ..."
+  英語が壊れてる
+
+- "establishing baselines"
+  なんのベースライン? security baseline?
+
+
+- "the original sequence of attributable transactions"
+  attributable transaction とは?
+
+- "instrumentation code" とは?
+  性能測定やデバッグ用のコード?
+
+  cf. https://en.wikipedia.org/wiki/Instrumentation_(computer_programming)
+
+- "Reputation monitoring services e.g., uptime or malware monitoring"
+  この reputation って「評判」て意味で使ってるわけじゃないのかな?
+
+- "Where to record event data"
+  "may" の意図するところが分からない.
+  前半は, いろいろなケースがあるだろうという意味で "may" だと思うが,
+  "All types of applications may send event data to remote systems"
+  は "should" の気持ちで書いてるような...?
+
+- "assigning users to tokens"
+  assigning tokens to users の間違いでは?
+
+- "Log date and time (international format)"
+  international format ってなに? タイムゾーン込みってこと?
+  それとも ISO??? 形式を勧めてる?

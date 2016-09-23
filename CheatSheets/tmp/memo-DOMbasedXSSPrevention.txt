@@ -1,0 +1,29 @@
+[DOM based XSS Prevention]
+
+- "the attack is injected"
+  attack って inject するものだろうか?
+  javascript code is injected なのでは?
+  attack を javascript コードと置き換えた方が良さそう.
+
+- "the application owner's responsibility"
+  no, the application developer's responsibility
+
+- context には rendering context と execution context がある?
+  さらに rendering context は HTML, attributes, URL, CSS の4種類.
+  execution context は特に細かく分類しない.
+  各 execution context においてデータをレンダリングするため,
+  execution context 中に rendering context が組み合わされることになる.
+  この組み合わせに従ってルールが作られている.
+
+- RULE#3, "string_value" should be "value_string".
+
+- "dis-arming nature"
+  どれがどのエンコーディングなのか分かりにくい.
+
+- "you have to remember that encodings are lost when you retrieve them
+  using the value attribute of a DOM element"
+
+  "them" って encoding のことなの?
+
+  「value 属性の値を取得すると(さきにエンコードしておいても)デコードさ
+    れた形で出てくる」てことじゃないか?
