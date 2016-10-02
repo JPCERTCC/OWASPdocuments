@@ -1,0 +1,129 @@
+References: <CAEdoTfJdzR-Y0JvqQ_vWU0CF=GeG1w-dOBc_M9rCRWOWewBuPQ@mail.gmail.com>
+ <20160629154818.664F55AC@mx01.jpcert.or.jp>
+From: Andrew van der Stock <vanderaj@owasp.org>
+Date: Wed, 29 Jun 2016 23:14:16 +0200
+Message-ID: <CAEdoTfJ8Rr1myj9vyyuL=B2P7hswZ5+p-vLmmYf2oyygOdLzRA@mail.gmail.com>
+Subject: Re: [OWASP ASVS] OWASP Application Security Verification Standard
+ 3.0.1 released!
+To: Yozo TODA <yozo.toda@jpcert.or.jp>
+Cc: "owasp-application-security-verification-standard@lists.owasp.org" <owasp-application-security-verification-standard@lists.owasp.org>
+Content-Type: text/plain; charset=UTF-8
+
+1.11 Yes, it's a repetition, but it's almost okay as I want it to be
+expansively inclusive. If you want to make it shorter in Japanese, the
+following phrasing is perfectly fine:
+
+"Verify that all application components, libraries, modules, framework,
+platform, and operating system are free from known vulnerabilities."
+
+5.18 Yes, I expect both to be used in well written apps, with server side
+validation being essential, and client side being nice for user experience.
+
+7.11 はい、そです。
+
+7.13 / 9.11 / 17.10 - yes, but different aspects of exactly the same risk
+
+- Crypto - it's about clearing out encryption keys and passwords (this is
+the mimikatz threat)
+- Data protection - it's about clearing out sensitive / personal
+information (this is the data breach threat)
+- Mobile - it's about clearing out oAuth / authentication tokens from
+memory as well as other secrets (this is the data loss of a phone / evil
+maid threat)
+
+The mechanism to protect against these are identical in nature, and thus
+more or less the same phrasing.
+
+Excellent pick ups! I will look into the corruption issue in Appendix A
+tomorrow.
+
+度もありがとございます
+
+thanks
+Andrew
+
+
+On Wed, Jun 29, 2016 at 5:48 PM, Yozo TODA <yozo.toda@jpcert.or.jp> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA512
+>
+> > AppSec EU Project Summit, the OWASP Application Security Verification
+> > Standard 3.0.1 has been released!
+>
+> Congratulations!
+>
+> At the Developer's Summit room, after Andrew's saying that the file is
+> uploaded on github,
+> I checked the difference between 3.0 and this 3.0.1 release using file
+> comparison of MS Word.
+>
+> here is my findings.
+> (sorry not putting to issue requests, I'm not sure they should be issues
+> or not ...)
+>
+>   = 1.11
+>       "Verify that all application components, such as all components,
+>        libraries, modules, framework, platform, and operating system
+>        are free from known vulnerabilities."
+>
+>     "all components" in "such as all components, ..." looks duplicated?
+>
+>   = 5.18
+>       "client side validation is used as a second line of defense,
+>        in addition to server side validation"
+>
+>     somewhat ambiguous for me... which is the intention? ( I suppose 2.)
+>       1: server side validation (as a primary) and client side (as a
+> secondary), both should be used
+>       2: client side validation (if used) should be a second line, not a
+> first line.
+>          the first line of defense should be server side.
+>
+>   = 7.11
+>      "... and consider the use of a virtualized or physical hardware key
+> vault (HSM)"
+>
+>     honestly I don't know well about key vauls and HSM, anyway,
+>     "virtualized" hardware key vault is new to me.
+>     (with googling a little..)
+>     does it mean products like Azure Key Vault or SafeNet Vitual KeySecure?
+>
+>   = 7.13, 9.11, 17.10 looks the same
+>
+>     I understand this as intentional, V7(Crypto), V9(Data Protection),
+> V17(Mobile).
+>
+>   = Appendix A
+>     some garbage around 8.12 description
+>
+>
+> ======================================================================
+> Yozo TODA(yozo.toda@jpcert.or.jp), JPCERT/Coordination Center
+> PGPkey: 0xF418109E: 6DB4 FA92 1563 5240 0827  0EF1 D778 421B F418 109E
+> Phone: +81-3-3518-4600  Fax: +81-3-3518-4602
+> https://www.jpcert.or.jp/
+>
+> -----BEGIN PGP SIGNATURE-----
+>
+> iQIcBAEBCgAGBQJXc+1wAAoJENd4Qhv0GBCeNJQQAMMBzpCM2hD4n5pMeH1oqkRL
+> xvYuQ9iCSQp9q1wTslVZleniHJ+HAZqB0HpY9UEWPHNYV2am90a5VmeiU7Tu4tRA
+> ib0NBy8sBwDFfbs/EbDjJU13PdXLvROcZ83LqWCSEPrmA34a/0ZJL8NKOh83uIMR
+> nywV6+L05MfTQJqwirgydhRDQZ8timm65Y9BUaHboUaIjAMm2GPtzcm73WClAm6E
+> vBbWcInZb3ztJ3u94WnRRR0RmCKrn9Kaegu9K0K+TYbqdNiMA4LGUXur//d9Os0y
+> vLLAuE6HC3bbbTaa46jpg6+NfEy2lzg+1hMpdSEOUpSZdwcesxLirNnQVdNjWNhC
+> kOYBJAthIajp1yeSKZbKV7CIJjAUQFkpTMrcbUbs+S1SFF+QY+IDzvFpgQLoXE7w
+> 9X7j310dkuk4n7wABoFXj3mEwjNNlRkO9JE4FPN/R611OmN4inFeybYVlJw5E1I5
+> qzWTs+FGqHeoFp2aJ0SxucvieAz/cXgDM6YanWZLkIHtdwNAD+RA1mxgKj7Cpty0
+> +O/JSJGAIt8eyrtwwOiSakP1jQsuVG/9wOtFkyxiGRPYluHS57ms2mts7uSvxYf0
+> f0DrCbdOJkP0lyOUpy7u72CZJKjt028Me7aYkCa9rubA44piQyo0pzX7xEMWt5Tk
+> 7JbALkLWxV31bL6dD/0Z
+> =yJ1W
+> -----END PGP SIGNATURE-----
+>
+> _______________________________________________
+> Owasp-application-security-verification-standard mailing list
+> Owasp-application-security-verification-standard@lists.owasp.org
+>
+> https://lists.owasp.org/mailman/listinfo/owasp-application-security-verification-standard
+>
