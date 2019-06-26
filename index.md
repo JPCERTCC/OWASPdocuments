@@ -33,45 +33,45 @@ JPCERT/CC で行っている OWASP ドキュメント日本語訳のベータ版
 | | - LDAP Injection Preven |
 | | - [Logging](CheatSheets/Logging.html) |
 | | - Mass Assignment |
-| | - (.NET Security)[CheatSheets/DotNETSecurity.html] |
-| | - (OWASP Top Ten)[CheatSheets/OWASPTopTen.html] |
-| | - (Password Storage)[CheatSheets/PasswordStorage.html] |
-| | - (Pinning)[CheatSheets/Pinning.html] |
-| | - (Query Parameterization)[CheatSheets/QueryParameterization.html] |
-| | - (Ruby on Rails)[CheatSheets/RubyOnRails.html] |
-| | - (REST Security)[CheatSheets/RESTSecurity.html] |
-| | - (Session Management)[CheatSheets/SessionManagement.html] |
-| | - (SAML Security)[CheatSheets/SAMLSecurity.html] |
-| | - (SQL Injection Prevention)[CheatSheets/SQLInjectionPrevention.html] |
-| | - (Transaction Authorization)[CheatSheets/TransactionAuthorization.html] |
-| | - (Transport Layer Protection)[CheatSheets/TransportLayerProtection.html] |
-| | - (Unvalidated Redirects and Forwards)[CheatSheets/UnvalidatedRedirectsAndForwards.html] |
-| | - (User Privacy Protection)[CheatSheets/UserPrivacyProtection.html] |
-| | - (Web Service Security)[CheatSheets/WebServiceSecurity.html] |
-| | - (XSS (Cross Site Scripting) Prevention)[CheatSheets/XSSPrevention.html] |
+| | - [.NET Security](CheatSheets/DotNETSecurity.html) |
+| | - [OWASP Top Ten](CheatSheets/OWASPTopTen.html) |
+| | - [Password Storage](CheatSheets/PasswordStorage.html) |
+| | - [Pinning](CheatSheets/Pinning.html) |
+| | - [Query Parameterization](CheatSheets/QueryParameterization.html) |
+| | - [Ruby on Rails](CheatSheets/RubyOnRails.html) |
+| | - [REST Security](CheatSheets/RESTSecurity.html) |
+| | - [Session Management](CheatSheets/SessionManagement.html) |
+| | - [SAML Security](CheatSheets/SAMLSecurity.html) |
+| | - [SQL Injection Prevention](CheatSheets/SQLInjectionPrevention.html) |
+| | - [Transaction Authorization](CheatSheets/TransactionAuthorization.html) |
+| | - [Transport Layer Protection](CheatSheets/TransportLayerProtection.html) |
+| | - [Unvalidated Redirects and Forwards](CheatSheets/UnvalidatedRedirectsAndForwards.html) |
+| | - [User Privacy Protection](CheatSheets/UserPrivacyProtection.html) |
+| | - [Web Service Security](CheatSheets/WebServiceSecurity.html) |
+| | - [XSS (Cross Site Scripting) Prevention](CheatSheets/XSSPrevention.html) |
 | | - XML External Entity (XXE) Prevention |
 | <b>Assessment / Breaker</b> | |
-| | - (Attack Surface Analysis)[CheatSheets/AttackSurfaceAnalysis.html] |
-| | - (XSS Filter Evasion)[CheatSheets/XSSFilterEvasion.html] |
-| | - (REST Assessment)[CheatSheets/RESTAssessment.html] |
-| | - (Web Application Security Testing)[CheatSheets/WebApplicationSecurityTesting.html] |
+| | - [Attack Surface Analysis](CheatSheets/AttackSurfaceAnalysis.html) |
+| | - [XSS Filter Evasion](CheatSheets/XSSFilterEvasion.html) |
+| | - [REST Assessment](CheatSheets/RESTAssessment.html) |
+| | - [Web Application Security Testing](CheatSheets/WebApplicationSecurityTesting.html) |
 | <b>Mobile</b> | |
-| | - (IOS Developer)[CheatSheets/IOSDeveloper.html] |
-| | - (Mobile Jailbreaking)[CheatSheets/MobileJailbreaking.html] |
+| | - [IOS Developer](CheatSheets/IOSDeveloper.html) |
+| | - [Mobile Jailbreaking](CheatSheets/MobileJailbreaking.html) |
 | <b>OpSec / Defender | |
-| | - (Virtual Patching)[CheatSheets/VirtualPatching.html] |
+| | - [Virtual Patching](CheatSheets/VirtualPatching.html) |
 | <b>Draft and Beta</b> | |
 | | - 3rd Party Javascript Management |
 | | - Android Testing |
-| | - (Application Security Architecture)[CheatSheets/ApplicationSecurityArchitecture.html] |
-| | - (Business Logic Security)[CheatSheets/BusinessLogicSecurity.html] |
+| | - [Application Security Architecture](CheatSheets/ApplicationSecurityArchitecture.html) |
+| | - [Business Logic Security](CheatSheets/BusinessLogicSecurity.html) |
 | | - Injection Prevention |
-| | - (PHP Security)[CheatSheets/PHPSecurity.html] |
-| | - (Secure Coding)[CheatSheets/SecureCoding.html] |
+| | - [PHP Security](CheatSheets/PHPSecurity.html) |
+| | - [Secure Coding](CheatSheets/SecureCoding.html) |
 | | - Secure SDLC |
 | | - Threat Modeling |
 | | - Grails Secure Code Review |
-| | - (IOS Application Security Testing)[CheatSheets/IOSApplicationSecurity.html] |
-| | - (Key Management)[CheatSheets/KeyManagement.html] |
+| | - [IOS Application Security Testing](CheatSheets/IOSApplicationSecurity.html) |
+| | - [Key Management](CheatSheets/KeyManagement.html) |
 | | - Insecure Direct Object Reference Prevention |
-| | - (Content Security Policy)[CheatSheets/ContentSecurityPolicy.html] |
+| | - [Content Security Policy](CheatSheets/ContentSecurityPolicy.html) |
