@@ -3,21 +3,18 @@ JPCERT/CC で行っている OWASP ドキュメント日本語訳のベータ版
 
 ----
 
-### ASVS: Application Security Verification Standard
+### ASVS (Application Security Verification Standard)
 
-[OWASP Application Security Verification Standard プロジェクト](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project)が公開している ASVS の日本語訳です.
-
-- OWASP ASVS プロジェクトの [github リポジトリ](https://github.com/OWASP/ASVS)
+- [ASVS プロジェクト](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project)の [github リポジトリ](https://github.com/OWASP/ASVS)
 - ASVS v3.0.1 日本語訳 ([docx](https://github.com/JPCERTCC/OWASPdocuments/blob/master/ASVS/OWASP_Application_Security_Verification_Standard_3.0.docx)) ([pdf](https://github.com/JPCERTCC/OWASPdocuments/blob/master/ASVS/OWASP_Application_Security_Verification_Standard_3.0.pdf))
 
 - JPCERT/CC web サイト: [OWASPアプリケーションセキュリティ検証標準](https://www.jpcert.or.jp/securecoding/materials-owaspasvs.html)
 
 ### Cheat Sheet シリーズ
 
-[OWASP Cheat Sheet シリーズプロジェクト](https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series)が公開している Cheat Sheet 文書の日本語訳です.
+- [Cheat Sheet シリーズプロジェクト](https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series)の [github リポジトリ](https://github.com/OWASP/CheatSheetSeries)
 
-- OWASP Cheat Sheet Series プロジェクトの [github リポジトリ](https://github.com/OWASP/CheatSheetSeries)
-
+- 以下は, github リポジトリ(V2)に移行する前の時代(V1)のファイルの日本語訳のスナップショットです.
 
 | | |
 | --- | --- |
