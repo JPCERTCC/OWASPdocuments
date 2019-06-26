@@ -2,7 +2,8 @@
 JPCERT/CC で行っている OWASP ドキュメント日本語訳のベータ版ファイルを置いています.
 
 ----
-
+#### 参考: [OWASP Japan チャプター (「Translation / OWASP ドキュメント翻訳」タブ)](https://www.owasp.org/index.php/Japan#tab=Translations__2F_OWASP_E3_83_89_E3_82_AD_E3_83_A5_E3_83_A1_E3_83_B3_E3_83_88_E7_BF_BB_E8_A8_B3)
+----
 ### ASVS (Application Security Verification Standard)
 
 - [ASVS プロジェクト](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project)の [github リポジトリ](https://github.com/OWASP/ASVS)
@@ -14,7 +15,7 @@ JPCERT/CC で行っている OWASP ドキュメント日本語訳のベータ版
 
 - [Cheat Sheet シリーズプロジェクト](https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series)の [github リポジトリ](https://github.com/OWASP/CheatSheetSeries)
 
-- 以下は, github リポジトリ(V2)に移行する前の時代(V1)のファイルの日本語訳のスナップショットです.
+- 以下は, github リポジトリ(V2)に移行する前の時代(V1)のファイルの日本語訳スナップショットです.
 
 | | |
 | --- | --- |
